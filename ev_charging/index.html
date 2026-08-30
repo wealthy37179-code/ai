@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>전기차 충전소 공공데이터 분석 탐구</title>
+    <title>전기차 충전소 데이터 분석 학습 자료</title>
     <style>
         * {
             box-sizing: border-box;
@@ -48,7 +48,7 @@
         }
 
         .header h1 {
-            font-size: 1.5rem;
+            font-size: 1.55rem;
             font-weight: 800;
             color: #0f172a;
             line-height: 1.35;
@@ -60,110 +60,95 @@
             color: #64748b;
         }
 
-        /* 메인 PDF 열기 카드 */
-        .main-card {
+        .card-list {
+            display: flex;
+            flex-direction: column;
+            gap: 14px;
+        }
+
+        .card {
             display: flex;
             align-items: center;
-            background: linear-gradient(135deg, #2563eb, #1d4ed8);
-            color: #ffffff;
-            border-radius: 16px;
-            padding: 20px;
+            background-color: #f8fafc;
+            border: 1.5px solid #e2e8f0;
+            border-radius: 14px;
+            padding: 16px 18px;
             text-decoration: none;
-            margin-bottom: 24px;
-            box-shadow: 0 8px 20px rgba(37, 99, 235, 0.25);
+            color: inherit;
             transition: all 0.2s ease-in-out;
         }
 
-        .main-card:hover {
-            transform: translateY(-3px);
-            box-shadow: 0 12px 24px rgba(37, 99, 235, 0.35);
+        .card:hover {
+            transform: translateY(-2px);
+            background-color: #ffffff;
+            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.08);
         }
 
-        .main-icon {
-            font-size: 2.2rem;
-            margin-right: 16px;
-            background: rgba(255, 255, 255, 0.2);
-            width: 52px;
-            height: 52px;
+        .card-ppt:hover { border-color: #ea580c; }
+        .card-code:hover { border-color: #7c3aed; }
+        .card-worksheet:hover { border-color: #2563eb; }
+
+        .card-icon {
+            font-size: 1.6rem;
+            margin-right: 14px;
             display: flex;
             align-items: center;
             justify-content: center;
-            border-radius: 14px;
+            width: 46px;
+            height: 46px;
+            border-radius: 12px;
             flex-shrink: 0;
         }
 
-        .main-text {
+        .icon-orange { background: #fff7ed; }
+        .icon-purple { background: #f5f3ff; }
+        .icon-blue { background: #eff6ff; }
+
+        .card-text {
             text-align: left;
             flex: 1;
         }
 
-        .main-title {
-            font-size: 1.15rem;
+        .card-tag {
+            display: inline-block;
+            font-size: 0.72rem;
             font-weight: 700;
+            padding: 2px 8px;
+            border-radius: 6px;
             margin-bottom: 4px;
         }
 
-        .main-desc {
+        .tag-orange { background: #ffedd5; color: #c2410c; }
+        .tag-purple { background: #ede9fe; color: #6d28d9; }
+        .tag-blue { background: #dbeafe; color: #1d4ed8; }
+
+        .card-title {
+            font-size: 1.03rem;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 3px;
+        }
+
+        .card-desc {
             font-size: 0.82rem;
-            opacity: 0.9;
+            color: #64748b;
         }
 
         .arrow {
-            font-size: 1.2rem;
+            font-size: 1.1rem;
             font-weight: bold;
-            opacity: 0.8;
+            color: #94a3b8;
             margin-left: 8px;
+            transition: transform 0.2s ease;
         }
 
-        /* 세부 활동 요약 목록 */
-        .section-title {
-            text-align: left;
-            font-size: 0.95rem;
-            font-weight: 700;
-            color: #475569;
-            margin-bottom: 12px;
-            padding-left: 4px;
-        }
-
-        .step-list {
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            margin-bottom: 24px;
-        }
-
-        .step-item {
-            display: flex;
-            align-items: center;
-            background-color: #f8fafc;
-            border: 1px solid #e2e8f0;
-            border-radius: 12px;
-            padding: 12px 16px;
-            text-align: left;
-        }
-
-        .step-num {
-            background-color: #e2e8f0;
+        .card:hover .arrow {
+            transform: translateX(3px);
             color: #334155;
-            font-size: 0.75rem;
-            font-weight: 700;
-            padding: 3px 8px;
-            border-radius: 6px;
-            margin-right: 12px;
-            flex-shrink: 0;
-        }
-
-        .step-content {
-            font-size: 0.85rem;
-            color: #334155;
-            line-height: 1.35;
-        }
-
-        .step-content strong {
-            color: #0f172a;
         }
 
         .footer {
+            margin-top: 24px;
             font-size: 0.8rem;
             color: #94a3b8;
         }
@@ -172,51 +157,46 @@
 <body>
 
     <div class="container">
-        <!-- 상단 헤더 -->
-        <span class="badge">공공데이터 & 데이터 정제 탐구</span>
+        <span class="badge">공공데이터 & 데이터 정제</span>
         <header class="header">
-            <h1>⚡ 전국 전기차 충전소<br>데이터 분석 활동</h1>
-            <p>한국전력공사 공공데이터를 활용한 실습 활동지</p>
+            <h1>⚡ 전국 전기차 충전소<br>데이터 분석 학습 자료</h1>
+            <p>열람하려는 PDF 학습 자료를 클릭하세요.</p>
         </header>
 
-        <!-- 메인 활동지 열람 버튼 -->
-        <a href="ev_charging_analysis_github.pdf" target="_blank" class="main-card">
-            <span class="main-icon">📄</span>
-            <div class="main-text">
-                <div class="main-title">활동지 PDF 열기</div>
-                <div class="main-desc">클릭하여 전체 활동지 보기 및 다운로드</div>
-            </div>
-            <span class="arrow">➔</span>
-        </a>
+        <main class="card-list">
+            <!-- 1. 강의 슬라이드 -->
+            <a href="지역충전소_수업자료.pdf" target="_blank" class="card card-ppt">
+                <span class="card-icon icon-orange">📊</span>
+                <div class="card-text">
+                    <span class="card-tag tag-orange">1. 강의 슬라이드 (PPT)</span>
+                    <div class="card-title">데이터 분석 강의 슬라이드</div>
+                    <div class="card-desc">지역별 충전소 현황 및 데이터 정제 인사이트</div>
+                </div>
+                <span class="arrow">➔</span>
+            </a>
 
-        <!-- 활동 단계 요약 -->
-        <div class="section-title">📌 주요 실습 및 탐구 단계</div>
-        <div class="step-list">
-            <div class="step-item">
-                <span class="step-num">활동 1</span>
-                <div class="step-content"><strong>데이터 불러오기</strong> (한글 인코딩 및 기본 구조 탐색)</div>
-            </div>
-            <div class="step-item">
-                <span class="step-num">활동 2</span>
-                <div class="step-content"><strong>데이터 정제</strong> (결측치 및 중복 행 안전 삭제)</div>
-            </div>
-            <div class="step-item">
-                <span class="step-num">활동 3</span>
-                <div class="step-content"><strong>주소 분할</strong> (Feature Engineering으로 시도명 추출)</div>
-            </div>
-            <div class="step-item">
-                <span class="step-num">활동 4</span>
-                <div class="step-content"><strong>지명 표준화</strong> (딕셔너리 매핑 및 광역 통합)</div>
-            </div>
-            <div class="step-item">
-                <span class="step-num">활동 5</span>
-                <div class="step-content"><strong>통계 시각화</strong> (지역별 충전소 수 막대그래프)</div>
-            </div>
-            <div class="step-item">
-                <span class="step-num">활동 6</span>
-                <div class="step-content"><strong>저장 및 인사이트</strong> (전처리 CSV 저장 및 사회적 분석)</div>
-            </div>
-        </div>
+            <!-- 2. 전체코드 실행결과 (.ipynb) -->
+            <a href="EV_charging.pdf" target="_blank" class="card card-code">
+                <span class="card-icon icon-purple">💻</span>
+                <div class="card-text">
+                    <span class="card-tag tag-purple">2. 전체코드 실행결과 (.ipynb)</span>
+                    <div class="card-title">파이썬 분석 전체 코드 & 해설</div>
+                    <div class="card-desc">데이터 정제 과정 및 막대그래프 시각화 실행 결과</div>
+                </div>
+                <span class="arrow">➔</span>
+            </a>
+
+            <!-- 3. 탐구 활동지 -->
+            <a href="ev_charging_analysis_github.pdf" target="_blank" class="card card-worksheet">
+                <span class="card-icon icon-blue">📄</span>
+                <div class="card-text">
+                    <span class="card-tag tag-blue">3. 탐구 활동지</span>
+                    <div class="card-title">실습 탐구 활동지</div>
+                    <div class="card-desc">결측치 정제, 주소 분할, 지명 표준화 실습 문제[cite: 1, 2]</div>
+                </div>
+                <span class="arrow">➔</span>
+            </a>
+        </main>
 
         <footer class="footer">
             © 파이썬 공공데이터 분석 실습 공간
