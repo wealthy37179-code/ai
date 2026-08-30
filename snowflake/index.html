@@ -1,3 +1,224 @@
-<h1><a href="코흐 곡선_눈송이.pdf">눈송이를 그리는 기본 코드 설명</a></h1>
-<h1><a href="코흐 곡선_눈송이_시뮬레이션.pdf">눈송이 시뮬레이션 설명</a></h1>
-<h1><a href="시뮬레이션.pdf">시뮬레이션 코드 보기</a></h1>
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>코흐 눈송이 프랙탈 & 시뮬레이터 학습관</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans KR", sans-serif;
+        }
+
+        body {
+            background-color: #f1f5f9;
+            color: #334155;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 30px 20px;
+        }
+
+        /* 빔프로젝터 / F11 전체 화면 최적화 대형 컨테이너 */
+        .container {
+            width: 100%;
+            max-width: 760px;
+            background: #ffffff;
+            padding: 46px 36px;
+            border-radius: 24px;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+            text-align: center;
+        }
+
+        .badge {
+            display: inline-block;
+            background-color: #e0f2fe;
+            color: #0369a1;
+            font-size: 0.95rem;
+            font-weight: 700;
+            padding: 6px 16px;
+            border-radius: 20px;
+            margin-bottom: 16px;
+        }
+
+        .header {
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            font-size: 2.1rem;
+            font-weight: 800;
+            color: #0f172a;
+            line-height: 1.35;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            color: #64748b;
+        }
+
+        .card-list {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .card {
+            display: flex;
+            align-items: center;
+            background-color: #f8fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 18px;
+            padding: 18px 24px;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.2s ease-in-out;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            background-color: #ffffff;
+            box-shadow: 0 10px 22px rgba(0, 0, 0, 0.1);
+        }
+
+        /* 카드 호버 테마 테두리 */
+        .card-basic-ws:hover { border-color: #2563eb; }
+        .card-basic-code:hover { border-color: #7c3aed; }
+        .card-sim-ws:hover { border-color: #0284c7; }
+        .card-sim-code:hover { border-color: #ea580c; }
+
+        .card-icon {
+            font-size: 2.0rem;
+            margin-right: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 54px;
+            height: 54px;
+            border-radius: 14px;
+            flex-shrink: 0;
+        }
+
+        .icon-blue { background: #eff6ff; }
+        .icon-purple { background: #f5f3ff; }
+        .icon-sky { background: #f0f9ff; }
+        .icon-orange { background: #fff7ed; }
+
+        .card-text {
+            text-align: left;
+            flex: 1;
+        }
+
+        .card-tag {
+            display: inline-block;
+            font-size: 0.82rem;
+            font-weight: 700;
+            padding: 2px 9px;
+            border-radius: 7px;
+            margin-bottom: 5px;
+        }
+
+        .tag-blue { background: #dbeafe; color: #1d4ed8; }
+        .tag-purple { background: #ede9fe; color: #6d28d9; }
+        .tag-sky { background: #e0f2fe; color: #0369a1; }
+        .tag-orange { background: #ffedd5; color: #c2410c; }
+
+        .card-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 3px;
+        }
+
+        .card-desc {
+            font-size: 0.95rem;
+            color: #64748b;
+            line-height: 1.35;
+        }
+
+        .arrow {
+            font-size: 1.3rem;
+            font-weight: bold;
+            color: #94a3b8;
+            margin-left: 10px;
+            transition: transform 0.2s ease;
+        }
+
+        .card:hover .arrow {
+            transform: translateX(4px);
+            color: #334155;
+        }
+
+        .footer {
+            margin-top: 30px;
+            font-size: 0.95rem;
+            color: #94a3b8;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <span class="badge">프랙탈 알고리즘 & 시뮬레이션</span>
+        <header class="header">
+            <h1>❄️ 코흐 눈송이 알고리즘<br>단계별 학습 자료실</h1>
+            <p>순서대로 학습 자료(PDF)를 클릭하여 열람하세요.</p>
+        </header>
+
+        <main class="card-list">
+            <!-- 1. 기본 활동지 -->
+            <a href="코흐 곡선_눈송이.pdf" target="_blank" class="card card-basic-ws">
+                <span class="card-icon icon-blue">📄</span>
+                <div class="card-text">
+                    <span class="card-tag tag-blue">Step 1. 개념 활동지</span>
+                    <div class="card-title">1. 코흐 눈송이 기본 탐구 활동지</div>
+                    <div class="card-desc">선 바꾸기 규칙, 재귀 호출(koch) 구조 및 정삼각형 외각 회전</div>
+                </div>
+                <span class="arrow">➔</span>
+            </a>
+
+            <!-- 2. 기본 눈송이 코드 -->
+            <a href="snowflake_code.pdf" target="_blank" class="card card-basic-code">
+                <span class="card-icon icon-purple">💻</span>
+                <div class="card-text">
+                    <span class="card-tag tag-purple">Step 2. 기본 코드</span>
+                    <div class="card-title">2. 코흐 눈송이 기본 실행 코드</div>
+                    <div class="card-desc">재귀 함수 koch() 정의 및 정삼각형 3변 그리기 기본 코드</div>
+                </div>
+                <span class="arrow">➔</span>
+            </a>
+
+            <!-- 3. 시뮬레이션 활동지 -->
+            <a href="코흐 곡선_눈송이_시뮬레이션.pdf" target="_blank" class="card card-sim-ws">
+                <span class="card-icon icon-sky">❄️</span>
+                <div class="card-text">
+                    <span class="card-tag tag-sky">Step 3. 인터랙션 활동지</span>
+                    <div class="card-title">3. 시뮬레이터 제어 탐구 활동지</div>
+                    <div class="card-desc">tracer(0)/clear() 고속 렌더링 원리 및 lambda 이벤트 연결</div>
+                </div>
+                <span class="arrow">➔</span>
+            </a>
+
+            <!-- 4. 시뮬레이션 코드 -->
+            <a href="snowflake_simulation_code.pdf" target="_blank" class="card card-sim-code">
+                <span class="card-icon icon-orange">⚙️</span>
+                <div class="card-text">
+                    <span class="card-tag tag-orange">Step 4. 전체 시뮬레이터 코드</span>
+                    <div class="card-title">4. 인터랙티브 시뮬레이터 전체 코드</div>
+                    <div class="card-desc">키보드 0~4번 실시간 렌더링 및 대시보드 출력 완성 코드</div>
+                </div>
+                <span class="arrow">➔</span>
+            </a>
+        </main>
+
+        <footer class="footer">
+            © 파이썬 알고리즘 & 그래픽스 시뮬레이션 학습실
+        </footer>
+    </div>
+
+</body>
+</html>
