@@ -1,2 +1,210 @@
-<h3><a href="price.pdf">1. 소비자 물가지수 분석 코드 보기</h3>
-<h3><a href="price_ppt.pdf">2. ppt 자료 보기</h3>
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>소비자물가지수 데이터 분석 학습관</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans KR", sans-serif;
+        }
+
+        body {
+            background-color: #f1f5f9;
+            color: #334155;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 30px 20px;
+        }
+
+        /* 빔프로젝터 / F11 전체 화면 최적화 대형 컨테이너 */
+        .container {
+            width: 100%;
+            max-width: 760px;
+            background: #ffffff;
+            padding: 46px 36px;
+            border-radius: 24px;
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+            text-align: center;
+        }
+
+        .badge {
+            display: inline-block;
+            background-color: #fef3c7;
+            color: #b45309;
+            font-size: 0.95rem;
+            font-weight: 700;
+            padding: 6px 16px;
+            border-radius: 20px;
+            margin-bottom: 16px;
+        }
+
+        .header {
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            font-size: 2.1rem;
+            font-weight: 800;
+            color: #0f172a;
+            line-height: 1.35;
+            margin-bottom: 10px;
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            color: #64748b;
+        }
+
+        .card-list {
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+
+        .card {
+            display: flex;
+            align-items: center;
+            background-color: #f8fafc;
+            border: 2px solid #e2e8f0;
+            border-radius: 18px;
+            padding: 22px 26px;
+            text-decoration: none;
+            color: inherit;
+            transition: all 0.2s ease-in-out;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            background-color: #ffffff;
+            box-shadow: 0 10px 22px rgba(0, 0, 0, 0.1);
+        }
+
+        /* 카드별 호버 테두리 색상 */
+        .card-ppt:hover { border-color: #ea580c; }
+        .card-code:hover { border-color: #7c3aed; }
+        .card-worksheet:hover { border-color: #2563eb; }
+
+        .card-icon {
+            font-size: 2.2rem;
+            margin-right: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 58px;
+            height: 58px;
+            border-radius: 16px;
+            flex-shrink: 0;
+        }
+
+        .icon-orange { background: #fff7ed; }
+        .icon-purple { background: #f5f3ff; }
+        .icon-blue { background: #eff6ff; }
+
+        .card-text {
+            text-align: left;
+            flex: 1;
+        }
+
+        .card-tag {
+            display: inline-block;
+            font-size: 0.85rem;
+            font-weight: 700;
+            padding: 3px 10px;
+            border-radius: 8px;
+            margin-bottom: 6px;
+        }
+
+        .tag-orange { background: #ffedd5; color: #c2410c; }
+        .tag-purple { background: #ede9fe; color: #6d28d9; }
+        .tag-blue { background: #dbeafe; color: #1d4ed8; }
+
+        .card-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: #1e293b;
+            margin-bottom: 5px;
+        }
+
+        .card-desc {
+            font-size: 1.0rem;
+            color: #64748b;
+            line-height: 1.4;
+        }
+
+        .arrow {
+            font-size: 1.4rem;
+            font-weight: bold;
+            color: #94a3b8;
+            margin-left: 12px;
+            transition: transform 0.2s ease;
+        }
+
+        .card:hover .arrow {
+            transform: translateX(4px);
+            color: #334155;
+        }
+
+        .footer {
+            margin-top: 30px;
+            font-size: 0.95rem;
+            color: #94a3b8;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <span class="badge">공공데이터 & 시계열 추세선 분석</span>
+        <header class="header">
+            <h1>🛒 품목별 소비자물가지수<br>데이터 분석 학습 자료</h1>
+            <p>PDF 학습 자료를 클릭하세요.</p>
+        </header>
+
+        <main class="card-list">
+            <!-- 1. 강의 슬라이드 (PPT) -->
+            <a href="price_ppt.pdf" target="_blank" class="card card-ppt">
+                <span class="card-icon icon-orange">📊</span>
+                <div class="card-text">
+                    <span class="card-tag tag-orange">1. 강의 슬라이드 (PPT)</span>
+                    <div class="card-title">데이터 분석 강의 슬라이드</div>
+                    <div class="card-desc">행·열 전환(transpose), 품목별 비교, polyfit 추세선 도출 및 한계 해석</div>
+                </div>
+                <span class="arrow">➔</span>
+            </a>
+
+            <!-- 2. 전체코드 실행결과 (.ipynb) -->
+            <a href="price.pdf" target="_blank" class="card card-code">
+                <span class="card-icon icon-purple">💻</span>
+                <div class="card-text">
+                    <span class="card-tag tag-purple">2. 전체코드 실행결과 (.ipynb)</span>
+                    <div class="card-title">파이썬 분석 전체 코드 & 해설</div>
+                    <div class="card-desc">데이터 전치, to_numeric 수치 변환, 달걀 이상치 탐색 및 선형 추세선 시각화</div>
+                </div>
+                <span class="arrow">➔</span>
+            </a>
+
+            <!-- 3. 탐구 활동지 -->
+            <a href="consumer_price_index_github.pdf" target="_blank" class="card card-worksheet">
+                <span class="card-icon icon-blue">📄</span>
+                <div class="card-text">
+                    <span class="card-tag tag-blue">3. 탐구 활동지</span>
+                    <div class="card-title">실습 탐구 활동지</div>
+                    <div class="card-desc">시계열 행·열 재구성, 달걀 지수 원인 탐구, 선형 회귀 실습 문제 및 인사이트</div>
+                </div>
+                <span class="arrow">➔</span>
+            </a>
+        </main>
+
+        <footer class="footer">
+            © 파이썬 공공데이터 분석
+        </footer>
+    </div>
+
+</body>
+</html>
