@@ -3,233 +3,477 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>코흐 눈송이 프랙탈 & 시뮬레이터 학습관</title>
+    <title>코흐 눈송이 알고리즘 단계별 학습 자료실</title>
     <style>
         * {
             box-sizing: border-box;
             margin: 0;
             padding: 0;
-            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Noto Sans KR", sans-serif;
+            font-family: -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Malgun Gothic', '맑은 고딕', sans-serif;
         }
-
         body {
-            background-color: #f1f5f9;
-            color: #334155;
+            background-color: #f8fafc;
+            color: #1e293b;
+            min-height: 100vh;
+            padding: 36px 20px;
             display: flex;
             justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            padding: 30px 20px;
         }
-
-        /* 빔프로젝터 / F11 전체 화면 최적화 대형 컨테이너 */
-        .container {
+        .studio-wrapper {
+            max-width: 1080px;
             width: 100%;
-            max-width: 760px;
-            background: #ffffff;
-            padding: 46px 36px;
-            border-radius: 24px;
-            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
-            text-align: center;
         }
-
-        .badge {
+        
+        /* 상단 헤더 영역 */
+        .header-section {
+            text-align: center;
+            margin-bottom: 28px;
+        }
+        .main-badge {
             display: inline-block;
             background-color: #e0f2fe;
-            color: #0369a1;
-            font-size: 0.95rem;
+            color: #0284c7;
+            font-size: 13px;
             font-weight: 700;
             padding: 6px 16px;
             border-radius: 20px;
-            margin-bottom: 16px;
+            margin-bottom: 12px;
+            letter-spacing: -0.2px;
         }
-
-        .header {
-            margin-bottom: 30px;
-        }
-
-        .header h1 {
-            font-size: 2.1rem;
+        .main-title {
+            font-size: 26px;
             font-weight: 800;
             color: #0f172a;
-            line-height: 1.35;
-            margin-bottom: 10px;
-        }
-
-        .header p {
-            font-size: 1.1rem;
-            color: #64748b;
-        }
-
-        .card-list {
-            display: flex;
-            flex-direction: column;
-            gap: 16px;
-        }
-
-        .card {
-            display: flex;
-            align-items: center;
-            background-color: #f8fafc;
-            border: 2px solid #e2e8f0;
-            border-radius: 18px;
-            padding: 18px 24px;
-            text-decoration: none;
-            color: inherit;
-            transition: all 0.2s ease-in-out;
-        }
-
-        .card:hover {
-            transform: translateY(-3px);
-            background-color: #ffffff;
-            box-shadow: 0 10px 22px rgba(0, 0, 0, 0.1);
-        }
-
-        /* 카드 호버 테마 테두리 */
-        .card-basic-ws:hover { border-color: #2563eb; }
-        .card-basic-code:hover { border-color: #7c3aed; }
-        .card-sim-ws:hover { border-color: #0284c7; }
-        .card-sim-code:hover { border-color: #ea580c; }
-
-        .card-icon {
-            font-size: 2.0rem;
-            margin-right: 18px;
+            letter-spacing: -0.5px;
+            margin-bottom: 6px;
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 54px;
-            height: 54px;
+            gap: 8px;
+        }
+        .sub-desc {
+            font-size: 14px;
+            color: #64748b;
+        }
+
+        /* 2단 그리드 본문 레이아웃 */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 1.1fr 1fr;
+            gap: 22px;
+            align-items: start;
+        }
+        @media (max-width: 880px) {
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* 왼쪽: 파스텔 5단계 학습 카드 */
+        .curriculum-col {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .step-link-card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 14px 18px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            text-decoration: none;
+            color: inherit;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+            transition: all 0.2s ease;
+        }
+        .step-link-card:hover {
+            border-color: #38bdf8;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(56, 189, 248, 0.12);
+        }
+        .icon-box {
+            width: 48px;
+            height: 48px;
             border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
             flex-shrink: 0;
         }
-
-        .icon-blue { background: #eff6ff; }
-        .icon-purple { background: #f5f3ff; }
-        .icon-sky { background: #f0f9ff; }
-        .icon-orange { background: #fff7ed; }
-
-        .card-text {
-            text-align: left;
+        .card-body {
             flex: 1;
         }
-
         .card-tag {
+            font-size: 11px;
+            font-weight: 700;
+            padding: 2px 8px;
+            border-radius: 6px;
+            margin-bottom: 4px;
             display: inline-block;
-            font-size: 0.82rem;
-            font-weight: 700;
-            padding: 2px 9px;
-            border-radius: 7px;
-            margin-bottom: 5px;
         }
-
-        .tag-blue { background: #dbeafe; color: #1d4ed8; }
-        .tag-purple { background: #ede9fe; color: #6d28d9; }
-        .tag-sky { background: #e0f2fe; color: #0369a1; }
-        .tag-orange { background: #ffedd5; color: #c2410c; }
-
-        .card-title {
-            font-size: 1.2rem;
-            font-weight: 700;
+        .card-heading {
+            font-size: 15px;
+            font-weight: 800;
             color: #1e293b;
-            margin-bottom: 3px;
+            margin-bottom: 2px;
         }
-
-        .card-desc {
-            font-size: 0.95rem;
+        .card-subtext {
+            font-size: 12px;
             color: #64748b;
             line-height: 1.35;
         }
-
-        .arrow {
-            font-size: 1.3rem;
-            font-weight: bold;
+        .action-arrow {
             color: #94a3b8;
-            margin-left: 10px;
-            transition: transform 0.2s ease;
+            font-size: 16px;
+            font-weight: bold;
+            transition: transform 0.2s, color 0.2s;
+        }
+        .step-link-card:hover .action-arrow {
+            color: #0284c7;
+            transform: translateX(3px);
         }
 
-        .card:hover .arrow {
-            transform: translateX(4px);
+        /* 각 단계별 파스텔 컬러 */
+        .step-1 .icon-box { background: #eff6ff; }
+        .step-1 .card-tag { background: #e0f2fe; color: #0369a1; }
+
+        .step-2 .icon-box { background: #f5f3ff; }
+        .step-2 .card-tag { background: #ede9fe; color: #6d28d9; }
+
+        .step-3 .icon-box { background: #ecfeff; }
+        .step-3 .card-tag { background: #cffafe; color: #0e7490; }
+
+        .step-4 .icon-box { background: #fff7ed; }
+        .step-4 .card-tag { background: #ffedd5; color: #c2410c; }
+
+        .step-5 .icon-box { background: #f0fdf4; }
+        .step-5 .card-tag { background: #dcfce7; color: #15803d; }
+
+        /* 오른쪽: 실시간 시뮬레이터 */
+        .simulator-col {
+            position: sticky;
+            top: 24px;
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 20px;
+            padding: 22px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+        }
+        .sim-top-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 14px;
+        }
+        .sim-title {
+            font-size: 15px;
+            font-weight: 800;
+            color: #0f172a;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .live-tag {
+            background: #fee2e2;
+            border: 1px solid #fecaca;
+            color: #ef4444;
+            font-size: 11px;
+            font-weight: 800;
+            padding: 3px 8px;
+            border-radius: 6px;
+        }
+
+        /* 캔버스 도화지 */
+        .canvas-container {
+            background: #f8fafc;
+            border-radius: 14px;
+            border: 1px solid #edf2f7;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+        }
+        canvas {
+            display: block;
+            border-radius: 10px;
+        }
+
+        /* 수치 정보 */
+        .stats-strip {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin: 14px 0;
+        }
+        .stat-item {
+            background: #f8fafc;
+            border: 1px solid #edf2f7;
+            border-radius: 12px;
+            padding: 10px 12px;
+            text-align: center;
+        }
+        .stat-label {
+            font-size: 11.5px;
+            color: #64748b;
+            margin-bottom: 2px;
+        }
+        .stat-val {
+            font-size: 18px;
+            font-weight: 800;
+            color: #0284c7;
+            font-family: -apple-system, BlinkMacSystemFont, monospace;
+        }
+
+        /* 버튼 컨트롤러 */
+        .btn-panel {
+            display: flex;
+            gap: 6px;
+            justify-content: space-between;
+        }
+        .ctrl-btn {
+            flex: 1;
+            background: #ffffff;
             color: #334155;
+            border: 1px solid #cbd5e1;
+            padding: 9px 0;
+            border-radius: 10px;
+            font-size: 12.5px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s ease;
         }
-
-        .footer {
-            margin-top: 30px;
-            font-size: 0.95rem;
+        .ctrl-btn:hover {
+            background: #e0f2fe;
+            color: #0284c7;
+            border-color: #7dd3fc;
+        }
+        .ctrl-btn.active {
+            background: #0284c7;
+            color: #ffffff;
+            border-color: #0284c7;
+            font-weight: 800;
+            box-shadow: 0 2px 8px rgba(2, 132, 199, 0.25);
+        }
+        .key-hint {
+            text-align: center;
+            font-size: 12px;
+            color: #64748b;
+            margin-top: 12px;
+        }
+        .key-hint kbd {
+            background: #e2e8f0;
+            border: 1px solid #cbd5e1;
+            color: #334155;
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-size: 11px;
+            font-family: monospace;
+        }
+        .footer-text {
+            text-align: center;
+            margin-top: 28px;
+            font-size: 12px;
             color: #94a3b8;
         }
     </style>
 </head>
 <body>
 
-    <div class="container">
-        <span class="badge">프랙탈 알고리즘 & 시뮬레이션</span>
-        <header class="header">
-            <h1>❄️ 코흐 눈송이 알고리즘<br>단계별 학습 자료실</h1>
-            <p>순서대로 학습 자료(PDF)를 클릭하여 열람하세요.</p>
-        </header>
+<div class="studio-wrapper">
+    <!-- 상단 헤더 -->
+    <header class="header-section">
+        <div class="main-badge">프랙탈 알고리즘 & 시뮬레이션</div>
+        <h1 class="main-title">❄️ 코흐 눈송이 알고리즘 단계별 학습 자료실</h1>
+        <p class="sub-desc">시뮬레이션을 직접 조작하고, 순서대로 학습 자료(PDF)를 열람하세요.</p>
+    </header>
 
-        <main class="card-list">
-            <!-- 1. 기본 활동지 -->
-            <a href="koch_basic_final.pdf" target="_blank" class="card card-basic-ws">
-                <span class="card-icon icon-blue">📄</span>
-                <div class="card-text">
-                    <span class="card-tag tag-blue">Step 1. 개념 활동지</span>
-                    <div class="card-title">1. 코흐 눈송이 기본 탐구 활동지</div>
-                    <div class="card-desc">선 바꾸기 규칙, 재귀 호출(koch) 구조 및 정삼각형 외각 회전</div>
+    <!-- 2단 그리드 본문 -->
+    <main class="dashboard-grid">
+        <!-- 왼쪽: 파스텔 아이콘 5단계 카드 -->
+        <section class="curriculum-col">
+            <!-- Step 1 -->
+            <a href="koch_basic_final.pdf" target="_blank" class="step-link-card step-1">
+                <div class="icon-box">📄</div>
+                <div class="card-body">
+                    <span class="card-tag">Step 1. 개념 활동지</span>
+                    <div class="card-heading">1. 코흐 눈송이 기본 탐구 활동지</div>
+                    <div class="card-subtext">선 바꾸기 규칙, 재귀 호출(koch) 구조 및 정삼각형 외각 회전</div>
                 </div>
-                <span class="arrow">➔</span>
+                <div class="action-arrow">➔</div>
             </a>
 
-            <!-- 2. 기본 눈송이 코드 -->
-            <a href="snowflake_code.pdf" target="_blank" class="card card-basic-code">
-                <span class="card-icon icon-purple">💻</span>
-                <div class="card-text">
-                    <span class="card-tag tag-purple">Step 2. 기본 코드</span>
-                    <div class="card-title">2. 코흐 눈송이 기본 실행 코드</div>
-                    <div class="card-desc">재귀 함수 koch() 정의 및 정삼각형 3변 그리기 기본 코드</div>
+            <!-- Step 2 -->
+            <a href="snowflake_code.pdf" target="_blank" class="step-link-card step-2">
+                <div class="icon-box">💻</div>
+                <div class="card-body">
+                    <span class="card-tag">Step 2. 기본 코드</span>
+                    <div class="card-heading">2. 코흐 눈송이 기본 실행 코드</div>
+                    <div class="card-subtext">재귀 함수 koch() 정의 및 정삼각형 3변 그리기 기본 코드</div>
                 </div>
-                <span class="arrow">➔</span>
+                <div class="action-arrow">➔</div>
             </a>
 
-            <!-- 3. 시뮬레이션 활동지 -->
-            <a href="koch_simulation_only_lambda_github.pdf" target="_blank" class="card card-sim-ws">
-                <span class="card-icon icon-sky">❄️</span>
-                <div class="card-text">
-                    <span class="card-tag tag-sky">Step 3. 인터랙션 활동지</span>
-                    <div class="card-title">3. 시뮬레이터 제어 탐구 활동지</div>
-                    <div class="card-desc">tracer(0)/clear() 고속 렌더링 원리 및 lambda 이벤트 연결</div>
+            <!-- Step 3 -->
+            <a href="koch_simulation_only_lambda_github.pdf" target="_blank" class="step-link-card step-3">
+                <div class="icon-box">❄️</div>
+                <div class="card-body">
+                    <span class="card-tag">Step 3. 인터랙션 활동지</span>
+                    <div class="card-heading">3. 시뮬레이터 제어 탐구 활동지</div>
+                    <div class="card-subtext">tracer(0)/clear() 고속 렌더링 원리 및 lambda 이벤트 연결</div>
                 </div>
-                <span class="arrow">➔</span>
+                <div class="action-arrow">➔</div>
             </a>
 
-            <!-- 4. 시뮬레이션 코드 -->
-            <a href="snowflake_simulation_code.pdf" target="_blank" class="card card-sim-code">
-                <span class="card-icon icon-orange">⚙️</span>
-                <div class="card-text">
-                    <span class="card-tag tag-orange">Step 4. 전체 시뮬레이터 코드</span>
-                    <div class="card-title">4. 인터랙티브 시뮬레이터 전체 코드</div>
-                    <div class="card-desc">키보드 0~4번 실시간 렌더링 및 대시보드 출력 완성 코드</div>
+            <!-- Step 4 -->
+            <a href="snowflake_simulation_code.pdf" target="_blank" class="step-link-card step-4">
+                <div class="icon-box">⚙️</div>
+                <div class="card-body">
+                    <span class="card-tag">Step 4. 전체 시뮬레이터 코드</span>
+                    <div class="card-heading">4. 인터랙티브 시뮬레이터 전체 코드</div>
+                    <div class="card-subtext">키보드 0~4번 실시간 렌더링 및 대시보드 출력 완성 코드</div>
                 </div>
-                <span class="arrow">➔</span>
+                <div class="action-arrow">➔</div>
             </a>
 
-            <!-- 5. 신규: 눈송이 재귀 원리 설명 자료 -->
-            <a href="눈송이_재귀설명.pdf" target="_blank" class="card card-recur">
-                <span class="card-icon icon-purple">🔄</span>
-                <div class="card-text">
-                    <span class="card-tag tag-purple">Step 5. 재귀 호출 원리</span>
-                    <div class="card-title">5. 코흐 눈송이 재귀 호출 & 복귀 원리</div>
-                    <div class="card-desc">함수 호출-복귀 흐름, 단계별 분할 과정(0~2단계) 개념 해설</div>
+            <!-- Step 5 -->
+            <a href="눈송이_재귀설명.pdf" target="_blank" class="step-link-card step-5">
+                <div class="icon-box">🔄</div>
+                <div class="card-body">
+                    <span class="card-tag">Step 5. 재귀 호출 원리</span>
+                    <div class="card-heading">5. 코흐 눈송이 재귀 호출 & 복귀 원리</div>
+                    <div class="card-subtext">함수 호출-복귀 흐름, 단계별 분할 과정(0~2단계) 개념 해설</div>
                 </div>
-                <span class="arrow">➔</span>
+                <div class="action-arrow">➔</div>
             </a>
-        </main>
+        </section>
 
-        <footer class="footer">
-            © 파이썬 알고리즘 & 그래픽스 시뮬레이션
-        </footer>
-    </div>
+        <!-- 오른쪽: 실시간 시뮬레이터 -->
+        <aside class="simulator-col">
+            <div class="sim-top-info">
+                <div class="sim-title">⚡ 실시간 프랙탈 시뮬레이터</div>
+                <span class="live-tag">LIVE CANVAS</span>
+            </div>
+
+            <div class="canvas-container">
+                <canvas id="snowflakeCanvas" width="340" height="310"></canvas>
+            </div>
+
+            <div class="stats-strip">
+                <div class="stat-item">
+                    <div class="stat-label">현재 깊이 (depth)</div>
+                    <div class="stat-val" id="depth-text">0단계</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-label">전체 선분 개수</div>
+                    <div class="stat-val" id="count-text">3개</div>
+                </div>
+            </div>
+
+            <div class="btn-panel">
+                <button class="ctrl-btn active" onclick="setDepth(0)">0단계</button>
+                <button class="ctrl-btn" onclick="setDepth(1)">1단계</button>
+                <button class="ctrl-btn" onclick="setDepth(2)">2단계</button>
+                <button class="ctrl-btn" onclick="setDepth(3)">3단계</button>
+                <button class="ctrl-btn" onclick="setDepth(4)">4단계</button>
+            </div>
+
+            <div class="key-hint">
+                키보드 <kbd>0</kbd> ~ <kbd>4</kbd> 키를 눌러도 실시간으로 변경됩니다.
+            </div>
+        </aside>
+    </main>
+
+    <footer class="footer-text">
+        © 파이썬 알고리즘 & 그래픽스 시뮬레이션
+    </footer>
+</div>
+
+<script>
+    const canvas = document.getElementById('snowflakeCanvas');
+    const ctx = canvas.getContext('2d');
+
+    function renderTurtleSnowflake(depth) {
+        ctx.clearRect(0, 0, canvas.width, canvas.height);
+        
+        ctx.strokeStyle = '#0284c7';
+        ctx.lineWidth = 1.8;
+        ctx.lineCap = 'round';
+        ctx.lineJoin = 'round';
+
+        // 캔버스 내 정중앙 위치 완벽 보정
+        const scale = 0.68;
+        const length = 300 * scale;
+        const h = length * Math.sin(Math.PI / 3);
+        
+        let curX = (canvas.width / 2) - (length / 2);
+        let curY = (canvas.height / 2) - (h / 3);
+        let curAngle = 0;
+
+        ctx.beginPath();
+        ctx.moveTo(curX, curY);
+
+        function forward(dist) {
+            const rad = curAngle * Math.PI / 180;
+            curX += dist * Math.cos(rad);
+            curY += dist * Math.sin(rad);
+            ctx.lineTo(curX, curY);
+        }
+
+        function left(angle) {
+            curAngle -= angle;
+        }
+
+        function right(angle) {
+            curAngle += angle;
+        }
+
+        function koch(l, d) {
+            if (d === 0) {
+                forward(l);
+            } else {
+                l = l / 3;
+                koch(l, d - 1);
+                left(60);
+                koch(l, d - 1);
+                right(120);
+                koch(l, d - 1);
+                left(60);
+                koch(l, d - 1);
+            }
+        }
+
+        for (let i = 0; i < 3; i++) {
+            koch(length, depth);
+            right(120);
+        }
+
+        ctx.stroke();
+
+        document.getElementById('depth-text').innerText = depth + '단계';
+        document.getElementById('count-text').innerText = (3 * Math.pow(4, depth)) + '개';
+
+        const btns = document.querySelectorAll('.ctrl-btn');
+        btns.forEach((btn, idx) => {
+            if (idx === depth) btn.classList.add('active');
+            else btn.classList.remove('active');
+        });
+    }
+
+    function setDepth(d) {
+        renderTurtleSnowflake(d);
+    }
+
+    window.addEventListener('keydown', (e) => {
+        if (['0', '1', '2', '3', '4'].includes(e.key)) {
+            setDepth(parseInt(e.key));
+        }
+    });
+
+    renderTurtleSnowflake(0);
+</script>
 
 </body>
 </html>
