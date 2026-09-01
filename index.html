@@ -4624,9 +4624,9 @@
       input.value = "";
       sendPrompt(text);
       });
-    $("#locationButton").addEventListener("click", () => { setContext("서울","오늘","forecast");
+    $("#locationButton").addEventListener("click", () => { setContext("세종","오늘","forecast");
       loadInitialWeather(true);
-      showToast("서울 · 현재 기상청 데이터를 다시 조회합니다");
+      showToast("세종 · 현재 기상청 데이터를 다시 조회합니다");
       });
     window.addEventListener("resize", () => selectHour(state.selectedIndex, false));
     window.addEventListener("pagehide", () => state.subscription?.unsubscribe?.());
