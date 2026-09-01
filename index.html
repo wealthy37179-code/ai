@@ -4630,7 +4630,25 @@
       });
     window.addEventListener("resize", () => selectHour(state.selectedIndex, false));
     window.addEventListener("pagehide", () => state.subscription?.unsubscribe?.());
-    bindLiquidDrag(); setContext("서울","오늘","forecast"); loadInitialWeather(); connectAgent();
+    bindLiquidDrag(); 
+    if (navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(
+        (position) => {
+          console.log(position.coords.latitude, position.coords.longitude);
+          setContext("세종", "오늘", "forecast");
+          loadInitialWeather();
+        },
+        (error) => {
+          setContext("세종", "오늘", "forecast");
+          loadInitialWeather();
+            }
+      );
+    } else {
+      setContext("세종", "오늘", "forecast");
+      loadInitialWeather();
+    }
+    
+    connectAgent();
   </script>
 </body>
 </html>
