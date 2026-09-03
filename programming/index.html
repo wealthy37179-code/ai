@@ -301,17 +301,6 @@
             color: #1e40af;
             line-height: 1.6;
         }
-        .insight-callout {
-            background: #ecfeff;
-            border: 1px solid #a5f3fc;
-            border-left: 4px solid #0891b2;
-            border-radius: 0 10px 10px 0;
-            padding: 14px 18px;
-            margin: 20px 0 28px 0;
-            font-size: 13.5px;
-            color: #155e75;
-            line-height: 1.65;
-        }
 
         .custom-table {
             width: 100%;
@@ -331,30 +320,6 @@
         }
         .custom-table td {
             background-color: #ffffff;
-        }
-
-        /* 퀴즈 박스 */
-        .quiz-item {
-            background: #fdf4ff;
-            border: 1px solid #f5d0fe;
-            border-radius: 10px;
-            padding: 14px 16px;
-            margin-bottom: 12px;
-        }
-        .quiz-q {
-            font-size: 13.5px;
-            font-weight: 700;
-            color: #86198f;
-            margin-bottom: 6px;
-        }
-        .quiz-a {
-            font-size: 13px;
-            color: #701a75;
-            background: #ffffff;
-            border-radius: 6px;
-            padding: 8px 12px;
-            display: inline-block;
-            border: 1px dashed #d8b4fe;
         }
     </style>
 </head>
@@ -381,16 +346,16 @@
             </div>
             
             <ul class="menu-list">
-                <li class="menu-item active" onclick="selectLesson('lesson1', this)">
+                <li class="menu-item" onclick="selectLesson('lesson1', this)">
                     <span class="menu-icon">📦</span>
                     <span>01. 파이썬 함수</span>
                     <span class="menu-badge">10차시</span>
                 </li>
 
-                <li class="menu-item" onclick="selectLesson('lesson2', this)">
+                <li class="menu-item active" onclick="selectLesson('lesson2', this)">
                     <span class="menu-icon">🖥️</span>
                     <span>02. Tkinter GUI 모듈</span>
-                    <span class="menu-badge">13차시</span>
+                    <span class="menu-badge">15차시</span>
                 </li>
             </ul>
         </aside>
@@ -399,8 +364,8 @@
         <main class="content-area">
             <div class="content-header">
                 <div class="current-topic">
-                    <span id="topic-icon">📦</span>
-                    <span id="topic-title">01. 파이썬 프로그래밍 함수 (Function) 수업</span>
+                    <span id="topic-icon">🖥️</span>
+                    <span id="topic-title">02. 파이썬 Tkinter GUI 프로그래밍</span>
                 </div>
             </div>
 
@@ -423,244 +388,6 @@
                         <b>핵심 흐름:</b> 정의하기 → 호출하기 → 값 전달하기 → 결과 돌려받기 → 함수로 문제 나누기<br>
                         함수는 반복되는 코드를 이름표를 붙인 상자에 깔끔하게 담아두고, 필요할 때마다 간결하게 호출하여 재사용하는 핵심 도구입니다.
                     </div>
-
-                    <!-- [1차시] -->
-                    <h1 class="chapter-h1">📦 [1차시] 함수 정의와 호출 - 함수를 처음 만나다</h1>
-                    <div class="tip-callout">
-                        <b>🎯 학습 목표:</b> 함수가 왜 필요한지 설명할 수 있고, <code>def</code>를 사용하여 함수를 정의한 뒤 함수 이름으로 호출할 수 있다.
-                    </div>
-                    <h2 class="section-h2">1. 개념 이야기: 주문 즉시 움직이는 마법 상자</h2>
-                    <p class="section-desc">
-                        자주 쓰는 동작을 상자에 담아두고 이름표를 붙이는 것을 <b>함수 정의(<code>def</code>)</b>라고 하며, 상자에 달린 버튼을 눌러 실행하는 것을 <b>함수 호출(call)</b>이라고 합니다. 정의만 하면 실행되지 않으며, 반드시 이름을 불러야 동작합니다.
-                    </p>
-                    <h2 class="section-h2">2. 핵심 예제</h2>
-                    <div class="code-block-wrapper">
-                        <div class="code-header"><span class="code-lang">PYTHON</span><span>함수 정의 및 호출</span></div>
-                        <pre><code><span class="code-keyword">def</span> <span class="code-def">hello</span>():
-    <span class="code-keyword">print</span>(<span class="code-str">"안녕하세요!"</span>)
-    <span class="code-keyword">print</span>(<span class="code-str">"파이썬 함수 수업입니다."</span>)
-
-hello()
-hello()</code></pre>
-                    </div>
-                    <span class="result-label">🖥️ 실행 결과</span>
-                    <div class="result-box">안녕하세요!<br>파이썬 함수 수업입니다.<br>안녕하세요!<br>파이썬 함수 수업입니다.</div>
-                    <h2 class="section-h2">3. 실습 도전 과제 및 퀴즈</h2>
-                    <div class="tip-callout">
-                        • 실습 1. 함수 이름을 <code>welcome()</code>으로 바꾸어 보기<br>
-                        • 실습 2. 함수 안에서 자신의 이름과 좋아하는 과목을 출력해 보기<br>
-                        • 실습 3. 함수를 3번 호출했을 때 결과가 어떻게 출력되는지 확인해 보기
-                    </div>
-                    <div class="quiz-item">
-                        <div class="quiz-q">Q. 함수 이름 hello와 호출 코드 hello()의 결정적 차이는 무엇인가요?</div>
-                        <div class="quiz-a">정답: hello는 함수 자체의 이름을 가리키며, ()가 붙어야 실제로 상자 안의 코드가 실행됩니다.</div>
-                    </div>
-                    <div class="insight-callout">📌 오늘의 핵심: 함수는 코드를 이름으로 묶고, 호출하여 실행한다.</div>
-
-                    <!-- [2차시] -->
-                    <h1 class="chapter-h1" style="margin-top: 50px;">📥 [2차시] 매개변수와 인수 - 함수에 값 전달하기</h1>
-                    <div class="tip-callout">
-                        <b>🎯 학습 목표:</b> 매개변수와 인수의 의미를 구분할 수 있고, 호출할 때 전달한 값을 함수 내부에서 사용할 수 있다.
-                    </div>
-                    <h2 class="section-h2">1. 개념 이야기: 동전 투입구가 있는 만능 자판기</h2>
-                    <p class="section-desc">
-                        함수 상자에 투입구(슬롯)를 만들어두면 외부 재료를 집어넣을 수 있습니다. 함수를 정의할 때 값을 받아둘 빈 그릇 변수를 <b>매개변수(parameter)</b>, 부를 때 쏙 집어넣는 실제 값을 <b>인수(argument)</b>라고 합니다.
-                    </p>
-                    <div class="code-block-wrapper">
-                        <div class="code-header"><span class="code-lang">PYTHON</span><span>매개변수 활용</span></div>
-                        <pre><code><span class="code-keyword">def</span> <span class="code-def">greet</span>(name):
-    <span class="code-keyword">print</span>(name, <span class="code-str">"님, 안녕하세요!"</span>)
-
-greet(<span class="code-str">"민준"</span>)
-greet(<span class="code-str">"서연"</span>)</code></pre>
-                    </div>
-                    <div class="quiz-item">
-                        <div class="quiz-q">Q. greet('지우')에서 '지우'는 매개변수인가요, 인수인가요?</div>
-                        <div class="quiz-a">정답: 함수를 호출할 때 실제로 전달하는 값이므로 인수(argument)입니다.</div>
-                    </div>
-                    <div class="insight-callout">📌 오늘의 핵심: 매개변수는 함수가 값을 받아 사용하는 통로이다.</div>
-
-                    <!-- [3차시] -->
-                    <h1 class="chapter-h1" style="margin-top: 50px;">📤 [3차시] return - 함수의 결과를 돌려받기</h1>
-                    <div class="tip-callout">
-                        <b>🎯 학습 목표:</b> print와 return의 차이를 명확히 설명할 수 있고, 함수가 계산한 값을 return으로 반환하여 활용할 수 있다.
-                    </div>
-                    <h2 class="section-h2">1. 개념 이야기: 전광판(print) vs 계산 결과 전달(return)</h2>
-                    <p class="section-desc">
-                        <code>print()</code>는 모니터 화면에 글자를 보여주고 사라지는 전광판이며 변수에 값이 남지 않습니다(None). 반면에 <code>return</code>은 계산 결과물을 함수 밖으로 꺼내 호출자의 손에 쥐여주므로 변수에 담아 재활용할 수 있습니다.
-                    </p>
-                    <div class="code-block-wrapper">
-                        <div class="code-header"><span class="code-lang">PYTHON</span><span>return 반환값과 연쇄 연산</span></div>
-                        <pre><code><span class="code-keyword">def</span> <span class="code-def">add</span>(a, b):
-    result = a + b
-    <span class="code-keyword">return</span> result
-
-answer = add(<span class="code-num">10</span>, <span class="code-num">20</span>)
-<span class="code-keyword">print</span>(answer)
-<span class="code-keyword">print</span>(add(<span class="code-num">3</span>, <span class="code-num">5</span>) * <span class="code-num">2</span>)</code></pre>
-                    </div>
-                    <span class="result-label">🖥️ 실행 결과</span>
-                    <div class="result-box">30<br>16</div>
-                    <div class="quiz-item">
-                        <div class="quiz-q">Q. return문 바로 아래에 작성된 코드는 실행될까요?</div>
-                        <div class="quiz-a">정답: 실행되지 않습니다. return을 만나는 순간 결과값을 반환하고 함수는 즉시 종료됩니다.</div>
-                    </div>
-                    <div class="insight-callout">📌 오늘의 핵심: return은 함수의 결과를 함수 밖으로 돌려준다.</div>
-
-                    <!-- [4차시] -->
-                    <h1 class="chapter-h1" style="margin-top: 50px;">🔢 [4차시] 여러 개의 매개변수 - 계산 함수 만들기</h1>
-                    <div class="tip-callout">
-                        <b>🎯 학습 목표:</b> 두 개 이상의 매개변수를 다루고, 위치 인수와 키워드 인수의 차이를 구분한다.
-                    </div>
-                    <div class="code-block-wrapper">
-                        <div class="code-header"><span class="code-lang">PYTHON</span><span>위치 인수와 키워드 인수</span></div>
-                        <pre><code><span class="code-keyword">def</span> <span class="code-def">student_info</span>(name, age, school):
-    <span class="code-keyword">print</span>(<span class="code-str">"이름:"</span>, name)
-    <span class="code-keyword">print</span>(<span class="code-str">"나이:"</span>, age)
-    <span class="code-keyword">print</span>(<span class="code-str">"학교:"</span>, school)
-
-<span class="code-comment"># 1) 위치 인수 방식 (순서 일치)</span>
-student_info(<span class="code-str">"지민"</span>, <span class="code-num">17</span>, <span class="code-str">"한솔고"</span>)
-
-<span class="code-comment"># 2) 키워드 인수 방식 (이름표 지정으로 순서 무관)</span>
-student_info(school=<span class="code-str">"한솔고"</span>, name=<span class="code-str">"지민"</span>, age=<span class="code-num">17</span>)</code></pre>
-                    </div>
-
-                    <!-- [5차시] -->
-                    <h1 class="chapter-h1" style="margin-top: 50px;">⚙️ [5차시] 기본값 매개변수 - 값을 생략해도 되는 함수</h1>
-                    <div class="tip-callout">
-                        <b>🎯 학습 목표:</b> 자주 사용하는 기본 옵션을 지정하고 생략 여부에 따른 동작 원리를 익힌다.
-                    </div>
-                    <div class="code-block-wrapper">
-                        <div class="code-header"><span class="code-lang">PYTHON</span><span>기본값 매개변수</span></div>
-                        <pre><code><span class="code-keyword">def</span> <span class="code-def">greet</span>(name, message=<span class="code-str">"안녕하세요"</span>):
-    <span class="code-keyword">print</span>(name, <span class="code-str">"님,"</span>, message)
-
-greet(<span class="code-str">"민수"</span>)                 <span class="code-comment"># 기본값 적용</span>
-greet(<span class="code-str">"민수"</span>, <span class="code-str">"반갑습니다"</span>)     <span class="code-comment"># 새 값 덮어쓰기</span></code></pre>
-                    </div>
-
-                    <!-- [6차시] -->
-                    <h1 class="chapter-h1" style="margin-top: 50px;">🏠 [6차시] 지역 변수와 전역 변수 - 변수의 유효 범위</h1>
-                    <div class="tip-callout">
-                        <b>🎯 학습 목표:</b> 함수 내부 지역 변수와 외부 전역 변수의 범위를 구분하고 NameError 원인을 이해한다.
-                    </div>
-                    <div class="code-block-wrapper">
-                        <div class="code-header"><span class="code-lang">PYTHON</span><span>지역 변수 스코프</span></div>
-                        <pre><code>x = <span class="code-num">100</span> <span class="code-comment"># 전역 변수</span>
-
-<span class="code-keyword">def</span> <span class="code-def">test</span>():
-    y = <span class="code-num">20</span> <span class="code-comment"># 지역 변수 (test 함수 방 안에서만 유효)</span>
-    <span class="code-keyword">print</span>(<span class="code-str">"함수 안 x:"</span>, x)
-    <span class="code-keyword">print</span>(<span class="code-str">"함수 안 y:"</span>, y)
-
-test()
-<span class="code-keyword">print</span>(<span class="code-str">"함수 밖 x:"</span>, x)
-<span class="code-comment"># print(y) # NameError 발생!</span></code></pre>
-                    </div>
-
-                    <!-- [7차시] -->
-                    <h1 class="chapter-h1" style="margin-top: 50px;">⚖️ [7차시] 함수 + 조건문 - 판별 함수 만들기</h1>
-                    <div class="tip-callout">
-                        <b>🎯 학습 목표:</b> 함수 내부에 if문을 결합하여 True/False를 반환하는 판별 함수를 작성한다.
-                    </div>
-                    <div class="code-block-wrapper">
-                        <div class="code-header"><span class="code-lang">PYTHON</span><span>짝수 판별 함수</span></div>
-                        <pre><code><span class="code-keyword">def</span> <span class="code-def">is_even</span>(n):
-    <span class="code-keyword">if</span> n % <span class="code-num">2</span> == <span class="code-num">0</span>:
-        <span class="code-keyword">return</span> <span class="code-keyword">True</span>
-    <span class="code-keyword">else</span>:
-        <span class="code-keyword">return</span> <span class="code-keyword">False</span>
-
-number = int(input(<span class="code-str">"숫자 입력: "</span>))
-<span class="code-keyword">if</span> is_even(number):
-    <span class="code-keyword">print</span>(<span class="code-str">"짝수입니다."</span>)
-<span class="code-keyword">else</span>:
-    <span class="code-keyword">print</span>(<span class="code-str">"홀수입니다."</span>)</code></pre>
-                    </div>
-
-                    <!-- [8차시] -->
-                    <h1 class="chapter-h1" style="margin-top: 50px;">🔄 [8차시] 함수 + 반복문 - 여러 데이터 처리하기</h1>
-                    <div class="tip-callout">
-                        <b>🎯 학습 목표:</b> 리스트를 매개변수로 받아 내부 for 문으로 일괄 누적 처리하는 함수를 작성한다.
-                    </div>
-                    <div class="code-block-wrapper">
-                        <div class="code-header"><span class="code-lang">PYTHON</span><span>리스트 합계 계산기</span></div>
-                        <pre><code><span class="code-keyword">def</span> <span class="code-def">total</span>(numbers):
-    result = <span class="code-num">0</span>
-    <span class="code-keyword">for</span> n <span class="code-keyword">in</span> numbers:
-        result += n
-    <span class="code-keyword">return</span> result
-
-scores = [<span class="code-num">80</span>, <span class="code-num">90</span>, <span class="code-num">75</span>, <span class="code-num">100</span>]
-<span class="code-keyword">print</span>(<span class="code-str">"합계:"</span>, total(scores))</code></pre>
-                    </div>
-
-                    <!-- [9차시] -->
-                    <h1 class="chapter-h1" style="margin-top: 50px;">🔗 [9차시] 여러 함수 연결하기 - 프로그램 기능 분해</h1>
-                    <div class="tip-callout">
-                        <b>🎯 학습 목표:</b> 큰 문제를 작은 단위 함수로 나누고 반환값을 다음 함수의 인수로 연결한다.
-                    </div>
-                    <div class="code-block-wrapper">
-                        <div class="code-header"><span class="code-lang">PYTHON</span><span>평균 계산과 등급 판정 분업</span></div>
-                        <pre><code><span class="code-keyword">def</span> <span class="code-def">average</span>(scores):
-    <span class="code-keyword">return</span> sum(scores) / len(scores)
-
-<span class="code-keyword">def</span> <span class="code-def">grade</span>(avg):
-    <span class="code-keyword">if</span> avg >= <span class="code-num">90</span>:
-        <span class="code-keyword">return</span> <span class="code-str">"A"</span>
-    <span class="code-keyword">elif</span> avg >= <span class="code-num">80</span>:
-        <span class="code-keyword">return</span> <span class="code-str">"B"</span>
-    <span class="code-keyword">elif</span> avg >= <span class="code-num">70</span>:
-        <span class="code-keyword">return</span> <span class="code-str">"C"</span>
-    <span class="code-keyword">else</span>:
-        <span class="code-keyword">return</span> <span class="code-str">"D"</span>
-
-scores = [<span class="code-num">85</span>, <span class="code-num">92</span>, <span class="code-num">78</span>]
-avg = average(scores)
-<span class="code-keyword">print</span>(<span class="code-str">"평균:"</span>, avg)
-<span class="code-keyword">print</span>(<span class="code-str">"등급:"</span>, grade(avg))</code></pre>
-                    </div>
-
-                    <!-- [10차시] -->
-                    <h1 class="chapter-h1" style="margin-top: 50px;">🏆 [10차시] 미니 프로젝트 - 성적 관리 프로그램 제작</h1>
-                    <div class="tip-callout">
-                        <b>🎯 학습 목표:</b> 매개변수, return, 조건문, 반복문을 종합하여 구조화된 프로그램을 완성한다.
-                    </div>
-                    <div class="code-block-wrapper">
-                        <div class="code-header"><span class="code-lang">PYTHON</span><span>종합 성적 산출 프로그램</span></div>
-                        <pre><code><span class="code-keyword">def</span> <span class="code-def">calc_average</span>(scores):
-    <span class="code-keyword">return</span> sum(scores) / len(scores)
-
-<span class="code-keyword">def</span> <span class="code-def">get_grade</span>(avg):
-    <span class="code-keyword">if</span> avg >= <span class="code-num">90</span>:
-        <span class="code-keyword">return</span> <span class="code-str">"A"</span>
-    <span class="code-keyword">elif</span> avg >= <span class="code-num">80</span>:
-        <span class="code-keyword">return</span> <span class="code-str">"B"</span>
-    <span class="code-keyword">elif</span> avg >= <span class="code-num">70</span>:
-        <span class="code-keyword">return</span> <span class="code-str">"C"</span>
-    <span class="code-keyword">elif</span> avg >= <span class="code-num">60</span>:
-        <span class="code-keyword">return</span> <span class="code-str">"D"</span>
-    <span class="code-keyword">else</span>:
-        <span class="code-keyword">return</span> <span class="code-str">"F"</span>
-
-<span class="code-keyword">def</span> <span class="code-def">print_result</span>(name, scores):
-    avg = calc_average(scores)
-    <span class="code-keyword">print</span>(<span class="code-str">"="</span> * <span class="code-num">25</span>)
-    <span class="code-keyword">print</span>(<span class="code-str">"학생:"</span>, name)
-    <span class="code-keyword">print</span>(<span class="code-str">"평균:"</span>, round(avg, <span class="code-num">1</span>), <span class="code-str">"점"</span>)
-    <span class="code-keyword">print</span>(<span class="code-str">"등급:"</span>, get_grade(avg))
-    <span class="code-keyword">print</span>(<span class="code-str">"="</span> * <span class="code-num">25</span>)
-
-<span class="code-comment"># --- 메인 실행 흐름 ---</span>
-name = input(<span class="code-str">"이름: "</span>)
-scores = []
-<span class="code-keyword">for</span> subject <span class="code-keyword">in</span> [<span class="code-str">"국어"</span>, <span class="code-str">"영어"</span>, <span class="code-str">"수학"</span>]:
-    score = int(input(subject + <span class="code-str">"점수: "</span>))
-    scores.append(score)
-
-print_result(name, scores)</code></pre>
-                    </div>
                 `
             },
             lesson2: {
@@ -676,69 +403,68 @@ print_result(name, scores)</code></pre>
                     <!-- 1~2차시 -->
                     <h1 class="chapter-h1">🪟 [1~2차시] 윈도우 창 생성 및 속성 제어</h1>
                     <div class="tip-callout">
-                        <b>🎯 학습 목표:</b> GUI 개념을 이해하고 첫 번째 윈도우 창 생성 및 크기 고정, 배경색 설정을 익힌다.
+                        <b>🎯 학습 목표:</b> GUI와 CUI의 차이를 이해하고, Tkinter로 첫 번째 윈도우 창을 생성하며 창의 속성을 자유롭게 제어한다.
                     </div>
                     <div class="code-block-wrapper">
-                        <div class="code-header"><span class="code-lang">PYTHON</span><span>창 생성 및 속성 설정</span></div>
+                        <div class="code-header"><span class="code-lang">PYTHON</span><span>창 생성 및 속성 제어 코드</span></div>
                         <pre><code><span class="code-keyword">from</span> tkinter <span class="code-keyword">import</span> *
 
 root = Tk()
 root.title(<span class="code-str">"첫 번째 윈도우"</span>)
 root.geometry(<span class="code-str">"400x300"</span>)
 root.resizable(<span class="code-keyword">False</span>, <span class="code-keyword">False</span>)  <span class="code-comment"># 창 크기 변경 차단</span>
-root.config(bg=<span class="code-str">"#f0f0f0"</span>)      <span class="code-comment"># 배경색 변경</span>
+root.config(bg=<span class="code-str">"#f0f0f0"</span>)      <span class="code-comment"># 윈도우 창 배경 색상 지정</span>
 root.mainloop()</code></pre>
                     </div>
 
                     <!-- 3~4차시 -->
-                    <h1 class="chapter-h1" style="margin-top: 50px;">🔘 [3~4차시] 라벨(Label)과 버튼(Button) 이벤트</h1>
+                    <h1 class="chapter-h1" style="margin-top: 50px;">🔘 [3~4차시] 라벨(Label)과 버튼(Button) 위젯</h1>
                     <div class="tip-callout">
-                        <b>🎯 학습 목표:</b> Label로 텍스트를 출력하고, Button 클릭 시 함수를 실행하는 이벤트 연결(command)을 익힌다.
+                        <b>🎯 학습 목표:</b> Label 위젯으로 텍스트를 출력하고, Button 위젯을 생성하여 클릭 이벤트 함수 연결 및 다양한 옵션을 적용한다.
                     </div>
                     <div class="code-block-wrapper">
-                        <div class="code-header"><span class="code-lang">PYTHON</span><span>라벨 및 버튼 연동</span></div>
+                        <div class="code-header"><span class="code-lang">PYTHON</span><span>라벨 출력 및 버튼 이벤트 코드</span></div>
                         <pre><code><span class="code-keyword">from</span> tkinter <span class="code-keyword">import</span> *
 
 <span class="code-keyword">def</span> <span class="code-def">hello</span>():
     lbl.config(text=<span class="code-str">"버튼을 클릭했습니다!"</span>)
 
 root = Tk()
-lbl = Label(root, text=<span class="code-str">"환영합니다!"</span>, font=(<span class="code-str">"Arial"</span>, <span class="code-num">16</span>, <span class="code-str">"bold"</span>), fg=<span class="code-str">"navy"</span>)
-lbl.pack(pady=<span class="code-num">20</span>)
+lbl = Label(root, text=<span class="code-str">"버튼을 눌러보세요"</span>, padx=<span class="code-num">40</span>, pady=<span class="code-num">10</span>)
+lbl.pack()
 
 btn = Button(root, text=<span class="code-str">"클릭"</span>, command=hello)
 btn.pack()
-
-<span class="code-comment"># 추가 스타일 버튼</span>
-e1_btn = Button(root, text=<span class="code-str">"두꺼운 테두리"</span>, bd=<span class="code-num">5</span>, relief=<span class="code-str">"raised"</span>, width=<span class="code-num">15</span>)
-e1_btn.pack(pady=<span class="code-num">5</span>)
-
-e2_btn = Button(root, text=<span class="code-str">"손가락 커서"</span>, cursor=<span class="code-str">"hand2"</span>, bg=<span class="code-str">"lightyellow"</span>)
-e2_btn.pack(pady=<span class="code-num">5</span>)
-
-e3_btn = Button(root, text=<span class="code-str">"클릭 불가"</span>, state=<span class="code-str">"disabled"</span>)
-e3_btn.pack(pady=<span class="code-num">5</span>)
-
 root.mainloop()</code></pre>
                     </div>
                     <table class="custom-table">
                         <thead>
-                            <tr><th>코드</th><th>동작 의미</th><th>판정</th></tr>
+                            <tr><th>코드</th><th>의미</th></tr>
                         </thead>
                         <tbody>
-                            <tr><td><code>command=hello</code></td><td>버튼 클릭 시 hello 함수 실행</td><td>✅ 올바름</td></tr>
-                            <tr><td><code>command=hello()</code></td><td>프로그램 시작 시 바로 실행되어 버림</td><td>❌ 잘못됨</td></tr>
+                            <tr><td><code>command=hello</code></td><td>버튼 클릭 시 hello 함수 실행 (올바름)</td></tr>
+                            <tr><td><code>command=hello()</code></td><td>프로그램 시작 시 바로 실행됨 (잘못됨)</td></tr>
                         </tbody>
                     </table>
+                    <div class="code-block-wrapper">
+                        <div class="code-header"><span class="code-lang">PYTHON</span><span>Button 옵션과 상태 적용</span></div>
+                        <pre><code>e1_btn = Button(root, text=<span class="code-str">"두꺼운 테두리"</span>, bd=<span class="code-num">5</span>, relief=<span class="code-str">"raised"</span>, width=<span class="code-num">15</span>)
+e1_btn.pack(pady=<span class="code-num">5</span>)
+
+e2_btn = Button(root, text=<span class="code-str">"커서 변경 (손가락)"</span>, cursor=<span class="code-str">"hand2"</span>, bg=<span class="code-str">"lightyellow"</span>)
+e2_btn.pack(pady=<span class="code-num">5</span>)
+
+e3_btn = Button(root, text=<span class="code-str">"클릭 불가"</span>, state=<span class="code-str">"disabled"</span>)
+e3_btn.pack(pady=<span class="code-num">5</span>)</code></pre>
+                    </div>
 
                     <!-- 5~6차시 -->
-                    <h1 class="chapter-h1" style="margin-top: 50px;">⌨️ [5~6차시] 입력 위젯: 엔트리(Entry) & 텍스트(Text)</h1>
+                    <h1 class="chapter-h1" style="margin-top: 50px;">⌨️ [5~6차시] 엔트리(Entry) & 텍스트(Text) 위젯</h1>
                     <div class="tip-callout">
-                        <b>🎯 학습 목표:</b> 한 줄 입력을 받는 Entry와 여러 줄을 작성하는 Text 위젯 및 인덱스 체계를 익힌다.
+                        <b>🎯 학습 목표:</b> 한 줄 입력을 처리하는 Entry 위젯과 여러 줄을 다루는 Text 위젯의 주요 메서드 및 인덱스 체계를 익힌다.
                     </div>
-                    <h2 class="section-h2">1. Entry 값 가져오기 및 비밀번호 마스킹</h2>
                     <div class="code-block-wrapper">
-                        <div class="code-header"><span class="code-lang">PYTHON</span><span>Entry 활용</span></div>
+                        <div class="code-header"><span class="code-lang">PYTHON</span><span>입력값을 대문자로 변경하는 프로그램</span></div>
                         <pre><code><span class="code-keyword">from</span> tkinter <span class="code-keyword">import</span> *
 
 <span class="code-keyword">def</span> <span class="code-def">change_text</span>():
@@ -752,104 +478,144 @@ ent.pack(padx=<span class="code-num">10</span>, pady=<span class="code-num">10</
 
 btn = Button(root, text=<span class="code-str">"대문자로 변경"</span>, command=change_text)
 btn.pack(padx=<span class="code-num">10</span>, pady=<span class="code-num">10</span>)
-
-<span class="code-comment"># 비밀번호 입력 Entry</span>
-password_ent = Entry(root, show=<span class="code-str">"*"</span>, width=<span class="code-num">30</span>)
-password_ent.pack(pady=<span class="code-num">20</span>)
 root.mainloop()</code></pre>
                     </div>
-                    <h2 class="section-h2">2. Text 위젯의 인덱스 체계</h2>
+                    <div class="code-block-wrapper">
+                        <div class="code-header"><span class="code-lang">PYTHON</span><span>비밀번호 입력 Entry & Text 위젯 사용</span></div>
+                        <pre><code><span class="code-comment"># 비밀번호 입력 Entry</span>
+password_ent = Entry(root, show=<span class="code-str">"*"</span>, width=<span class="code-num">30</span>)
+password_ent.pack(pady=<span class="code-num">20</span>)
+
+<span class="code-comment"># Text 위젯</span>
+txt = Text(root)
+txt.pack(pady=<span class="code-num">10</span>)</code></pre>
+                    </div>
                     <p class="section-desc">
-                        Text 위젯은 <b>"줄.칸"</b> 형태의 문자열 인덱스를 사용합니다.<br>
-                        • <code>"1.0"</code> : 1번째 줄의 0번째 칸 (맨 처음 위치)<br>
-                        • <code>END</code> : 텍스트의 맨 끝 위치
+                        • <b>Text 인덱스:</b> Entry는 한 줄이므로 0부터 시작하지만, Text는 여러 줄이므로 <code>"줄.칸"</code> 형식(예: <code>"1.0"</code>은 1번째 줄 0번째 칸)과 <code>END</code>를 사용합니다.
                     </p>
 
                     <!-- 7~9차시 -->
                     <h1 class="chapter-h1" style="margin-top: 50px;">☑️ [7~9차시] 선택 위젯: 체크버튼, 라디오버튼, 리스트박스</h1>
                     <div class="tip-callout">
-                        <b>🎯 학습 목표:</b> 다중 선택(Checkbutton), 단일 선택(Radiobutton), 목록 선택(Listbox)의 특징을 구분하고 사용한다.
+                        <b>🎯 학습 목표:</b> Checkbutton, Radiobutton, Listbox 위젯의 사용법과 주요 옵션 및 인덱스 체계를 익힌다.
                     </div>
-                    <h2 class="section-h2">1. Checkbutton & Radiobutton</h2>
                     <div class="code-block-wrapper">
-                        <div class="code-header"><span class="code-lang">PYTHON</span><span>선택 위젯 코드</span></div>
+                        <div class="code-header"><span class="code-lang">PYTHON</span><span>Checkbutton & Radiobutton 예제</span></div>
                         <pre><code><span class="code-keyword">from</span> tkinter <span class="code-keyword">import</span> *
 
+<span class="code-keyword">def</span> <span class="code-def">show_result</span>():
+    <span class="code-keyword">if</span> agree_var.get():
+        lbl.config(text=<span class="code-str">"동의했습니다."</span>)
+
 root = Tk()
-
-<span class="code-comment"># 체크버튼</span>
 agree_var = BooleanVar()
-check_btn = Checkbutton(root, text=<span class="code-str">"동의합니다"</span>, variable=agree_var)
-check_btn.pack(pady=<span class="code-num">5</span>)
+check_btn = Checkbutton(root, text=<span class="code-str">"동의합니다"</span>, variable=agree_var, command=show_result)
+check_btn.pack(padx=<span class="code-num">20</span>, pady=<span class="code-num">20</span>)
 
-<span class="code-comment"># 라디오버튼 (같은 variable 공유 시 하나의 그룹으로 동작)</span>
 food = IntVar(value=<span class="code-num">1</span>)
 rb_meat = Radiobutton(root, text=<span class="code-str">"육고기"</span>, variable=food, value=<span class="code-num">1</span>)
 rb_seafood = Radiobutton(root, text=<span class="code-str">"해산물"</span>, variable=food, value=<span class="code-num">2</span>)
 rb_meat.pack()
 rb_seafood.pack()
-
 root.mainloop()</code></pre>
                     </div>
-                    <h2 class="section-h2">2. Listbox 목록 선택</h2>
                     <div class="code-block-wrapper">
-                        <div class="code-header"><span class="code-lang">PYTHON</span><span>Listbox 바인딩</span></div>
+                        <div class="code-header"><span class="code-lang">PYTHON</span><span>Listbox 예제</span></div>
                         <pre><code><span class="code-keyword">def</span> <span class="code-def">show_selected</span>(event):
     selection = lang_lb.curselection()
     <span class="code-keyword">if</span> selection:
-        result_lbl.config(text=<span class="code-str">"선택: "</span> + lang_lb.get(selection[<span class="code-num">0</span>]))
+        result_lbl.config(text=<span class="code-str">"선택한 항목: "</span> + lang_lb.get(selection[<span class="code-num">0</span>]))
 
+root = Tk()
 lang_lb = Listbox(root, height=<span class="code-num">5</span>)
 lang_lb.pack(padx=<span class="code-num">10</span>, pady=<span class="code-num">10</span>)
-<span class="code-keyword">for</span> item <span class="code-keyword">in</span> [<span class="code-str">"Python"</span>, <span class="code-str">"Java"</span>, <span class="code-str">"C++"</span>]:
+<span class="code-keyword">for</span> item <span class="code-keyword">in</span> [<span class="code-str">"Python"</span>, <span class="code-str">"Java"</span>, <span class="code-str">"JavaScript"</span>, <span class="code-str">"C"</span>, <span class="code-str">"C++"</span>]:
     lang_lb.insert(END, item)
 lang_lb.bind(<span class="code-str">"&lt;&lt;ListboxSelect&gt;&gt;"</span>, show_selected)
 result_lbl = Label(root, text=<span class="code-str">""</span>)
-result_lbl.pack()</code></pre>
+result_lbl.pack(pady=<span class="code-num">10</span>)
+root.mainloop()</code></pre>
                     </div>
 
                     <!-- 10차시 -->
-                    <h1 class="chapter-h1" style="margin-top: 50px;">📐 [10차시] 배치 관리자: pack, grid, place</h1>
+                    <h1 class="chapter-h1" style="margin-top: 50px;">📐 [10차시] 배치 관리자 공통 개념 및 레이아웃</h1>
                     <div class="tip-callout">
-                        <b>pack():</b> 위젯을 차례대로 쌓아 올림 | <b>grid():</b> 바둑판 격자(row, column) 정돈 | <b>place():</b> 절대 픽셀 좌표 지정
+                        <b>🎯 학습 목표:</b> 모든 위젯이 부모 위젯 안에 배치되는 원리를 이해하고, pack(), grid(), place() 배치 관리자의 차이를 익힌다.
                     </div>
                     <div class="code-block-wrapper">
-                        <div class="code-header"><span class="code-lang">PYTHON</span><span>grid() 배치 예제</span></div>
-                        <pre><code>Label(root, text=<span class="code-str">"이름"</span>).grid(row=<span class="code-num">0</span>, column=<span class="code-num">0</span>)
+                        <div class="code-header"><span class="code-lang">PYTHON</span><span>pack() 레이아웃 예제</span></div>
+                        <pre><code><span class="code-keyword">from</span> tkinter <span class="code-keyword">import</span> *
+root = Tk()
+root.geometry(<span class="code-str">"200x150"</span>)
+Label(root, text=<span class="code-str">"첫 번째 라벨 위젯"</span>, bg=<span class="code-str">"red"</span>).pack()
+Label(root, text=<span class="code-str">"두 번째 라벨 위젯"</span>, bg=<span class="code-str">"green"</span>).pack()
+Label(root, text=<span class="code-str">"세 번째 라벨 위젯"</span>, bg=<span class="code-str">"yellow"</span>).pack()
+root.mainloop()</code></pre>
+                    </div>
+                    <div class="code-block-wrapper">
+                        <div class="code-header"><span class="code-lang">PYTHON</span><span>grid() 레이아웃 예제</span></div>
+                        <pre><code><span class="code-keyword">from</span> tkinter <span class="code-keyword">import</span> *
+root = Tk()
+root.geometry(<span class="code-str">"180x50"</span>)
+Label(root, text=<span class="code-str">"이름"</span>).grid(row=<span class="code-num">0</span>, column=<span class="code-num">0</span>)
 Entry(root).grid(row=<span class="code-num">0</span>, column=<span class="code-num">1</span>)
 Label(root, text=<span class="code-str">"나이"</span>).grid(row=<span class="code-num">1</span>, column=<span class="code-num">0</span>)
-Entry(root).grid(row=<span class="code-num">1</span>, column=<span class="code-num">1</span>)</code></pre>
+Entry(root).grid(row=<span class="code-num">1</span>, column=<span class="code-num">1</span>)
+root.mainloop()</code></pre>
+                    </div>
+                    <div class="code-block-wrapper">
+                        <div class="code-header"><span class="code-lang">PYTHON</span><span>place() 레이아웃 예제</span></div>
+                        <pre><code><span class="code-keyword">from</span> tkinter <span class="code-keyword">import</span> *
+root = Tk()
+root.geometry(<span class="code-str">"300x150"</span>)
+Label(root, text=<span class="code-str">"절대 위치 (50, 30)"</span>, bg=<span class="code-str">"lightblue"</span>).place(x=<span class="code-num">50</span>, y=<span class="code-num">30</span>)
+root.mainloop()</code></pre>
                     </div>
 
                     <!-- 11~15차시 -->
-                    <h1 class="chapter-h1" style="margin-top: 50px;">💬 [11~15차시] 대화상자(Dialogs): messagebox, filedialog, simpledialog</h1>
+                    <h1 class="chapter-h1" style="margin-top: 50px;">💬 [11~15차시] 대화상자(Dialogs) 모듈 총정리</h1>
                     <div class="tip-callout">
-                        <b>🎯 학습 목표:</b> 알림창(messagebox), 파일 선택창(filedialog), 텍스트/숫자 팝업 입력창(simpledialog)을 익힌다.
+                        <b>🎯 학습 목표:</b> messagebox, filedialog, simpledialog 모듈을 활용하여 알림창, 파일 경로 탐색, 팝업 입력창을 구현하고 Toplevel 사용자 정의 대화상자 개념을 이해한다.
                     </div>
                     <div class="code-block-wrapper">
-                        <div class="code-header"><span class="code-lang">PYTHON</span><span>각종 표준 대화상자</span></div>
-                        <pre><code><span class="code-keyword">from</span> tkinter <span class="code-keyword">import</span> messagebox, filedialog, simpledialog
+                        <div class="code-header"><span class="code-lang">PYTHON</span><span>11차시: messagebox (표준 대화상자)</span></div>
+                        <pre><code><span class="code-keyword">from</span> tkinter <span class="code-keyword">import</span> *
+<span class="code-keyword">from</span> tkinter <span class="code-keyword">import</span> messagebox
 
-<span class="code-comment"># 1. 메시지 박스 (예/아니오 확인)</span>
-<span class="code-keyword">if</span> messagebox.askyesno(<span class="code-str">"확인"</span>, <span class="code-str">"정말 종료할까요?"</span>):
-    root.destroy()
+root = Tk()
+<span class="code-keyword">def</span> <span class="code-def">exit_app</span>():
+    <span class="code-keyword">if</span> messagebox.askyesno(<span class="code-str">"확인"</span>, <span class="code-str">"정말 종료할까요?"</span>):
+        root.destroy()
 
-<span class="code-comment"># 2. 파일 열기 대화상자</span>
+Button(root, text=<span class="code-str">"종료"</span>, command=exit_app).pack(padx=<span class="code-num">180</span>, pady=<span class="code-num">48</span>)
+root.mainloop()</code></pre>
+                    </div>
+                    <div class="code-block-wrapper">
+                        <div class="code-header"><span class="code-lang">PYTHON</span><span>14차시: filedialog (파일 대화상자)</span></div>
+                        <pre><code><span class="code-keyword">from</span> tkinter <span class="code-keyword">import</span> filedialog
+
 path = filedialog.askopenfilename(
     title=<span class="code-str">"파일 선택"</span>,
     filetypes=[(<span class="code-str">"텍스트 파일"</span>, <span class="code-str">"*.txt"</span>), (<span class="code-str">"모든 파일"</span>, <span class="code-str">"*.*"</span>)]
 )
+<span class="code-keyword">if</span> path:
+    <span class="code-keyword">print</span>(<span class="code-str">"선택한 파일:"</span>, path)</code></pre>
+                    </div>
+                    <div class="code-block-wrapper">
+                        <div class="code-header"><span class="code-lang">PYTHON</span><span>15차시: simpledialog (입력 대화상자)</span></div>
+                        <pre><code><span class="code-keyword">from</span> tkinter <span class="code-keyword">import</span> simpledialog
 
-<span class="code-comment"># 3. 입력 팝업 대화상자</span>
 name = simpledialog.askstring(<span class="code-str">"입력"</span>, <span class="code-str">"이름을 입력하세요."</span>)
-age = simpledialog.askinteger(<span class="code-str">"입력"</span>, <span class="code-str">"나이를 입력하세요."</span>, minvalue=<span class="code-num">0</span>, maxvalue=<span class="code-num">120</span>)</code></pre>
+age = simpledialog.askinteger(<span class="code-str">"입력"</span>, <span class="code-str">"나이를 입력하세요."</span>, minvalue=<span class="code-num">0</span>, maxvalue=<span class="code-num">120</span>)
+<span class="code-keyword">if</span> name:
+    <span class="code-keyword">print</span>(f<span class="code-str">"{name}님, {age}세"</span>)</code></pre>
                     </div>
                 `
             }
         };
 
-        // 초기 화면 렌더링 (첫 번째 레슨 로드)
-        document.getElementById('lesson-content').innerHTML = lessons.lesson1.html;
+        // 초기 화면 렌더링 (Tkinter 선택)
+        document.getElementById('lesson-content').innerHTML = lessons.lesson2.html;
 
         function selectLesson(lessonKey, element) {
             const lesson = lessons[lessonKey];
