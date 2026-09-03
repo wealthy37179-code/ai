@@ -458,11 +458,20 @@
                     <h1 class="article-title">데이터 다루기: 파이썬 데이터 구조 · pandas 연습 · 기초 통계</h1>
                     <div class="article-intro">
                         <b>수업 구성:</b> 1장 데이터 구조 → 2장 pandas 선택·필터링·수정 → 3장 기초 통계와 그룹별 비교<br>
-                        데이터 분석의 시작은 <b>'데이터를 어떤 구조로 저장하고, 무엇을 확인할 것인가?'</b>를 생각하는 것입니다.
+                        데이터 분석의 시작은 <b>‘데이터를 어떤 구조로 저장하고, 무엇을 확인할 것인가?’</b>를 생각하는 것입니다.
                     </div>
 
+                    <!-- ================= 1장 ================= -->
                     <h1 class="chapter-h1">📖 1장. 파이썬의 데이터 구조</h1>
+                    <div class="tip-callout">
+                        <b>🎯 학습 목표</b><br>
+                        ✓ 변수, 리스트, 딕셔너리의 특징을 설명할 수 있다.<br>
+                        ✓ 같은 성적 데이터를 여러 데이터 구조로 처리해 차이를 비교할 수 있다.<br>
+                        ✓ 딕셔너리를 pandas DataFrame으로 변환하고 합계와 평균을 계산할 수 있다.
+                    </div>
+
                     <h2 class="section-h2">1. 변수를 이용한 성적 처리</h2>
+                    <p class="section-desc"><b>핵심 개념:</b> 변수는 하나의 값을 이름을 붙여 저장하는 가장 기본적인 데이터 저장 방법입니다.</p>
                     <div class="code-block-wrapper">
                         <div class="code-header"><span class="code-lang">PYTHON</span><span>변수 선언 및 연산</span></div>
                         <pre><code>kor = <span class="code-str">80</span>
@@ -470,10 +479,14 @@ math = <span class="code-str">40</span>
 eng = <span class="code-str">30</span>
 total = kor + math + eng
 mean = total / <span class="code-str">3</span>
-print(total, mean)</code></pre>
+<span class="code-keyword">print</span>(total, mean)</code></pre>
+                    </div>
+                    <div class="result-box">
+                        <b>코드 읽기:</b> kor, math, eng에 점수를 저장하고, 세 값을 더해 total을 구한 뒤 3으로 나누어 평균 mean을 계산합니다.
                     </div>
 
                     <h2 class="section-h2">2. 리스트를 이용한 성적 처리</h2>
+                    <p class="section-desc"><b>생각하기:</b> 학생 수가 많아지면 변수를 여러 개 만드는 것보다 리스트에 묶어 저장하는 것이 편리합니다.</p>
                     <div class="code-block-wrapper">
                         <div class="code-header"><span class="code-lang">PYTHON</span><span>2차원 리스트 성적 처리</span></div>
                         <pre><code>names = [<span class="code-str">'김민준'</span>, <span class="code-str">'이지훈'</span>, <span class="code-str">'고서연'</span>, <span class="code-str">'염지민'</span>]
@@ -483,11 +496,13 @@ scores = [
     [<span class="code-str">58</span>, <span class="code-str">75</span>, <span class="code-str">53</span>],
     [<span class="code-str">75</span>, <span class="code-str">93</span>, <span class="code-str">81</span>]
 ]
-for i in range(len(scores)):
-    print(names[i], sum(scores[i]), sum(scores[i]) / 3)</code></pre>
+
+<span class="code-keyword">for</span> i <span class="code-keyword">in</span> <span class="code-keyword">range</span>(<span class="code-keyword">len</span>(scores)):
+    <span class="code-keyword">print</span>(names[i], <span class="code-keyword">sum</span>(scores[i]), <span class="code-keyword">sum</span>(scores[i]) / <span class="code-str">3</span>)</code></pre>
                     </div>
 
                     <h2 class="section-h2">3. 딕셔너리를 이용한 성적 처리</h2>
+                    <p class="section-desc"><b>핵심 개념:</b> 딕셔너리는 <b>key와 value</b>의 쌍으로 데이터를 저장합니다. 여기서는 학생 이름이 key, 세 과목 점수 리스트가 value입니다.</p>
                     <div class="code-block-wrapper">
                         <div class="code-header"><span class="code-lang">PYTHON</span><span>딕셔너리 성적 처리</span></div>
                         <pre><code>class_dict = {
@@ -496,34 +511,156 @@ for i in range(len(scores)):
     <span class="code-str">'고서연'</span>: [<span class="code-str">58</span>, <span class="code-str">75</span>, <span class="code-str">53</span>],
     <span class="code-str">'염지민'</span>: [<span class="code-str">75</span>, <span class="code-str">93</span>, <span class="code-str">81</span>]
 }
-for name, score in class_dict.items():
-    print(name, sum(score), sum(score) / 3)</code></pre>
+
+<span class="code-keyword">for</span> name, score <span class="code-keyword">in</span> class_dict.items():
+    <span class="code-keyword">print</span>(name, <span class="code-keyword">sum</span>(score), <span class="code-keyword">sum</span>(score) / <span class="code-str">3</span>)</code></pre>
                     </div>
 
                     <h2 class="section-h2">4. DataFrame을 이용한 성적 처리</h2>
+                    <p class="section-desc"><b>정리:</b> DataFrame은 행과 열로 이루어진 표 형태의 데이터 구조입니다. 여러 데이터를 비교·계산·분석할 때 편리합니다.</p>
                     <div class="code-block-wrapper">
-                        <div class="code-header"><span class="code-lang">PYTHON</span><span>DataFrame 변환</span></div>
+                        <div class="code-header"><span class="code-lang">PYTHON</span><span>DataFrame 변환 및 연산</span></div>
                         <pre><code><span class="code-keyword">import</span> pandas <span class="code-keyword">as</span> pd
+
 df_class = pd.DataFrame(class_dict)
-print(df_class.sum())
-print(df_class.mean())</code></pre>
-                    </div>
-                `
-            },
-            lesson2: {
-                title: "02. 판다스 기초 문법과 데이터 기초통계",
-                icon: "🐼",
-                pdf: "판다스_기초통계.pdf",
-                html: `
-                    <h1 class="article-title">02. 판다스 기초 문법 및 데이터 기초통계 실습</h1>
-                    <div class="article-intro">
-                        구글 코랩(Google Colab) 환경에서 판다스(Pandas)를 활용하여 <b>데이터프레임을 생성</b>하고, <b>데이터 구조(info, shape), 기초 통계, 범주형 분포, 정렬 및 그룹별 집계</b>를 직접 다루는 핵심 문법을 학습합니다.
+df_class
+<span class="code-keyword">print</span>(df_class.sum())
+<span class="code-keyword">print</span>(df_class.mean())</code></pre>
                     </div>
 
-                    <h1 class="chapter-h1">📌 (0) 데이터프레임 생성</h1>
+                    <!-- ================= 2장 ================= -->
+                    <h1 class="chapter-h1" style="margin-top: 48px;">☕ 2장. pandas 연습 - 카페 메뉴 데이터</h1>
+                    <div class="tip-callout">
+                        <b>🎯 학습 목표</b><br>
+                        ✓ DataFrame의 행과 열을 선택할 수 있다.<br>
+                        ✓ 조건식, isin을 이용해 필요한 데이터를 필터링할 수 있다.<br>
+                        ✓ 열 추가·삭제·이름 변경을 수행할 수 있다.
+                    </div>
+
+                    <h2 class="section-h2">0. 실습 데이터 만들기</h2>
                     <div class="code-block-wrapper">
-                        <div class="code-header"><span class="code-lang">PYTHON</span><span>DataFrame 생성</span></div>
+                        <div class="code-header"><span class="code-lang">PYTHON</span><span>카페 메뉴 데이터 생성 및 set_index</span></div>
                         <pre><code><span class="code-keyword">import</span> pandas <span class="code-keyword">as</span> pd
+
+data = {
+    <span class="code-str">'메뉴코드'</span>: [<span class="code-str">'M01'</span>, <span class="code-str">'M02'</span>, <span class="code-str">'M03'</span>, <span class="code-str">'M04'</span>, <span class="code-str">'M05'</span>],
+    <span class="code-str">'메뉴명'</span>: [<span class="code-str">'아메리카노'</span>, <span class="code-str">'카페라떼'</span>, <span class="code-str">'카푸치노'</span>, <span class="code-str">'초코라떼'</span>, <span class="code-str">'녹차라떼'</span>],
+    <span class="code-str">'카테고리'</span>: [<span class="code-str">'커피'</span>, <span class="code-str">'커피'</span>, <span class="code-str">'커피'</span>, <span class="code-str">'음료'</span>, <span class="code-str">'음료'</span>],
+    <span class="code-str">'가격'</span>: [<span class="code-str">3000</span>, <span class="code-str">4000</span>, <span class="code-str">4500</span>, <span class="code-str">5000</span>, <span class="code-str">4800</span>],
+    <span class="code-str">'판매량'</span>: [<span class="code-str">120</span>, <span class="code-str">95</span>, <span class="code-str">80</span>, <span class="code-str">60</span>, <span class="code-str">70</span>]
+}
+df = pd.DataFrame(data)
+df = df.set_index(<span class="code-str">'메뉴코드'</span>)
+df</code></pre>
+                    </div>
+
+                    <span class="result-label">🖥️ df 출력 결과 (DataFrame)</span>
+                    <table class="custom-table">
+                        <thead>
+                            <tr><th>메뉴코드 (index)</th><th>메뉴명</th><th>카테고리</th><th>가격</th><th>판매량</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td><b>M01</b></td><td>아메리카노</td><td>커피</td><td>3000</td><td>120</td></tr>
+                            <tr><td><b>M02</b></td><td>카페라떼</td><td>커피</td><td>4000</td><td>95</td></tr>
+                            <tr><td><b>M03</b></td><td>카푸치노</td><td>커피</td><td>4500</td><td>80</td></tr>
+                            <tr><td><b>M04</b></td><td>초코라떼</td><td>음료</td><td>5000</td><td>60</td></tr>
+                            <tr><td><b>M05</b></td><td>녹차라떼</td><td>음료</td><td>4800</td><td>70</td></tr>
+                        </tbody>
+                    </table>
+
+                    <h2 class="section-h2">1. 열(column) 선택</h2>
+                    <p class="section-desc"><b>코드 해석:</b> 열 하나는 <code>df['열이름']</code>, 여러 열은 <code>df[['열1', '열2']]</code>처럼 대괄호를 한 번 더 사용합니다.</p>
+                    <div class="code-block-wrapper">
+                        <div class="code-header"><span class="code-lang">PYTHON</span><span>단일 열 및 다중 열 선택</span></div>
+                        <pre><code>df[<span class="code-str">'가격'</span>]
+df[[<span class="code-str">'메뉴명'</span>, <span class="code-str">'판매량'</span>]]</code></pre>
+                    </div>
+
+                    <h2 class="section-h2">2. 행(row) 선택</h2>
+                    <p class="section-desc"><b>코드 해석:</b> <code>loc</code>는 인덱스 이름(label)으로, <code>iloc</code>는 행의 위치 번호(0부터 시작)로 선택합니다.</p>
+                    <div class="code-block-wrapper">
+                        <div class="code-header"><span class="code-lang">PYTHON</span><span>loc 및 iloc를 이용한 행 선택</span></div>
+                        <pre><code>df.loc[<span class="code-str">'M01'</span>]
+df.iloc[<span class="code-str">2</span>]</code></pre>
+                    </div>
+
+                    <h2 class="section-h2">3. 특정 행과 열 선택</h2>
+                    <p class="section-desc"><b>코드 해석:</b> 행과 열을 동시에 지정하면 원하는 특정 한 값을 콕 집어 선택할 수 있습니다.</p>
+                    <div class="code-block-wrapper">
+                        <div class="code-header"><span class="code-lang">PYTHON</span><span>행과 열 동시 지정</span></div>
+                        <pre><code>df.loc[<span class="code-str">'M02'</span>, <span class="code-str">'가격'</span>]</code></pre>
+                    </div>
+
+                    <h2 class="section-h2">4. 조건 필터링</h2>
+                    <p class="section-desc"><b>코드 해석:</b> 대괄호 안 조건식의 결과가 <code>True</code>인 행만 남겨 새로운 표처럼 필터링하여 보여줍니다.</p>
+                    <div class="code-block-wrapper">
+                        <div class="code-header"><span class="code-lang">PYTHON</span><span>단일 조건 필터링</span></div>
+                        <pre><code>df[df[<span class="code-str">'가격'</span>] >= <span class="code-str">4000</span>]
+df[df[<span class="code-str">'카테고리'</span>] == <span class="code-str">'커피'</span>]
+df[df[<span class="code-str">'판매량'</span>] >= <span class="code-str">80</span>]</code></pre>
+                    </div>
+
+                    <h2 class="section-h2">5. 여러 조건 필터링 (다중 조건)</h2>
+                    <p class="section-desc"><b>코드 해석:</b> 두 조건을 모두 만족(AND)하려면 <code>&</code> 기호를 사용하고, 각 조건을 반드시 소괄호 <code>()</code>로 묶어줍니다.</p>
+                    <div class="code-block-wrapper">
+                        <div class="code-header"><span class="code-lang">PYTHON</span><span>다중 조건 필터링 (&)</span></div>
+                        <pre><code>df[(df[<span class="code-str">'카테고리'</span>] == <span class="code-str">'커피'</span>) & (df[<span class="code-str">'가격'</span>] >= <span class="code-str">4000</span>)]</code></pre>
+                    </div>
+
+                    <h2 class="section-h2">6. isin() 사용</h2>
+                    <p class="section-desc"><b>코드 해석:</b> <code>isin</code>은 여러 후보 값 리스트 중 하나에 포함되는지(OR 조건)를 간결하게 확인할 때 편리합니다.</p>
+                    <div class="code-block-wrapper">
+                        <div class="code-header"><span class="code-lang">PYTHON</span><span>isin() 활용</span></div>
+                        <pre><code>df[df[<span class="code-str">'메뉴명'</span>].isin([<span class="code-str">'아메리카노'</span>, <span class="code-str">'카푸치노'</span>])]</code></pre>
+                    </div>
+
+                    <h2 class="section-h2">7. 열 추가</h2>
+                    <p class="section-desc"><b>코드 해석:</b> 새로운 열 이름에 기존 열들의 계산식을 대입하면 새 열이 우측에 생성됩니다.</p>
+                    <div class="code-block-wrapper">
+                        <div class="code-header"><span class="code-lang">PYTHON</span><span>파생 변수(매출) 생성</span></div>
+                        <pre><code>df[<span class="code-str">'매출'</span>] = df[<span class="code-str">'가격'</span>] * df[<span class="code-str">'판매량'</span>]
+df</code></pre>
+                    </div>
+
+                    <h2 class="section-h2">8. 열 삭제</h2>
+                    <p class="section-desc"><b>코드 해석:</b> <code>inplace=True</code> 옵션을 주면 삭제 변경 결과가 원래의 <code>df</code> 변수에 즉시 반영됩니다.</p>
+                    <div class="code-block-wrapper">
+                        <div class="code-header"><span class="code-lang">PYTHON</span><span>drop() 열 삭제</span></div>
+                        <pre><code>df.drop(columns=<span class="code-str">'판매량'</span>, inplace=<span class="code-keyword">True</span>)
+df</code></pre>
+                    </div>
+
+                    <h2 class="section-h2">9. 열 이름 변경</h2>
+                    <p class="section-desc"><b>코드 해석:</b> <code>columns</code>에 <code>{'기존이름': '새이름'}</code> 형태의 딕셔너리를 전달합니다.</p>
+                    <div class="code-block-wrapper">
+                        <div class="code-header"><span class="code-lang">PYTHON</span><span>rename() 컬럼명 변경</span></div>
+                        <pre><code>df.rename(columns={<span class="code-str">'가격'</span>: <span class="code-str">'메뉴가격'</span>})</code></pre>
+                    </div>
+
+                    <div style="background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: 12px; padding: 16px 20px; margin: 24px 0;">
+                        <div style="font-size: 15px; font-weight: 800; color: #0f172a; margin-bottom: 8px;">✏️ 2장 실습 문제</div>
+                        <div style="font-size: 13.5px; color: #334155; line-height: 1.8;">
+                            ① 가격이 4,500원 이상인 메뉴만 출력해 보자.<br>
+                            ② 카테고리가 '음료'인 메뉴의 메뉴명과 가격만 출력해 보자.<br>
+                            ③ 판매량이 70 이상이고 가격이 4,000원 이상인 메뉴를 찾아보자.<br>
+                            ④ '매출' 열을 만든 뒤 매출이 가장 큰 메뉴를 예상해 보자.
+                        </div>
+                    </div>
+
+                    <!-- ================= 3장 ================= -->
+                    <h1 class="chapter-h1" style="margin-top: 48px;">📊 3장. 데이터 기초 통계</h1>
+                    <div class="tip-callout">
+                        <b>🎯 학습 목표</b><br>
+                        ✓ info(), shape로 데이터 구조를 확인할 수 있다.<br>
+                        ✓ describe(), mean(), median(), mode()로 기초 통계를 구할 수 있다.<br>
+                        ✓ value_counts(), sort_values(), groupby()를 이용해 데이터의 특징을 분석할 수 있다.
+                    </div>
+
+                    <h2 class="section-h2">0. 데이터프레임 생성</h2>
+                    <div class="code-block-wrapper">
+                        <div class="code-header"><span class="code-lang">PYTHON</span><span>학생 신체 및 인적 데이터 생성</span></div>
+                        <pre><code><span class="code-keyword">import</span> pandas <span class="code-keyword">as</span> pd
+
 data = {
     <span class="code-str">'이름'</span>: [<span class="code-str">'김하늘'</span>, <span class="code-str">'이준서'</span>, <span class="code-str">'박지민'</span>, <span class="code-str">'최서윤'</span>, <span class="code-str">'정민호'</span>],
     <span class="code-str">'성별'</span>: [<span class="code-str">'F'</span>, <span class="code-str">'M'</span>, <span class="code-str">'F'</span>, <span class="code-str">'F'</span>, <span class="code-str">'M'</span>],
@@ -549,14 +686,254 @@ df</code></pre>
                         </tbody>
                     </table>
 
-                    <h1 class="chapter-h1">📌 (1)~(5) 통계 요약 및 집계</h1>
+                    <h2 class="section-h2">1. 데이터 구조 확인 (info, shape)</h2>
+                    <p class="section-desc"><b>코드 해석:</b> <code>info()</code>는 열 이름·결측치·자료형 등을 보여주고, <code>shape</code>는 (행의 수, 열의 수) 튜플을 반환합니다.</p>
                     <div class="code-block-wrapper">
-                        <div class="code-header"><span class="code-lang">PYTHON</span><span>기초 통계 함수</span></div>
+                        <div class="code-header"><span class="code-lang">PYTHON</span><span>info() 및 shape</span></div>
                         <pre><code>df.info()
-df.shape
-df.describe()
-df.sort_values(by=<span class="code-str">'키'</span>, ascending=<span class="code-keyword">False</span>)
-df.groupby(by=<span class="code-str">'성별'</span>)[<span class="code-str">'몸무게'</span>].mean()</code></pre>
+df.shape</code></pre>
+                    </div>
+
+                    <h2 class="section-h2">2. 기초 통계 (describe, mean, median, mode)</h2>
+                    <p class="section-desc"><b>코드 해석:</b> <code>mean</code>은 평균, <code>median</code>은 중앙값, <code>mode</code>는 최빈값입니다. <code>describe()</code>는 수치형 열의 주요 통계(개수, 평균, 표준편차, 사분위수 등)를 한 번에 보여줍니다.</p>
+                    <div class="code-block-wrapper">
+                        <div class="code-header"><span class="code-lang">PYTHON</span><span>기초 통계 계산</span></div>
+                        <pre><code>df.describe()
+df[<span class="code-str">'키'</span>].mean()
+df[<span class="code-str">'몸무게'</span>].median()
+df[<span class="code-str">'혈액형'</span>].mode()</code></pre>
+                    </div>
+
+                    <h2 class="section-h2">3. 범주형 데이터 분포 (value_counts)</h2>
+                    <p class="section-desc"><b>코드 해석:</b> 각 혈액형이 몇 번 나타나는지 빈도수를 자동으로 집계합니다.</p>
+                    <div class="code-block-wrapper">
+                        <div class="code-header"><span class="code-lang">PYTHON</span><span>value_counts() 빈도 분석</span></div>
+                        <pre><code>df.value_counts(<span class="code-str">'혈액형'</span>)</code></pre>
+                    </div>
+
+                    <h2 class="section-h2">4. 정렬 (sort_values)</h2>
+                    <p class="section-desc"><b>코드 해석:</b> <code>sort_values()</code>는 지정한 열을 기준으로 데이터를 오름차순 정렬합니다. <code>ascending=False</code>를 주면 내림차순(큰 순서)으로 정렬됩니다.</p>
+                    <div class="code-block-wrapper">
+                        <div class="code-header"><span class="code-lang">PYTHON</span><span>오름차순 및 내림차순 정렬</span></div>
+                        <pre><code>df.sort_values(by=<span class="code-str">'키'</span>)
+df.sort_values(by=<span class="code-str">'키'</span>, ascending=<span class="code-keyword">False</span>)</code></pre>
+                    </div>
+
+                    <h2 class="section-h2">5. 그룹별 비교 (groupby)</h2>
+                    <p class="section-desc"><b>코드 해석:</b> 성별로 데이터를 그룹 지어 묶은 뒤, 각 성별 그룹의 몸무게 평균을 비교·계산합니다.</p>
+                    <div class="code-block-wrapper">
+                        <div class="code-header"><span class="code-lang">PYTHON</span><span>groupby 집계</span></div>
+                        <pre><code>df.groupby(by=<span class="code-str">'성별'</span>)[<span class="code-str">'몸무게'</span>].mean()</code></pre>
+                    </div>
+
+                    <h2 class="section-h2">📌 기초 통계 함수 한눈에 보기</h2>
+                    <table class="custom-table">
+                        <thead>
+                            <tr><th>함수명</th><th>의미 및 역할</th><th>사용 예시</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td><code>info()</code></td><td>데이터 구조와 결측치, 자료형 확인</td><td><code>df.info()</code></td></tr>
+                            <tr><td><code>shape</code></td><td>행과 열의 개수 확인 (행, 열)</td><td><code>df.shape</code></td></tr>
+                            <tr><td><code>describe()</code></td><td>수치형 열의 8가지 기초 통계 요약</td><td><code>df.describe()</code></td></tr>
+                            <tr><td><code>mean()</code></td><td>평균값 계산</td><td><code>df['키'].mean()</code></td></tr>
+                            <tr><td><code>median()</code></td><td>크기순 정렬 시 가운데 위치하는 중앙값</td><td><code>df['몸무게'].median()</code></td></tr>
+                            <tr><td><code>mode()</code></td><td>가장 자주 나타나는 최빈값</td><td><code>df['혈액형'].mode()</code></td></tr>
+                            <tr><td><code>value_counts()</code></td><td>범주형 열의 항목별 등장 개수 집계</td><td><code>df.value_counts('혈액형')</code></td></tr>
+                            <tr><td><code>sort_values()</code></td><td>지정한 열의 값을 기준으로 행 정렬</td><td><code>df.sort_values(by='키')</code></td></tr>
+                            <tr><td><code>groupby()</code></td><td>지정한 열 기준으로 묶어 그룹별 집계 연산</td><td><code>df.groupby('성별')['몸무게'].mean()</code></td></tr>
+                        </tbody>
+                    </table>
+
+                    <div style="background: #f8fafc; border: 1.5px solid #cbd5e1; border-radius: 12px; padding: 16px 20px; margin: 24px 0;">
+                        <div style="font-size: 15px; font-weight: 800; color: #0f172a; margin-bottom: 8px;">✏️ 3장 마무리 문제</div>
+                        <div style="font-size: 13.5px; color: #334155; line-height: 1.8;">
+                            ① 평균과 중앙값은 어떤 상황에서 서로 다르게 나타날 수 있을까?<br>
+                            ② 혈액형처럼 숫자가 아닌 범주형 데이터의 분포를 확인할 때 어떤 함수를 사용했는가?<br>
+                            ③ 키가 큰 순서대로 데이터를 정렬하려면 어떤 옵션이 필요한가?<br>
+                            ④ 성별에 따른 키의 평균을 구하는 코드를 작성해 보자.
+                        </div>
+                    </div>
+
+                    <!-- ================= 수업 정리 ================= -->
+                    <div class="insight-callout" style="margin-top: 32px;">
+                        <div class="insight-title">💡 전체 수업 요약 정리</div>
+                        • <b>1장:</b> 데이터를 변수 → 리스트 → 딕셔너리 → DataFrame으로 구조화하는 과정을 비교했습니다.<br>
+                        • <b>2장:</b> DataFrame에서 원하는 데이터 선택 → 조건 필터링 → 열 추가 → 열 삭제 → 이름 변경을 연습했습니다.<br>
+                        • <b>3장:</b> 데이터 구조 확인(info, shape) → 기초 통계 요약 → 범주형 분포 → 정렬 → 그룹별 비교를 수행했습니다.<br>
+                        👉 <i>데이터 분석의 시작은 <b>‘데이터를 어떤 구조로 저장하고, 무엇을 확인할 것인가?’</b>를 생각하는 것입니다.</i>
+                    </div>
+                `
+            },
+            lesson2: {
+                title: "02. 판다스 기초통계",
+                icon: "🐼",
+                pdf: "판다스_기초통계.pdf",
+                html: `
+                    <h1 class="article-title">02. 판다스 기초통계 (Pandas 기본 문법)</h1>
+                    <div class="article-intro">
+                        구글 코랩(Google Colab) 환경에서 판다스(Pandas)를 활용하여 <b>데이터프레임을 생성</b>하고, <b>데이터 구조(info, shape), 기초 통계, 범주형 분포, 정렬 및 그룹별 집계</b>를 직접 다루는 Colab 교재 전체 내용입니다.
+                    </div>
+
+                    <!-- (0) 데이터프레임 생성 -->
+                    <h1 class="chapter-h1">📌 (0) 데이터프레임 생성</h1>
+                    <div class="code-block-wrapper">
+                        <div class="code-header"><span class="code-lang">PYTHON</span><span>DataFrame 생성 코드</span></div>
+                        <pre><code><span class="code-keyword">import</span> pandas <span class="code-keyword">as</span> pd
+
+data = {
+    <span class="code-str">'이름'</span>: [<span class="code-str">'김하늘'</span>, <span class="code-str">'이준서'</span>, <span class="code-str">'박지민'</span>, <span class="code-str">'최서윤'</span>, <span class="code-str">'정민호'</span>],
+    <span class="code-str">'성별'</span>: [<span class="code-str">'F'</span>, <span class="code-str">'M'</span>, <span class="code-str">'F'</span>, <span class="code-str">'F'</span>, <span class="code-str">'M'</span>],
+    <span class="code-str">'키'</span>: [<span class="code-str">162</span>, <span class="code-str">178</span>, <span class="code-str">155</span>, <span class="code-str">160</span>, <span class="code-str">182</span>],
+    <span class="code-str">'몸무게'</span>: [<span class="code-str">50</span>, <span class="code-str">72</span>, <span class="code-str">47</span>, <span class="code-str">54</span>, <span class="code-str">80</span>],
+    <span class="code-str">'혈액형'</span>: [<span class="code-str">'A'</span>, <span class="code-str">'B'</span>, <span class="code-str">'O'</span>, <span class="code-str">'A'</span>, <span class="code-str">'AB'</span>]
+}
+
+df = pd.DataFrame(data)
+df</code></pre>
+                    </div>
+
+                    <span class="result-label">🖥️ df 실행 결과 (Colab 출력)</span>
+                    <table class="custom-table">
+                        <thead>
+                            <tr><th>index</th><th>이름</th><th>성별</th><th>키</th><th>몸무게</th><th>혈액형</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>0</td><td>김하늘</td><td>F</td><td>162</td><td>50</td><td>A</td></tr>
+                            <tr><td>1</td><td>이준서</td><td>M</td><td>178</td><td>72</td><td>B</td></tr>
+                            <tr><td>2</td><td>박지민</td><td>F</td><td>155</td><td>47</td><td>O</td></tr>
+                            <tr><td>3</td><td>최서윤</td><td>F</td><td>160</td><td>54</td><td>A</td></tr>
+                            <tr><td>4</td><td>정민호</td><td>M</td><td>182</td><td>80</td><td>AB</td></tr>
+                        </tbody>
+                    </table>
+
+                    <!-- (1) 데이터 구조 확인 -->
+                    <h1 class="chapter-h1">📌 (1) 데이터 구조 확인 (info, shape)</h1>
+                    <div class="code-block-wrapper">
+                        <div class="code-header"><span class="code-lang">PYTHON</span><span>info() 및 shape</span></div>
+                        <pre><code>df.info()
+df.shape</code></pre>
+                    </div>
+
+                    <span class="result-label">🖥️ df.info() 및 df.shape 실행 결과</span>
+                    <div class="result-box">
+&lt;class 'pandas.core.frame.DataFrame'&gt;<br>
+RangeIndex: 5 entries, 0 to 4<br>
+Data columns (total 5 columns):<br>
+ #   Column  Non-Null Count  Dtype <br>
+---  ------  --------------  ----- <br>
+ 0   이름      5 non-null      object<br>
+ 1   성별      5 non-null      object<br>
+ 2   키       5 non-null      int64 <br>
+ 3   몸무게     5 non-null      int64 <br>
+ 4   혈액형     5 non-null      object<br>
+dtypes: int64(2), object(3)<br>
+memory usage: 332.0+ bytes<br>
+<br>
+<b>df.shape 결과:</b> (5, 5)
+                    </div>
+
+                    <!-- (2) 기초 통계 -->
+                    <h1 class="chapter-h1">📌 (2) 기초 통계 (describe, mean, median, mode)</h1>
+                    <div class="code-block-wrapper">
+                        <div class="code-header"><span class="code-lang">PYTHON</span><span>기초 통계 산출 코드</span></div>
+                        <pre><code>df.describe()
+df[<span class="code-str">'키'</span>].mean()
+df[<span class="code-str">'몸무게'</span>].median()
+df[<span class="code-str">'혈액형'</span>].mode()</code></pre>
+                    </div>
+
+                    <span class="result-label">🖥️ df.describe() 실행 결과</span>
+                    <table class="custom-table">
+                        <thead>
+                            <tr><th>통계 지표</th><th>키</th><th>몸무게</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>count</td><td>5.000000</td><td>5.000000</td></tr>
+                            <tr><td>mean</td><td>167.400000</td><td>60.600000</td></tr>
+                            <tr><td>std</td><td>11.865918</td><td>14.553350</td></tr>
+                            <tr><td>min</td><td>155.000000</td><td>47.000000</td></tr>
+                            <tr><td>25%</td><td>160.000000</td><td>50.000000</td></tr>
+                            <tr><td>50%</td><td>162.000000</td><td>54.000000</td></tr>
+                            <tr><td>75%</td><td>178.000000</td><td>72.000000</td></tr>
+                            <tr><td>max</td><td>182.000000</td><td>80.000000</td></tr>
+                        </tbody>
+                    </table>
+
+                    <span class="result-label">🖥️ 단일 통계 함수 실행 결과</span>
+                    <div class="result-box">
+• <code>df['키'].mean()</code> ➔ <b>np.float64(167.4)</b> <span style="color:#64748b;">(※ NumPy 버전에 따라 np.float64 형태 표기)</span><br>
+• <code>df['몸무게'].median()</code> ➔ <b>54.0</b><br>
+• <code>df['혈액형'].mode()</code> ➔<br>
+&nbsp;&nbsp;&nbsp;&nbsp;0 &nbsp;&nbsp;&nbsp;&nbsp;A<br>
+&nbsp;&nbsp;&nbsp;&nbsp;dtype: object
+                    </div>
+
+                    <!-- (3) 범주형 데이터 분포 -->
+                    <h1 class="chapter-h1">📌 (3) 범주형 데이터 분포 (value_counts)</h1>
+                    <div class="code-block-wrapper">
+                        <div class="code-header"><span class="code-lang">PYTHON</span><span>value_counts() 코드</span></div>
+                        <pre><code>df.value_counts(<span class="code-str">'혈액형'</span>)</code></pre>
+                    </div>
+
+                    <span class="result-label">🖥️ 실행 결과</span>
+                    <div class="result-box">
+혈액형<br>
+A &nbsp;&nbsp;&nbsp;&nbsp;2<br>
+AB &nbsp;&nbsp;&nbsp;1<br>
+B &nbsp;&nbsp;&nbsp;&nbsp;1<br>
+O &nbsp;&nbsp;&nbsp;&nbsp;1<br>
+Name: count, dtype: int64
+                    </div>
+
+                    <!-- (4) 정렬 -->
+                    <h1 class="chapter-h1">📌 (4) 정렬 (sort_values)</h1>
+                    <div class="code-block-wrapper">
+                        <div class="code-header"><span class="code-lang">PYTHON</span><span>오름차순 및 내림차순 정렬</span></div>
+                        <pre><code>df.sort_values(by=<span class="code-str">'키'</span>)
+df.sort_values(by=<span class="code-str">'키'</span>, ascending=<span class="code-keyword">False</span>)</code></pre>
+                    </div>
+
+                    <span class="result-label">🖥️ df.sort_values(by='키') 오름차순 결과</span>
+                    <table class="custom-table">
+                        <thead>
+                            <tr><th>index</th><th>이름</th><th>성별</th><th>키</th><th>몸무게</th><th>혈액형</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>2</td><td>박지민</td><td>F</td><td>155</td><td>47</td><td>O</td></tr>
+                            <tr><td>3</td><td>최서윤</td><td>F</td><td>160</td><td>54</td><td>A</td></tr>
+                            <tr><td>0</td><td>김하늘</td><td>F</td><td>162</td><td>50</td><td>A</td></tr>
+                            <tr><td>1</td><td>이준서</td><td>M</td><td>178</td><td>72</td><td>B</td></tr>
+                            <tr><td>4</td><td>정민호</td><td>M</td><td>182</td><td>80</td><td>AB</td></tr>
+                        </tbody>
+                    </table>
+
+                    <span class="result-label">🖥️ df.sort_values(by='키', ascending=False) 내림차순 결과</span>
+                    <table class="custom-table">
+                        <thead>
+                            <tr><th>index</th><th>이름</th><th>성별</th><th>키</th><th>몸무게</th><th>혈액형</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td>4</td><td>정민호</td><td>M</td><td>182</td><td>80</td><td>AB</td></tr>
+                            <tr><td>1</td><td>이준서</td><td>M</td><td>178</td><td>72</td><td>B</td></tr>
+                            <tr><td>0</td><td>김하늘</td><td>F</td><td>162</td><td>50</td><td>A</td></tr>
+                            <tr><td>3</td><td>최서윤</td><td>F</td><td>160</td><td>54</td><td>A</td></tr>
+                            <tr><td>2</td><td>박지민</td><td>F</td><td>155</td><td>47</td><td>O</td></tr>
+                        </tbody>
+                    </table>
+
+                    <!-- (5) 그룹별 비교 -->
+                    <h1 class="chapter-h1">📌 (5) 그룹별 비교 (groupby)</h1>
+                    <div class="code-block-wrapper">
+                        <div class="code-header"><span class="code-lang">PYTHON</span><span>groupby 집계 코드</span></div>
+                        <pre><code>df.groupby(by=<span class="code-str">'성별'</span>)[<span class="code-str">'몸무게'</span>].mean()</code></pre>
+                    </div>
+
+                    <span class="result-label">🖥️ 실행 결과</span>
+                    <div class="result-box">
+성별<br>
+F &nbsp;&nbsp;&nbsp;&nbsp;50.333333<br>
+M &nbsp;&nbsp;&nbsp;&nbsp;76.000000<br>
+Name: 몸무게, dtype: float64
                     </div>
                 `
             },
@@ -567,17 +944,17 @@ df.groupby(by=<span class="code-str">'성별'</span>)[<span class="code-str">'�
                 html: `
                     <h1 class="article-title">03. 기후 데이터 분석: 북극 해빙(빙하) 면적의 변화 탐구</h1>
                     <div class="article-intro">
-                        실제 기상청 및 해양 관측 데이터(<code>seaice.csv</code>)를 활용하여, <b>'전처리 전 원본' ➔ '9월 평균 집계' ➔ '최종 선형 추세선 도출'</b>로 이어지는 3단계 시각화 결과와 데이터 전처리의 가치를 살펴봅니다.
+                        실제 기상청 및 해양 관측 데이터(<code>seaice.csv</code>)를 활용하여, <b>'전처리 전 원본' ➔ '9월 평균 집계' ➔ '최종 선형 추세선 도출'</b>로 이어지는 Colab 교재의 모든 데이터 전처리 코드와 실행 결과, 시각화 그래프를 빠짐없이 확인합니다.
                     </div>
 
+                    <!-- 3단계 시각화 변천 비교 카드 -->
                     <h1 class="chapter-h1" style="border-bottom: 2px solid #0284c7; color: #0284c7;">
-                        📊 3단계 시각적 진화: 전처리의 필요성 한눈에 비교
+                        📊 데이터의 시각적 진화: 3단계 분석 비교 한눈에 보기
                     </h1>
                     <p class="section-desc" style="font-size: 14.5px; font-weight: bold; color: #1e293b;">
                         데이터를 있는 그대로 볼 때(1단계), 기준을 정해 전처리했을 때(2단계), 그리고 수학적 추세선을 입혔을 때(3단계)의 차이를 비교해 보세요.
                     </p>
 
-                    <!-- 3단 비교 카드 그리드 -->
                     <div style="display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin: 20px 0 28px 0;">
                         <!-- 1단계 -->
                         <div style="background: #ffffff; border: 1.5px solid #fca5a5; border-radius: 14px; padding: 14px; box-shadow: 0 4px 10px rgba(239, 68, 68, 0.05);">
@@ -592,13 +969,11 @@ df.groupby(by=<span class="code-str">'성별'</span>)[<span class="code-str">'�
                                     <line x1="45" y1="40" x2="385" y2="40" stroke="#e2e8f0" stroke-dasharray="3,3"/>
                                     <line x1="45" y1="80" x2="385" y2="80" stroke="#e2e8f0" stroke-dasharray="3,3"/>
                                     <line x1="45" y1="120" x2="385" y2="120" stroke="#e2e8f0" stroke-dasharray="3,3"/>
-                                    <!-- Y축 단위 및 숫자 표기 (M 제거) -->
                                     <text x="4" y="24" font-size="8" fill="#475569" font-weight="bold">(백만 km²)</text>
                                     <text x="24" y="44" font-size="9" fill="#64748b">20</text>
                                     <text x="24" y="84" font-size="9" fill="#64748b">15</text>
                                     <text x="24" y="124" font-size="9" fill="#64748b">10</text>
                                     <text x="29" y="168" font-size="9" fill="#64748b">5</text>
-                                    <!-- X축 라벨 -->
                                     <text x="50" y="180" font-size="9" fill="#64748b">1980</text>
                                     <text x="150" y="180" font-size="9" fill="#64748b">1990</text>
                                     <text x="250" y="180" font-size="9" fill="#64748b">2000</text>
@@ -625,7 +1000,6 @@ df.groupby(by=<span class="code-str">'성별'</span>)[<span class="code-str">'�
                                     <line x1="40" y1="40" x2="385" y2="40" stroke="#e2e8f0" stroke-dasharray="3,3"/>
                                     <line x1="40" y1="80" x2="385" y2="80" stroke="#e2e8f0" stroke-dasharray="3,3"/>
                                     <line x1="40" y1="120" x2="385" y2="120" stroke="#e2e8f0" stroke-dasharray="3,3"/>
-                                    <!-- Y축 단위 및 숫자 표기 (M 제거) -->
                                     <text x="2" y="24" font-size="8" fill="#475569" font-weight="bold">(백만 km²)</text>
                                     <text x="19" y="44" font-size="9" fill="#64748b">8.0</text>
                                     <text x="19" y="84" font-size="9" fill="#64748b">6.5</text>
@@ -664,7 +1038,6 @@ df.groupby(by=<span class="code-str">'성별'</span>)[<span class="code-str">'�
                                     <line x1="40" y1="40" x2="385" y2="40" stroke="#e2e8f0" stroke-dasharray="3,3"/>
                                     <line x1="40" y1="80" x2="385" y2="80" stroke="#e2e8f0" stroke-dasharray="3,3"/>
                                     <line x1="40" y1="120" x2="385" y2="120" stroke="#e2e8f0" stroke-dasharray="3,3"/>
-                                    <!-- Y축 단위 및 숫자 표기 (M 제거) -->
                                     <text x="2" y="24" font-size="8" fill="#475569" font-weight="bold">(백만 km²)</text>
                                     <text x="19" y="44" font-size="9" fill="#64748b">8.0</text>
                                     <text x="19" y="84" font-size="9" fill="#64748b">6.5</text>
@@ -691,51 +1064,84 @@ df.groupby(by=<span class="code-str">'성별'</span>)[<span class="code-str">'�
                         </div>
                     </div>
 
-                    <!-- 학생 토론 질문 -->
-                    <div style="background: #fffbeb; border: 1.5px solid #fde68a; border-radius: 12px; padding: 16px 20px; margin-bottom: 30px;">
-                        <div style="font-size: 14.5px; font-weight: 800; color: #b45309; margin-bottom: 6px;">
-                            💬 탐구 질문: "왜 2단계 꺾은선 그래프만으로 끝내지 않고 3단계 추세선까지 그려야 할까요?"
-                        </div>
-                        <div style="font-size: 13px; color: #92400e; line-height: 1.6;">
-                            <b>생각해 보기:</b> 꺾은선 그래프(2단계)는 해마다 오르내리는 불규칙한 요동이 남아있어 "작년보다 올해는 늘었으니 괜찮다"는 식의 왜곡된 주장이 나올 수 있습니다. <br>
-                            하지만 수학적 회귀선(3단계)을 입히면 <b>전체 40년의 평균 감소 속도(기울기)를 하나의 정량적 숫자로 요약</b>할 수 있어 반박할 수 없는 강력한 근거가 됩니다.
-                        </div>
-                    </div>
-
-                    <!-- 1. 데이터 불러오기 및 무결성 검사 -->
-                    <h1 class="chapter-h1">📌 1. 데이터 불러오기 및 결측치 점검</h1>
-                    <p class="section-desc">Google Drive를 연동하여 CSV 데이터를 불러오고, 공백 제거 및 결측치를 점검합니다.</p>
+                    <!-- 1. 데이터 불러오기 및 결측치 확인 -->
+                    <h1 class="chapter-h1">📌 1. 데이터 불러오기 및 무결성 확인</h1>
+                    <p class="section-desc">Google Drive를 연동하여 <code>seaice.csv</code> 데이터를 불러오고 컬럼 공백 제거, 결측치, 중복값, 고유값을 점검합니다.</p>
 
                     <div class="code-block-wrapper">
-                        <div class="code-header"><span class="code-lang">PYTHON</span><span>데이터 로드 및 무결성 검사</span></div>
+                        <div class="code-header"><span class="code-lang">PYTHON</span><span>데이터 로드 및 탐색 코드</span></div>
                         <pre><code><span class="code-keyword">import</span> pandas <span class="code-keyword">as</span> pd
 <span class="code-keyword">from</span> google.colab <span class="code-keyword">import</span> drive
 drive.mount(<span class="code-str">'/content/drive'</span>)
 
+<span class="code-comment"># 데이터 불러오기</span>
 df = pd.read_csv(<span class="code-str">'/content/drive/MyDrive/소프트웨어와생활/seaice.csv'</span>, encoding=<span class="code-str">'cp949'</span>)
+
+<span class="code-comment"># 열 이름 앞뒤의 공백 제거</span>
 df.columns = df.columns.str.strip()
 
-print(df.isnull().sum())
-print(df.duplicated().sum())</code></pre>
+<span class="code-comment"># 결측치 확인</span>
+<span class="code-keyword">print</span>(df.isnull().sum())
+
+<span class="code-comment"># 중복 데이터 확인</span>
+<span class="code-keyword">print</span>(df.duplicated().sum())
+
+<span class="code-comment"># Month와 hemisphere의 값 확인</span>
+<span class="code-keyword">print</span>(df[<span class="code-str">'Month'</span>].unique())
+<span class="code-keyword">print</span>(df[<span class="code-str">'hemisphere'</span>].unique())
+
+<span class="code-keyword">print</span>(df.columns)
+<span class="code-keyword">print</span>(<span class="code-keyword">list</span>(df.columns))
+<span class="code-keyword">print</span>(df[[<span class="code-str">'Year'</span>, <span class="code-str">'Month'</span>, <span class="code-str">'Day'</span>, <span class="code-str">'Extent'</span>, <span class="code-str">'hemisphere'</span>]])</code></pre>
+                    </div>
+
+                    <span class="result-label">🖥️ 실행 결과 (Colab 출력)</span>
+                    <div class="result-box">
+Year &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0<br>
+Month &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0<br>
+Day &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0<br>
+Extent &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0<br>
+Missing &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0<br>
+Source Data &nbsp;&nbsp;&nbsp;0<br>
+hemisphere &nbsp;&nbsp;&nbsp;&nbsp;0<br>
+dtype: int64<br>
+<br>
+중복값: 0<br>
+Month 고유값: [10 11 12 &nbsp;1 &nbsp;2 &nbsp;3 &nbsp;4 &nbsp;5 &nbsp;6 &nbsp;7 &nbsp;8 &nbsp;9]<br>
+hemisphere 고유값: ['north' 'south']<br>
+Index(['Year', 'Month', 'Day', 'Extent', 'Missing', 'Source Data', 'hemisphere'], dtype='object')<br>
+<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Year &nbsp;Month &nbsp;Day &nbsp;Extent hemisphere<br>
+0 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1978 &nbsp;&nbsp;&nbsp;&nbsp;10 &nbsp;&nbsp;26 &nbsp;10.231 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;north<br>
+1 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1978 &nbsp;&nbsp;&nbsp;&nbsp;10 &nbsp;&nbsp;28 &nbsp;10.420 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;north<br>
+2 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1978 &nbsp;&nbsp;&nbsp;&nbsp;10 &nbsp;&nbsp;30 &nbsp;10.557 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;north<br>
+... &nbsp;&nbsp;&nbsp;&nbsp;... &nbsp;&nbsp;&nbsp;&nbsp;... &nbsp;&nbsp;.. &nbsp;&nbsp;&nbsp;&nbsp;... &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;...<br>
+26353 &nbsp;2019 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;5 &nbsp;&nbsp;31 &nbsp;10.436 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;south<br>
+[26354 rows x 5 columns]
                     </div>
 
                     <!-- 2. 전처리 전 일별 원본 시각화 -->
                     <h1 class="chapter-h1">📊 2. [1단계 실습] 전처리 전: 일별 원본 데이터 시각화</h1>
-                    <p class="section-desc">26,354개 일별 전체 관측치를 날짜 컬럼(Date)으로 변환 후 원본 그대로 시각화합니다.</p>
+                    <p class="section-desc">날짜(Date) 컬럼을 생성한 뒤, 26,354개 전체 관측치를 있는 그대로 시각화합니다.</p>
 
                     <div class="code-block-wrapper">
-                        <div class="code-header"><span class="code-lang">PYTHON</span><span>일별 원본 시각화 코드</span></div>
-                        <pre><code>!pip install koreanize-matplotlib
+                        <div class="code-header"><span class="code-lang">PYTHON</span><span>전처리 전 일별 시각화 코드</span></div>
+                        <pre><code><span class="code-comment"># 한글 폰트 설치</span>
+!pip install koreanize-matplotlib
+
+<span class="code-keyword">import</span> pandas <span class="code-keyword">as</span> pd
 <span class="code-keyword">import</span> matplotlib.pyplot <span class="code-keyword">as</span> plt
 <span class="code-keyword">import</span> koreanize_matplotlib
 
+<span class="code-comment"># 날짜 만들기</span>
 df[<span class="code-str">'Date'</span>] = pd.to_datetime(df[[<span class="code-str">'Year'</span>, <span class="code-str">'Month'</span>, <span class="code-str">'Day'</span>]])
 
+<span class="code-comment"># 전처리 전 일별 원본 데이터 시각화</span>
 plt.figure(figsize=(<span class="code-str">10</span>, <span class="code-str">5</span>))
 plt.plot(df[<span class="code-str">'Date'</span>], df[<span class="code-str">'Extent'</span>], linewidth=<span class="code-str">1</span>)
-plt.title(<span class="code-str">'북극 해빙 면적: 일별 원본 시각화'</span>, fontsize=<span class="code-str">16</span>)
+plt.title(<span class="code-str">'북극 해빙 면적: 일별 원본 시각화'</span>, fontsize=<span class="code-str">18</span>)
 plt.xlabel(<span class="code-str">'연도'</span>)
-plt.ylabel(<span class="code-str">'해빙 면적 (백만 km²)'</span>)
+plt.ylabel(<span class="code-str">'해빙 면적(백만 km²)'</span>)
 plt.grid(alpha=<span class="code-str">0.3</span>)
 plt.tight_layout()
 plt.show()</code></pre>
@@ -749,13 +1155,11 @@ plt.show()</code></pre>
                             <line x1="60" y1="50" x2="630" y2="50" stroke="#f1f5f9" stroke-width="1"/>
                             <line x1="60" y1="100" x2="630" y2="100" stroke="#f1f5f9" stroke-width="1"/>
                             <line x1="60" y1="150" x2="630" y2="150" stroke="#f1f5f9" stroke-width="1"/>
-                            <!-- Y축 단위 및 라벨 (M 제거) -->
-                            <text x="6" y="24" font-size="10" fill="#475569" font-weight="bold">해빙 면적 (백만 km²)</text>
-                            <text x="35" y="55" font-size="11" fill="#64748b">20</text>
-                            <text x="35" y="105" font-size="11" fill="#64748b">15</text>
-                            <text x="35" y="155" font-size="11" fill="#64748b">10</text>
-                            <text x="42" y="204" font-size="11" fill="#64748b">5</text>
-                            <!-- X축 라벨 -->
+                            <text x="6" y="24" font-size="10" fill="#475569" font-weight="bold">해빙 면적(백만 km²)</text>
+                            <text x="35" y="55" font-size="11" fill="#64748b">20.0</text>
+                            <text x="35" y="105" font-size="11" fill="#64748b">15.0</text>
+                            <text x="35" y="155" font-size="11" fill="#64748b">10.0</text>
+                            <text x="42" y="204" font-size="11" fill="#64748b">5.0</text>
                             <text x="65" y="220" font-size="11" fill="#64748b">1980</text>
                             <text x="200" y="220" font-size="11" fill="#64748b">1990</text>
                             <text x="350" y="220" font-size="11" fill="#64748b">2000</text>
@@ -767,38 +1171,55 @@ plt.show()</code></pre>
                         </svg>
                     </div>
 
-                    <!-- 3. 데이터 필터링 단계 -->
-                    <h1 class="chapter-h1">📌 3. 데이터 전처리: 북반구 9월 데이터 추출 및 groupby 평균</h1>
-                    <p class="section-desc">계절 효과를 통제하기 위해 북반구의 9월 데이터만 추출하고, 연도별 평균을 산출합니다.</p>
+                    <!-- 3. 북반구 9월 데이터 추출 -->
+                    <h1 class="chapter-h1">📌 3. 데이터 전처리: 북반구 9월 데이터 추출</h1>
+                    <p class="section-desc">
+                        1. 북극 해빙이 줄고 있다.<br>
+                        2. 1년 중 해빙(바다얼음)이 가장 작아지는 9월만 평균으로 요약합니다.
+                    </p>
 
                     <div class="code-block-wrapper">
-                        <div class="code-header"><span class="code-lang">PYTHON</span><span>북반구 9월 필터링 및 groupby</span></div>
-                        <pre><code><span class="code-comment"># 1. 북반구 & 9월 데이터 필터링</span>
-df_sept = df[(df[<span class="code-str">'hemisphere'</span>] == <span class="code-str">'north'</span>) & (df[<span class="code-str">'Month'</span>] == <span class="code-str">9</span>)]
-df_sept = df_sept[[<span class="code-str">'Year'</span>, <span class="code-str">'Extent'</span>]]
+                        <div class="code-header"><span class="code-lang">PYTHON</span><span>북반구 & 9월 필터링</span></div>
+                        <pre><code><span class="code-comment"># ⑤ 북반구의 9월 데이터만 추출</span>
+df = df[(df[<span class="code-str">'hemisphere'</span>] == <span class="code-str">'north'</span>) & (df[<span class="code-str">'Month'</span>] == <span class="code-str">9</span>)]
 
-<span class="code-comment"># 2. 연도별 9월 평균 빙하 면적 계산</span>
-df_year = df_sept.groupby(<span class="code-str">'Year'</span>)[<span class="code-str">'Extent'</span>].mean().reset_index()
-print(df_year.head())</code></pre>
+<span class="code-comment"># ⑥ 분석에 필요한 열만 추출</span>
+df = df[[<span class="code-str">'Year'</span>, <span class="code-str">'Extent'</span>]]
+df</code></pre>
                     </div>
 
-                    <!-- 4. 9월 평균 꺾은선 그래프 시각화 -->
+                    <span class="result-label">🖥️ df 필터링 결과</span>
+                    <div class="result-box">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Year &nbsp;Extent<br>
+155 &nbsp;&nbsp;&nbsp;1979 &nbsp;&nbsp;7.228<br>
+156 &nbsp;&nbsp;&nbsp;1979 &nbsp;&nbsp;7.147<br>
+157 &nbsp;&nbsp;&nbsp;1979 &nbsp;&nbsp;7.037<br>
+158 &nbsp;&nbsp;&nbsp;1979 &nbsp;&nbsp;7.075<br>
+159 &nbsp;&nbsp;&nbsp;1979 &nbsp;&nbsp;7.092<br>
+... &nbsp;&nbsp;&nbsp;&nbsp;... &nbsp;&nbsp;&nbsp;&nbsp;...<br>
+12933 &nbsp;2018 &nbsp;&nbsp;4.875<br>
+[1080 rows x 2 columns]
+                    </div>
+
+                    <!-- 4. 연도별 9월 평균 빙하면적 시각화 -->
                     <h1 class="chapter-h1">📊 4. [2단계 실습] 전처리 후: 연도별 9월 평균 빙하면적 시각화</h1>
-                    <p class="section-desc">계절 노이즈가 제거된 연도별 9월 평균 데이터를 꺾은선 그래프로 시각화합니다.</p>
+                    <p class="section-desc">연도별 9월 평균 빙하 면적 - 같은 연도의 데이터를 묶어서 Extent의 평균을 구하고 시각화합니다.</p>
 
                     <div class="code-block-wrapper">
-                        <div class="code-header"><span class="code-lang">PYTHON</span><span>9월 평균 꺾은선 그래프 코드</span></div>
-                        <pre><code>plt.figure(figsize=(<span class="code-str">10</span>, <span class="code-str">5</span>))
-plt.plot(df_year[<span class="code-str">'Year'</span>], df_year[<span class="code-str">'Extent'</span>], marker=<span class="code-str">'o'</span>, markersize=<span class="code-str">4</span>, label=<span class="code-str">'9월 평균 빙하 면적'</span>)
-plt.title(<span class="code-str">'연도별 북극 9월 빙하 면적 변화'</span>, fontsize=<span class="code-str">16</span>)
+                        <div class="code-header"><span class="code-lang">PYTHON</span><span>groupby 연도별 평균 및 꺾은선 시각화</span></div>
+                        <pre><code>df_year = df.groupby(<span class="code-str">'Year'</span>)[<span class="code-str">'Extent'</span>].mean().reset_index()
+
+<span class="code-comment"># 시각화</span>
+plt.figure(figsize=(<span class="code-str">10</span>, <span class="code-str">5</span>))
+plt.plot(df_year[<span class="code-str">'Year'</span>], df_year[<span class="code-str">'Extent'</span>], marker=<span class="code-str">'o'</span>, markersize=<span class="code-str">3</span>)
+plt.title(<span class="code-str">'연도별 북극 9월 빙하 면적 변화'</span>)
 plt.xlabel(<span class="code-str">'연도'</span>)
-plt.ylabel(<span class="code-str">'빙하 면적 (백만 km²)'</span>)
+plt.ylabel(<span class="code-str">'빙하 면적'</span>)
 plt.grid(alpha=<span class="code-str">0.3</span>)
-plt.legend()
 plt.show()</code></pre>
                     </div>
 
-                    <span class="result-label">📈 [2단계 결과 화면] 전처리 후 9월 평균 꺾은선 그래프</span>
+                    <span class="result-label">📈 [2단계 결과 화면] 연도별 9월 평균 빙하 면적 변화</span>
                     <div class="chart-wrapper">
                         <svg viewBox="0 0 650 240" width="100%" height="220" style="background:#ffffff;">
                             <line x1="60" y1="20" x2="60" y2="200" stroke="#94a3b8" stroke-width="1.5"/>
@@ -806,18 +1227,17 @@ plt.show()</code></pre>
                             <line x1="60" y1="50" x2="630" y2="50" stroke="#f1f5f9" stroke-width="1"/>
                             <line x1="60" y1="100" x2="630" y2="100" stroke="#f1f5f9" stroke-width="1"/>
                             <line x1="60" y1="150" x2="630" y2="150" stroke="#f1f5f9" stroke-width="1"/>
-                            <!-- Y축 단위 및 라벨 (M 제거) -->
-                            <text x="6" y="24" font-size="10" fill="#475569" font-weight="bold">빙하 면적 (백만 km²)</text>
-                            <text x="30" y="55" font-size="11" fill="#64748b">8.0</text>
-                            <text x="30" y="105" font-size="11" fill="#64748b">6.5</text>
-                            <text x="30" y="155" font-size="11" fill="#64748b">5.0</text>
-                            <text x="30" y="204" font-size="11" fill="#64748b">3.5</text>
-                            <!-- X축 라벨 -->
+                            <text x="6" y="24" font-size="10" fill="#475569" font-weight="bold">빙하 면적</text>
+                            <text x="35" y="55" font-size="11" fill="#64748b">7</text>
+                            <text x="35" y="105" font-size="11" fill="#64748b">6</text>
+                            <text x="35" y="155" font-size="11" fill="#64748b">5</text>
+                            <text x="35" y="204" font-size="11" fill="#64748b">4</text>
                             <text x="65" y="220" font-size="11" fill="#64748b">1980</text>
-                            <text x="200" y="220" font-size="11" fill="#64748b">1990</text>
-                            <text x="350" y="220" font-size="11" fill="#64748b">2000</text>
-                            <text x="500" y="220" font-size="11" fill="#64748b">2010</text>
-                            <text x="600" y="220" font-size="11" fill="#64748b">2018</text>
+                            <text x="200" y="220" font-size="11" fill="#64748b">1985</text>
+                            <text x="300" y="220" font-size="11" fill="#64748b">1990</text>
+                            <text x="400" y="220" font-size="11" fill="#64748b">1995</text>
+                            <text x="500" y="220" font-size="11" fill="#64748b">2005</text>
+                            <text x="590" y="220" font-size="11" fill="#64748b">2015</text>
                             <polyline points="70,68 85,52 105,65 125,60 145,78 165,85 185,62 205,68 225,108 245,90 265,58 285,82 305,102 325,95 345,112 365,132 385,145 405,124 425,170 445,152 465,195 485,174 505,178 525,162 545,185 565,170 585,182 605,185" fill="none" stroke="#0284c7" stroke-width="2"/>
                             <circle cx="70" cy="68" r="3" fill="#0284c7"/>
                             <circle cx="145" cy="78" r="3" fill="#0284c7"/>
@@ -832,32 +1252,49 @@ plt.show()</code></pre>
                     </div>
 
                     <!-- 5. 최종 선형 추세선 시각화 -->
-                    <h1 class="chapter-h1">📊 5. [3단계 실습] 최종 선형 추세선(np.polyfit) 도출 및 시각화</h1>
+                    <h1 class="chapter-h1">📊 5. [3단계 실습] 최종 선형 추세선(np.polyfit) 도출 및 통계 분석</h1>
                     <p class="section-desc">1차 회귀선을 도출하여 점선 추세선을 함께 표시하고, 정량적 감소 속도를 분석합니다.</p>
 
                     <div class="code-block-wrapper">
-                        <div class="code-header"><span class="code-lang">PYTHON</span><span>최종 선형 추세선 코드</span></div>
+                        <div class="code-header"><span class="code-lang">PYTHON</span><span>최종 선형 추세선 도출 및 시각화 코드</span></div>
                         <pre><code><span class="code-keyword">import</span> numpy <span class="code-keyword">as</span> np
 
-<span class="code-comment"># 1차 회귀선 계수 도출</span>
-기울기, 절편 = np.polyfit(df_year[<span class="code-str">'Year'</span>], df_year[<span class="code-str">'Extent'</span>], <span class="code-str">1</span>)
-print(f'기울기: {{기울기:.2f}}, 절편: {{절편:.2f}}') <span class="code-comment"># 기울기: -0.08, 절편: 170.70</span>
+<span class="code-comment"># 연도별 9월 평균 계산</span>
+df_year = df.groupby(<span class="code-str">'Year'</span>)[<span class="code-str">'Extent'</span>].mean().reset_index()
+<span class="code-keyword">print</span>(df_year.head(<span class="code-str">3</span>))
 
-<span class="code-comment"># 추세선 생성 및 꺾은선 위에 함께 그리기</span>
-추세선 = 기울기 * df_year[<span class="code-str">'Year'</span>] + 절편
-
+<span class="code-comment"># 그래프</span>
 plt.figure(figsize=(<span class="code-str">10</span>, <span class="code-str">5</span>))
 plt.plot(df_year[<span class="code-str">'Year'</span>], df_year[<span class="code-str">'Extent'</span>], marker=<span class="code-str">'o'</span>, label=<span class="code-str">'9월 평균 빙하 면적'</span>)
-plt.plot(df_year[<span class="code-str">'Year'</span>], 추세선, linestyle=<span class="code-str">'--'</span>, color=<span class="code-str">'#f97316'</span>, label=<span class="code-str">'선형 추세선'</span>)
-plt.title(<span class="code-str">'북극 9월 빙하 면적 변화와 감소 추세선'</span>, fontsize=<span class="code-str">16</span>)
+
+<span class="code-comment"># 선형 추세선</span>
+기울기, 절편 = np.polyfit(df_year[<span class="code-str">'Year'</span>], df_year[<span class="code-str">'Extent'</span>], <span class="code-str">1</span>)
+<span class="code-keyword">print</span>(<span class="code-str">'='</span> * <span class="code-str">60</span>)
+<span class="code-keyword">print</span>(f<span class="code-str">'기울기: {기울기:.2f}, 절편: {절편:.2f}'</span>)
+<span class="code-keyword">print</span>(<span class="code-str">'='</span> * <span class="code-str">60</span>)
+
+추세선 = 기울기 * df_year[<span class="code-str">'Year'</span>] + 절편
+plt.plot(df_year[<span class="code-str">'Year'</span>], 추세선, linestyle=<span class="code-str">'--'</span>, label=<span class="code-str">'선형 추세선'</span>)
+plt.title(<span class="code-str">'북극 9월 빙하 면적 변화'</span>)
 plt.xlabel(<span class="code-str">'연도'</span>)
-plt.ylabel(<span class="code-str">'빙하 면적 (백만 km²)'</span>)
+plt.ylabel(<span class="code-str">'빙하 면적'</span>)
 plt.grid(alpha=<span class="code-str">0.3</span>)
 plt.legend()
 plt.show()</code></pre>
                     </div>
 
-                    <span class="result-label">📈 [3단계 결과 화면] 최종 9월 평균 빙하면적 + 선형 추세선 그래프</span>
+                    <span class="result-label">🖥️ 실행 결과 (Colab 출력)</span>
+                    <div class="result-box">
+&nbsp;&nbsp;&nbsp;Year &nbsp;&nbsp;&nbsp;Extent<br>
+0 &nbsp;1979 &nbsp;7.051133<br>
+1 &nbsp;1980 &nbsp;7.667067<br>
+2 &nbsp;1981 &nbsp;7.138467<br>
+============================================================<br>
+기울기: -0.08, 절편: 170.70<br>
+============================================================
+                    </div>
+
+                    <span class="result-label">📈 [3단계 결과 화면] 북극 9월 빙하 면적 변화 + 선형 추세선</span>
                     <div class="chart-wrapper">
                         <svg viewBox="0 0 650 240" width="100%" height="220" style="background:#ffffff;">
                             <line x1="60" y1="20" x2="60" y2="200" stroke="#94a3b8" stroke-width="1.5"/>
@@ -865,38 +1302,34 @@ plt.show()</code></pre>
                             <line x1="60" y1="50" x2="630" y2="50" stroke="#f1f5f9" stroke-width="1"/>
                             <line x1="60" y1="100" x2="630" y2="100" stroke="#f1f5f9" stroke-width="1"/>
                             <line x1="60" y1="150" x2="630" y2="150" stroke="#f1f5f9" stroke-width="1"/>
-                            <!-- Y축 단위 및 라벨 (M 제거) -->
-                            <text x="6" y="24" font-size="10" fill="#475569" font-weight="bold">빙하 면적 (백만 km²)</text>
-                            <text x="30" y="55" font-size="11" fill="#64748b">8.0</text>
-                            <text x="30" y="105" font-size="11" fill="#64748b">6.5</text>
-                            <text x="30" y="155" font-size="11" fill="#64748b">5.0</text>
-                            <text x="30" y="204" font-size="11" fill="#64748b">3.5</text>
-                            <!-- X축 라벨 -->
+                            <text x="6" y="24" font-size="10" fill="#475569" font-weight="bold">빙하 면적</text>
+                            <text x="35" y="55" font-size="11" fill="#64748b">7</text>
+                            <text x="35" y="105" font-size="11" fill="#64748b">6</text>
+                            <text x="35" y="155" font-size="11" fill="#64748b">5</text>
+                            <text x="35" y="204" font-size="11" fill="#64748b">4</text>
                             <text x="65" y="220" font-size="11" fill="#64748b">1980</text>
-                            <text x="200" y="220" font-size="11" fill="#64748b">1990</text>
-                            <text x="350" y="220" font-size="11" fill="#64748b">2000</text>
-                            <text x="500" y="220" font-size="11" fill="#64748b">2010</text>
-                            <text x="600" y="220" font-size="11" fill="#64748b">2018</text>
-                            <!-- 꺾은선 -->
+                            <text x="200" y="220" font-size="11" fill="#64748b">1985</text>
+                            <text x="300" y="220" font-size="11" fill="#64748b">1990</text>
+                            <text x="400" y="220" font-size="11" fill="#64748b">1995</text>
+                            <text x="500" y="220" font-size="11" fill="#64748b">2005</text>
+                            <text x="590" y="220" font-size="11" fill="#64748b">2015</text>
                             <polyline points="70,68 85,52 105,65 125,60 145,78 165,85 185,62 205,68 225,108 245,90 265,58 285,82 305,102 325,95 345,112 365,132 385,145 405,124 425,170 445,152 465,195 485,174 505,178 525,162 545,185 565,170 585,182 605,185" fill="none" stroke="#0284c7" stroke-width="1.8" opacity="0.8"/>
-                            <!-- 최종 선형 추세선 -->
                             <line x1="70" y1="58" x2="605" y2="188" stroke="#f97316" stroke-width="2.5" stroke-dasharray="6,4"/>
-                            <!-- 범례 박스 -->
                             <rect x="460" y="24" width="160" height="34" fill="#ffffff" stroke="#cbd5e1" rx="6"/>
                             <line x1="470" y1="35" x2="495" y2="35" stroke="#0284c7" stroke-width="2"/>
-                            <text x="502" y="38" font-size="10" fill="#334155">9월 평균 면적</text>
+                            <text x="502" y="38" font-size="10" fill="#334155">9월 평균 빙하 면적</text>
                             <line x1="470" y1="49" x2="495" y2="49" stroke="#f97316" stroke-width="2" stroke-dasharray="4,2"/>
-                            <text x="502" y="52" font-size="10" fill="#334155">추세선 (기울기 -0.08)</text>
-                            <text x="210" y="28" font-size="12" font-weight="bold" fill="#0f172a">북극 9월 빙하 면적 변화와 감소 추세선</text>
+                            <text x="502" y="52" font-size="10" fill="#334155">선형 추세선</text>
+                            <text x="250" y="28" font-size="12" font-weight="bold" fill="#0f172a">북극 9월 빙하 면적 변화</text>
                         </svg>
                     </div>
 
                     <!-- 종합 인사이트 요약 -->
                     <div class="insight-callout">
                         <div class="insight-title">🧊 데이터 분석 최종 결론 및 전처리 가치</div>
-                        • <b>기울기(-0.08)의 의미:</b> 음수 부호는 해빙 면적이 일관되게 감소함을 의미합니다.<br>
-                        • <b>실제 소멸 속도:</b> 면적 단위가 백만 km²이므로, <b>0.08 × 1,000,000 = 80,000 km²</b><br>
-                        • <b>전처리의 힘:</b> 거대한 파동 속에 숨겨져 있던 <b>'매년 대한민국 면적의 약 80%에 달하는 북극 빙하가 영구 소멸된다'</b>는 사실을 전처리와 추세선을 통해 수학적으로 밝혀냈습니다.
+                        • <b>기울기가 음수(-):</b> 시간이 지날수록 9월 북극 해빙 면적이 감소하는 추세임을 의미합니다.<br>
+                        • <b>실제 소멸 속도:</b> 해빙 면적 단위가 백만 km²이므로, <b>0.08 × 1,000,000 = 80,000 km²</b><br>
+                        • <b>결론:</b> 평균적으로 <b>매년 약 8만 km²씩</b> 해빙 면적이 감소하는 경향이 나타남을 수학적으로 밝혔습니다.
                     </div>
                 `
             }
