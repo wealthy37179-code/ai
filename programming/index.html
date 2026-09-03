@@ -178,31 +178,6 @@
             gap: 8px;
         }
 
-        /* 뷰어 전환 탭 */
-        .view-tabs {
-            display: flex;
-            background: #f1f5f9;
-            padding: 3px;
-            border-radius: 8px;
-            gap: 2px;
-        }
-        .tab-btn {
-            border: none;
-            background: transparent;
-            padding: 6px 14px;
-            border-radius: 6px;
-            font-size: 12.5px;
-            font-weight: 700;
-            color: #64748b;
-            cursor: pointer;
-            transition: all 0.15s ease;
-        }
-        .tab-btn.active {
-            background: #ffffff;
-            color: #0284c7;
-            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
-        }
-
         /* 스크롤 본문 */
         .content-body {
             flex: 1;
@@ -337,14 +312,6 @@
             color: #155e75;
             line-height: 1.65;
         }
-        .insight-title {
-            font-weight: 800;
-            color: #0e7490;
-            margin-bottom: 6px;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
 
         .custom-table {
             width: 100%;
@@ -364,19 +331,6 @@
         }
         .custom-table td {
             background-color: #ffffff;
-        }
-
-        /* PDF 프레임 */
-        .pdf-view-container {
-            width: 100%;
-            height: 100%;
-            display: none;
-        }
-        iframe {
-            width: 100%;
-            height: 100%;
-            border: none;
-            display: block;
         }
 
         /* 퀴즈 박스 */
@@ -448,22 +402,12 @@
                     <span id="topic-icon">📦</span>
                     <span id="topic-title">01. 파이썬 프로그래밍 함수 (Function) 수업</span>
                 </div>
-
-                <div class="view-tabs">
-                    <button class="tab-btn active" id="btn-web" onclick="switchView('web')">📖 웹 교재로 읽기</button>
-                    <button class="tab-btn" id="btn-pdf" onclick="switchView('pdf')">📑 원본 PDF 뷰어</button>
-                </div>
             </div>
 
             <!-- 웹 교재 본문 -->
             <div class="content-body" id="web-article-view">
                 <div class="article-container" id="lesson-content">
                 </div>
-            </div>
-
-            <!-- 원본 PDF 뷰어 -->
-            <div class="pdf-view-container" id="pdf-container">
-                <iframe id="pdf-frame" src="함수설명.pdf"></iframe>
             </div>
         </main>
     </div>
@@ -473,7 +417,6 @@
             lesson1: {
                 title: "01. 파이썬 프로그래밍 함수 (Function) 수업",
                 icon: "📦",
-                pdf: "함수설명.pdf",
                 html: `
                     <h1 class="article-title">파이썬 프로그래밍 함수(Function) 수업</h1>
                     <div class="article-intro">
@@ -723,7 +666,6 @@ print_result(name, scores)</code></pre>
             lesson2: {
                 title: "02. 파이썬 Tkinter GUI 프로그래밍",
                 icon: "🖥️",
-                pdf: "tkinter.pdf",
                 html: `
                     <h1 class="article-title">파이썬 Tkinter GUI 프로그래밍</h1>
                     <div class="article-intro">
@@ -744,7 +686,7 @@ root = Tk()
 root.title(<span class="code-str">"첫 번째 윈도우"</span>)
 root.geometry(<span class="code-str">"400x300"</span>)
 root.resizable(<span class="code-keyword">False</span>, <span class="code-keyword">False</span>)  <span class="code-comment"># 창 크기 변경 차단</span>
-root.config(bg=<span class="code-str">"#f0f0f0"</span>)       <span class="code-comment"># 배경색 변경</span>
+root.config(bg=<span class="code-str">"#f0f0f0"</span>)      <span class="code-comment"># 배경색 변경</span>
 root.mainloop()</code></pre>
                     </div>
 
@@ -906,7 +848,7 @@ age = simpledialog.askinteger(<span class="code-str">"입력"</span>, <span clas
             }
         };
 
-        // 초기 화면 렌더링
+        // 초기 화면 렌더링 (첫 번째 레슨 로드)
         document.getElementById('lesson-content').innerHTML = lessons.lesson1.html;
 
         function selectLesson(lessonKey, element) {
@@ -914,32 +856,12 @@ age = simpledialog.askinteger(<span class="code-str">"입력"</span>, <span clas
             document.getElementById('topic-icon').innerText = lesson.icon;
             document.getElementById('topic-title').innerText = lesson.title;
             document.getElementById('lesson-content').innerHTML = lesson.html;
-            document.getElementById('pdf-frame').src = lesson.pdf;
 
             const menuItems = document.querySelectorAll('.menu-item');
             menuItems.forEach(item => item.classList.remove('active'));
             element.classList.add('active');
 
             document.getElementById('web-article-view').scrollTop = 0;
-        }
-
-        function switchView(mode) {
-            const webView = document.getElementById('web-article-view');
-            const pdfView = document.getElementById('pdf-container');
-            const btnWeb = document.getElementById('btn-web');
-            const btnPdf = document.getElementById('btn-pdf');
-
-            if (mode === 'web') {
-                webView.style.display = 'block';
-                pdfView.style.display = 'none';
-                btnWeb.classList.add('active');
-                btnPdf.classList.remove('active');
-            } else {
-                webView.style.display = 'none';
-                pdfView.style.display = 'block';
-                btnWeb.classList.remove('active');
-                btnPdf.classList.add('active');
-            }
         }
     </script>
 </body>
