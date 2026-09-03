@@ -1,0 +1,946 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>파이썬 프로그래밍 학습 자료실</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Malgun Gothic', '맑은 고딕', sans-serif;
+        }
+        body {
+            background-color: #f8fafc;
+            color: #1e293b;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+
+        /* 상단 헤더 */
+        header {
+            height: 58px;
+            background: #ffffff;
+            border-bottom: 1px solid #e2e8f0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 24px;
+            flex-shrink: 0;
+            z-index: 10;
+        }
+        .header-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .header-logo {
+            font-size: 22px;
+            background: #e0f2fe;
+            color: #0284c7;
+            width: 38px;
+            height: 38px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 10px;
+        }
+        .header-title {
+            font-size: 17px;
+            font-weight: 800;
+            color: #0f172a;
+            letter-spacing: -0.3px;
+        }
+        .header-subtitle {
+            font-size: 12px;
+            color: #64748b;
+            margin-left: 8px;
+            padding-left: 8px;
+            border-left: 1px solid #cbd5e1;
+        }
+        .badge-status {
+            background: #e0f2fe;
+            color: #0369a1;
+            font-size: 11.5px;
+            font-weight: 700;
+            padding: 4px 12px;
+            border-radius: 16px;
+        }
+
+        /* 메인 2단 레이아웃 */
+        .main-container {
+            display: flex;
+            flex: 1;
+            height: calc(100vh - 58px);
+            overflow: hidden;
+        }
+
+        /* 사이드바 */
+        .sidebar {
+            width: 280px;
+            background: #ffffff;
+            border-right: 1px solid #e2e8f0;
+            display: flex;
+            flex-direction: column;
+            flex-shrink: 0;
+        }
+        .sidebar-header {
+            padding: 16px 18px 10px 18px;
+            border-bottom: 1px solid #f1f5f9;
+        }
+        .sidebar-section-title {
+            font-size: 12px;
+            font-weight: 800;
+            color: #64748b;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .menu-list {
+            list-style: none;
+            padding: 12px 10px;
+            overflow-y: auto;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            gap: 5px;
+        }
+        .menu-item {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 12px 14px;
+            border-radius: 10px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #475569;
+            cursor: pointer;
+            transition: all 0.15s ease;
+            user-select: none;
+        }
+        .menu-item:hover {
+            background-color: #f1f5f9;
+            color: #0f172a;
+        }
+        .menu-item.active {
+            background-color: #e0f2fe;
+            color: #0284c7;
+            font-weight: 800;
+        }
+        .menu-icon {
+            font-size: 18px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .menu-badge {
+            margin-left: auto;
+            font-size: 11px;
+            padding: 2px 7px;
+            border-radius: 5px;
+            background: rgba(0, 0, 0, 0.04);
+            color: #64748b;
+        }
+        .menu-item.active .menu-badge {
+            background: #bae6fd;
+            color: #0369a1;
+        }
+
+        /* 본문 영역 */
+        .content-area {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            background: #ffffff;
+            overflow: hidden;
+        }
+        .content-header {
+            height: 54px;
+            background: #ffffff;
+            border-bottom: 1px solid #e2e8f0;
+            padding: 0 28px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-shrink: 0;
+        }
+        .current-topic {
+            font-size: 16px;
+            font-weight: 800;
+            color: #0f172a;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        /* 뷰어 전환 탭 */
+        .view-tabs {
+            display: flex;
+            background: #f1f5f9;
+            padding: 3px;
+            border-radius: 8px;
+            gap: 2px;
+        }
+        .tab-btn {
+            border: none;
+            background: transparent;
+            padding: 6px 14px;
+            border-radius: 6px;
+            font-size: 12.5px;
+            font-weight: 700;
+            color: #64748b;
+            cursor: pointer;
+            transition: all 0.15s ease;
+        }
+        .tab-btn.active {
+            background: #ffffff;
+            color: #0284c7;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+        }
+
+        /* 스크롤 본문 */
+        .content-body {
+            flex: 1;
+            overflow-y: auto;
+            padding: 36px 44px;
+            background: #ffffff;
+        }
+        .article-container {
+            max-width: 860px;
+            margin: 0 auto;
+            line-height: 1.75;
+        }
+        .article-title {
+            font-size: 26px;
+            font-weight: 800;
+            color: #0f172a;
+            margin-bottom: 12px;
+            letter-spacing: -0.5px;
+        }
+        .article-intro {
+            font-size: 14.5px;
+            color: #475569;
+            background: #f8fafc;
+            border-left: 4px solid #0284c7;
+            padding: 14px 18px;
+            border-radius: 0 8px 8px 0;
+            margin-bottom: 30px;
+        }
+        .chapter-h1 {
+            font-size: 20px;
+            font-weight: 800;
+            color: #0f172a;
+            margin: 38px 0 16px 0;
+            padding-bottom: 8px;
+            border-bottom: 2px solid #0284c7;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .section-h2 {
+            font-size: 16px;
+            font-weight: 700;
+            color: #1e293b;
+            margin: 24px 0 10px 0;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .section-desc {
+            font-size: 14px;
+            color: #334155;
+            margin-bottom: 10px;
+        }
+
+        /* 코드 블록 */
+        .code-block-wrapper {
+            background: #0f172a;
+            border-radius: 10px;
+            margin: 12px 0 18px 0;
+            overflow: hidden;
+            box-shadow: 0 3px 10px rgba(15, 23, 42, 0.08);
+        }
+        .code-header {
+            background: #1e293b;
+            padding: 7px 16px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 11.5px;
+            color: #94a3b8;
+            font-family: monospace;
+        }
+        .code-lang {
+            color: #38bdf8;
+            font-weight: 700;
+        }
+        pre code {
+            display: block;
+            padding: 14px 18px;
+            font-family: 'Consolas', 'Courier New', monospace;
+            font-size: 13px;
+            line-height: 1.6;
+            color: #e2e8f0;
+            overflow-x: auto;
+        }
+        .code-comment { color: #64748b; font-style: italic; }
+        .code-keyword { color: #f472b6; font-weight: bold; }
+        .code-str { color: #a5f3fc; }
+        .code-num { color: #fde047; }
+        .code-def { color: #67e8f9; font-weight: bold; }
+
+        /* 결과 박스 */
+        .result-box {
+            background: #f8fafc;
+            border: 1px solid #cbd5e1;
+            border-radius: 8px;
+            padding: 12px 16px;
+            margin: -6px 0 20px 0;
+            font-family: 'Consolas', monospace;
+            font-size: 12.5px;
+            color: #334155;
+            line-height: 1.55;
+            overflow-x: auto;
+        }
+        .result-label {
+            font-size: 11.5px;
+            font-weight: 800;
+            color: #475569;
+            text-transform: uppercase;
+            margin: 16px 0 6px 0;
+            display: block;
+        }
+
+        .tip-callout {
+            background: #eff6ff;
+            border: 1px solid #bfdbfe;
+            border-radius: 10px;
+            padding: 14px 16px;
+            margin: 16px 0 24px 0;
+            font-size: 13.5px;
+            color: #1e40af;
+            line-height: 1.6;
+        }
+        .insight-callout {
+            background: #ecfeff;
+            border: 1px solid #a5f3fc;
+            border-left: 4px solid #0891b2;
+            border-radius: 0 10px 10px 0;
+            padding: 14px 18px;
+            margin: 20px 0 28px 0;
+            font-size: 13.5px;
+            color: #155e75;
+            line-height: 1.65;
+        }
+        .insight-title {
+            font-weight: 800;
+            color: #0e7490;
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .custom-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 14px 0 22px 0;
+            font-size: 13px;
+        }
+        .custom-table th, .custom-table td {
+            border: 1px solid #e2e8f0;
+            padding: 9px 12px;
+            text-align: left;
+        }
+        .custom-table th {
+            background-color: #f1f5f9;
+            color: #1e293b;
+            font-weight: 700;
+        }
+        .custom-table td {
+            background-color: #ffffff;
+        }
+
+        /* PDF 프레임 */
+        .pdf-view-container {
+            width: 100%;
+            height: 100%;
+            display: none;
+        }
+        iframe {
+            width: 100%;
+            height: 100%;
+            border: none;
+            display: block;
+        }
+
+        /* 퀴즈 박스 */
+        .quiz-item {
+            background: #fdf4ff;
+            border: 1px solid #f5d0fe;
+            border-radius: 10px;
+            padding: 14px 16px;
+            margin-bottom: 12px;
+        }
+        .quiz-q {
+            font-size: 13.5px;
+            font-weight: 700;
+            color: #86198f;
+            margin-bottom: 6px;
+        }
+        .quiz-a {
+            font-size: 13px;
+            color: #701a75;
+            background: #ffffff;
+            border-radius: 6px;
+            padding: 8px 12px;
+            display: inline-block;
+            border: 1px dashed #d8b4fe;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="header-left">
+            <div class="header-logo">⚡</div>
+            <div class="header-title">파이썬 프로그래밍 강의실</div>
+            <span class="header-subtitle">온라인 인터랙티브 교재</span>
+        </div>
+        <div>
+            <span class="badge-status">수업 진행 중</span>
+        </div>
+    </header>
+
+    <div class="main-container">
+        <!-- 사이드바: 2개 메인 주제 -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="sidebar-section-title">
+                    <span>📑</span> 수업 목차 (Curriculum)
+                </div>
+            </div>
+            
+            <ul class="menu-list">
+                <li class="menu-item active" onclick="selectLesson('lesson1', this)">
+                    <span class="menu-icon">📦</span>
+                    <span>01. 파이썬 함수</span>
+                    <span class="menu-badge">10차시</span>
+                </li>
+
+                <li class="menu-item" onclick="selectLesson('lesson2', this)">
+                    <span class="menu-icon">🖥️</span>
+                    <span>02. Tkinter GUI 모듈</span>
+                    <span class="menu-badge">13차시</span>
+                </li>
+            </ul>
+        </aside>
+
+        <!-- 우측 메인 뷰어 -->
+        <main class="content-area">
+            <div class="content-header">
+                <div class="current-topic">
+                    <span id="topic-icon">📦</span>
+                    <span id="topic-title">01. 파이썬 프로그래밍 함수 (Function) 수업</span>
+                </div>
+
+                <div class="view-tabs">
+                    <button class="tab-btn active" id="btn-web" onclick="switchView('web')">📖 웹 교재로 읽기</button>
+                    <button class="tab-btn" id="btn-pdf" onclick="switchView('pdf')">📑 원본 PDF 뷰어</button>
+                </div>
+            </div>
+
+            <!-- 웹 교재 본문 -->
+            <div class="content-body" id="web-article-view">
+                <div class="article-container" id="lesson-content">
+                </div>
+            </div>
+
+            <!-- 원본 PDF 뷰어 -->
+            <div class="pdf-view-container" id="pdf-container">
+                <iframe id="pdf-frame" src="함수설명.pdf"></iframe>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        const lessons = {
+            lesson1: {
+                title: "01. 파이썬 프로그래밍 함수 (Function) 수업",
+                icon: "📦",
+                pdf: "함수설명.pdf",
+                html: `
+                    <h1 class="article-title">파이썬 프로그래밍 함수(Function) 수업</h1>
+                    <div class="article-intro">
+                        <b>핵심 흐름:</b> 정의하기 → 호출하기 → 값 전달하기 → 결과 돌려받기 → 함수로 문제 나누기<br>
+                        함수는 반복되는 코드를 이름표를 붙인 상자에 깔끔하게 담아두고, 필요할 때마다 간결하게 호출하여 재사용하는 핵심 도구입니다.
+                    </div>
+
+                    <!-- [1차시] -->
+                    <h1 class="chapter-h1">📦 [1차시] 함수 정의와 호출 - 함수를 처음 만나다</h1>
+                    <div class="tip-callout">
+                        <b>🎯 학습 목표:</b> 함수가 왜 필요한지 설명할 수 있고, <code>def</code>를 사용하여 함수를 정의한 뒤 함수 이름으로 호출할 수 있다.
+                    </div>
+                    <h2 class="section-h2">1. 개념 이야기: 주문 즉시 움직이는 마법 상자</h2>
+                    <p class="section-desc">
+                        자주 쓰는 동작을 상자에 담아두고 이름표를 붙이는 것을 <b>함수 정의(<code>def</code>)</b>라고 하며, 상자에 달린 버튼을 눌러 실행하는 것을 <b>함수 호출(call)</b>이라고 합니다. 정의만 하면 실행되지 않으며, 반드시 이름을 불러야 동작합니다.
+                    </p>
+                    <h2 class="section-h2">2. 핵심 예제</h2>
+                    <div class="code-block-wrapper">
+                        <div class="code-header"><span class="code-lang">PYTHON</span><span>함수 정의 및 호출</span></div>
+                        <pre><code><span class="code-keyword">def</span> <span class="code-def">hello</span>():
+    <span class="code-keyword">print</span>(<span class="code-str">"안녕하세요!"</span>)
+    <span class="code-keyword">print</span>(<span class="code-str">"파이썬 함수 수업입니다."</span>)
+
+hello()
+hello()</code></pre>
+                    </div>
+                    <span class="result-label">🖥️ 실행 결과</span>
+                    <div class="result-box">안녕하세요!<br>파이썬 함수 수업입니다.<br>안녕하세요!<br>파이썬 함수 수업입니다.</div>
+                    <h2 class="section-h2">3. 실습 도전 과제 및 퀴즈</h2>
+                    <div class="tip-callout">
+                        • 실습 1. 함수 이름을 <code>welcome()</code>으로 바꾸어 보기<br>
+                        • 실습 2. 함수 안에서 자신의 이름과 좋아하는 과목을 출력해 보기<br>
+                        • 실습 3. 함수를 3번 호출했을 때 결과가 어떻게 출력되는지 확인해 보기
+                    </div>
+                    <div class="quiz-item">
+                        <div class="quiz-q">Q. 함수 이름 hello와 호출 코드 hello()의 결정적 차이는 무엇인가요?</div>
+                        <div class="quiz-a">정답: hello는 함수 자체의 이름을 가리키며, ()가 붙어야 실제로 상자 안의 코드가 실행됩니다.</div>
+                    </div>
+                    <div class="insight-callout">📌 오늘의 핵심: 함수는 코드를 이름으로 묶고, 호출하여 실행한다.</div>
+
+                    <!-- [2차시] -->
+                    <h1 class="chapter-h1" style="margin-top: 50px;">📥 [2차시] 매개변수와 인수 - 함수에 값 전달하기</h1>
+                    <div class="tip-callout">
+                        <b>🎯 학습 목표:</b> 매개변수와 인수의 의미를 구분할 수 있고, 호출할 때 전달한 값을 함수 내부에서 사용할 수 있다.
+                    </div>
+                    <h2 class="section-h2">1. 개념 이야기: 동전 투입구가 있는 만능 자판기</h2>
+                    <p class="section-desc">
+                        함수 상자에 투입구(슬롯)를 만들어두면 외부 재료를 집어넣을 수 있습니다. 함수를 정의할 때 값을 받아둘 빈 그릇 변수를 <b>매개변수(parameter)</b>, 부를 때 쏙 집어넣는 실제 값을 <b>인수(argument)</b>라고 합니다.
+                    </p>
+                    <div class="code-block-wrapper">
+                        <div class="code-header"><span class="code-lang">PYTHON</span><span>매개변수 활용</span></div>
+                        <pre><code><span class="code-keyword">def</span> <span class="code-def">greet</span>(name):
+    <span class="code-keyword">print</span>(name, <span class="code-str">"님, 안녕하세요!"</span>)
+
+greet(<span class="code-str">"민준"</span>)
+greet(<span class="code-str">"서연"</span>)</code></pre>
+                    </div>
+                    <div class="quiz-item">
+                        <div class="quiz-q">Q. greet('지우')에서 '지우'는 매개변수인가요, 인수인가요?</div>
+                        <div class="quiz-a">정답: 함수를 호출할 때 실제로 전달하는 값이므로 인수(argument)입니다.</div>
+                    </div>
+                    <div class="insight-callout">📌 오늘의 핵심: 매개변수는 함수가 값을 받아 사용하는 통로이다.</div>
+
+                    <!-- [3차시] -->
+                    <h1 class="chapter-h1" style="margin-top: 50px;">📤 [3차시] return - 함수의 결과를 돌려받기</h1>
+                    <div class="tip-callout">
+                        <b>🎯 학습 목표:</b> print와 return의 차이를 명확히 설명할 수 있고, 함수가 계산한 값을 return으로 반환하여 활용할 수 있다.
+                    </div>
+                    <h2 class="section-h2">1. 개념 이야기: 전광판(print) vs 계산 결과 전달(return)</h2>
+                    <p class="section-desc">
+                        <code>print()</code>는 모니터 화면에 글자를 보여주고 사라지는 전광판이며 변수에 값이 남지 않습니다(None). 반면에 <code>return</code>은 계산 결과물을 함수 밖으로 꺼내 호출자의 손에 쥐여주므로 변수에 담아 재활용할 수 있습니다.
+                    </p>
+                    <div class="code-block-wrapper">
+                        <div class="code-header"><span class="code-lang">PYTHON</span><span>return 반환값과 연쇄 연산</span></div>
+                        <pre><code><span class="code-keyword">def</span> <span class="code-def">add</span>(a, b):
+    result = a + b
+    <span class="code-keyword">return</span> result
+
+answer = add(<span class="code-num">10</span>, <span class="code-num">20</span>)
+<span class="code-keyword">print</span>(answer)
+<span class="code-keyword">print</span>(add(<span class="code-num">3</span>, <span class="code-num">5</span>) * <span class="code-num">2</span>)</code></pre>
+                    </div>
+                    <span class="result-label">🖥️ 실행 결과</span>
+                    <div class="result-box">30<br>16</div>
+                    <div class="quiz-item">
+                        <div class="quiz-q">Q. return문 바로 아래에 작성된 코드는 실행될까요?</div>
+                        <div class="quiz-a">정답: 실행되지 않습니다. return을 만나는 순간 결과값을 반환하고 함수는 즉시 종료됩니다.</div>
+                    </div>
+                    <div class="insight-callout">📌 오늘의 핵심: return은 함수의 결과를 함수 밖으로 돌려준다.</div>
+
+                    <!-- [4차시] -->
+                    <h1 class="chapter-h1" style="margin-top: 50px;">🔢 [4차시] 여러 개의 매개변수 - 계산 함수 만들기</h1>
+                    <div class="tip-callout">
+                        <b>🎯 학습 목표:</b> 두 개 이상의 매개변수를 다루고, 위치 인수와 키워드 인수의 차이를 구분한다.
+                    </div>
+                    <div class="code-block-wrapper">
+                        <div class="code-header"><span class="code-lang">PYTHON</span><span>위치 인수와 키워드 인수</span></div>
+                        <pre><code><span class="code-keyword">def</span> <span class="code-def">student_info</span>(name, age, school):
+    <span class="code-keyword">print</span>(<span class="code-str">"이름:"</span>, name)
+    <span class="code-keyword">print</span>(<span class="code-str">"나이:"</span>, age)
+    <span class="code-keyword">print</span>(<span class="code-str">"학교:"</span>, school)
+
+<span class="code-comment"># 1) 위치 인수 방식 (순서 일치)</span>
+student_info(<span class="code-str">"지민"</span>, <span class="code-num">17</span>, <span class="code-str">"한솔고"</span>)
+
+<span class="code-comment"># 2) 키워드 인수 방식 (이름표 지정으로 순서 무관)</span>
+student_info(school=<span class="code-str">"한솔고"</span>, name=<span class="code-str">"지민"</span>, age=<span class="code-num">17</span>)</code></pre>
+                    </div>
+
+                    <!-- [5차시] -->
+                    <h1 class="chapter-h1" style="margin-top: 50px;">⚙️ [5차시] 기본값 매개변수 - 값을 생략해도 되는 함수</h1>
+                    <div class="tip-callout">
+                        <b>🎯 학습 목표:</b> 자주 사용하는 기본 옵션을 지정하고 생략 여부에 따른 동작 원리를 익힌다.
+                    </div>
+                    <div class="code-block-wrapper">
+                        <div class="code-header"><span class="code-lang">PYTHON</span><span>기본값 매개변수</span></div>
+                        <pre><code><span class="code-keyword">def</span> <span class="code-def">greet</span>(name, message=<span class="code-str">"안녕하세요"</span>):
+    <span class="code-keyword">print</span>(name, <span class="code-str">"님,"</span>, message)
+
+greet(<span class="code-str">"민수"</span>)                 <span class="code-comment"># 기본값 적용</span>
+greet(<span class="code-str">"민수"</span>, <span class="code-str">"반갑습니다"</span>)     <span class="code-comment"># 새 값 덮어쓰기</span></code></pre>
+                    </div>
+
+                    <!-- [6차시] -->
+                    <h1 class="chapter-h1" style="margin-top: 50px;">🏠 [6차시] 지역 변수와 전역 변수 - 변수의 유효 범위</h1>
+                    <div class="tip-callout">
+                        <b>🎯 학습 목표:</b> 함수 내부 지역 변수와 외부 전역 변수의 범위를 구분하고 NameError 원인을 이해한다.
+                    </div>
+                    <div class="code-block-wrapper">
+                        <div class="code-header"><span class="code-lang">PYTHON</span><span>지역 변수 스코프</span></div>
+                        <pre><code>x = <span class="code-num">100</span> <span class="code-comment"># 전역 변수</span>
+
+<span class="code-keyword">def</span> <span class="code-def">test</span>():
+    y = <span class="code-num">20</span> <span class="code-comment"># 지역 변수 (test 함수 방 안에서만 유효)</span>
+    <span class="code-keyword">print</span>(<span class="code-str">"함수 안 x:"</span>, x)
+    <span class="code-keyword">print</span>(<span class="code-str">"함수 안 y:"</span>, y)
+
+test()
+<span class="code-keyword">print</span>(<span class="code-str">"함수 밖 x:"</span>, x)
+<span class="code-comment"># print(y) # NameError 발생!</span></code></pre>
+                    </div>
+
+                    <!-- [7차시] -->
+                    <h1 class="chapter-h1" style="margin-top: 50px;">⚖️ [7차시] 함수 + 조건문 - 판별 함수 만들기</h1>
+                    <div class="tip-callout">
+                        <b>🎯 학습 목표:</b> 함수 내부에 if문을 결합하여 True/False를 반환하는 판별 함수를 작성한다.
+                    </div>
+                    <div class="code-block-wrapper">
+                        <div class="code-header"><span class="code-lang">PYTHON</span><span>짝수 판별 함수</span></div>
+                        <pre><code><span class="code-keyword">def</span> <span class="code-def">is_even</span>(n):
+    <span class="code-keyword">if</span> n % <span class="code-num">2</span> == <span class="code-num">0</span>:
+        <span class="code-keyword">return</span> <span class="code-keyword">True</span>
+    <span class="code-keyword">else</span>:
+        <span class="code-keyword">return</span> <span class="code-keyword">False</span>
+
+number = int(input(<span class="code-str">"숫자 입력: "</span>))
+<span class="code-keyword">if</span> is_even(number):
+    <span class="code-keyword">print</span>(<span class="code-str">"짝수입니다."</span>)
+<span class="code-keyword">else</span>:
+    <span class="code-keyword">print</span>(<span class="code-str">"홀수입니다."</span>)</code></pre>
+                    </div>
+
+                    <!-- [8차시] -->
+                    <h1 class="chapter-h1" style="margin-top: 50px;">🔄 [8차시] 함수 + 반복문 - 여러 데이터 처리하기</h1>
+                    <div class="tip-callout">
+                        <b>🎯 학습 목표:</b> 리스트를 매개변수로 받아 내부 for 문으로 일괄 누적 처리하는 함수를 작성한다.
+                    </div>
+                    <div class="code-block-wrapper">
+                        <div class="code-header"><span class="code-lang">PYTHON</span><span>리스트 합계 계산기</span></div>
+                        <pre><code><span class="code-keyword">def</span> <span class="code-def">total</span>(numbers):
+    result = <span class="code-num">0</span>
+    <span class="code-keyword">for</span> n <span class="code-keyword">in</span> numbers:
+        result += n
+    <span class="code-keyword">return</span> result
+
+scores = [<span class="code-num">80</span>, <span class="code-num">90</span>, <span class="code-num">75</span>, <span class="code-num">100</span>]
+<span class="code-keyword">print</span>(<span class="code-str">"합계:"</span>, total(scores))</code></pre>
+                    </div>
+
+                    <!-- [9차시] -->
+                    <h1 class="chapter-h1" style="margin-top: 50px;">🔗 [9차시] 여러 함수 연결하기 - 프로그램 기능 분해</h1>
+                    <div class="tip-callout">
+                        <b>🎯 학습 목표:</b> 큰 문제를 작은 단위 함수로 나누고 반환값을 다음 함수의 인수로 연결한다.
+                    </div>
+                    <div class="code-block-wrapper">
+                        <div class="code-header"><span class="code-lang">PYTHON</span><span>평균 계산과 등급 판정 분업</span></div>
+                        <pre><code><span class="code-keyword">def</span> <span class="code-def">average</span>(scores):
+    <span class="code-keyword">return</span> sum(scores) / len(scores)
+
+<span class="code-keyword">def</span> <span class="code-def">grade</span>(avg):
+    <span class="code-keyword">if</span> avg >= <span class="code-num">90</span>:
+        <span class="code-keyword">return</span> <span class="code-str">"A"</span>
+    <span class="code-keyword">elif</span> avg >= <span class="code-num">80</span>:
+        <span class="code-keyword">return</span> <span class="code-str">"B"</span>
+    <span class="code-keyword">elif</span> avg >= <span class="code-num">70</span>:
+        <span class="code-keyword">return</span> <span class="code-str">"C"</span>
+    <span class="code-keyword">else</span>:
+        <span class="code-keyword">return</span> <span class="code-str">"D"</span>
+
+scores = [<span class="code-num">85</span>, <span class="code-num">92</span>, <span class="code-num">78</span>]
+avg = average(scores)
+<span class="code-keyword">print</span>(<span class="code-str">"평균:"</span>, avg)
+<span class="code-keyword">print</span>(<span class="code-str">"등급:"</span>, grade(avg))</code></pre>
+                    </div>
+
+                    <!-- [10차시] -->
+                    <h1 class="chapter-h1" style="margin-top: 50px;">🏆 [10차시] 미니 프로젝트 - 성적 관리 프로그램 제작</h1>
+                    <div class="tip-callout">
+                        <b>🎯 학습 목표:</b> 매개변수, return, 조건문, 반복문을 종합하여 구조화된 프로그램을 완성한다.
+                    </div>
+                    <div class="code-block-wrapper">
+                        <div class="code-header"><span class="code-lang">PYTHON</span><span>종합 성적 산출 프로그램</span></div>
+                        <pre><code><span class="code-keyword">def</span> <span class="code-def">calc_average</span>(scores):
+    <span class="code-keyword">return</span> sum(scores) / len(scores)
+
+<span class="code-keyword">def</span> <span class="code-def">get_grade</span>(avg):
+    <span class="code-keyword">if</span> avg >= <span class="code-num">90</span>:
+        <span class="code-keyword">return</span> <span class="code-str">"A"</span>
+    <span class="code-keyword">elif</span> avg >= <span class="code-num">80</span>:
+        <span class="code-keyword">return</span> <span class="code-str">"B"</span>
+    <span class="code-keyword">elif</span> avg >= <span class="code-num">70</span>:
+        <span class="code-keyword">return</span> <span class="code-str">"C"</span>
+    <span class="code-keyword">elif</span> avg >= <span class="code-num">60</span>:
+        <span class="code-keyword">return</span> <span class="code-str">"D"</span>
+    <span class="code-keyword">else</span>:
+        <span class="code-keyword">return</span> <span class="code-str">"F"</span>
+
+<span class="code-keyword">def</span> <span class="code-def">print_result</span>(name, scores):
+    avg = calc_average(scores)
+    <span class="code-keyword">print</span>(<span class="code-str">"="</span> * <span class="code-num">25</span>)
+    <span class="code-keyword">print</span>(<span class="code-str">"학생:"</span>, name)
+    <span class="code-keyword">print</span>(<span class="code-str">"평균:"</span>, round(avg, <span class="code-num">1</span>), <span class="code-str">"점"</span>)
+    <span class="code-keyword">print</span>(<span class="code-str">"등급:"</span>, get_grade(avg))
+    <span class="code-keyword">print</span>(<span class="code-str">"="</span> * <span class="code-num">25</span>)
+
+<span class="code-comment"># --- 메인 실행 흐름 ---</span>
+name = input(<span class="code-str">"이름: "</span>)
+scores = []
+<span class="code-keyword">for</span> subject <span class="code-keyword">in</span> [<span class="code-str">"국어"</span>, <span class="code-str">"영어"</span>, <span class="code-str">"수학"</span>]:
+    score = int(input(subject + <span class="code-str">"점수: "</span>))
+    scores.append(score)
+
+print_result(name, scores)</code></pre>
+                    </div>
+                `
+            },
+            lesson2: {
+                title: "02. 파이썬 Tkinter GUI 프로그래밍",
+                icon: "🖥️",
+                pdf: "tkinter.pdf",
+                html: `
+                    <h1 class="article-title">파이썬 Tkinter GUI 프로그래밍</h1>
+                    <div class="article-intro">
+                        <b>수업 구성:</b> 1~2차시 창 제어 → 3~6차시 기본 입력·출력 위젯 → 7~9차시 선택 위젯 → 10차시 배치 관리자 → 11~15차시 표준 대화상자<br>
+                        Tkinter 모듈을 활용하여 윈도우 창을 만들고, 다양한 위젯을 배치하며 사용자와 소통하는 데스크톱 GUI 애플리케이션을 완성합니다.
+                    </div>
+
+                    <!-- 1~2차시 -->
+                    <h1 class="chapter-h1">🪟 [1~2차시] 윈도우 창 생성 및 속성 제어</h1>
+                    <div class="tip-callout">
+                        <b>🎯 학습 목표:</b> GUI 개념을 이해하고 첫 번째 윈도우 창 생성 및 크기 고정, 배경색 설정을 익힌다.
+                    </div>
+                    <div class="code-block-wrapper">
+                        <div class="code-header"><span class="code-lang">PYTHON</span><span>창 생성 및 속성 설정</span></div>
+                        <pre><code><span class="code-keyword">from</span> tkinter <span class="code-keyword">import</span> *
+
+root = Tk()
+root.title(<span class="code-str">"첫 번째 윈도우"</span>)
+root.geometry(<span class="code-str">"400x300"</span>)
+root.resizable(<span class="code-keyword">False</span>, <span class="code-keyword">False</span>)  <span class="code-comment"># 창 크기 변경 차단</span>
+root.config(bg=<span class="code-str">"#f0f0f0"</span>)       <span class="code-comment"># 배경색 변경</span>
+root.mainloop()</code></pre>
+                    </div>
+
+                    <!-- 3~4차시 -->
+                    <h1 class="chapter-h1" style="margin-top: 50px;">🔘 [3~4차시] 라벨(Label)과 버튼(Button) 이벤트</h1>
+                    <div class="tip-callout">
+                        <b>🎯 학습 목표:</b> Label로 텍스트를 출력하고, Button 클릭 시 함수를 실행하는 이벤트 연결(command)을 익힌다.
+                    </div>
+                    <div class="code-block-wrapper">
+                        <div class="code-header"><span class="code-lang">PYTHON</span><span>라벨 및 버튼 연동</span></div>
+                        <pre><code><span class="code-keyword">from</span> tkinter <span class="code-keyword">import</span> *
+
+<span class="code-keyword">def</span> <span class="code-def">hello</span>():
+    lbl.config(text=<span class="code-str">"버튼을 클릭했습니다!"</span>)
+
+root = Tk()
+lbl = Label(root, text=<span class="code-str">"환영합니다!"</span>, font=(<span class="code-str">"Arial"</span>, <span class="code-num">16</span>, <span class="code-str">"bold"</span>), fg=<span class="code-str">"navy"</span>)
+lbl.pack(pady=<span class="code-num">20</span>)
+
+btn = Button(root, text=<span class="code-str">"클릭"</span>, command=hello)
+btn.pack()
+
+<span class="code-comment"># 추가 스타일 버튼</span>
+e1_btn = Button(root, text=<span class="code-str">"두꺼운 테두리"</span>, bd=<span class="code-num">5</span>, relief=<span class="code-str">"raised"</span>, width=<span class="code-num">15</span>)
+e1_btn.pack(pady=<span class="code-num">5</span>)
+
+e2_btn = Button(root, text=<span class="code-str">"손가락 커서"</span>, cursor=<span class="code-str">"hand2"</span>, bg=<span class="code-str">"lightyellow"</span>)
+e2_btn.pack(pady=<span class="code-num">5</span>)
+
+e3_btn = Button(root, text=<span class="code-str">"클릭 불가"</span>, state=<span class="code-str">"disabled"</span>)
+e3_btn.pack(pady=<span class="code-num">5</span>)
+
+root.mainloop()</code></pre>
+                    </div>
+                    <table class="custom-table">
+                        <thead>
+                            <tr><th>코드</th><th>동작 의미</th><th>판정</th></tr>
+                        </thead>
+                        <tbody>
+                            <tr><td><code>command=hello</code></td><td>버튼 클릭 시 hello 함수 실행</td><td>✅ 올바름</td></tr>
+                            <tr><td><code>command=hello()</code></td><td>프로그램 시작 시 바로 실행되어 버림</td><td>❌ 잘못됨</td></tr>
+                        </tbody>
+                    </table>
+
+                    <!-- 5~6차시 -->
+                    <h1 class="chapter-h1" style="margin-top: 50px;">⌨️ [5~6차시] 입력 위젯: 엔트리(Entry) & 텍스트(Text)</h1>
+                    <div class="tip-callout">
+                        <b>🎯 학습 목표:</b> 한 줄 입력을 받는 Entry와 여러 줄을 작성하는 Text 위젯 및 인덱스 체계를 익힌다.
+                    </div>
+                    <h2 class="section-h2">1. Entry 값 가져오기 및 비밀번호 마스킹</h2>
+                    <div class="code-block-wrapper">
+                        <div class="code-header"><span class="code-lang">PYTHON</span><span>Entry 활용</span></div>
+                        <pre><code><span class="code-keyword">from</span> tkinter <span class="code-keyword">import</span> *
+
+<span class="code-keyword">def</span> <span class="code-def">change_text</span>():
+    text = ent.get()
+    ent.delete(<span class="code-num">0</span>, END)
+    ent.insert(<span class="code-num">0</span>, text.upper())
+
+root = Tk()
+ent = Entry(root)
+ent.pack(padx=<span class="code-num">10</span>, pady=<span class="code-num">10</span>)
+
+btn = Button(root, text=<span class="code-str">"대문자로 변경"</span>, command=change_text)
+btn.pack(padx=<span class="code-num">10</span>, pady=<span class="code-num">10</span>)
+
+<span class="code-comment"># 비밀번호 입력 Entry</span>
+password_ent = Entry(root, show=<span class="code-str">"*"</span>, width=<span class="code-num">30</span>)
+password_ent.pack(pady=<span class="code-num">20</span>)
+root.mainloop()</code></pre>
+                    </div>
+                    <h2 class="section-h2">2. Text 위젯의 인덱스 체계</h2>
+                    <p class="section-desc">
+                        Text 위젯은 <b>"줄.칸"</b> 형태의 문자열 인덱스를 사용합니다.<br>
+                        • <code>"1.0"</code> : 1번째 줄의 0번째 칸 (맨 처음 위치)<br>
+                        • <code>END</code> : 텍스트의 맨 끝 위치
+                    </p>
+
+                    <!-- 7~9차시 -->
+                    <h1 class="chapter-h1" style="margin-top: 50px;">☑️ [7~9차시] 선택 위젯: 체크버튼, 라디오버튼, 리스트박스</h1>
+                    <div class="tip-callout">
+                        <b>🎯 학습 목표:</b> 다중 선택(Checkbutton), 단일 선택(Radiobutton), 목록 선택(Listbox)의 특징을 구분하고 사용한다.
+                    </div>
+                    <h2 class="section-h2">1. Checkbutton & Radiobutton</h2>
+                    <div class="code-block-wrapper">
+                        <div class="code-header"><span class="code-lang">PYTHON</span><span>선택 위젯 코드</span></div>
+                        <pre><code><span class="code-keyword">from</span> tkinter <span class="code-keyword">import</span> *
+
+root = Tk()
+
+<span class="code-comment"># 체크버튼</span>
+agree_var = BooleanVar()
+check_btn = Checkbutton(root, text=<span class="code-str">"동의합니다"</span>, variable=agree_var)
+check_btn.pack(pady=<span class="code-num">5</span>)
+
+<span class="code-comment"># 라디오버튼 (같은 variable 공유 시 하나의 그룹으로 동작)</span>
+food = IntVar(value=<span class="code-num">1</span>)
+rb_meat = Radiobutton(root, text=<span class="code-str">"육고기"</span>, variable=food, value=<span class="code-num">1</span>)
+rb_seafood = Radiobutton(root, text=<span class="code-str">"해산물"</span>, variable=food, value=<span class="code-num">2</span>)
+rb_meat.pack()
+rb_seafood.pack()
+
+root.mainloop()</code></pre>
+                    </div>
+                    <h2 class="section-h2">2. Listbox 목록 선택</h2>
+                    <div class="code-block-wrapper">
+                        <div class="code-header"><span class="code-lang">PYTHON</span><span>Listbox 바인딩</span></div>
+                        <pre><code><span class="code-keyword">def</span> <span class="code-def">show_selected</span>(event):
+    selection = lang_lb.curselection()
+    <span class="code-keyword">if</span> selection:
+        result_lbl.config(text=<span class="code-str">"선택: "</span> + lang_lb.get(selection[<span class="code-num">0</span>]))
+
+lang_lb = Listbox(root, height=<span class="code-num">5</span>)
+lang_lb.pack(padx=<span class="code-num">10</span>, pady=<span class="code-num">10</span>)
+<span class="code-keyword">for</span> item <span class="code-keyword">in</span> [<span class="code-str">"Python"</span>, <span class="code-str">"Java"</span>, <span class="code-str">"C++"</span>]:
+    lang_lb.insert(END, item)
+lang_lb.bind(<span class="code-str">"&lt;&lt;ListboxSelect&gt;&gt;"</span>, show_selected)
+result_lbl = Label(root, text=<span class="code-str">""</span>)
+result_lbl.pack()</code></pre>
+                    </div>
+
+                    <!-- 10차시 -->
+                    <h1 class="chapter-h1" style="margin-top: 50px;">📐 [10차시] 배치 관리자: pack, grid, place</h1>
+                    <div class="tip-callout">
+                        <b>pack():</b> 위젯을 차례대로 쌓아 올림 | <b>grid():</b> 바둑판 격자(row, column) 정돈 | <b>place():</b> 절대 픽셀 좌표 지정
+                    </div>
+                    <div class="code-block-wrapper">
+                        <div class="code-header"><span class="code-lang">PYTHON</span><span>grid() 배치 예제</span></div>
+                        <pre><code>Label(root, text=<span class="code-str">"이름"</span>).grid(row=<span class="code-num">0</span>, column=<span class="code-num">0</span>)
+Entry(root).grid(row=<span class="code-num">0</span>, column=<span class="code-num">1</span>)
+Label(root, text=<span class="code-str">"나이"</span>).grid(row=<span class="code-num">1</span>, column=<span class="code-num">0</span>)
+Entry(root).grid(row=<span class="code-num">1</span>, column=<span class="code-num">1</span>)</code></pre>
+                    </div>
+
+                    <!-- 11~15차시 -->
+                    <h1 class="chapter-h1" style="margin-top: 50px;">💬 [11~15차시] 대화상자(Dialogs): messagebox, filedialog, simpledialog</h1>
+                    <div class="tip-callout">
+                        <b>🎯 학습 목표:</b> 알림창(messagebox), 파일 선택창(filedialog), 텍스트/숫자 팝업 입력창(simpledialog)을 익힌다.
+                    </div>
+                    <div class="code-block-wrapper">
+                        <div class="code-header"><span class="code-lang">PYTHON</span><span>각종 표준 대화상자</span></div>
+                        <pre><code><span class="code-keyword">from</span> tkinter <span class="code-keyword">import</span> messagebox, filedialog, simpledialog
+
+<span class="code-comment"># 1. 메시지 박스 (예/아니오 확인)</span>
+<span class="code-keyword">if</span> messagebox.askyesno(<span class="code-str">"확인"</span>, <span class="code-str">"정말 종료할까요?"</span>):
+    root.destroy()
+
+<span class="code-comment"># 2. 파일 열기 대화상자</span>
+path = filedialog.askopenfilename(
+    title=<span class="code-str">"파일 선택"</span>,
+    filetypes=[(<span class="code-str">"텍스트 파일"</span>, <span class="code-str">"*.txt"</span>), (<span class="code-str">"모든 파일"</span>, <span class="code-str">"*.*"</span>)]
+)
+
+<span class="code-comment"># 3. 입력 팝업 대화상자</span>
+name = simpledialog.askstring(<span class="code-str">"입력"</span>, <span class="code-str">"이름을 입력하세요."</span>)
+age = simpledialog.askinteger(<span class="code-str">"입력"</span>, <span class="code-str">"나이를 입력하세요."</span>, minvalue=<span class="code-num">0</span>, maxvalue=<span class="code-num">120</span>)</code></pre>
+                    </div>
+                `
+            }
+        };
+
+        // 초기 화면 렌더링
+        document.getElementById('lesson-content').innerHTML = lessons.lesson1.html;
+
+        function selectLesson(lessonKey, element) {
+            const lesson = lessons[lessonKey];
+            document.getElementById('topic-icon').innerText = lesson.icon;
+            document.getElementById('topic-title').innerText = lesson.title;
+            document.getElementById('lesson-content').innerHTML = lesson.html;
+            document.getElementById('pdf-frame').src = lesson.pdf;
+
+            const menuItems = document.querySelectorAll('.menu-item');
+            menuItems.forEach(item => item.classList.remove('active'));
+            element.classList.add('active');
+
+            document.getElementById('web-article-view').scrollTop = 0;
+        }
+
+        function switchView(mode) {
+            const webView = document.getElementById('web-article-view');
+            const pdfView = document.getElementById('pdf-container');
+            const btnWeb = document.getElementById('btn-web');
+            const btnPdf = document.getElementById('btn-pdf');
+
+            if (mode === 'web') {
+                webView.style.display = 'block';
+                pdfView.style.display = 'none';
+                btnWeb.classList.add('active');
+                btnPdf.classList.remove('active');
+            } else {
+                webView.style.display = 'none';
+                pdfView.style.display = 'block';
+                btnWeb.classList.remove('active');
+                btnPdf.classList.add('active');
+            }
+        }
+    </script>
+</body>
+</html>
