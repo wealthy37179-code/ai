@@ -340,6 +340,7 @@
             padding: 16px;
             margin-bottom: 24px;
             box-shadow: 0 2px 8px rgba(0,0,0,0.04);
+            overflow-x: auto;
         }
         svg text {
             font-family: -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', sans-serif;
@@ -385,6 +386,18 @@
                     <span>03. 북극 빙하면적 변화</span>
                     <span class="menu-badge">실습</span>
                 </li>
+
+                <li class="menu-item" onclick="selectLesson('lesson4', this)">
+                    <span class="menu-icon">🦟</span>
+                    <span>04. 모기 개체수 변화</span>
+                    <span class="menu-badge">시계열</span>
+                </li>
+
+                <li class="menu-item" onclick="selectLesson('lesson5', this)">
+                    <span class="menu-icon">🛒</span>
+                    <span>05. 소비자 물가지수</span>
+                    <span class="menu-badge">회귀</span>
+                </li>
             </ul>
         </aside>
 
@@ -392,7 +405,7 @@
             <div class="content-header">
                 <div class="current-topic">
                     <span id="topic-icon">🔄</span>
-                    <span id="topic-title">01. 데이터 다루기</span>
+                    <span id="topic-title">01. 데이터 다루기 (파이썬 데이터 구조 · pandas · 기초 통계)</span>
                 </div>
             </div>
 
@@ -406,16 +419,15 @@
     <script>
         const lessons = {
             lesson1: {
-                title: "01. 데이터 다루기",
+                title: "01. 데이터 다루기 (파이썬 데이터 구조 · pandas · 기초 통계)",
                 icon: "🔄",
                 html: `
-                    <h1 class="article-title">데이터 다루기</h1>
+                    <h1 class="article-title">데이터 다루기: 파이썬 데이터 구조 · pandas 연습 · 기초 통계</h1>
                     <div class="article-intro">
                         <b>수업 구성:</b> 1장 데이터 구조 → 2장 pandas 선택·필터링·수정 → 3장 기초 통계와 그룹별 비교<br>
                         데이터 분석의 시작은 <b>데이터를 어떤 구조로 저장하고, 무엇을 확인할 것인가?</b>를 생각하는 것입니다.
                     </div>
 
-                    <!-- 1장 -->
                     <h1 class="chapter-h1">📖 1장. 파이썬의 데이터 구조</h1>
                     <div class="tip-callout">
                         <b>🎯 학습 목표</b><br>
@@ -437,7 +449,6 @@ mean = total / <span class="code-str">3</span>
                     </div>
 
                     <h2 class="section-h2">2. 리스트를 이용한 성적 처리</h2>
-                    <p class="section-desc"><b>생각하기:</b> 학생 수가 많아지면 변수를 여러 개 만드는 것보다 리스트에 묶어 저장하는 것이 편리합니다.</p>
                     <div class="code-block-wrapper">
                         <div class="code-header"><span class="code-lang">PYTHON</span><span>2차원 리스트 성적 처리</span></div>
                         <pre><code>names = [<span class="code-str">'김민준'</span>, <span class="code-str">'이지훈'</span>, <span class="code-str">'고서연'</span>, <span class="code-str">'염지민'</span>]
@@ -453,7 +464,6 @@ scores = [
                     </div>
 
                     <h2 class="section-h2">3. 딕셔너리를 이용한 성적 처리</h2>
-                    <p class="section-desc"><b>핵심 개념:</b> 딕셔너리는 <b>key와 value</b>의 쌍으로 데이터를 저장합니다. 여기서는 학생 이름이 key, 세 과목 점수 리스트가 value입니다.</p>
                     <div class="code-block-wrapper">
                         <div class="code-header"><span class="code-lang">PYTHON</span><span>딕셔너리 성적 처리</span></div>
                         <pre><code>class_dict = {
@@ -468,7 +478,6 @@ scores = [
                     </div>
 
                     <h2 class="section-h2">4. DataFrame을 이용한 성적 처리</h2>
-                    <p class="section-desc"><b>정리:</b> DataFrame은 행과 열로 이루어진 표 형태의 데이터 구조입니다. 여러 데이터를 비교·계산·분석할 때 편리합니다.</p>
                     <div class="code-block-wrapper">
                         <div class="code-header"><span class="code-lang">PYTHON</span><span>DataFrame 변환 및 연산</span></div>
                         <pre><code><span class="code-keyword">import</span> pandas <span class="code-keyword">as</span> pd
@@ -478,15 +487,7 @@ df_class = pd.DataFrame(class_dict)
 <span class="code-keyword">print</span>(df_class.mean())</code></pre>
                     </div>
 
-                    <!-- 2장 -->
                     <h1 class="chapter-h1" style="margin-top: 48px;">☕ 2장. pandas 연습 - 카페 메뉴 데이터</h1>
-                    <div class="tip-callout">
-                        <b>🎯 학습 목표</b><br>
-                        ✓ DataFrame의 행과 열을 선택할 수 있다.<br>
-                        ✓ 조건식, isin을 이용해 필요한 데이터를 필터링할 수 있다.<br>
-                        ✓ 열 추가·삭제·이름 변경을 수행할 수 있다.
-                    </div>
-
                     <h2 class="section-h2">0. 실습 데이터 만들기</h2>
                     <div class="code-block-wrapper">
                         <div class="code-header"><span class="code-lang">PYTHON</span><span>카페 메뉴 데이터 생성 및 set_index</span></div>
@@ -504,19 +505,6 @@ df = df.set_index(<span class="code-str">'메뉴코드'</span>)
 df</code></pre>
                     </div>
 
-                    <table class="custom-table">
-                        <thead>
-                            <tr><th>메뉴코드 (index)</th><th>메뉴명</th><th>카테고리</th><th>가격</th><th>판매량</th></tr>
-                        </thead>
-                        <tbody>
-                            <tr><td><b>M01</b></td><td>아메리카노</td><td>커피</td><td>3000</td><td>120</td></tr>
-                            <tr><td><b>M02</b></td><td>카페라떼</td><td>커피</td><td>4000</td><td>95</td></tr>
-                            <tr><td><b>M03</b></td><td>카푸치노</td><td>커피</td><td>4500</td><td>80</td></tr>
-                            <tr><td><b>M04</b></td><td>초코라떼</td><td>음료</td><td>5000</td><td>60</td></tr>
-                            <tr><td><b>M05</b></td><td>녹차라떼</td><td>음료</td><td>4800</td><td>70</td></tr>
-                        </tbody>
-                    </table>
-
                     <h2 class="section-h2">1. 열(column) 및 행(row) 선택</h2>
                     <div class="code-block-wrapper">
                         <div class="code-header"><span class="code-lang">PYTHON</span><span>선택 문법</span></div>
@@ -530,25 +518,15 @@ df.loc[<span class="code-str">'M02'</span>, <span class="code-str">'가격'</spa
                     <h2 class="section-h2">2. 조건 필터링 및 조작</h2>
                     <div class="code-block-wrapper">
                         <div class="code-header"><span class="code-lang">PYTHON</span><span>필터링 및 수정</span></div>
-                        <pre><code><span class="code-comment"># 조건 필터링</span>
-df[(df[<span class="code-str">'카테고리'</span>] == <span class="code-str">'커피'</span>) & (df[<span class="code-str">'가격'</span>] >= <span class="code-str">4000</span>)]
+                        <pre><code>df[(df[<span class="code-str">'카테고리'</span>] == <span class="code-str">'커피'</span>) & (df[<span class="code-str">'가격'</span>] >= <span class="code-str">4000</span>)]
 df[df[<span class="code-str">'메뉴명'</span>].isin([<span class="code-str">'아메리카노'</span>, <span class="code-str">'카푸치노'</span>])]
 
-<span class="code-comment"># 열 추가 및 수정</span>
 df[<span class="code-str">'매출'</span>] = df[<span class="code-str">'가격'</span>] * df[<span class="code-str">'판매량'</span>]
 df.drop(columns=<span class="code-str">'판매량'</span>, inplace=<span class="code-keyword">True</span>)
 df.rename(columns={<span class="code-str">'가격'</span>: <span class="code-str">'메뉴가격'</span>})</code></pre>
                     </div>
 
-                    <!-- 3장 -->
                     <h1 class="chapter-h1" style="margin-top: 48px;">📊 3장. 데이터 기초 통계</h1>
-                    <div class="tip-callout">
-                        <b>🎯 학습 목표</b><br>
-                        ✓ info(), shape로 데이터 구조를 확인할 수 있다.<br>
-                        ✓ describe(), mean(), median(), mode()로 기초 통계를 구할 수 있다.<br>
-                        ✓ value_counts(), sort_values(), groupby()를 이용해 데이터의 특징을 분석할 수 있다.
-                    </div>
-
                     <h2 class="section-h2">1. 데이터 구조 및 통계 요약</h2>
                     <div class="code-block-wrapper">
                         <div class="code-header"><span class="code-lang">PYTHON</span><span>기초 통계 함수 실습</span></div>
@@ -590,19 +568,6 @@ df = pd.DataFrame(data)
 df</code></pre>
                     </div>
 
-                    <table class="custom-table">
-                        <thead>
-                            <tr><th>index</th><th>이름</th><th>성별</th><th>키</th><th>몸무게</th><th>혈액형</th></tr>
-                        </thead>
-                        <tbody>
-                            <tr><td>0</td><td>김하늘</td><td>F</td><td>162</td><td>50</td><td>A</td></tr>
-                            <tr><td>1</td><td>이준서</td><td>M</td><td>178</td><td>72</td><td>B</td></tr>
-                            <tr><td>2</td><td>박지민</td><td>F</td><td>155</td><td>47</td><td>O</td></tr>
-                            <tr><td>3</td><td>최서윤</td><td>F</td><td>160</td><td>54</td><td>A</td></tr>
-                            <tr><td>4</td><td>정민호</td><td>M</td><td>182</td><td>80</td><td>AB</td></tr>
-                        </tbody>
-                    </table>
-
                     <h1 class="chapter-h1">📌 (1) 데이터 구조 및 통계 요약</h1>
                     <div class="code-block-wrapper">
                         <div class="code-header"><span class="code-lang">PYTHON</span><span>구조 및 기초 통계 코드</span></div>
@@ -616,14 +581,6 @@ df.value_counts(<span class="code-str">'혈액형'</span>)
 df.sort_values(by=<span class="code-str">'키'</span>, ascending=<span class="code-keyword">False</span>)
 df.groupby(by=<span class="code-str">'성별'</span>)[<span class="code-str">'몸무게'</span>].mean()</code></pre>
                     </div>
-
-                    <span class="result-label">🖥️ groupby 실행 결과</span>
-                    <div class="result-box">
-성별<br>
-F &nbsp;&nbsp;&nbsp;&nbsp;50.333333<br>
-M &nbsp;&nbsp;&nbsp;&nbsp;76.000000<br>
-Name: 몸무게, dtype: float64
-                    </div>
                 `
             },
             lesson3: {
@@ -635,52 +592,29 @@ Name: 몸무게, dtype: float64
                         실제 해양 관측 데이터(<b>seaice.csv</b>)를 활용하여 원본 데이터의 구조적 한계를 파악하고, <b>1년 중 해빙 면적이 가장 작아지는 9월 데이터만 추출·평균</b>내어 선형 추세선으로 감소 속도를 입증하는 실습입니다.
                     </div>
 
-                    <!-- 1. 데이터 불러오기 및 무결성 확인 -->
                     <h1 class="chapter-h1">📌 1. 데이터 불러오기 및 구조 확인</h1>
-                    <p class="section-desc">Google Drive의 <code>seaice.csv</code> 파일을 불러와 열 이름의 공백을 제거하고 결측치, 중복 데이터, 고유값을 검증합니다.</p>
-                    
                     <div class="code-block-wrapper">
                         <div class="code-header"><span class="code-lang">PYTHON</span><span>데이터 로드 및 탐색</span></div>
                         <pre><code><span class="code-keyword">import</span> pandas <span class="code-keyword">as</span> pd
 <span class="code-keyword">from</span> google.colab <span class="code-keyword">import</span> drive
 drive.mount(<span class="code-str">'/content/drive'</span>)
 
-<span class="code-comment"># 데이터 불러오기 (인코딩: cp949)</span>
 df = pd.read_csv(<span class="code-str">'/content/drive/MyDrive/소프트웨어와생활/seaice.csv'</span>, encoding=<span class="code-str">'cp949'</span>)
-
-<span class="code-comment"># 열 이름 앞뒤의 공백 제거</span>
 df.columns = df.columns.str.strip()
 
-<span class="code-comment"># 결측치 및 중복 데이터 확인</span>
 <span class="code-keyword">print</span>(df.isnull().sum())
 <span class="code-keyword">print</span>(df.duplicated().sum())
-
-<span class="code-comment"># Month와 hemisphere의 고유값 확인</span>
 <span class="code-keyword">print</span>(df[<span class="code-str">'Month'</span>].unique())
-<span class="code-keyword">print</span>(df[<span class="code-str">'hemisphere'</span>].unique())
-<span class="code-keyword">print</span>(df[[<span class="code-str">'Year'</span>, <span class="code-str">'Month'</span>, <span class="code-str">'Day'</span>, <span class="code-str">'Extent'</span>, <span class="code-str">'hemisphere'</span>]])</code></pre>
+<span class="code-keyword">print</span>(df[<span class="code-str">'hemisphere'</span>].unique())</code></pre>
                     </div>
 
-                    <span class="result-label">🖥️ 실행 결과</span>
-                    <div class="result-box">
-결측치: 0개 (모든 컬럼 정상)<br>
-중복 데이터: 0개<br>
-Month 고유값: [10 11 12 &nbsp;1 &nbsp;2 &nbsp;3 &nbsp;4 &nbsp;5 &nbsp;6 &nbsp;7 &nbsp;8 &nbsp;9]<br>
-hemisphere 고유값: ['north' 'south']<br>
-총 데이터 규모: [26,354 rows x 5 columns]
-                    </div>
-
-                    <!-- 2. 전처리 전 원본 시각화 -->
                     <h1 class="chapter-h1">📊 2. 전처리 전: 일별 원본 데이터 시각화</h1>
-                    <p class="section-desc">날짜(Date) 컬럼을 생성한 뒤 전체 일별 관측치 26,354개를 있는 그대로 그래프로 그려봅니다.</p>
-
                     <div class="code-block-wrapper">
                         <div class="code-header"><span class="code-lang">PYTHON</span><span>전처리 전 일별 시각화</span></div>
                         <pre><code>!pip install koreanize-matplotlib
 <span class="code-keyword">import</span> matplotlib.pyplot <span class="code-keyword">as</span> plt
 <span class="code-keyword">import</span> koreanize_matplotlib
 
-<span class="code-comment"># 날짜 열 생성</span>
 df[<span class="code-str">'Date'</span>] = pd.to_datetime(df[[<span class="code-str">'Year'</span>, <span class="code-str">'Month'</span>, <span class="code-str">'Day'</span>]])
 
 plt.figure(figsize=(<span class="code-str">10</span>, <span class="code-str">5</span>))
@@ -693,48 +627,14 @@ plt.tight_layout()
 plt.show()</code></pre>
                     </div>
 
-                    <div class="chart-wrapper">
-                        <svg viewBox="0 0 650 210" width="100%" height="200" style="background:#ffffff;">
-                            <line x1="60" y1="20" x2="60" y2="175" stroke="#94a3b8" stroke-width="1.2"/>
-                            <line x1="60" y1="175" x2="630" y2="175" stroke="#94a3b8" stroke-width="1.2"/>
-                            <text x="35" y="30" font-size="10" fill="#64748b">20.0</text>
-                            <text x="35" y="75" font-size="10" fill="#64748b">15.0</text>
-                            <text x="35" y="120" font-size="10" fill="#64748b">10.0</text>
-                            <text x="38" y="165" font-size="10" fill="#64748b">5.0</text>
-                            <text x="60" y="195" font-size="10" fill="#64748b">1980</text>
-                            <text x="200" y="195" font-size="10" fill="#64748b">1990</text>
-                            <text x="340" y="195" font-size="10" fill="#64748b">2000</text>
-                            <text x="480" y="195" font-size="10" fill="#64748b">2010</text>
-                            <text x="590" y="195" font-size="10" fill="#64748b">2020</text>
-                            <path d="M 60 50 Q 67 165 74 52 Q 81 167 88 54 Q 95 168 102 56 Q 109 170 116 58 Q 123 171 130 60 Q 137 172 144 62 Q 151 173 158 64 Q 165 174 172 66 Q 179 175 186 68 Q 193 176 200 70 Q 207 177 214 72 Q 221 178 228 74 Q 235 179 242 76 Q 249 180 256 78 Q 263 181 270 80 Q 277 182 284 82 Q 291 183 298 84 Q 305 184 312 86 Q 319 185 326 88 Q 333 186 340 90 Q 347 187 354 92 Q 361 188 368 94 Q 375 189 382 96 Q 389 190 396 98 Q 403 191 410 100 Q 417 192 424 102 Q 431 193 438 104 Q 445 194 452 106 Q 459 195 466 108 Q 473 196 480 110 Q 487 197 494 112 Q 501 198 508 114 Q 515 199 522 116 Q 529 200 536 118 Q 543 201 550 120 Q 557 202 564 122 Q 571 203 578 124 Q 585 204 592 126 L 600 200" fill="none" stroke="#0284c7" stroke-width="1.1"/>
-                            <line x1="60" y1="70" x2="600" y2="135" stroke="#475569" stroke-width="1.8" stroke-dasharray="4,4"/>
-                            <text x="240" y="24" font-size="12" font-weight="bold" fill="#0f172a">북극 해빙 면적: 일별 원본 시각화</text>
-                        </svg>
-                    </div>
-
-                    <div class="tip-callout">
-                        <b>전처리 전 한계:</b> 계절에 따라 얼음이 얼고 녹는 거대한 주기적 파동 때문에, 장기적으로 북극 해빙이 실제로 줄어들고 있는지 명확한 추세를 확인하기 어렵습니다.
-                    </div>
-
-                    <!-- 3. 북반구 9월 데이터 추출 및 연도별 평균 -->
                     <h1 class="chapter-h1">📌 3. 데이터 전처리: 북반구 9월 데이터 추출 및 연도별 평균</h1>
-                    <p class="section-desc">
-                        1. 북극 해빙이 줄고 있다는 가설을 검증하기 위해<br>
-                        2. 1년 중 해빙(바다얼음)이 가장 작아지는 <b>북반구의 9월 데이터만 추출</b>하고 연도별 평균을 구합니다.
-                    </p>
-
                     <div class="code-block-wrapper">
                         <div class="code-header"><span class="code-lang">PYTHON</span><span>북반구 9월 필터링 및 연도별 평균</span></div>
-                        <pre><code><span class="code-comment"># 북반구('north')의 9월 데이터만 추출</span>
-df = df[(df[<span class="code-str">'hemisphere'</span>] == <span class="code-str">'north'</span>) & (df[<span class="code-str">'Month'</span>] == <span class="code-str">9</span>)]
-
-<span class="code-comment"># 분석에 필요한 열만 추출</span>
+                        <pre><code>df = df[(df[<span class="code-str">'hemisphere'</span>] == <span class="code-str">'north'</span>) & (df[<span class="code-str">'Month'</span>] == <span class="code-str">9</span>)]
 df = df[[<span class="code-str">'Year'</span>, <span class="code-str">'Extent'</span>]]
 
-<span class="code-comment"># 연도별 9월 평균 빙하 면적 계산</span>
 df_year = df.groupby(<span class="code-str">'Year'</span>)[<span class="code-str">'Extent'</span>].mean().reset_index()
 
-<span class="code-comment"># 연도별 북극 9월 빙하 면적 변화 시각화</span>
 plt.figure(figsize=(<span class="code-str">10</span>, <span class="code-str">5</span>))
 plt.plot(df_year[<span class="code-str">'Year'</span>], df_year[<span class="code-str">'Extent'</span>], marker=<span class="code-str">'o'</span>, markersize=<span class="code-str">3</span>)
 plt.title(<span class="code-str">'연도별 북극 9월 빙하 면적 변화'</span>)
@@ -744,49 +644,19 @@ plt.grid(alpha=<span class="code-str">0.3</span>)
 plt.show()</code></pre>
                     </div>
 
-                    <div class="chart-wrapper">
-                        <svg viewBox="0 0 650 210" width="100%" height="200" style="background:#ffffff;">
-                            <line x1="60" y1="20" x2="60" y2="175" stroke="#94a3b8" stroke-width="1.2"/>
-                            <line x1="60" y1="175" x2="630" y2="175" stroke="#94a3b8" stroke-width="1.2"/>
-                            <text x="44" y="35" font-size="10" fill="#64748b">7</text>
-                            <text x="44" y="75" font-size="10" fill="#64748b">6</text>
-                            <text x="44" y="115" font-size="10" fill="#64748b">5</text>
-                            <text x="44" y="155" font-size="10" fill="#64748b">4</text>
-                            <text x="60" y="195" font-size="10" fill="#64748b">1980</text>
-                            <text x="140" y="195" font-size="10" fill="#64748b">1985</text>
-                            <text x="220" y="195" font-size="10" fill="#64748b">1990</text>
-                            <text x="300" y="195" font-size="10" fill="#64748b">1995</text>
-                            <text x="380" y="195" font-size="10" fill="#64748b">2000</text>
-                            <text x="460" y="195" font-size="10" fill="#64748b">2005</text>
-                            <text x="540" y="195" font-size="10" fill="#64748b">2010</text>
-                            <text x="600" y="195" font-size="10" fill="#64748b">2015</text>
-                            <polyline points="60,42 75,28 90,36 105,32 120,48 135,52 150,38 165,40 180,68 195,58 210,34 225,48 240,65 255,59 270,72 285,85 300,95 315,78 330,118 345,102 360,148 375,128 390,132 405,116 420,138 435,125 450,136 465,142 480,95 495,120 510,122 525,140 540,145 555,135 570,165 585,128 600,126" fill="none" stroke="#0284c7" stroke-width="1.8"/>
-                            <text x="240" y="24" font-size="12" font-weight="bold" fill="#0f172a">연도별 북극 9월 빙하 면적 변화</text>
-                        </svg>
-                    </div>
-
-                    <!-- 4. 선형 추세선 도출 및 최종 결론 -->
                     <h1 class="chapter-h1">📊 4. 선형 추세선(np.polyfit) 도출 및 정량 분석</h1>
-                    <p class="section-desc">NumPy의 <code>polyfit</code> 함수를 사용해 1차 회귀선(기울기와 절편)을 도출하고 최종 추세선을 시각화합니다.</p>
-
                     <div class="code-block-wrapper">
                         <div class="code-header"><span class="code-lang">PYTHON</span><span>추세선 도출 및 최종 시각화</span></div>
                         <pre><code><span class="code-keyword">import</span> numpy <span class="code-keyword">as</span> np
 
-<span class="code-comment"># 연도별 9월 평균 계산</span>
 df_year = df.groupby(<span class="code-str">'Year'</span>)[<span class="code-str">'Extent'</span>].mean().reset_index()
 
-<span class="code-comment"># 9월 평균 선 그래프</span>
-plt.figure(figsize=(<span class="code-str">10</span>, <span class="code-str">5</span>))
-plt.plot(df_year[<span class="code-str">'Year'</span>], df_year[<span class="code-str">'Extent'</span>], marker=<span class="code-str">'o'</span>, label=<span class="code-str">'9월 평균 빙하 면적'</span>)
-
-<span class="code-comment"># 선형 추세선 (1차식)</span>
 기울기, 절편 = np.polyfit(df_year[<span class="code-str">'Year'</span>], df_year[<span class="code-str">'Extent'</span>], <span class="code-str">1</span>)
-<span class="code-keyword">print</span>(<span class="code-str">'='</span> * <span class="code-str">60</span>)
-<span class="code-keyword">print</span>(f<span class="code-str">'기울기: {기울기:.2f}, 절편: {절편:.2f}'</span>)
-<span class="code-keyword">print</span>(<span class="code-str">'='</span> * <span class="code-str">60</span>)
+print(f'기울기: {기울기:.2f}, 절편: {절편:.2f}')
 
 추세선 = 기울기 * df_year[<span class="code-str">'Year'</span>] + 절편
+plt.figure(figsize=(<span class="code-str">10</span>, <span class="code-str">5</span>))
+plt.plot(df_year[<span class="code-str">'Year'</span>], df_year[<span class="code-str">'Extent'</span>], marker=<span class="code-str">'o'</span>, label=<span class="code-str">'9월 평균 빙하 면적'</span>)
 plt.plot(df_year[<span class="code-str">'Year'</span>], 추세선, linestyle=<span class="code-str">'--'</span>, label=<span class="code-str">'선형 추세선'</span>)
 plt.title(<span class="code-str">'북극 9월 빙하 면적 변화'</span>)
 plt.xlabel(<span class="code-str">'연도'</span>)
@@ -795,46 +665,378 @@ plt.grid(alpha=<span class="code-str">0.3</span>)
 plt.legend()
 plt.show()</code></pre>
                     </div>
-
-                    <span class="result-label">🖥️ 추세선 산출 결과</span>
-                    <div class="result-box">
-============================================================<br>
-기울기: -0.08, 절편: 170.70<br>
-============================================================
+                `
+            },
+            lesson4: {
+                title: "04. 모기 개체수 변화",
+                icon: "🦟",
+                html: `
+                    <h1 class="article-title">04. 공공데이터 실습: 서울시 모기 개체수 시계열 분석</h1>
+                    <div class="article-intro">
+                        서울시 모기지수 공공데이터(<b>seoul_mosquito.csv</b>)를 활용하여 <b>datetime 변환, 중복치 제거, 과거 기준치(1000 만점)와 현재 기준치(100 만점) 간 단위 보정, 2020년 이상치(100 초과) 상한 보정</b>을 진행하고, 연중 5월~10월 계절별 모기 활동 패턴을 시각화합니다.
                     </div>
 
+                    <h1 class="chapter-h1">📌 1. 데이터 불러오기 및 구조 확인</h1>
+                    <div class="code-block-wrapper">
+                        <div class="code-header"><span class="code-lang">PYTHON</span><span>데이터 로드 및 시계열 변환</span></div>
+                        <pre><code><span class="code-keyword">import</span> pandas <span class="code-keyword">as</span> pd
+<span class="code-keyword">from</span> google.colab <span class="code-keyword">import</span> drive
+drive.mount(<span class="code-str">'/content/drive'</span>)
+
+df = pd.read_csv(<span class="code-str">'/content/drive/MyDrive/소프트웨어와생활/seoul_mosquito.csv'</span>, encoding=<span class="code-str">'cp949'</span>)
+df[<span class="code-str">'모기지수 발생일'</span>] = pd.to_datetime(df[<span class="code-str">'모기지수 발생일'</span>])
+df.info()</code></pre>
+                    </div>
+
+                    <h1 class="chapter-h1">📊 2. 전처리 전: 수변부 모기지수 변화 시각화</h1>
+                    <div class="code-block-wrapper">
+                        <div class="code-header"><span class="code-lang">PYTHON</span><span>전처리 전 시각화 코드</span></div>
+                        <pre><code>!pip install koreanize-matplotlib
+<span class="code-keyword">import</span> matplotlib.pyplot <span class="code-keyword">as</span> plt
+<span class="code-keyword">import</span> koreanize_matplotlib
+
+plt.figure(figsize=(<span class="code-str">10</span>, <span class="code-str">5</span>))
+plt.plot(df[<span class="code-str">'모기지수 발생일'</span>], df[<span class="code-str">'모기지수(수변부)'</span>], linewidth=<span class="code-str">1</span>)
+plt.title(<span class="code-str">'전처리 전: 수변부 모기지수 변화'</span>, fontsize=<span class="code-str">18</span>)
+plt.xlabel(<span class="code-str">'날짜'</span>)
+plt.ylabel(<span class="code-str">'모기지수(수변부)'</span>)
+plt.grid(alpha=<span class="code-str">0.3</span>)
+plt.tight_layout()
+plt.show()</code></pre>
+                    </div>
+
+                    <h1 class="chapter-h1">📌 3. 데이터 단위 통일 및 이상치 정제</h1>
+                    <div class="code-block-wrapper">
+                        <div class="code-header"><span class="code-lang">PYTHON</span><span>중복치, 과거 1000단위 보정, 2020년 100 상한 보정</span></div>
+                        <pre><code><span class="code-comment"># 중복 제거</span>
+df = df.drop_duplicates()
+
+cols = [<span class="code-str">'모기지수(수변부)'</span>, <span class="code-str">'모기지수(주거지)'</span>, <span class="code-str">'모기지수(공원)'</span>]
+
+<span class="code-comment"># 2020년 4월 이전 데이터 10으로 나누기</span>
+<span class="code-keyword">for</span> col <span class="code-keyword">in</span> cols:
+    조건 = df[<span class="code-str">'모기지수 발생일'</span>] < <span class="code-str">'2020-04-01'</span>
+    df.loc[조건, col] = df.loc[조건, col] / <span class="code-str">10</span>
+
+<span class="code-comment"># 2020년 100 초과 이상치 100으로 변경</span>
+<span class="code-keyword">for</span> col <span class="code-keyword">in</span> cols:
+    조건 = (df[<span class="code-str">'모기지수 발생일'</span>].dt.year == <span class="code-str">2020</span>) & (df[col] > <span class="code-str">100</span>)
+    df.loc[조건, col] = <span class="code-str">100</span></code></pre>
+                    </div>
+
+                    <h1 class="chapter-h1">📌 4. 연중 계절 분석: 월-일별 평균 패턴</h1>
+                    <div class="code-block-wrapper">
+                        <div class="code-header"><span class="code-lang">PYTHON</span><span>10일 간격 눈금 시각화</span></div>
+                        <pre><code>df[<span class="code-str">'월-일'</span>] = df[<span class="code-str">'모기지수 발생일'</span>].dt.strftime(<span class="code-str">'%m-%d'</span>)
+df_day = df.groupby(<span class="code-str">'월-일'</span>)[<span class="code-str">'모기지수(수변부)'</span>].mean().reset_index()
+
+plt.figure(figsize=(<span class="code-str">10</span>, <span class="code-str">5</span>))
+plt.plot(df_day[<span class="code-str">'월-일'</span>], df_day[<span class="code-str">'모기지수(수변부)'</span>], linewidth=<span class="code-str">1.5</span>)
+plt.title(<span class="code-str">'전처리 후: 월-일별 평균 수변부 모기지수 변화'</span>, fontsize=<span class="code-str">18</span>)
+plt.xlabel(<span class="code-str">'월-일'</span>)
+plt.ylabel(<span class="code-str">'평균 모기지수'</span>)
+plt.xticks(<span class="code-keyword">range</span>(<span class="code-str">0</span>, <span class="code-keyword">len</span>(df_day), <span class="code-str">10</span>), df_day[<span class="code-str">'월-일'</span>][::<span class="code-str">10</span>], rotation=<span class="code-str">35</span>)
+plt.grid(alpha=<span class="code-str">0.3</span>)
+plt.tight_layout()
+plt.show()</code></pre>
+                    </div>
+                `
+            },
+            lesson5: {
+                title: "05. 소비자 물가지수",
+                icon: "🛒",
+                html: `
+                    <h1 class="article-title">05. 국가통계포털 데이터 실습: 품목별 소비자물가지수 분석</h1>
+                    <div class="article-intro">
+                        국가통계포털(KOSIS)의 <b>품목별 소비자물가지수(품목성질별)</b> 공공데이터를 활용하여, 행과 열의 구조를 분석 목적에 맞게 뒤집는 <b>행열 전환(transpose)</b>, 불필요한 행 제거, 열 레이블 재지정, 수치형 변환(<code>to_numeric</code>), 그리고 <b>선형 회귀 추세선(np.polyfit) 산출 및 데이터 해석의 한계점</b>을 학습합니다.
+                    </div>
+
+                    <!-- 1. 데이터 불러오기 및 기본 구조 점검 -->
+                    <h1 class="chapter-h1">📌 1. 데이터 불러오기 및 무결성 확인</h1>
+                    <p class="section-desc">CSV 파일을 불러와 484개 품목과 6개 월별(2026.02 ~ 2026.07) 데이터의 구조, 결측치 여부를 확인합니다.</p>
+
+                    <div class="code-block-wrapper">
+                        <div class="code-header"><span class="code-lang">PYTHON</span><span>데이터 로드 및 기본 점검</span></div>
+                        <pre><code><span class="code-keyword">import</span> pandas <span class="code-keyword">as</span> pd
+<span class="code-keyword">from</span> google.colab <span class="code-keyword">import</span> drive
+drive.mount(<span class="code-str">'/content/drive'</span>)
+
+<span class="code-comment"># 데이터 불러오기</span>
+df = pd.read_csv(<span class="code-str">'/content/drive/MyDrive/소프트웨어와생활/품목별 소비자물가지수 품목성질별.csv'</span>, encoding=<span class="code-str">'cp949'</span>)
+<span class="code-keyword">print</span>(df.head())
+<span class="code-keyword">print</span>(df.shape)
+df.info()
+<span class="code-keyword">print</span>(df.isnull().sum())</code></pre>
+                    </div>
+
+                    <span class="result-label">🖥️ 실행 결과 (Colab 출력)</span>
+                    <div class="result-box">
+&nbsp;&nbsp;시도별 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;품목별 &nbsp;&nbsp;2026.02 &nbsp;2026.03 &nbsp;2026.04 &nbsp;2026.05 &nbsp;2026.06 &nbsp;2026.07<br>
+0 &nbsp;&nbsp;전국 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;총지수 &nbsp;&nbsp;&nbsp;118.40 &nbsp;&nbsp;118.80 &nbsp;&nbsp;119.37 &nbsp;&nbsp;119.92 &nbsp;&nbsp;119.99 &nbsp;&nbsp;119.77<br>
+1 &nbsp;&nbsp;전국 &nbsp;&nbsp;농축수산물 &nbsp;&nbsp;&nbsp;129.37 &nbsp;&nbsp;126.95 &nbsp;&nbsp;124.80 &nbsp;&nbsp;124.77 &nbsp;&nbsp;125.21 &nbsp;&nbsp;124.25<br>
+2 &nbsp;&nbsp;전국 (농산물)곡물 &nbsp;&nbsp;&nbsp;121.15 &nbsp;&nbsp;120.39 &nbsp;&nbsp;120.46 &nbsp;&nbsp;120.44 &nbsp;&nbsp;120.58 &nbsp;&nbsp;119.74<br>
+3 &nbsp;&nbsp;전국 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;쌀 &nbsp;&nbsp;&nbsp;117.53 &nbsp;&nbsp;116.63 &nbsp;&nbsp;116.70 &nbsp;&nbsp;116.63 &nbsp;&nbsp;116.94 &nbsp;&nbsp;116.50<br>
+4 &nbsp;&nbsp;전국 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;현미 &nbsp;&nbsp;&nbsp;129.79 &nbsp;&nbsp;128.85 &nbsp;&nbsp;128.98 &nbsp;&nbsp;129.15 &nbsp;&nbsp;128.94 &nbsp;&nbsp;127.66<br>
+<br>
+<b>df.shape 결과:</b> (484, 8) | 결측치(null) 없음: 모든 컬럼 0
+                    </div>
+
+                    <!-- 2. 행열 전환(transpose) 및 헤더 재정의 -->
+                    <h1 class="chapter-h1">📌 2. 데이터 구조 재배치: 행열 전환(transpose)과 컬럼 설정</h1>
+                    <p class="section-desc">시간(시기)에 따른 품목별 지수 변화를 선형 그래프로 그리기 위해 행과 열을 맞바꾸고 불필요한 라벨을 정돈합니다.</p>
+
+                    <div class="code-block-wrapper">
+                        <div class="code-header"><span class="code-lang">PYTHON</span><span>행열 전환 및 인덱스 정제</span></div>
+                        <pre><code><span class="code-comment"># 1. 행과 열 맞바꾸기 (가로 시기 열들을 세로 인덱스로 변환)</span>
+df = df.transpose()
+
+<span class="code-comment"># 2. 불필요한 '시도별' 행 제거</span>
+df = df.drop(<span class="code-str">'시도별'</span>)
+
+<span class="code-comment"># 3. '품목별' 행의 값들을 새로운 열 제목(columns)으로 지정</span>
+df.columns = df.loc[<span class="code-str">'품목별'</span>]
+
+<span class="code-comment"># 4. 열 제목으로 올린 원래 '품목별' 행 삭제</span>
+df = df.drop(<span class="code-str">'품목별'</span>)
+df.head()</code></pre>
+                    </div>
+
+                    <span class="result-label">🖥️ 정제된 df 확인</span>
+                    <div class="result-box">
+품목별 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;총지수 &nbsp;농축수산물 &nbsp;(농산물)곡물 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;쌀 &nbsp;&nbsp;&nbsp;현미 &nbsp;... &nbsp;&nbsp;달걀 &nbsp;&nbsp;&nbsp;라면<br>
+2026.02 &nbsp;&nbsp;118.40 &nbsp;&nbsp;&nbsp;&nbsp;129.37 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;121.15 &nbsp;117.53 &nbsp;129.79 &nbsp;... &nbsp;141.5 &nbsp;128.0<br>
+2026.03 &nbsp;&nbsp;118.80 &nbsp;&nbsp;&nbsp;&nbsp;126.95 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;120.39 &nbsp;116.63 &nbsp;128.85 &nbsp;... &nbsp;142.2 &nbsp;126.6<br>
+2026.04 &nbsp;&nbsp;119.37 &nbsp;&nbsp;&nbsp;&nbsp;124.80 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;120.46 &nbsp;116.70 &nbsp;128.98 &nbsp;... &nbsp;145.8 &nbsp;126.4<br>
+2026.05 &nbsp;&nbsp;119.92 &nbsp;&nbsp;&nbsp;&nbsp;124.77 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;120.44 &nbsp;116.63 &nbsp;129.15 &nbsp;... &nbsp;153.5 &nbsp;126.7<br>
+2026.06 &nbsp;&nbsp;119.99 &nbsp;&nbsp;&nbsp;&nbsp;125.21 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;120.58 &nbsp;116.94 &nbsp;128.94 &nbsp;... &nbsp;157.0 &nbsp;126.7<br>
+2026.07 &nbsp;&nbsp;119.77 &nbsp;&nbsp;&nbsp;&nbsp;124.25 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;119.74 &nbsp;116.50 &nbsp;127.66 &nbsp;... &nbsp;155.6 &nbsp;127.0
+                    </div>
+
+                    <!-- 3. 주요 품목 비교 시각화 (달걀, 라면, 쌀, 총지수) -->
+                    <h1 class="chapter-h1">📊 3. 주요 품목별 소비자 물가지수 비교 시각화</h1>
+                    <p class="section-desc">기준시점(100) 대비 품목별 가격 변동 양상을 비교 관찰합니다.</p>
+
+                    <div class="code-block-wrapper">
+                        <div class="code-header"><span class="code-lang">PYTHON</span><span>주요 4대 품목 꺾은선 시각화</span></div>
+                        <pre><code>!pip install koreanize-matplotlib
+<span class="code-keyword">import</span> matplotlib.pyplot <span class="code-keyword">as</span> plt
+<span class="code-keyword">import</span> koreanize_matplotlib
+
+plt.figure(figsize=(<span class="code-str">10</span>, <span class="code-str">5</span>))
+plt.plot(df.index, df[<span class="code-str">'총지수'</span>], marker=<span class="code-str">'o'</span>, label=<span class="code-str">'총지수'</span>)
+plt.plot(df.index, df[<span class="code-str">'쌀'</span>], marker=<span class="code-str">'o'</span>, label=<span class="code-str">'쌀'</span>)
+plt.plot(df.index, df[<span class="code-str">'달걀'</span>], marker=<span class="code-str">'o'</span>, label=<span class="code-str">'달걀'</span>)
+plt.plot(df.index, df[<span class="code-str">'라면'</span>], marker=<span class="code-str">'o'</span>, label=<span class="code-str">'라면'</span>)
+plt.title(<span class="code-str">'전처리 전 품목별 소비자 물가지수'</span>, fontsize=<span class="code-str">18</span>)
+plt.xlabel(<span class="code-str">'시기'</span>)
+plt.ylabel(<span class="code-str">'소비자 물가지수'</span>)
+plt.legend()
+plt.grid(alpha=<span class="code-str">0.3</span>)
+plt.tight_layout()
+plt.show()</code></pre>
+                    </div>
+
+                    <!-- 4개 품목 비교 SVG (Colab 3페이지와 100% 동일) -->
                     <div class="chart-wrapper">
-                        <svg viewBox="0 0 650 220" width="100%" height="210" style="background:#ffffff;">
-                            <line x1="60" y1="20" x2="60" y2="180" stroke="#94a3b8" stroke-width="1.2"/>
-                            <line x1="60" y1="180" x2="630" y2="180" stroke="#94a3b8" stroke-width="1.2"/>
-                            <text x="44" y="35" font-size="10" fill="#64748b">7</text>
-                            <text x="44" y="75" font-size="10" fill="#64748b">6</text>
-                            <text x="44" y="115" font-size="10" fill="#64748b">5</text>
-                            <text x="44" y="155" font-size="10" fill="#64748b">4</text>
-                            <text x="60" y="200" font-size="10" fill="#64748b">1980</text>
-                            <text x="140" y="200" font-size="10" fill="#64748b">1985</text>
-                            <text x="220" y="200" font-size="10" fill="#64748b">1990</text>
-                            <text x="300" y="200" font-size="10" fill="#64748b">1995</text>
-                            <text x="380" y="200" font-size="10" fill="#64748b">2000</text>
-                            <text x="460" y="200" font-size="10" fill="#64748b">2005</text>
-                            <text x="540" y="200" font-size="10" fill="#64748b">2010</text>
-                            <text x="600" y="200" font-size="10" fill="#64748b">2015</text>
-                            <polyline points="60,42 75,28 90,36 105,32 120,48 135,52 150,38 165,40 180,68 195,58 210,34 225,48 240,65 255,59 270,72 285,85 300,95 315,78 330,118 345,102 360,148 375,128 390,132 405,116 420,138 435,125 450,136 465,142 480,95 495,120 510,122 525,140 540,145 555,135 570,165 585,128 600,126" fill="none" stroke="#0284c7" stroke-width="1.8"/>
-                            <line x1="60" y1="32" x2="600" y2="148" stroke="#f97316" stroke-width="2.2" stroke-dasharray="5,4"/>
-                            <rect x="470" y="22" width="150" height="34" fill="#ffffff" stroke="#cbd5e1" rx="6"/>
-                            <line x1="478" y1="32" x2="500" y2="32" stroke="#0284c7" stroke-width="2"/>
-                            <text x="506" y="35" font-size="9" fill="#334155">9월 평균 빙하 면적</text>
-                            <line x1="478" y1="46" x2="500" y2="46" stroke="#f97316" stroke-width="2" stroke-dasharray="4,2"/>
-                            <text x="506" y="49" font-size="9" fill="#334155">선형 추세선</text>
-                            <text x="240" y="24" font-size="12" font-weight="bold" fill="#0f172a">북극 9월 빙하 면적 변화</text>
+                        <svg viewBox="0 0 740 250" width="100%" height="235" style="background:#ffffff;">
+                            <line x1="60" y1="20" x2="60" y2="190" stroke="#94a3b8" stroke-width="1.2"/>
+                            <line x1="60" y1="190" x2="720" y2="190" stroke="#94a3b8" stroke-width="1.2"/>
+
+                            <!-- 보조 그리드선 -->
+                            <line x1="60" y1="35" x2="720" y2="35" stroke="#f1f5f9" stroke-width="1" stroke-dasharray="2,2"/>
+                            <line x1="60" y1="65" x2="720" y2="65" stroke="#f1f5f9" stroke-width="1" stroke-dasharray="2,2"/>
+                            <line x1="60" y1="95" x2="720" y2="95" stroke="#f1f5f9" stroke-width="1" stroke-dasharray="2,2"/>
+                            <line x1="60" y1="125" x2="720" y2="125" stroke="#f1f5f9" stroke-width="1" stroke-dasharray="2,2"/>
+                            <line x1="60" y1="155" x2="720" y2="155" stroke="#f1f5f9" stroke-width="1" stroke-dasharray="2,2"/>
+                            <line x1="60" y1="185" x2="720" y2="185" stroke="#f1f5f9" stroke-width="1" stroke-dasharray="2,2"/>
+
+                            <!-- Y축 라벨 (115 ~ 155) -->
+                            <text x="35" y="39" font-size="10" fill="#64748b">155</text>
+                            <text x="35" y="69" font-size="10" fill="#64748b">150</text>
+                            <text x="35" y="99" font-size="10" fill="#64748b">145</text>
+                            <text x="35" y="129" font-size="10" fill="#64748b">140</text>
+                            <text x="35" y="159" font-size="10" fill="#64748b">135</text>
+                            <text x="35" y="189" font-size="10" fill="#64748b">130</text>
+                            <text x="35" y="219" font-size="10" fill="#64748b">125</text>
+
+                            <!-- X축 6개 시기 라벨 -->
+                            <text x="80" y="208" font-size="10" fill="#475569" text-anchor="middle">2026.02</text>
+                            <text x="200" y="208" font-size="10" fill="#475569" text-anchor="middle">2026.03</text>
+                            <text x="320" y="208" font-size="10" fill="#475569" text-anchor="middle">2026.04</text>
+                            <text x="440" y="208" font-size="10" fill="#475569" text-anchor="middle">2026.05</text>
+                            <text x="560" y="208" font-size="10" fill="#475569" text-anchor="middle">2026.06</text>
+                            <text x="680" y="208" font-size="10" fill="#475569" text-anchor="middle">2026.07</text>
+
+                            <!-- 달걀 (초록색) -->
+                            <polyline points="80,116 200,112 320,92 440,48 560,28 680,35" fill="none" stroke="#22c55e" stroke-width="2"/>
+                            <circle cx="80" cy="116" r="3.5" fill="#22c55e"/>
+                            <circle cx="200" cy="112" r="3.5" fill="#22c55e"/>
+                            <circle cx="320" cy="92" r="3.5" fill="#22c55e"/>
+                            <circle cx="440" cy="48" r="3.5" fill="#22c55e"/>
+                            <circle cx="560" cy="28" r="3.5" fill="#22c55e"/>
+                            <circle cx="680" cy="35" r="3.5" fill="#22c55e"/>
+
+                            <!-- 라면 (붉은색) -->
+                            <polyline points="80,165 200,170 320,171 440,170 560,170 680,169" fill="none" stroke="#dc2626" stroke-width="1.8"/>
+                            <circle cx="80" cy="165" r="3" fill="#dc2626"/>
+                            <circle cx="200" cy="170" r="3" fill="#dc2626"/>
+                            <circle cx="320" cy="171" r="3" fill="#dc2626"/>
+                            <circle cx="440" cy="170" r="3" fill="#dc2626"/>
+                            <circle cx="560" cy="170" r="3" fill="#dc2626"/>
+                            <circle cx="680" cy="169" r="3" fill="#dc2626"/>
+
+                            <!-- 총지수 (파란색) -->
+                            <polyline points="80,185 200,184 320,182 440,180 560,180 680,181" fill="none" stroke="#0284c7" stroke-width="1.8"/>
+                            <circle cx="80" cy="185" r="3" fill="#0284c7"/>
+                            <circle cx="200" cy="184" r="3" fill="#0284c7"/>
+                            <circle cx="320" cy="182" r="3" fill="#0284c7"/>
+                            <circle cx="440" cy="180" r="3" fill="#0284c7"/>
+                            <circle cx="560" cy="180" r="3" fill="#0284c7"/>
+                            <circle cx="680" cy="181" r="3" fill="#0284c7"/>
+
+                            <!-- 쌀 (주황색) -->
+                            <polyline points="80,187 200,189 320,189 440,189 560,188 680,189" fill="none" stroke="#f97316" stroke-width="1.8"/>
+                            <circle cx="80" cy="187" r="3" fill="#f97316"/>
+                            <circle cx="200" cy="189" r="3" fill="#f97316"/>
+                            <circle cx="320" cy="189" r="3" fill="#f97316"/>
+                            <circle cx="440" cy="189" r="3" fill="#f97316"/>
+                            <circle cx="560" cy="188" r="3" fill="#f97316"/>
+                            <circle cx="680" cy="189" r="3" fill="#f97316"/>
+
+                            <!-- 범례 (Legend) -->
+                            <rect x="75" y="26" width="70" height="70" fill="#ffffff" stroke="#cbd5e1" rx="4"/>
+                            <circle cx="85" cy="38" r="3" fill="#0284c7"/><text x="94" y="41" font-size="8.5" fill="#334155">총지수</text>
+                            <circle cx="85" cy="52" r="3" fill="#f97316"/><text x="94" y="55" font-size="8.5" fill="#334155">쌀</text>
+                            <circle cx="85" cy="66" r="3" fill="#22c55e"/><text x="94" y="69" font-size="8.5" fill="#334155">달걀</text>
+                            <circle cx="85" cy="80" r="3" fill="#dc2626"/><text x="94" y="83" font-size="8.5" fill="#334155">라면</text>
+
+                            <text x="240" y="24" font-size="13" font-weight="bold" fill="#0f172a">전처리 전 품목별 소비자 물가지수</text>
+                        </svg>
+                    </div>
+
+                    <div class="tip-callout">
+                        <b>💡 왜 달걀 지수가 157까지 높게 치솟았을까?</b><br>
+                        • 달걀 물가지수가 157이라고 해서 올해 달걀 가격이 57% 올랐다는 뜻이 아니며, 물가지수는 <b>기준시점(100)</b> 대비 가격 수준을 비교한 값입니다.<br>
+                        • 2026년 들어 조류인플루엔자나 산란계 수급 등 <b>달걀 공급 감소</b>가 추가 가격 상승에 큰 영향을 주었습니다.<br>
+                        • 7월에 달걀 지수가 다소 하락한 것은 사육 두수 회복과 생산량 공급 개선 기대감이 반영되었기 때문입니다.
+                    </div>
+
+                    <!-- 4. 수치형 변환 및 총지수 단독 관찰 -->
+                    <h1 class="chapter-h1">📌 4. 수치형 변환(to_numeric)과 총지수 변화 관찰</h1>
+                    <p class="section-desc">행열 전환 후 모든 데이터 타입이 <code>object(문자열)</code>로 변경되었으므로, <code>pd.to_numeric</code>을 통해 안전하게 실수형(float64)으로 일괄 변환합니다.</p>
+
+                    <div class="code-block-wrapper">
+                        <div class="code-header"><span class="code-lang">PYTHON</span><span>자료형 변환 및 총지수 시각화</span></div>
+                        <pre><code><span class="code-comment"># 전체 문자열 데이터를 숫자로 변환 (변환 불가한 에러는 NaN 처리)</span>
+df = df.apply(pd.to_numeric, errors=<span class="code-str">'coerce'</span>)
+
+<span class="code-comment"># 총지수 단독 꺾은선 그래프</span>
+plt.figure(figsize=(<span class="code-str">10</span>, <span class="code-str">5</span>))
+plt.plot(df.index, df[<span class="code-str">'총지수'</span>], marker=<span class="code-str">'o'</span>)
+plt.title(<span class="code-str">'소비자 물가지수 변화'</span>, fontsize=<span class="code-str">18</span>)
+plt.xlabel(<span class="code-str">'시기'</span>)
+plt.ylabel(<span class="code-str">'소비자 물가지수'</span>)
+plt.grid(alpha=<span class="code-str">0.3</span>)
+plt.tight_layout()
+plt.show()</code></pre>
+                    </div>
+
+                    <!-- 5. 추세선 도출 및 데이터 해석의 한계 -->
+                    <h1 class="chapter-h1">📊 5. 선형 추세선(np.polyfit) 도출과 통계적 해석의 한계</h1>
+                    <p class="section-desc">시간 축을 계산 가능한 정수 인덱스(0, 1, 2, 3, 4, 5)로 변환한 뒤 1차 회귀 추세선을 계산하고 분석의 한계를 점검합니다.</p>
+
+                    <div class="code-block-wrapper">
+                        <div class="code-header"><span class="code-lang">PYTHON</span><span>추세선 산출 및 최종 그래프</span></div>
+                        <pre><code><span class="code-keyword">import</span> numpy <span class="code-keyword">as</span> np
+
+<span class="code-comment"># 1. x축을 계산 가능한 정수로 변환</span>
+x = np.arange(<span class="code-keyword">len</span>(df))  <span class="code-comment"># [0, 1, 2, 3, 4, 5]</span>
+y = df[<span class="code-str">'총지수'</span>].astype(float)
+
+<span class="code-comment"># 2. 1차 선형 회귀 추세선 계산 (기울기, 절편)</span>
+기울기, 절편 = np.polyfit(x, y, <span class="code-str">1</span>)
+print(f<span class="code-str">'기울기: {기울기:.2f}'</span>)
+print(f<span class="code-str">'절편: {절편:.2f}'</span>)
+
+<span class="code-comment"># 3. 추세선 수식 적용</span>
+추세선 = 기울기 * x + 절편
+
+<span class="code-comment"># 4. 시각화</span>
+plt.figure(figsize=(<span class="code-str">10</span>, <span class="code-str">5</span>))
+plt.plot(df.index, df[<span class="code-str">'총지수'</span>], marker=<span class="code-str">'o'</span>, label=<span class="code-str">'소비자 물가지수'</span>)
+plt.plot(df.index, 추세선, linestyle=<span class="code-str">'--'</span>, label=<span class="code-str">'추세선'</span>)
+plt.title(<span class="code-str">'소비자 물가지수 변화와 추세선'</span>, fontsize=<span class="code-str">18</span>)
+plt.xlabel(<span class="code-str">'시기'</span>)
+plt.ylabel(<span class="code-str">'소비자 물가지수'</span>)
+plt.legend()
+plt.grid(alpha=<span class="code-str">0.3</span>)
+plt.tight_layout()
+plt.show()</code></pre>
+                    </div>
+
+                    <span class="result-label">🖥️ 선형 추세선 산출 결과</span>
+                    <div class="result-box">
+기울기: 0.31<br>
+절편: 118.59
+                    </div>
+
+                    <!-- 총지수 + 추세선 SVG (Colab 6페이지 완벽 일치) -->
+                    <div class="chart-wrapper">
+                        <svg viewBox="0 0 740 250" width="100%" height="235" style="background:#ffffff;">
+                            <line x1="65" y1="20" x2="65" y2="190" stroke="#94a3b8" stroke-width="1.2"/>
+                            <line x1="65" y1="190" x2="720" y2="190" stroke="#94a3b8" stroke-width="1.2"/>
+
+                            <!-- 보조 그리드선 -->
+                            <line x1="65" y1="30" x2="720" y2="30" stroke="#f1f5f9" stroke-width="1" stroke-dasharray="2,2"/>
+                            <line x1="65" y1="56" x2="720" y2="56" stroke="#f1f5f9" stroke-width="1" stroke-dasharray="2,2"/>
+                            <line x1="65" y1="83" x2="720" y2="83" stroke="#f1f5f9" stroke-width="1" stroke-dasharray="2,2"/>
+                            <line x1="65" y1="110" x2="720" y2="110" stroke="#f1f5f9" stroke-width="1" stroke-dasharray="2,2"/>
+                            <line x1="65" y1="136" x2="720" y2="136" stroke="#f1f5f9" stroke-width="1" stroke-dasharray="2,2"/>
+                            <line x1="65" y1="163" x2="720" y2="163" stroke="#f1f5f9" stroke-width="1" stroke-dasharray="2,2"/>
+
+                            <!-- Y축 라벨 (118.50 ~ 120.00) -->
+                            <text x="25" y="34" font-size="9.5" fill="#64748b">120.00</text>
+                            <text x="25" y="60" font-size="9.5" fill="#64748b">119.75</text>
+                            <text x="25" y="87" font-size="9.5" fill="#64748b">119.50</text>
+                            <text x="25" y="114" font-size="9.5" fill="#64748b">119.25</text>
+                            <text x="25" y="140" font-size="9.5" fill="#64748b">119.00</text>
+                            <text x="25" y="167" font-size="9.5" fill="#64748b">118.75</text>
+                            <text x="25" y="193" font-size="9.5" fill="#64748b">118.50</text>
+
+                            <!-- X축 6개 시기 라벨 -->
+                            <text x="90" y="208" font-size="10" fill="#475569" text-anchor="middle">2026.02</text>
+                            <text x="210" y="208" font-size="10" fill="#475569" text-anchor="middle">2026.03</text>
+                            <text x="330" y="208" font-size="10" fill="#475569" text-anchor="middle">2026.04</text>
+                            <text x="450" y="208" font-size="10" fill="#475569" text-anchor="middle">2026.05</text>
+                            <text x="570" y="208" font-size="10" fill="#475569" text-anchor="middle">2026.06</text>
+                            <text x="690" y="208" font-size="10" fill="#475569" text-anchor="middle">2026.07</text>
+
+                            <!-- 실제 소비자 물가지수 (118.40 -> 119.99 -> 119.77) -->
+                            <polyline points="90,198 210,163 330,102 450,42 570,32 690,55" fill="none" stroke="#0284c7" stroke-width="2"/>
+                            <circle cx="90" cy="198" r="3.5" fill="#0284c7"/>
+                            <circle cx="210" cy="163" r="3.5" fill="#0284c7"/>
+                            <circle cx="330" cy="102" r="3.5" fill="#0284c7"/>
+                            <circle cx="450" cy="42" r="3.5" fill="#0284c7"/>
+                            <circle cx="570" cy="32" r="3.5" fill="#0284c7"/>
+                            <circle cx="690" cy="55" r="3.5" fill="#0284c7"/>
+
+                            <!-- 선형 추세선 (기울기 0.31, 절편 118.59) -->
+                            <line x1="90" y1="180" x2="690" y2="15" stroke="#f97316" stroke-width="2" stroke-dasharray="5,4"/>
+
+                            <!-- 범례 -->
+                            <rect x="75" y="26" width="120" height="42" fill="#ffffff" stroke="#cbd5e1" rx="4"/>
+                            <circle cx="86" cy="38" r="3" fill="#0284c7"/><text x="96" y="41" font-size="9" fill="#334155">소비자 물가지수</text>
+                            <line x1="80" y1="54" x2="92" y2="54" stroke="#f97316" stroke-width="2" stroke-dasharray="3,2"/><text x="96" y="57" font-size="9" fill="#334155">추세선</text>
+
+                            <text x="250" y="24" font-size="13" font-weight="bold" fill="#0f172a">소비자 물가지수 변화와 추세선</text>
                         </svg>
                     </div>
 
                     <div class="insight-callout">
-                        <div class="insight-title">🧊 데이터 분석 최종 결론</div>
-                        • <b>기울기가 음수(-):</b> 시간이 지날수록 9월 북극 해빙 면적이 유의미하게 감소하는 추세입니다.<br>
-                        • <b>감소량 정량화:</b> 해빙 면적 단위가 백만 km²이므로, <b>0.08 × 1,000,000 = 80,000 km²</b><br>
-                        • <b>핵심 결론:</b> 평균적으로 <b>매년 약 8만 km²씩</b> 북극의 바다얼음이 소멸하고 있음을 통계적으로 증명할 수 있습니다.
+                        <div class="insight-title">🛒 데이터 기반 사고: 추세선의 의미와 한계</div>
+                        • <b>① 그래프에서 무엇이 보이는가?</b> → 2026년 상반기 소비자물가지수가 대체로 완만하게 상승하고 있습니다.<br>
+                        • <b>② 추세선은 무엇을 보여주는가?</b> → 추세선이 우상향하고 있고 <b>기울기가 양수(+0.31)</b>이므로 전반적인 상승 경향을 통계적으로 확인할 수 있습니다.<br>
+                        • <b>③ 이것으로 무엇까지 말할 수 있는가? (중요)</b> → 2026년 2월~7월 기간 동안 물가지수가 상승 경향을 보였다는 사실까지만 확정할 수 있으며, 이를 바탕으로 <b>"앞으로도 물가는 무조건 계속 오른다"라고 섣불리 미래를 단정해 예측할 수는 없습니다.</b>
                     </div>
                 `
             }
