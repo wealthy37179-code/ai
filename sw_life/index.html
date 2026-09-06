@@ -18,6 +18,12 @@
             display: flex;
             flex-direction: column;
             overflow: hidden;
+
+            /* 아래 4줄을 추가하세요 (마우스 드래그 및 텍스트 선택 방지) */
+            -webkit-user-select: none; 
+            -moz-user-select: none;    
+            -ms-user-select: none;     
+            user-select: none;
         }
 
         header {
@@ -335,7 +341,8 @@
         }
     </style>
 </head>
-<body>
+<<!-- 기존 <body> 태그를 아래 코드로 변경하세요 -->
+<body oncontextmenu="return false" ondragstart="return false">>
 
     <header>
         <div class="header-left">
