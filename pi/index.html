@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>원주율 시뮬레이션 학습 자료실</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Malgun Gothic', '맑은 고딕', sans-serif;
+        }
+        body {
+            background-color: #f8fafc;
+            color: #1e293b;
+            min-height: 100vh;
+            padding: 36px 20px;
+            display: flex;
+            justify-content: center;
+        }
+        .studio-wrapper {
+            max-width: 1080px;
+            width: 100%;
+        }
+        
+        /* 상단 헤더 영역 */
+        .header-section {
+            text-align: center;
+            margin-bottom: 28px;
+        }
+        .main-badge {
+            display: inline-block;
+            background-color: #e0f2fe;
+            color: #0284c7;
+            font-size: 13px;
+            font-weight: 700;
+            padding: 6px 16px;
+            border-radius: 20px;
+            margin-bottom: 12px;
+            letter-spacing: -0.2px;
+        }
+        .main-title {
+            font-size: 26px;
+            font-weight: 800;
+            color: #0f172a;
+            letter-spacing: -0.5px;
+            margin-bottom: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+        }
+        .sub-desc {
+            font-size: 14px;
+            color: #64748b;
+        }
+
+        /* 2단 그리드 본문 레이아웃 */
+        .dashboard-grid {
+            display: grid;
+            grid-template-columns: 1.1fr 1fr;
+            gap: 22px;
+            align-items: start;
+        }
+        @media (max-width: 880px) {
+            .dashboard-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* 왼쪽: 파스텔 학습 카드 (2개) */
+        .curriculum-col {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+        .step-link-card {
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 16px;
+            padding: 16px 18px;
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            text-decoration: none;
+            color: inherit;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.02);
+            transition: all 0.2s ease;
+        }
+        .step-link-card:hover {
+            border-color: #38bdf8;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 16px rgba(56, 189, 248, 0.12);
+        }
+        .icon-box {
+            width: 48px;
+            height: 48px;
+            border-radius: 14px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            flex-shrink: 0;
+        }
+        .card-body {
+            flex: 1;
+        }
+        .card-tag {
+            font-size: 11px;
+            font-weight: 700;
+            padding: 2px 8px;
+            border-radius: 6px;
+            margin-bottom: 4px;
+            display: inline-block;
+        }
+        .card-heading {
+            font-size: 15px;
+            font-weight: 800;
+            color: #1e293b;
+            margin-bottom: 2px;
+        }
+        .card-subtext {
+            font-size: 12px;
+            color: #64748b;
+            line-height: 1.35;
+        }
+        .action-arrow {
+            color: #94a3b8;
+            font-size: 16px;
+            font-weight: bold;
+            transition: transform 0.2s, color 0.2s;
+        }
+        .step-link-card:hover .action-arrow {
+            color: #0284c7;
+            transform: translateX(3px);
+        }
+
+        .step-1 .icon-box { background: #eff6ff; }
+        .step-1 .card-tag { background: #e0f2fe; color: #0369a1; }
+
+        .step-2 .icon-box { background: #f5f3ff; }
+        .step-2 .card-tag { background: #ede9fe; color: #6d28d9; }
+
+        /* 오른쪽: 실시간 시뮬레이터 */
+        .simulator-col {
+            position: sticky;
+            top: 24px;
+            background: #ffffff;
+            border: 1px solid #e2e8f0;
+            border-radius: 20px;
+            padding: 22px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.04);
+        }
+        .sim-top-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 14px;
+        }
+        .sim-title {
+            font-size: 15px;
+            font-weight: 800;
+            color: #0f172a;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .live-tag {
+            background: #dbeafe;
+            border: 1px solid #bfdbfe;
+            color: #0284c7;
+            font-size: 11px;
+            font-weight: 800;
+            padding: 3px 8px;
+            border-radius: 6px;
+        }
+
+        /* 캔버스 도화지 (정사각형 비율 고정) */
+        .canvas-container {
+            background: #f8fafc;
+            border-radius: 14px;
+            border: 1px solid #edf2f7;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
+        }
+        canvas {
+            display: block;
+            width: 290px;
+            height: 290px;
+            border-radius: 10px;
+            background-color: #ffffff;
+            border: 1px solid #cbd5e1;
+        }
+
+        /* 수치 정보 스트립 */
+        .stats-strip {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin: 14px 0;
+        }
+        .stat-item {
+            background: #f8fafc;
+            border: 1px solid #edf2f7;
+            border-radius: 12px;
+            padding: 10px 12px;
+            text-align: center;
+        }
+        .stat-label {
+            font-size: 11.5px;
+            color: #64748b;
+            margin-bottom: 2px;
+        }
+        .stat-val {
+            font-size: 18px;
+            font-weight: 800;
+            color: #0284c7;
+            font-family: -apple-system, BlinkMacSystemFont, monospace;
+        }
+        .stat-val.pi-val {
+            color: #ea580c;
+        }
+
+        /* 버튼 패널 */
+        .btn-panel {
+            display: flex;
+            gap: 6px;
+            justify-content: space-between;
+            margin-bottom: 8px;
+        }
+        .ctrl-btn {
+            flex: 1;
+            background: #ffffff;
+            color: #334155;
+            border: 1px solid #cbd5e1;
+            padding: 9px 0;
+            border-radius: 10px;
+            font-size: 12px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .ctrl-btn:hover {
+            background: #e0f2fe;
+            color: #0284c7;
+            border-color: #7dd3fc;
+        }
+        .ctrl-btn.active {
+            background: #0284c7;
+            color: #ffffff;
+            border-color: #0284c7;
+            font-weight: 800;
+            box-shadow: 0 2px 8px rgba(2, 132, 199, 0.25);
+        }
+
+        .action-panel {
+            display: flex;
+            gap: 8px;
+        }
+        .action-btn {
+            flex: 1;
+            background: #0f172a;
+            color: white;
+            border: none;
+            padding: 11px 0;
+            border-radius: 10px;
+            font-size: 13px;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        .action-btn:hover {
+            background: #1e293b;
+        }
+        .action-btn.reset {
+            background: #e2e8f0;
+            color: #475569;
+        }
+        .action-btn.reset:hover {
+            background: #cbd5e1;
+        }
+
+        .footer-text {
+            text-align: center;
+            margin-top: 28px;
+            font-size: 12px;
+            color: #94a3b8;
+        }
+    </style>
+</head>
+<body>
+
+<div class="studio-wrapper">
+    <header class="header-section">
+        <div class="main-badge">몬테카를로 알고리즘 & 난수 시뮬레이션</div>
+        <h1 class="main-title">🎯 원주율(Pi) 시뮬레이션 학습 대시보드</h1>
+        <p class="sub-desc">점의 개수에 따라 원주율 추정값이 어떻게 변화하는지 실시간으로 관찰하세요.</p>
+    </header>
+
+    <main class="dashboard-grid">
+        <section class="curriculum-col">
+            <a href="원주율_개념.pdf" target="_blank" class="step-link-card step-1">
+                <div class="icon-box">📄</div>
+                <div class="card-body">
+                    <span class="card-tag">Concept Guide</span>
+                    <div class="card-heading">1. 몬테카를로 원주율 기본 원리</div>
+                    <div class="card-subtext">정사각형과 사분원의 넓이 비($\pi / 4$)를 활용한 확률적 추정 배경 이해</div>
+                </div>
+                <div class="action-arrow">➔</div>
+            </a>
+
+            <a href="원주율_코드.pdf" target="_blank" class="step-link-card step-2">
+                <div class="icon-box">💻</div>
+                <div class="card-body">
+                    <span class="card-tag">Python Source</span>
+                    <div class="card-heading">2. 터틀 도형 그리기 코드</div>
+                    <div class="card-subtext">draw_shape() 함수를 이용한 정사각형 및 원(circle) 드로잉 소스</div>
+                </div>
+                <div class="action-arrow">➔</div>
+            </a>
+        </section>
+
+        <aside class="simulator-col">
+            <div class="sim-top-info">
+                <div class="sim-title">⚡ 몬테카를로 실시간 캔버스</div>
+                <span class="live-tag">LIVE SIM</span>
+            </div>
+
+            <div class="canvas-container">
+                <!-- 캔버스 해상도를 정사각형(290x290)으로 일치시켜 원이 찌그러지지 않도록 수정 -->
+                <canvas id="piCanvas" width="290" height="290"></canvas>
+            </div>
+
+            <div class="stats-strip">
+                <div class="stat-item">
+                    <div class="stat-label">전체 점의 개수</div>
+                    <div class="stat-val" id="total-text">0개</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-label">추정된 원주율 (Pi)</div>
+                    <div class="stat-val pi-val" id="pi-text">0.0000</div>
+                </div>
+            </div>
+
+            <div class="btn-panel">
+                <button class="ctrl-btn active" onclick="runSim(100)">100개</button>
+                <button class="ctrl-btn" onclick="runSim(1000)">1,000개</button>
+                <button class="ctrl-btn" onclick="runSim(5000)">5,000개</button>
+                <button class="ctrl-btn" onclick="runSim(10000)">10,000개</button>
+            </div>
+
+            <div class="action-panel">
+                <button class="action-btn" id="playBtn" onclick="toggleContinuous()">연속 실행 (Play)</button>
+                <button class="action-btn reset" onclick="resetSim()">초기화</button>
+            </div>
+        </aside>
+    </main>
+
+    <footer class="footer-text">
+        © 파이썬 알고리즘 & 확률 통계 시뮬레이션
+    </footer>
+</div>
+
+<script>
+    const canvas = document.getElementById('piCanvas');
+    const ctx = canvas.getContext('2d');
+    const size = canvas.width;
+    const scale = size / 2;
+
+    let totalPoints = 0;
+    let insidePoints = 0;
+    let isPlaying = false;
+    let playInterval = null;
+
+    function drawShapeBackground() {
+        ctx.clearRect(0, 0, size, size);
+
+        // 1. 전체 영역 정사각형 테두리 (-1 ~ 1)
+        ctx.strokeStyle = '#cbd5e1';
+        ctx.lineWidth = 1.5;
+        ctx.strokeRect(0, 0, size, size);
+
+        // 2. 사분원 (또는 전체 원 영역 시각화)
+        ctx.beginPath();
+        ctx.arc(size / 2, size / 2, scale, 0, 2 * Math.PI);
+        ctx.strokeStyle = '#0284c7';
+        ctx.lineWidth = 2;
+        ctx.fillStyle = '#f0f9ff';
+        ctx.fill();
+        ctx.stroke();
+
+        // 중심 십자 가이드라인
+        ctx.strokeStyle = '#e2e8f0';
+        ctx.setLineDash([3, 3]);
+        ctx.beginPath();
+        ctx.moveTo(size / 2, 0); ctx.lineTo(size / 2, size);
+        ctx.moveTo(0, size / 2); ctx.lineTo(size, size / 2);
+        ctx.stroke();
+        ctx.setLineDash([]);
+    }
+
+    function addPoints(count) {
+        for (let i = 0; i < count; i++) {
+            // 최대 10,000개 제한 적용
+            if (totalPoints >= 10000) {
+                stopContinuous();
+                break;
+            }
+
+            // -1 ~ 1 사이의 난수 좌표 생성
+            const x = Math.random() * 2 - 1;
+            const y = Math.random() * 2 - 1;
+
+            // 캔버스 좌표계로 변환 (중앙이 0,0)
+            const cx = (x * scale) + (size / 2);
+            const cy = (y * scale) + (size / 2);
+
+            totalPoints++;
+
+            // 원 내부 판별 (x^2 + y^2 <= 1)
+            if (x * x + y * y <= 1) {
+                insidePoints++;
+                ctx.fillStyle = '#2563eb'; // 원 안: 파란색
+            } else {
+                ctx.fillStyle = '#dc2626'; // 원 밖: 빨간색
+            }
+
+            ctx.fillRect(cx - 1, cy - 1, 2, 2);
+        }
+
+        updateStats();
+    }
+
+    function updateStats() {
+        document.getElementById('total-text').innerText = totalPoints.toLocaleString() + '개';
+        let estimatedPi = totalPoints > 0 ? 4 * (insidePoints / totalPoints) : 0;
+        document.getElementById('pi-text').innerText = estimatedPi.toFixed(4);
+    }
+
+    function runSim(count) {
+        stopContinuous();
+        resetSim();
+        addPoints(count);
+        setActiveButton(event.target);
+    }
+
+    function setActiveButton(btn) {
+        if (!btn) return;
+        document.querySelectorAll('.ctrl-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+    }
+
+    function toggleContinuous() {
+        const playBtn = document.getElementById('playBtn');
+        if (isPlaying) {
+            stopContinuous();
+        } else {
+            // 이미 10,000개가 채워져 있다면 초기화 후 시작
+            if (totalPoints >= 10000) {
+                resetSim();
+            }
+            isPlaying = true;
+            playBtn.innerText = "일시정지 (Pause)";
+            playBtn.style.backgroundColor = "#b91c1c";
+            playInterval = setInterval(() => {
+                addPoints(200); // 200개씩 추가하며 점진적 실행
+                if (totalPoints >= 10000) {
+                    stopContinuous();
+                }
+            }, 40);
+        }
+    }
+
+    function stopContinuous() {
+        isPlaying = false;
+        if (playInterval) clearInterval(playInterval);
+        const playBtn = document.getElementById('playBtn');
+        playBtn.innerText = "연속 실행 (Play)";
+        playBtn.style.backgroundColor = "#0f172a";
+    }
+
+    function resetSim() {
+        stopContinuous();
+        totalPoints = 0;
+        insidePoints = 0;
+        drawShapeBackground();
+        updateStats();
+    }
+
+    // 초기 실행 시 배경판 그리기
+    drawShapeBackground();
+</script>
+
+</body>
+</html>
