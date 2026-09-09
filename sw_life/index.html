@@ -958,24 +958,27 @@ df = df.drop_duplicates()
 last_인덱스 = df[조건].index[-<span class="code-str">1</span>]
 
 <span class="code-comment"># 나누기 10 수정 전 데이터 확인</span>
-<span class="code-keyword">print</span>(<span class="code-str">"=== 수정 전 데이터 (과거 1000 단위 기준) ==="</span>)
-display(df.loc[[샘플_인덱스], [<span class="code-str">'모기지수 발생일'</span>, <span class="code-str">'모기지수(수변부)'</span>]])
+<span class="code-keyword">#print</span>(<span class="code-str">"=== 수정 전 데이터 (과거 1000 단위 기준) ==="</span>)
+#display(df.loc[[샘플_인덱스], [<span class="code-str">'모기지수 발생일'</span>, <span class="code-str">'모기지수(수변부)'</span>]])
 
 <span class="code-comment"># 해당 위치의 값을 10으로 나누어 수정</span>
-df.loc[샘플_인덱스, <span class="code-str">'모기지수(수변부)'</span>] = df.loc[샘플_인덱스, <span class="code-str">'모기지수(수변부)'</span>] / <span class="code-str">10</span>
+#df.loc[샘플_인덱스, <span class="code-str">'모기지수(수변부)'</span>] = df.loc[샘플_인덱스, <span class="code-str">'모기지수(수변부)'</span>] / <span class="code-str">10</span>
 
 <span class="code-comment"># 수정한 후 동일 행 다시 확인</span>
-<span class="code-keyword">print</span>(<span class="code-str">"=== 10으로 나눈 후 데이터 (현재 100 단위 기준 통일) ==="</span>)
-display(df.loc[[샘플_인덱스], [<span class="code-str">'모기지수 발생일'</span>, <span class="code-str">'모기지수(수변부)'</span>]])
+<span class="code-keyword">#print</span>(<span class="code-str">"=== 10으로 나눈 후 데이터 (현재 100 단위 기준 통일) ==="</span>)
+#display(df.loc[[샘플_인덱스], [<span class="code-str">'모기지수 발생일'</span>, <span class="code-str">'모기지수(수변부)'</span>]])
 
 <span class="code-comment"># 하나씩 수정하는 수작업을 for문으로 한번에 처리</span>
-<span class="code-keyword">print</span>(f<span class="code-str">'last_인덱스: {last_인덱스}'</span>)
 cols = [<span class="code-str">'모기지수(수변부)'</span>, <span class="code-str">'모기지수(주거지)'</span>, <span class="code-str">'모기지수(공원)'</span>]
 <span class="code-keyword">for</span> col <span class="code-keyword">in</span> cols:
     조건 = df[<span class="code-str">'모기지수 발생일'</span>] < <span class="code-str">'2020-04-01'</span>
     df.loc[조건, col] = (df.loc[조건, col] / <span class="code-str">10</span>)
 
-display(df.loc[[<span class="code-str">1965</span>], [<span class="code-str">'모기지수 발생일'</span>, <span class="code-str">'모기지수(수변부)'</span>]]) <span class="code-comment"># 가장 마지막행</span></code></pre>
+display(df.loc[[<span class="code-str">1965</span>], [<span class="code-str">'모기지수 발생일'</span>, <span class="code-str">'모기지수(수변부)'</span>]]) <span class="code-comment"># 가장 마지막행</span>
+
+<span class="code-comment"># df[조건].index를 통해 찾은 행의 수정여부를 확인하기 위해 파일로 다운받아보자.</span>
+df.to_csv('수정후.csv', encoding='cp949')</code></pre>
+
                     </div>
 
                     <h1 class="chapter-h1">📌 5. 2020년의 100 초과값을 100으로 수정</h1>
@@ -988,16 +991,15 @@ display(df.loc[[<span class="code-str">1965</span>], [<span class="code-str">'�
 샘플_인덱스 = df[조건].index[<span class="code-str">0</span>]
 last_인덱스 = df[조건].index[-<span class="code-str">1</span>]
 
-<span class="code-keyword">print</span>(<span class="code-str">"== 1. 수정 전 데이터 (100 초과) =="</span>)
-display(df.loc[[샘플_인덱스], [<span class="code-str">'모기지수 발생일'</span>, <span class="code-str">'모기지수(수변부)'</span>]])
+<span class="code-keyword">#print</span>(<span class="code-str">"== 1. 수정 전 데이터 (100 초과) =="</span>)
+#display(df.loc[[샘플_인덱스], [<span class="code-str">'모기지수 발생일'</span>, <span class="code-str">'모기지수(수변부)'</span>]])
 
-df.loc[샘플_인덱스, <span class="code-str">'모기지수(수변부)'</span>] = <span class="code-str">100</span>
+#df.loc[샘플_인덱스, <span class="code-str">'모기지수(수변부)'</span>] = <span class="code-str">100</span>
 
-<span class="code-keyword">print</span>(<span class="code-str">"== 2. 100으로 수정한 후 데이터 =="</span>)
-display(df.loc[[샘플_인덱스], [<span class="code-str">'모기지수 발생일'</span>, <span class="code-str">'모기지수(수변부)'</span>]])
+<span class="code-keyword">#print</span>(<span class="code-str">"== 2. 100으로 수정한 후 데이터 =="</span>)
+#display(df.loc[[샘플_인덱스], [<span class="code-str">'모기지수 발생일'</span>, <span class="code-str">'모기지수(수변부)'</span>]])
 
 <span class="code-comment"># 하나씩 수정하는 수작업을 for문으로 한번에 처리</span>
-<span class="code-keyword">print</span>(f<span class="code-str">'last_인덱스: {last_인덱스}'</span>)
 cols = [<span class="code-str">'모기지수(수변부)'</span>, <span class="code-str">'모기지수(주거지)'</span>, <span class="code-str">'모기지수(공원)'</span>]
 
 <span class="code-comment"># Pandas에서 날짜/시간(datetime) 값의 구성요소에 접근할 때</span>
