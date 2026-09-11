@@ -948,7 +948,7 @@ countdown(<span class="code-num">3</span>)</code></pre>
         });
 
         // ---------------------------------------------------------
-        // 4. 눈송이 삼각형
+        // 4. 눈송이 삼각형 (역삼각형 버전으로 수정됨)
         // ---------------------------------------------------------
         function drawKochSnowflake(depth) {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -959,9 +959,10 @@ countdown(<span class="code-num">3</span>)</code></pre>
             const R = size / Math.sqrt(3);
             const r = R / 2;
 
-            const p1 = { x: 0, y: -R };
-            const p2 = { x: size/2, y: r };
-            const p3 = { x: -size/2, y: r };
+            // 역삼각형이 되도록 좌표 설정 (Top-Left, Top-Right, Bottom)
+            const p1 = { x: -size/2, y: -r };
+            const p2 = { x: size/2, y: -r };
+            const p3 = { x: 0, y: R };
 
             let points = [];
             points.push(p1);
