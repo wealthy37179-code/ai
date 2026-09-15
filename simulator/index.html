@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>파이썬 알고리즘 학습 자료실</title>
+    <title>파이썬 알고리즘 시뮬레이션</title>
     <style>
         * {
             box-sizing: border-box;
@@ -28,34 +28,34 @@
 
         /* 상단 헤더 */
         header {
-            height: 58px;
+            height: 52px;
             background: #ffffff;
             border-bottom: 1px solid #e2e8f0;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 0 24px;
+            padding: 0 20px;
             flex-shrink: 0;
             z-index: 10;
         }
         .header-left {
             display: flex;
             align-items: center;
-            gap: 12px;
+            gap: 10px;
         }
         .header-logo {
-            font-size: 22px;
+            font-size: 20px;
             background: #e0f2fe;
             color: #0284c7;
-            width: 38px;
-            height: 38px;
+            width: 34px;
+            height: 34px;
             display: flex;
             align-items: center;
             justify-content: center;
-            border-radius: 10px;
+            border-radius: 8px;
         }
         .header-title {
-            font-size: 17px;
+            font-size: 16px;
             font-weight: 800;
             color: #0f172a;
             letter-spacing: -0.3px;
@@ -72,19 +72,19 @@
             color: #dc2626;
             font-size: 11.5px;
             font-weight: 800;
-            padding: 4px 12px;
-            border-radius: 16px;
+            padding: 4px 10px;
+            border-radius: 12px;
         }
 
-        /* 메인 2단 레이아웃 */
+        /* 메인 레이아웃 */
         .main-container {
             display: flex;
             flex: 1;
-            height: calc(100vh - 58px);
+            height: calc(100vh - 52px);
             overflow: hidden;
         }
 
-        /* 사이드바 넓이 원상복구 (260px) */
+        /* 사이드바 넓이 */
         .sidebar {
             width: 260px;
             background: #ffffff;
@@ -500,11 +500,11 @@
                 html: `
                     <h1 class="article-title">파이썬 터틀(Turtle) 모듈</h1>
                     <div class="article-intro">
-                        거북이를 이동시키고 제어하는 터틀 모듈의 기초부터, 반복문, 함수(def), 재귀 호출(Recursion)을 결합하여 프랙탈 도형을 그리는 전체 과정을 1~9차시에 걸쳐 학습합니다[cite: 2].
+                        거북이를 이동시키고 제어하는 터틀 모듈의 기초부터, 반복문, 함수(def), 재귀 호출(Recursion)을 결합하여 프랙탈 도형을 그리는 전체 과정을 1~9차시에 걸쳐 학습합니다.
                     </div>
 
                     <h1 class="chapter-h1">🐢 [1차시] 터틀 모듈 첫걸음과 기본 이동</h1>
-                    <p class="section-desc">핵심 개념 설명: 파이썬에서 화면에 그림을 그리기 위해 거북이를 불러옵니다[cite: 2]. 거북이는 우리가 지시하는 방향과 거리만큼 움직이며 선을 남깁니다[cite: 2]. 그리기 위한 가장 기초적인 펜의 역할을 익힙니다[cite: 2].</p>
+                    <p class="section-desc">핵심 개념 설명: 파이썬에서 화면에 그림을 그리기 위해 거북이를 불러옵니다. 거북이는 우리가 지시하는 방향과 거리만큼 움직이며 선을 남깁니다. 그리기 위한 가장 기초적인 펜의 역할을 익힙니다.</p>
                     
                     <div class="code-block-wrapper">
                         <div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div>
@@ -522,14 +522,14 @@ done()</code></pre>
                     </div>
                     <div class="result-box">
                         <b>🔍 코드 톺아보기</b><br>
-                        • <code>from turtle import *</code> : 거북이 그래픽 모듈을 불러오고 앞으로 편하게 t라는 별명으로 부릅니다[cite: 2].<br>
-                        • <code>shape("turtle")</code>: 화면에 나타나는 마우스 커서의 모양을 실제 거북이 형태로 바꾸어 시각적인 재미를 줍니다[cite: 2].<br>
-                        • <code>forward(100)</code>: 거북이가 현재 바라보고 있는 방향으로 100픽셀만큼 직진하며 궤적에 선을 긋습니다[cite: 2].<br>
-                        • <code>right(90)</code> : 거북이의 머리 방향을 제자리에서 오른쪽으로 90도 회전합니다[cite: 2].
+                        • <code>from turtle import *</code> : 거북이 그래픽 모듈을 불러오고 앞으로 편하게 t라는 별명으로 부릅니다.<br>
+                        • <code>shape(turtle)</code>: 화면에 나타나는 마우스 커서의 모양을 실제 거북이 형태로 바꾸어 시각적인 재미를 줍니다.<br>
+                        • <code>forward(100)</code>: 거북이가 현재 바라보고 있는 방향으로 100픽셀만큼 직진하며 궤적에 선을 긋습니다.<br>
+                        • <code>right(90)</code> : 거북이의 머리 방향을 제자리에서 오른쪽으로 90도 회전합니다.
                     </div>
 
                     <h1 class="chapter-h1">🔄 [2차시] 반복문(for)으로 다각형 그리기</h1>
-                    <p class="section-desc">핵심 개념 설명: 사각형을 그리려면 전진과 회전을 4번 반복해야 합니다[cite: 2]. 코드를 일일이 4번 적는 대신 반복문을 사용하면 코드를 짧고 효율적으로 작성할 수 있습니다[cite: 2].</p>
+                    <p class="section-desc">핵심 개념 설명: 사각형을 그리려면 전진과 회전을 4번 반복해야 합니다. 코드를 일일이 4번 적는 대신 반복문을 사용하면 코드를 짧고 효율적으로 작성할 수 있습니다.</p>
                     
                     <div class="code-block-wrapper">
                         <div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div>
@@ -545,13 +545,13 @@ done()</code></pre>
                     </div>
                     <div class="result-box">
                         <b>🔍 코드 톺아보기</b><br>
-                        • <code>for _ in range(4):</code> : 들여쓰기된 아래의 코드 블록을 정확히 4번 반복 실행하라는 의미입니다[cite: 2].<br>
-                        • <code>left(90)</code>: 왼쪽으로 90도 꺾습니다[cite: 2]. 만약 정삼각형을 그린다면 외각인 120도를 회전하도록 수정해야 합니다[cite: 2].<br>
-                        • <code>pensize(3)</code>: 거북이가 그리는 선의 굵기를 3픽셀로 설정하여 더 또렷한 선을 얻습니다[cite: 2].
+                        • <code>for _ in range(4):</code> : 들여쓰기된 아래의 코드 블록을 정확히 4번 반복 실행하라는 의미입니다.<br>
+                        • <code>left(90)</code>: 왼쪽으로 90도 꺾습니다. 만약 정삼각형을 그린다면 외각인 120도를 회전하도록 수정해야 합니다.<br>
+                        • <code>pensize(3)</code>: 거북이가 그리는 선의 굵기를 3픽셀로 설정하여 더 또렷한 선을 얻습니다.
                     </div>
 
                     <h1 class="chapter-h1">✏️ [3차시] 펜 들기(penup)와 내리기(pendown)</h1>
-                    <p class="section-desc">핵심 개념 설명: 화면 여러 위치에 흩어진 조각들을 그리려면 선을 그리지 않고 거북이를 이동시키는 기술이 필수적입니다[cite: 2]. 종이에서 펜을 살짝 떼어 이동하고 다시 내려놓는 원리입니다[cite: 2].</p>
+                    <p class="section-desc">핵심 개념 설명: 화면 여러 위치에 흩어진 조각들을 그리려면 선을 그리지 않고 거북이를 이동시키는 기술이 필수적입니다. 종이에서 펜을 살짝 떼어 이동하고 다시 내려놓는 원리입니다.</p>
                     
                     <div class="code-block-wrapper">
                         <div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div>
@@ -570,12 +570,12 @@ done()</code></pre>
                     </div>
                     <div class="result-box">
                         <b>🔍 코드 톺아보기</b><br>
-                        • <code>penup()</code>: 거북이가 이동할 때 바닥에 선이 그려지지 않도록 펜을 위로 들어 올립니다[cite: 2].<br>
-                        • <code>pendown()</code>: 다시 선을 그리며 이동할 수 있도록 펜을 바닥에 내려놓습니다[cite: 2].
+                        • <code>penup()</code>: 거북이가 이동할 때 바닥에 선이 그려지지 않도록 펜을 위로 들어 올립니다.<br>
+                        • <code>pendown()</code>: 다시 선을 그리며 이동할 수 있도록 펜을 바닥에 내려놓습니다.
                     </div>
 
                     <h1 class="chapter-h1">📍 [4차시] 절대 좌표 이동 (goto)</h1>
-                    <p class="section-desc">핵심 개념 설명: 화면의 정중앙은 x=0 y=0인 원점입니다[cite: 2]. 거북이가 현재 바라보는 방향과 무관하게 특정 목적지로 곧바로 날아가게 만들려면 절대 좌표를 이용해야 합니다[cite: 2]. 삼각형의 세 꼭짓점을 정확히 잡는 데 사용됩니다[cite: 2].</p>
+                    <p class="section-desc">핵심 개념 설명: 화면의 정중앙은 x=0 y=0인 원점입니다. 거북이가 현재 바라보는 방향과 무관하게 특정 목적지로 곧바로 날아가게 만들려면 절대 좌표를 이용해야 합니다. 삼각형의 세 꼭짓점을 정확히 잡는 데 사용됩니다.</p>
                     
                     <div class="code-block-wrapper">
                         <div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div>
@@ -597,12 +597,12 @@ done()</code></pre>
                     </div>
                     <div class="result-box">
                         <b>🔍 코드 톺아보기</b><br>
-                        • <code>A = (0, 100)</code>: x좌표 0, y좌표 100이라는 두 개의 값을 하나의 튜플 형태로 변수 A에 저장합니다[cite: 2].<br>
-                        • <code>goto(x, y)</code> : 거북이가 방향을 돌릴 필요 없이 지정된 x, y 좌표로 곧바로 직진하여 이동합니다[cite: 2].
+                        • <code>A = (0, 100)</code>: x좌표 0, y좌표 100이라는 두 개의 값을 하나의 튜플 형태로 변수 A에 저장합니다.<br>
+                        • <code>goto(x, y)</code> : 거북이가 방향을 돌릴 필요 없이 지정된 x, y 좌표로 곧바로 직진하여 이동합니다.
                     </div>
 
                     <h1 class="chapter-h1">🎨 [5차시] 도형 내부에 색상 채우기</h1>
-                    <p class="section-desc">핵심 개념 설명: 테두리만 있는 도형 내부를 색으로 칠하면 수많은 삼각형이 겹쳐지는 구조를 훨씬 뚜렷하게 관찰할 수 있습니다[cite: 2]. 색칠을 시작할 곳과 끝날 곳을 거북이에게 알려주는 방식을 배웁니다[cite: 2].</p>
+                    <p class="section-desc">핵심 개념 설명: 테두리만 있는 도형 내부를 색으로 칠하면 수많은 삼각형이 겹쳐지는 구조를 훨씬 뚜렷하게 관찰할 수 있습니다. 색칠을 시작할 곳과 끝날 곳을 거북이에게 알려주는 방식을 배웁니다.</p>
                     
                     <div class="code-block-wrapper">
                         <div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div>
@@ -620,13 +620,13 @@ done()</code></pre>
                     </div>
                     <div class="result-box">
                         <b>🔍 코드 톺아보기</b><br>
-                        • <code>color(테두리색, 채우기색)</code> : 거북이가 그릴 선의 색상과 도형 내부를 채울 색상을 동시에 설정합니다[cite: 2].<br>
-                        • <code>begin_fill()</code>: 지금부터 이동하는 궤적의 내부를 색칠할 것이라고 거북이에게 신호를 줍니다[cite: 2].<br>
-                        • <code>end_fill()</code> : 도형의 테두리가 완전히 닫히면 지정해둔 색상으로 내부를 가득 채웁니다[cite: 2].
+                        • <code>color(테두리색, 채우기색)</code> : 거북이가 그릴 선의 색상과 도형 내부를 채울 색상을 동시에 설정합니다.<br>
+                        • <code>begin_fill()</code>: 지금부터 이동하는 궤적의 내부를 색칠할 것이라고 거북이에게 신호를 줍니다.<br>
+                        • <code>end_fill()</code> : 도형의 테두리가 완전히 닫히면 지정해둔 색상으로 내부를 가득 채웁니다.
                     </div>
 
                     <h1 class="chapter-h1">🌀 [6차시] 중첩 반복문으로 기하학 패턴 만들기</h1>
-                    <p class="section-desc">핵심 개념 설명: 반복문 안에 또 다른 반복문을 넣으면 도형을 그리면서 동시에 회전하는 화려한 대칭 패턴을 쉽게 그릴 수 있습니다[cite: 2]. 반복적이고 대칭적인 성질을 이해하는 좋은 기초가 됩니다[cite: 2].</p>
+                    <p class="section-desc">핵심 개념 설명: 반복문 안에 또 다른 반복문을 넣으면 도형을 그리면서 동시에 회전하는 화려한 대칭 패턴을 쉽게 그릴 수 있습니다. 반복적이고 대칭적인 성질을 이해하는 좋은 기초가 됩니다.</p>
                     
                     <div class="code-block-wrapper">
                         <div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div>
@@ -644,12 +644,12 @@ done()</code></pre>
                     </div>
                     <div class="result-box">
                         <b>🔍 코드 톺아보기</b><br>
-                        • <code>speed(0)</code>: 거북이 애니메이션 속도를 가장 빠르게(0) 설정하여 복잡한 그림도 순식간에 그리도록 합니다[cite: 2].<br>
-                        • <b>중첩 for문</b> : 안쪽 for문이 3번 돌아 삼각형 하나를 완성하면, 바깥쪽 for문이 거북이를 30도 돌린 후 다시 안쪽 for문을 작동시키는 원리입니다[cite: 2].
+                        • <code>speed(0)</code>: 거북이 애니메이션 속도를 가장 빠르게(0) 설정하여 복잡한 그림도 순식간에 그리도록 합니다.<br>
+                        • <b>중첩 for문</b> : 안쪽 for문이 3번 돌아 삼각형 하나를 완성하면, 바깥쪽 for문이 거북이를 30도 돌린 후 다시 안쪽 for문을 작동시키는 원리입니다.
                     </div>
 
                     <h1 class="chapter-h1">🔲 [7차시] 함수(def)로 나만의 삼각형 도장 만들기</h1>
-                    <p class="section-desc">핵심 개념 설명: 삼각형을 그릴 때 삼각형을 그리는 코드를 수백 번 적을 수는 없습니다[cite: 2]. 세 꼭짓점 좌표를 전달받아 삼각형을 자동으로 그려주는 코드를 하나의 도장처럼 함수로 묶어둡니다[cite: 2].</p>
+                    <p class="section-desc">핵심 개념 설명: 삼각형을 그릴 때 삼각형을 그리는 코드를 수백 번 적을 수는 없습니다. 세 꼭짓점 좌표를 전달받아 삼각형을 자동으로 그려주는 코드를 하나의 도장처럼 함수로 묶어둡니다.</p>
                     
                     <div class="code-block-wrapper">
                         <div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div>
@@ -670,12 +670,12 @@ done()</code></pre>
                     </div>
                     <div class="result-box">
                         <b>🔍 코드 톺아보기</b><br>
-                        • <code>def draw_triangle</code>: 세 점의 정보를 전달받아 반복적으로 삼각형을 그려주는 나만의 명령어를 창조합니다[cite: 2].<br>
-                        • <code>p1[0], p1[1]</code>: 전달받은 좌표 튜플 p1에서 첫 번째 요소인 x좌표와 두 번째 요소인 y좌표를 꺼내어 사용합니다[cite: 2].
+                        • <code>def draw_triangle</code>: 세 점의 정보를 전달받아 반복적으로 삼각형을 그려주는 나만의 명령어를 창조합니다.<br>
+                        • <code>p1[0], p1[1]</code>: 전달받은 좌표 튜플 p1에서 첫 번째 요소인 x좌표와 두 번째 요소인 y좌표를 꺼내어 사용합니다.
                     </div>
 
                     <h1 class="chapter-h1">📐 [8차시] 두 점 사이의 중점(Midpoint) 구하기</h1>
-                    <p class="section-desc">핵심 개념 설명: 큰 삼각형을 작은 삼각형들로 정교하게 쪼개려면 각 선분의 정중앙 좌표를 정확히 계산해야 합니다[cite: 2]. 수학 시간에 배운 중점 공식이 코딩의 핵심 로직으로 바로 적용됩니다[cite: 2].</p>
+                    <p class="section-desc">핵심 개념 설명: 큰 삼각형을 작은 삼각형들로 정교하게 쪼개려면 각 선분의 정중앙 좌표를 정확히 계산해야 합니다. 수학 시간에 배운 중점 공식이 코딩의 핵심 로직으로 바로 적용됩니다.</p>
                     
                     <div class="code-block-wrapper">
                         <div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div>
@@ -693,12 +693,12 @@ M = get_midpoint(A, B)
                     </div>
                     <div class="result-box">
                         <b>🔍 코드 톺아보기</b><br>
-                        • <code>mid_x = (p1[0] + p2[0]) / 2</code>: 두 점의 x좌표를 더한 뒤 2로 나누어 x축의 정중앙 위치를 계산합니다[cite: 2].<br>
-                        • <code>return (mid_x, mid_y)</code>: 계산이 완료된 중점의 x, y 좌표를 하나의 튜플로 묶어서 함수 밖으로 돌려줍니다[cite: 2].
+                        • <code>mid_x = (p1[0] + p2[0]) / 2</code>: 두 점의 x좌표를 더한 뒤 2로 나누어 x축의 정중앙 위치를 계산합니다.<br>
+                        • <code>return (mid_x, mid_y)</code>: 계산이 완료된 중점의 x, y 좌표를 하나의 튜플로 묶어서 함수 밖으로 돌려줍니다.
                     </div>
 
                     <h1 class="chapter-h1">🔄 [9차시] 재귀 함수(Recursion)와 탈출 조건</h1>
-                    <p class="section-desc">핵심 개념 설명: 똑같은 모양이 끝없이 작아지며 반복되는 구조를 만들려면, 함수 안에서 자기 자신을 다시 부르는 기술이 필요합니다[cite: 2]. 컴퓨터가 무한 루프에 빠지지 않도록 안전장치를 만드는 법을 익힙니다[cite: 2].</p>
+                    <p class="section-desc">핵심 개념 설명: 똑같은 모양이 끝없이 작아지며 반복되는 구조를 만들려면, 함수 안에서 자기 자신을 다시 부르는 기술이 필요합니다. 컴퓨터가 무한 루프에 빠지지 않도록 안전장치를 만드는 법을 익힙니다.</p>
                     
                     <div class="code-block-wrapper">
                         <div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div>
@@ -716,13 +716,13 @@ countdown(<span class="code-num">3</span>)</code></pre>
                     </div>
                     <div class="result-box">
                         <b>🔍 코드 톺아보기</b><br>
-                        • <code>countdown(n-1)</code>: 함수 안에서 자신의 이름을 부르되, 전달하는 숫자를 1씩 줄여가며 호출하여 작업을 쪼갭니다[cite: 2].<br>
-                        • <code>if n == 0:</code> : 재귀 호출이 무한히 이어져 프로그램이 뻗는 것을 방지하기 위해 반드시 작성해야 하는 정지선(탈출 조건)입니다[cite: 2].
+                        • <code>countdown(n-1)</code>: 함수 안에서 자신의 이름을 부르되, 전달하는 숫자를 1씩 줄여가며 호출하여 작업을 쪼갭니다.<br>
+                        • <code>if n == 0:</code> : 재귀 호출이 무한히 이어져 프로그램이 뻗는 것을 방지하기 위해 반드시 작성해야 하는 정지선(탈출 조건)입니다.
                     </div>
                 `
             },
             
-            // [02. 눈송이 삼각형 시뮬레이션]
+            // [02. 눈송이 삼각형]
             lesson2: {
                 title: "02. 눈송이 삼각형",
                 icon: "❄️",
@@ -759,7 +759,7 @@ countdown(<span class="code-num">3</span>)</code></pre>
                 `
             },
             
-            // [03. 시어핀스키 시뮬레이션]
+            // [03. 시어핀스키]
             lesson3: {
                 title: "03. 시어핀스키",
                 icon: "🔺",
@@ -797,7 +797,7 @@ countdown(<span class="code-num">3</span>)</code></pre>
                 `
             },
             
-            // [04. 원주율 시뮬레이션]
+            // [04. 원주율]
             lesson4: {
                 title: "04. 원주율",
                 icon: "🎯",
@@ -805,7 +805,7 @@ countdown(<span class="code-num">3</span>)</code></pre>
                     <div class="simulator-card">
                         <div class="sim-header">
                             <div class="sim-title">⚡ 몬테카를로 실시간 캔버스</div>
-                            <div class="live-badge">LIVE CANVAS</div>
+                            <div class="live-badge blue">LIVE SIM</div>
                         </div>
                         
                         <div class="canvas-box" style="background:#ffffff;">
@@ -838,7 +838,7 @@ countdown(<span class="code-num">3</span>)</code></pre>
                 `
             },
 
-            // [05. 스택 시뮬레이션]
+            // [05. 스택]
             lesson5: {
                 title: "05. 스택",
                 icon: "📚",
@@ -846,7 +846,7 @@ countdown(<span class="code-num">3</span>)</code></pre>
                     <div class="simulator-card">
                         <div class="sim-header">
                             <div class="sim-title">⚡ 스택 (Stack) 자료구조 시뮬레이터</div>
-                            <div class="live-badge">LIVE CANVAS</div>
+                            <div class="live-badge blue">LIVE SIM</div>
                         </div>
                         
                         <div class="canvas-box">
@@ -873,7 +873,7 @@ countdown(<span class="code-num">3</span>)</code></pre>
                 `
             },
 
-            // [06. 큐 시뮬레이션]
+            // [06. 큐]
             lesson6: {
                 title: "06. 큐",
                 icon: "🚶",
@@ -881,7 +881,7 @@ countdown(<span class="code-num">3</span>)</code></pre>
                     <div class="simulator-card">
                         <div class="sim-header">
                             <div class="sim-title">⚡ 큐 (Queue) 자료구조 시뮬레이터</div>
-                            <div class="live-badge">LIVE CANVAS</div>
+                            <div class="live-badge blue">LIVE SIM</div>
                         </div>
                         
                         <div class="canvas-box">
@@ -977,22 +977,23 @@ countdown(<span class="code-num">3</span>)</code></pre>
         });
 
         // ---------------------------------------------------------
-        // 4. 눈송이 삼각형 (바운딩 박스 완벽 정가운데 보정)
+        // 4. 눈송이 삼각형 (역삼각형 기본 + 바운딩 박스 완벽 정가운데 보정)
         // ---------------------------------------------------------
         function drawKochSnowflake(depth) {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             ctx.strokeStyle = "#0ea5e9"; 
             ctx.lineWidth = 1.5;
 
-            // 크기를 키워 400x400 캔버스에 꽉 차게 설정
+            // 400x400 기준, 크기 설정
             const size = 260; 
             const R = size / Math.sqrt(3);
             const r = R / 2;
 
-            // 가상의 원점(0,0)을 기준으로 정삼각형 좌표 생성
-            const p1 = { x: 0, y: -R };
-            const p2 = { x: size/2, y: r };
-            const p3 = { x: -size/2, y: r };
+            // 역정삼각형 형태의 꼭짓점 3개를 (0,0) 원점 기준으로 생성
+            // 밑변이 위쪽에 오고 뾰족한 끝이 아래쪽을 향하게 됩니다.
+            const p1 = { x: -size/2, y: -r }; // 상단 왼쪽
+            const p2 = { x: size/2, y: -r };  // 상단 오른쪽
+            const p3 = { x: 0, y: R };        // 하단 끝
 
             // 모든 선분의 점을 배열에 수집
             let points = [];
@@ -1069,7 +1070,7 @@ countdown(<span class="code-num">3</span>)</code></pre>
             const p2 = { x: -size/2, y: h/2 }; 
             const p3 = { x: size/2, y: h/2 }; 
 
-            // 캔버스 200, 200 오프셋 적용 (정가운데)
+            // 캔버스의 완벽한 정가운데 오프셋
             const offsetX = canvas.width / 2;
             const offsetY = canvas.height / 2;
 
@@ -1198,6 +1199,7 @@ countdown(<span class="code-num">3</span>)</code></pre>
             if(!piIsRunning) return;
 
             let pointsToDraw = 100;
+            // 10,000개 도달 시 자동 정지 제한
             if (piPointsTotal + pointsToDraw >= 10000) {
                 pointsToDraw = 10000 - piPointsTotal;
                 piIsRunning = false; 
