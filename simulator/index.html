@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>파이썬 알고리즘 시뮬레이션</title>
+    <title>파이썬 알고리즘 학습 자료실</title>
     <style>
         * {
             box-sizing: border-box;
@@ -28,34 +28,34 @@
 
         /* 상단 헤더 */
         header {
-            height: 52px;
+            height: 58px;
             background: #ffffff;
             border-bottom: 1px solid #e2e8f0;
             display: flex;
             align-items: center;
             justify-content: space-between;
-            padding: 0 20px;
+            padding: 0 24px;
             flex-shrink: 0;
             z-index: 10;
         }
         .header-left {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
         }
         .header-logo {
-            font-size: 20px;
+            font-size: 22px;
             background: #e0f2fe;
             color: #0284c7;
-            width: 34px;
-            height: 34px;
+            width: 38px;
+            height: 38px;
             display: flex;
             align-items: center;
             justify-content: center;
-            border-radius: 8px;
+            border-radius: 10px;
         }
         .header-title {
-            font-size: 16px;
+            font-size: 17px;
             font-weight: 800;
             color: #0f172a;
             letter-spacing: -0.3px;
@@ -72,21 +72,21 @@
             color: #dc2626;
             font-size: 11.5px;
             font-weight: 800;
-            padding: 4px 10px;
-            border-radius: 12px;
+            padding: 4px 12px;
+            border-radius: 16px;
         }
 
-        /* 메인 레이아웃 */
+        /* 메인 2단 레이아웃 */
         .main-container {
             display: flex;
             flex: 1;
-            height: calc(100vh - 52px);
+            height: calc(100vh - 58px);
             overflow: hidden;
         }
 
-        /* 사이드바 */
+        /* 사이드바 넓이 원상복구 (260px) */
         .sidebar {
-            width: 320px;
+            width: 260px;
             background: #ffffff;
             border-right: 1px solid #e2e8f0;
             display: flex;
@@ -94,7 +94,7 @@
             flex-shrink: 0;
         }
         .sidebar-header {
-            padding: 14px 16px 8px 16px;
+            padding: 16px 18px 10px 18px;
             border-bottom: 1px solid #f1f5f9;
         }
         .sidebar-section-title {
@@ -109,24 +109,25 @@
         }
         .menu-list {
             list-style: none;
-            padding: 10px;
+            padding: 12px 10px;
             overflow-y: auto;
             flex: 1;
             display: flex;
             flex-direction: column;
-            gap: 4px;
+            gap: 5px;
         }
         .menu-item {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 12px;
             padding: 12px 14px;
-            border-radius: 8px;
-            font-size: 14.5px;
+            border-radius: 10px;
+            font-size: 14px;
             font-weight: 600;
             color: #475569;
             cursor: pointer;
             transition: all 0.15s ease;
+            user-select: none;
         }
         .menu-item:hover {
             background-color: #f1f5f9;
@@ -153,16 +154,16 @@
             overflow: hidden;
         }
         .content-header {
-            height: 48px;
+            height: 54px;
             background: #ffffff;
             border-bottom: 1px solid #e2e8f0;
-            padding: 0 24px;
+            padding: 0 28px;
             display: flex;
             align-items: center;
             flex-shrink: 0;
         }
         .current-topic {
-            font-size: 15px;
+            font-size: 16px;
             font-weight: 800;
             color: #0f172a;
             display: flex;
@@ -173,62 +174,61 @@
         .content-body {
             flex: 1;
             overflow-y: auto;
-            padding: 16px 30px;
+            padding: 24px 30px;
             background: #ffffff;
         }
         .article-container {
-            max-width: 800px;
+            max-width: 860px;
             margin: 0 auto;
+            line-height: 1.75;
         }
 
         /* 일반 텍스트 콘텐츠용 스타일 */
         .article-title {
-            font-size: 24px;
+            font-size: 26px;
             font-weight: 800;
             color: #0f172a;
-            margin-bottom: 10px;
+            margin-bottom: 12px;
             letter-spacing: -0.5px;
         }
         .article-intro {
-            font-size: 14px;
+            font-size: 14.5px;
             color: #475569;
             background: #f8fafc;
             border-left: 4px solid #0284c7;
-            padding: 12px 16px;
+            padding: 14px 18px;
             border-radius: 0 8px 8px 0;
             margin-bottom: 24px;
-            line-height: 1.6;
         }
         .chapter-h1 {
-            font-size: 18px;
+            font-size: 20px;
             font-weight: 800;
             color: #0f172a;
-            margin: 24px 0 12px 0;
+            margin: 30px 0 12px 0;
             padding-bottom: 6px;
             border-bottom: 2px solid #0284c7;
         }
         .section-desc {
-            font-size: 13.5px;
+            font-size: 14px;
             color: #334155;
-            margin-bottom: 8px;
-            line-height: 1.6;
+            margin-bottom: 10px;
         }
 
         /* 코드 블록 */
         .code-block-wrapper {
             background: #0f172a;
-            border-radius: 8px;
-            margin: 10px 0 16px 0;
+            border-radius: 10px;
+            margin: 12px 0 16px 0;
             overflow: hidden;
-            box-shadow: 0 3px 8px rgba(15, 23, 42, 0.08);
+            box-shadow: 0 3px 10px rgba(15, 23, 42, 0.08);
         }
         .code-header {
             background: #1e293b;
-            padding: 6px 14px;
+            padding: 7px 16px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            font-size: 11px;
+            font-size: 11.5px;
             color: #94a3b8;
             font-family: monospace;
         }
@@ -238,10 +238,10 @@
         }
         pre code {
             display: block;
-            padding: 12px 16px;
+            padding: 14px 18px;
             font-family: 'Consolas', 'Courier New', monospace;
-            font-size: 12.5px;
-            line-height: 1.5;
+            font-size: 13px;
+            line-height: 1.6;
             color: #e2e8f0;
             overflow-x: auto;
         }
@@ -256,7 +256,7 @@
             border-radius: 8px;
             padding: 14px 18px;
             margin: 8px 0 24px 0;
-            font-size: 13px;
+            font-size: 13.5px;
             color: #334155;
             line-height: 1.6;
         }
@@ -271,7 +271,7 @@
             border-radius: 12px;
             padding: 18px 24px;
             box-shadow: 0 4px 16px rgba(15, 23, 42, 0.04);
-            margin-top: 5px;
+            margin-top: 10px;
         }
         .sim-header {
             display: flex;
@@ -280,7 +280,7 @@
             margin-bottom: 12px;
         }
         .sim-title {
-            font-size: 16px;
+            font-size: 18px;
             font-weight: 800;
             color: #0f172a;
             display: flex;
@@ -290,8 +290,8 @@
         .live-badge {
             background: #fee2e2;
             color: #dc2626;
-            font-size: 11px;
-            padding: 4px 8px;
+            font-size: 11.5px;
+            padding: 4px 10px;
             border-radius: 6px;
             font-weight: 800;
             letter-spacing: 0.5px;
@@ -304,14 +304,13 @@
         .canvas-box {
             background: #f8fafc;
             border: 1px solid #e2e8f0;
-            border-radius: 8px;
+            border-radius: 10px;
             padding: 10px;
             display: flex;
             justify-content: center;
             align-items: center;
         }
         
-        /* 캔버스 공통 스타일 (모두 400x400 사이즈로 통일) */
         canvas {
             display: block;
             background: #ffffff;
@@ -323,49 +322,48 @@
         
         .info-row {
             display: flex;
-            gap: 12px;
-            margin-top: 12px;
+            gap: 16px;
+            margin-top: 16px;
         }
         .info-card {
             flex: 1;
             background: #ffffff;
             border: 1px solid #f1f5f9;
-            border-radius: 8px;
-            padding: 12px;
+            border-radius: 10px;
+            padding: 16px;
             text-align: center;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
-            /* 높이 고정: 글자 내용에 따라 캔버스가 흔들리는 버그 방지 */
-            height: 68px; 
+            box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+            height: 80px; 
             display: flex;
             flex-direction: column;
             justify-content: center;
         }
         .info-label {
-            font-size: 12px;
+            font-size: 13px;
             color: #64748b;
             margin-bottom: 4px;
             font-weight: 600;
         }
         .info-value {
-            font-size: 18px;
+            font-size: 22px;
             font-weight: 800;
             color: #0284c7;
         }
         
         .btn-row {
             display: flex;
-            gap: 6px;
-            margin-top: 12px;
+            gap: 8px;
+            margin-top: 16px;
             justify-content: center;
         }
         .sim-btn {
             flex: 1;
-            padding: 10px 0;
+            padding: 12px 0;
             background: #ffffff;
             border: 1px solid #cbd5e1;
-            border-radius: 6px;
+            border-radius: 8px;
             font-weight: 700;
-            font-size: 13px;
+            font-size: 14px;
             color: #475569;
             cursor: pointer;
             transition: all 0.2s ease;
@@ -377,14 +375,14 @@
             background: #0284c7;
             color: #ffffff;
             border-color: #0284c7;
-            box-shadow: 0 4px 8px rgba(2, 132, 199, 0.2);
+            box-shadow: 0 4px 10px rgba(2, 132, 199, 0.2);
         }
         .sim-input {
             flex: 2;
-            padding: 10px 12px;
+            padding: 10px 14px;
             border: 1px solid #cbd5e1;
-            border-radius: 6px;
-            font-size: 14px;
+            border-radius: 8px;
+            font-size: 15px;
             color: #1e293b;
             outline: none;
             text-align: center;
@@ -396,13 +394,13 @@
 
         .sim-footer {
             text-align: center;
-            font-size: 12px;
+            font-size: 12.5px;
             color: #64748b;
-            margin-top: 16px;
+            margin-top: 20px;
         }
         kbd {
             background: #e2e8f0;
-            padding: 2px 6px;
+            padding: 2px 8px;
             border-radius: 4px;
             font-family: monospace;
             font-weight: bold;
@@ -439,23 +437,23 @@
                 </li>
                 <li class="menu-item" onclick="selectLesson('lesson2', this)">
                     <span class="menu-icon">❄️</span>
-                    <span>02. 눈송이 삼각형 시뮬레이션</span>
+                    <span>02. 눈송이 삼각형</span>
                 </li>
                 <li class="menu-item" onclick="selectLesson('lesson3', this)">
                     <span class="menu-icon">🔺</span>
-                    <span>03. 시어핀스키 시뮬레이션</span>
+                    <span>03. 시어핀스키</span>
                 </li>
                 <li class="menu-item" onclick="selectLesson('lesson4', this)">
                     <span class="menu-icon">🎯</span>
-                    <span>04. 원주율 시뮬레이션</span>
+                    <span>04. 원주율</span>
                 </li>
                 <li class="menu-item" onclick="selectLesson('lesson5', this)">
                     <span class="menu-icon">📚</span>
-                    <span>05. 스택 시뮬레이션</span>
+                    <span>05. 스택</span>
                 </li>
                 <li class="menu-item" onclick="selectLesson('lesson6', this)">
                     <span class="menu-icon">🚶</span>
-                    <span>06. 큐 시뮬레이션</span>
+                    <span>06. 큐</span>
                 </li>
             </ul>
         </aside>
@@ -484,12 +482,10 @@
         let animationId = null;
         let canvas, ctx;
         
-        // 원주율 시뮬레이션용 변수
         let piPointsTotal = 0;
         let piPointsInside = 0;
         let piIsRunning = false;
 
-        // 스택/큐 시뮬레이션용 변수
         let stackData = [];
         let queueData = [];
         const MAX_SIZE = 5;
@@ -504,11 +500,11 @@
                 html: `
                     <h1 class="article-title">파이썬 터틀(Turtle) 모듈</h1>
                     <div class="article-intro">
-                        거북이를 이동시키고 제어하는 터틀 모듈의 기초부터, 반복문, 함수(def), 재귀 호출(Recursion)을 결합하여 프랙탈 도형을 그리는 전체 과정을 1~9차시에 걸쳐 학습합니다.
+                        거북이를 이동시키고 제어하는 터틀 모듈의 기초부터, 반복문, 함수(def), 재귀 호출(Recursion)을 결합하여 프랙탈 도형을 그리는 전체 과정을 1~9차시에 걸쳐 학습합니다[cite: 2].
                     </div>
 
                     <h1 class="chapter-h1">🐢 [1차시] 터틀 모듈 첫걸음과 기본 이동</h1>
-                    <p class="section-desc">핵심 개념 설명: 파이썬에서 화면에 그림을 그리기 위해 거북이를 불러옵니다. 거북이는 우리가 지시하는 방향과 거리만큼 움직이며 선을 남깁니다. 그리기 위한 가장 기초적인 펜의 역할을 익힙니다.</p>
+                    <p class="section-desc">핵심 개념 설명: 파이썬에서 화면에 그림을 그리기 위해 거북이를 불러옵니다[cite: 2]. 거북이는 우리가 지시하는 방향과 거리만큼 움직이며 선을 남깁니다[cite: 2]. 그리기 위한 가장 기초적인 펜의 역할을 익힙니다[cite: 2].</p>
                     
                     <div class="code-block-wrapper">
                         <div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div>
@@ -524,9 +520,16 @@ forward(<span class="code-num">100</span>)
 <span class="code-comment"># 실행 완료 후 창 유지</span>
 done()</code></pre>
                     </div>
+                    <div class="result-box">
+                        <b>🔍 코드 톺아보기</b><br>
+                        • <code>from turtle import *</code> : 거북이 그래픽 모듈을 불러오고 앞으로 편하게 t라는 별명으로 부릅니다[cite: 2].<br>
+                        • <code>shape("turtle")</code>: 화면에 나타나는 마우스 커서의 모양을 실제 거북이 형태로 바꾸어 시각적인 재미를 줍니다[cite: 2].<br>
+                        • <code>forward(100)</code>: 거북이가 현재 바라보고 있는 방향으로 100픽셀만큼 직진하며 궤적에 선을 긋습니다[cite: 2].<br>
+                        • <code>right(90)</code> : 거북이의 머리 방향을 제자리에서 오른쪽으로 90도 회전합니다[cite: 2].
+                    </div>
 
                     <h1 class="chapter-h1">🔄 [2차시] 반복문(for)으로 다각형 그리기</h1>
-                    <p class="section-desc">핵심 개념 설명: 사각형을 그리려면 전진과 회전을 4번 반복해야 합니다. 코드를 일일이 4번 적는 대신 반복문을 사용하면 코드를 짧고 효율적으로 작성할 수 있습니다.</p>
+                    <p class="section-desc">핵심 개념 설명: 사각형을 그리려면 전진과 회전을 4번 반복해야 합니다[cite: 2]. 코드를 일일이 4번 적는 대신 반복문을 사용하면 코드를 짧고 효율적으로 작성할 수 있습니다[cite: 2].</p>
                     
                     <div class="code-block-wrapper">
                         <div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div>
@@ -540,9 +543,15 @@ pensize(<span class="code-num">3</span>)
     left(<span class="code-num">90</span>)
 done()</code></pre>
                     </div>
+                    <div class="result-box">
+                        <b>🔍 코드 톺아보기</b><br>
+                        • <code>for _ in range(4):</code> : 들여쓰기된 아래의 코드 블록을 정확히 4번 반복 실행하라는 의미입니다[cite: 2].<br>
+                        • <code>left(90)</code>: 왼쪽으로 90도 꺾습니다[cite: 2]. 만약 정삼각형을 그린다면 외각인 120도를 회전하도록 수정해야 합니다[cite: 2].<br>
+                        • <code>pensize(3)</code>: 거북이가 그리는 선의 굵기를 3픽셀로 설정하여 더 또렷한 선을 얻습니다[cite: 2].
+                    </div>
 
                     <h1 class="chapter-h1">✏️ [3차시] 펜 들기(penup)와 내리기(pendown)</h1>
-                    <p class="section-desc">핵심 개념 설명: 화면 여러 위치에 흩어진 조각들을 그리려면 선을 그리지 않고 거북이를 이동시키는 기술이 필수적입니다. 종이에서 펜을 살짝 떼어 이동하고 다시 내려놓는 원리입니다.</p>
+                    <p class="section-desc">핵심 개념 설명: 화면 여러 위치에 흩어진 조각들을 그리려면 선을 그리지 않고 거북이를 이동시키는 기술이 필수적입니다[cite: 2]. 종이에서 펜을 살짝 떼어 이동하고 다시 내려놓는 원리입니다[cite: 2].</p>
                     
                     <div class="code-block-wrapper">
                         <div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div>
@@ -559,9 +568,14 @@ pendown()
 forward(<span class="code-num">50</span>)
 done()</code></pre>
                     </div>
+                    <div class="result-box">
+                        <b>🔍 코드 톺아보기</b><br>
+                        • <code>penup()</code>: 거북이가 이동할 때 바닥에 선이 그려지지 않도록 펜을 위로 들어 올립니다[cite: 2].<br>
+                        • <code>pendown()</code>: 다시 선을 그리며 이동할 수 있도록 펜을 바닥에 내려놓습니다[cite: 2].
+                    </div>
 
                     <h1 class="chapter-h1">📍 [4차시] 절대 좌표 이동 (goto)</h1>
-                    <p class="section-desc">핵심 개념 설명: 화면의 정중앙은 x=0 y=0인 원점입니다. 거북이가 현재 바라보는 방향과 무관하게 특정 목적지로 곧바로 날아가게 만들려면 절대 좌표를 이용해야 합니다. 삼각형의 세 꼭짓점을 정확히 잡는 데 사용됩니다.</p>
+                    <p class="section-desc">핵심 개념 설명: 화면의 정중앙은 x=0 y=0인 원점입니다[cite: 2]. 거북이가 현재 바라보는 방향과 무관하게 특정 목적지로 곧바로 날아가게 만들려면 절대 좌표를 이용해야 합니다[cite: 2]. 삼각형의 세 꼭짓점을 정확히 잡는 데 사용됩니다[cite: 2].</p>
                     
                     <div class="code-block-wrapper">
                         <div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div>
@@ -581,9 +595,14 @@ goto(C[<span class="code-num">0</span>], C[<span class="code-num">1</span>])  <s
 goto(A[<span class="code-num">0</span>], A[<span class="code-num">1</span>])  <span class="code-comment"># 다시 A로 돌아오기</span>
 done()</code></pre>
                     </div>
+                    <div class="result-box">
+                        <b>🔍 코드 톺아보기</b><br>
+                        • <code>A = (0, 100)</code>: x좌표 0, y좌표 100이라는 두 개의 값을 하나의 튜플 형태로 변수 A에 저장합니다[cite: 2].<br>
+                        • <code>goto(x, y)</code> : 거북이가 방향을 돌릴 필요 없이 지정된 x, y 좌표로 곧바로 직진하여 이동합니다[cite: 2].
+                    </div>
 
                     <h1 class="chapter-h1">🎨 [5차시] 도형 내부에 색상 채우기</h1>
-                    <p class="section-desc">핵심 개념 설명: 테두리만 있는 도형 내부를 색으로 칠하면 수많은 삼각형이 겹쳐지는 구조를 훨씬 뚜렷하게 관찰할 수 있습니다. 색칠을 시작할 곳과 끝날 곳을 거북이에게 알려주는 방식을 배웁니다.</p>
+                    <p class="section-desc">핵심 개념 설명: 테두리만 있는 도형 내부를 색으로 칠하면 수많은 삼각형이 겹쳐지는 구조를 훨씬 뚜렷하게 관찰할 수 있습니다[cite: 2]. 색칠을 시작할 곳과 끝날 곳을 거북이에게 알려주는 방식을 배웁니다[cite: 2].</p>
                     
                     <div class="code-block-wrapper">
                         <div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div>
@@ -599,9 +618,15 @@ begin_fill()
 end_fill()
 done()</code></pre>
                     </div>
+                    <div class="result-box">
+                        <b>🔍 코드 톺아보기</b><br>
+                        • <code>color(테두리색, 채우기색)</code> : 거북이가 그릴 선의 색상과 도형 내부를 채울 색상을 동시에 설정합니다[cite: 2].<br>
+                        • <code>begin_fill()</code>: 지금부터 이동하는 궤적의 내부를 색칠할 것이라고 거북이에게 신호를 줍니다[cite: 2].<br>
+                        • <code>end_fill()</code> : 도형의 테두리가 완전히 닫히면 지정해둔 색상으로 내부를 가득 채웁니다[cite: 2].
+                    </div>
 
                     <h1 class="chapter-h1">🌀 [6차시] 중첩 반복문으로 기하학 패턴 만들기</h1>
-                    <p class="section-desc">핵심 개념 설명: 반복문 안에 또 다른 반복문을 넣으면 도형을 그리면서 동시에 회전하는 화려한 대칭 패턴을 쉽게 그릴 수 있습니다. 반복적이고 대칭적인 성질을 이해하는 좋은 기초가 됩니다.</p>
+                    <p class="section-desc">핵심 개념 설명: 반복문 안에 또 다른 반복문을 넣으면 도형을 그리면서 동시에 회전하는 화려한 대칭 패턴을 쉽게 그릴 수 있습니다[cite: 2]. 반복적이고 대칭적인 성질을 이해하는 좋은 기초가 됩니다[cite: 2].</p>
                     
                     <div class="code-block-wrapper">
                         <div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div>
@@ -617,9 +642,14 @@ speed(<span class="code-num">0</span>) <span class="code-comment"># 거북이 �
     right(<span class="code-num">30</span>) <span class="code-comment"># 삼각형 하나 그리고 30도 회전</span>
 done()</code></pre>
                     </div>
+                    <div class="result-box">
+                        <b>🔍 코드 톺아보기</b><br>
+                        • <code>speed(0)</code>: 거북이 애니메이션 속도를 가장 빠르게(0) 설정하여 복잡한 그림도 순식간에 그리도록 합니다[cite: 2].<br>
+                        • <b>중첩 for문</b> : 안쪽 for문이 3번 돌아 삼각형 하나를 완성하면, 바깥쪽 for문이 거북이를 30도 돌린 후 다시 안쪽 for문을 작동시키는 원리입니다[cite: 2].
+                    </div>
 
                     <h1 class="chapter-h1">🔲 [7차시] 함수(def)로 나만의 삼각형 도장 만들기</h1>
-                    <p class="section-desc">핵심 개념 설명: 삼각형을 그릴 때 삼각형을 그리는 코드를 수백 번 적을 수는 없습니다. 세 꼭짓점 좌표를 전달받아 삼각형을 자동으로 그려주는 코드를 하나의 도장처럼 함수로 묶어둡니다.</p>
+                    <p class="section-desc">핵심 개념 설명: 삼각형을 그릴 때 삼각형을 그리는 코드를 수백 번 적을 수는 없습니다[cite: 2]. 세 꼭짓점 좌표를 전달받아 삼각형을 자동으로 그려주는 코드를 하나의 도장처럼 함수로 묶어둡니다[cite: 2].</p>
                     
                     <div class="code-block-wrapper">
                         <div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div>
@@ -638,9 +668,14 @@ done()</code></pre>
 draw_triangle((<span class="code-num">0</span>, <span class="code-num">80</span>), (-<span class="code-num">80</span>, -<span class="code-num">50</span>), (<span class="code-num">80</span>, -<span class="code-num">50</span>))
 done()</code></pre>
                     </div>
+                    <div class="result-box">
+                        <b>🔍 코드 톺아보기</b><br>
+                        • <code>def draw_triangle</code>: 세 점의 정보를 전달받아 반복적으로 삼각형을 그려주는 나만의 명령어를 창조합니다[cite: 2].<br>
+                        • <code>p1[0], p1[1]</code>: 전달받은 좌표 튜플 p1에서 첫 번째 요소인 x좌표와 두 번째 요소인 y좌표를 꺼내어 사용합니다[cite: 2].
+                    </div>
 
                     <h1 class="chapter-h1">📐 [8차시] 두 점 사이의 중점(Midpoint) 구하기</h1>
-                    <p class="section-desc">핵심 개념 설명: 큰 삼각형을 작은 삼각형들로 정교하게 쪼개려면 각 선분의 정중앙 좌표를 정확히 계산해야 합니다. 수학 시간에 배운 중점 공식이 코딩의 핵심 로직으로 바로 적용됩니다.</p>
+                    <p class="section-desc">핵심 개념 설명: 큰 삼각형을 작은 삼각형들로 정교하게 쪼개려면 각 선분의 정중앙 좌표를 정확히 계산해야 합니다[cite: 2]. 수학 시간에 배운 중점 공식이 코딩의 핵심 로직으로 바로 적용됩니다[cite: 2].</p>
                     
                     <div class="code-block-wrapper">
                         <div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div>
@@ -656,9 +691,14 @@ B = (<span class="code-num">100</span>, <span class="code-num">0</span>)
 M = get_midpoint(A, B)
 <span class="code-keyword">print</span>(<span class="code-str">"A와 B의 정중앙 좌표는:"</span>, M)</code></pre>
                     </div>
+                    <div class="result-box">
+                        <b>🔍 코드 톺아보기</b><br>
+                        • <code>mid_x = (p1[0] + p2[0]) / 2</code>: 두 점의 x좌표를 더한 뒤 2로 나누어 x축의 정중앙 위치를 계산합니다[cite: 2].<br>
+                        • <code>return (mid_x, mid_y)</code>: 계산이 완료된 중점의 x, y 좌표를 하나의 튜플로 묶어서 함수 밖으로 돌려줍니다[cite: 2].
+                    </div>
 
                     <h1 class="chapter-h1">🔄 [9차시] 재귀 함수(Recursion)와 탈출 조건</h1>
-                    <p class="section-desc">핵심 개념 설명: 똑같은 모양이 끝없이 작아지며 반복되는 구조를 만들려면, 함수 안에서 자기 자신을 다시 부르는 기술이 필요합니다. 컴퓨터가 무한 루프에 빠지지 않도록 안전장치를 만드는 법을 익힙니다.</p>
+                    <p class="section-desc">핵심 개념 설명: 똑같은 모양이 끝없이 작아지며 반복되는 구조를 만들려면, 함수 안에서 자기 자신을 다시 부르는 기술이 필요합니다[cite: 2]. 컴퓨터가 무한 루프에 빠지지 않도록 안전장치를 만드는 법을 익힙니다[cite: 2].</p>
                     
                     <div class="code-block-wrapper">
                         <div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div>
@@ -674,12 +714,17 @@ M = get_midpoint(A, B)
 
 countdown(<span class="code-num">3</span>)</code></pre>
                     </div>
+                    <div class="result-box">
+                        <b>🔍 코드 톺아보기</b><br>
+                        • <code>countdown(n-1)</code>: 함수 안에서 자신의 이름을 부르되, 전달하는 숫자를 1씩 줄여가며 호출하여 작업을 쪼갭니다[cite: 2].<br>
+                        • <code>if n == 0:</code> : 재귀 호출이 무한히 이어져 프로그램이 뻗는 것을 방지하기 위해 반드시 작성해야 하는 정지선(탈출 조건)입니다[cite: 2].
+                    </div>
                 `
             },
             
             // [02. 눈송이 삼각형 시뮬레이션]
             lesson2: {
-                title: "02. 눈송이 삼각형 시뮬레이션",
+                title: "02. 눈송이 삼각형",
                 icon: "❄️",
                 html: `
                     <div class="simulator-card">
@@ -716,7 +761,7 @@ countdown(<span class="code-num">3</span>)</code></pre>
             
             // [03. 시어핀스키 시뮬레이션]
             lesson3: {
-                title: "03. 시어핀스키 시뮬레이션",
+                title: "03. 시어핀스키",
                 icon: "🔺",
                 html: `
                     <div class="simulator-card">
@@ -754,7 +799,7 @@ countdown(<span class="code-num">3</span>)</code></pre>
             
             // [04. 원주율 시뮬레이션]
             lesson4: {
-                title: "04. 원주율 시뮬레이션",
+                title: "04. 원주율",
                 icon: "🎯",
                 html: `
                     <div class="simulator-card">
@@ -763,8 +808,8 @@ countdown(<span class="code-num">3</span>)</code></pre>
                             <div class="live-badge">LIVE CANVAS</div>
                         </div>
                         
-                        <div class="canvas-box">
-                            <canvas id="sim-canvas" width="400" height="400" style="background:#ffffff; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.05);"></canvas>
+                        <div class="canvas-box" style="background:#ffffff;">
+                            <canvas id="sim-canvas" width="400" height="400" style="border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.05);"></canvas>
                         </div>
                         
                         <div class="info-row">
@@ -795,7 +840,7 @@ countdown(<span class="code-num">3</span>)</code></pre>
 
             // [05. 스택 시뮬레이션]
             lesson5: {
-                title: "05. 스택 시뮬레이션",
+                title: "05. 스택",
                 icon: "📚",
                 html: `
                     <div class="simulator-card">
@@ -819,26 +864,18 @@ countdown(<span class="code-num">3</span>)</code></pre>
                             </div>
                         </div>
                         
-                        <div class="btn-row" style="margin-top: 16px;">
+                        <div class="btn-row">
                             <input type="text" id="stack-input" class="sim-input" placeholder="데이터 입력" autocomplete="off">
                             <button class="sim-btn" style="background:#dc2626; color:#ffffff; border:none;" onclick="pushStack()">PUSH</button>
                             <button class="sim-btn" style="background:#2563eb; color:#ffffff; border:none;" onclick="popStack()">POP</button>
                         </div>
-                    </div>
-
-                    <h1 class="chapter-h1">📚 [코드 톺아보기] 스택(Stack)의 동작 원리</h1>
-                    <div class="result-box">
-                    
-                        • <code>cvs.create_rectangle</code>로 스택 블록을 만듭니다.<br>
-                        • <code>len(stack_data) >= MAX_SIZE</code> 조건을 통해 오버플로우를 방지합니다.<br>
-                        • <code>stack_data.pop()</code>을 이용해 가장 최근 데이터를 꺼내며 언더플로우를 체크합니다.
                     </div>
                 `
             },
 
             // [06. 큐 시뮬레이션]
             lesson6: {
-                title: "06. 큐 시뮬레이션",
+                title: "06. 큐",
                 icon: "🚶",
                 html: `
                     <div class="simulator-card">
@@ -862,26 +899,18 @@ countdown(<span class="code-num">3</span>)</code></pre>
                             </div>
                         </div>
                         
-                        <div class="btn-row" style="margin-top: 16px;">
+                        <div class="btn-row">
                             <input type="text" id="queue-input" class="sim-input" placeholder="데이터 입력" autocomplete="off">
                             <button class="sim-btn" style="background:#dc2626; color:#ffffff; border:none;" onclick="enqueueData()">Enqueue</button>
                             <button class="sim-btn" style="background:#2563eb; color:#ffffff; border:none;" onclick="dequeueData()">Dequeue</button>
                         </div>
-                    </div>
-
-                    <h1 class="chapter-h1">🚶 [코드 톺아보기] 큐(Queue)의 동작 원리</h1>
-                    <div class="result-box">
-            
-                        • <code>queue_data.pop(0)</code>으로 큐의 front(가장 앞) 데이터를 제거합니다.<br>
-                        • <code>cvs.move(old_tag, -80, 0)</code>를 통해 남은 블록들을 앞으로 이동시킵니다.<br>
-                        • <code>cvs.itemconfig</code>로 이미 만들어진 요소의 속성(태그 등)을 실행 도중 변경합니다.
                     </div>
                 `
             }
         };
 
         // ---------------------------------------------------------
-        // 메뉴 선택 및 화면 렌더링 로직
+        // 2. 메뉴 선택 및 화면 렌더링 로직
         // ---------------------------------------------------------
         function selectLesson(lessonKey, element) {
             cancelAnimationFrame(animationId);
@@ -948,28 +977,31 @@ countdown(<span class="code-num">3</span>)</code></pre>
         });
 
         // ---------------------------------------------------------
-        // 4. 눈송이 삼각형 (역삼각형 버전으로 수정됨)
+        // 4. 눈송이 삼각형 (바운딩 박스 완벽 정가운데 보정)
         // ---------------------------------------------------------
         function drawKochSnowflake(depth) {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             ctx.strokeStyle = "#0ea5e9"; 
             ctx.lineWidth = 1.5;
 
+            // 크기를 키워 400x400 캔버스에 꽉 차게 설정
             const size = 260; 
             const R = size / Math.sqrt(3);
             const r = R / 2;
 
-            // 역삼각형이 되도록 좌표 설정 (Top-Left, Top-Right, Bottom)
-            const p1 = { x: -size/2, y: -r };
-            const p2 = { x: size/2, y: -r };
-            const p3 = { x: 0, y: R };
+            // 가상의 원점(0,0)을 기준으로 정삼각형 좌표 생성
+            const p1 = { x: 0, y: -R };
+            const p2 = { x: size/2, y: r };
+            const p3 = { x: -size/2, y: r };
 
+            // 모든 선분의 점을 배열에 수집
             let points = [];
             points.push(p1);
             getKochPoints(p1, p2, depth, points);
             getKochPoints(p2, p3, depth, points);
             getKochPoints(p3, p1, depth, points);
 
+            // 생성된 모든 점을 순회하며 바운딩 박스(Bounding Box)의 최소/최대 좌표 도출
             let minX = Infinity, maxX = -Infinity;
             let minY = Infinity, maxY = -Infinity;
             for(let p of points) {
@@ -979,11 +1011,13 @@ countdown(<span class="code-num">3</span>)</code></pre>
                 if(p.y > maxY) maxY = p.y;
             }
 
+            // 바운딩 박스의 중심점을 캔버스의 정중앙(200, 200)에 맞추기 위한 이동값(Offset) 계산
             const bboxCenterX = (minX + maxX) / 2;
             const bboxCenterY = (minY + maxY) / 2;
             const offsetX = canvas.width / 2 - bboxCenterX;
             const offsetY = canvas.height / 2 - bboxCenterY;
 
+            // 계산된 오프셋을 더하여 캔버스에 최종 렌더링
             ctx.beginPath();
             ctx.moveTo(points[0].x + offsetX, points[0].y + offsetY);
             for(let i=1; i<points.length; i++) {
@@ -996,6 +1030,7 @@ countdown(<span class="code-num">3</span>)</code></pre>
             document.getElementById('val-count').innerText = (points.length - 1) + "개";
         }
 
+        // 재귀 호출을 통해 점(Point) 데이터를 분할하여 수집하는 함수
         function getKochPoints(p1, p2, depth, points) {
             if (depth === 0) {
                 points.push(p2);
@@ -1020,18 +1055,21 @@ countdown(<span class="code-num">3</span>)</code></pre>
         }
 
         // ---------------------------------------------------------
-        // 5. 시어핀스키 삼각형
+        // 5. 시어핀스키 삼각형 (바운딩 박스 정중앙 배치)
         // ---------------------------------------------------------
         function drawSierpinski(depth) {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             
+            // 크기 확대
             const size = 360;
             const h = size * Math.sqrt(3) / 2;
 
+            // 가상 좌표계 (바운딩 박스 높이의 절반을 원점으로)
             const p1 = { x: 0, y: -h/2 }; 
             const p2 = { x: -size/2, y: h/2 }; 
             const p3 = { x: size/2, y: h/2 }; 
 
+            // 캔버스 200, 200 오프셋 적용 (정가운데)
             const offsetX = canvas.width / 2;
             const offsetY = canvas.height / 2;
 
@@ -1219,7 +1257,6 @@ countdown(<span class="code-num">3</span>)</code></pre>
         function drawStack() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             
-            // 컨테이너 그리기
             ctx.beginPath();
             ctx.moveTo(140, 100);
             ctx.lineTo(140, 350);
@@ -1229,16 +1266,15 @@ countdown(<span class="code-num">3</span>)</code></pre>
             ctx.lineWidth = 4;
             ctx.stroke();
 
-            // 블록 그리기
             ctx.font = "bold 15px sans-serif";
             ctx.textAlign = "center";
             ctx.textBaseline = "middle";
 
             for(let i=0; i<stackData.length; i++) {
                 let x = 150;
-                let y = 300 - (i * 45); // 쌓아 올리는 위치
+                let y = 300 - (i * 45); 
 
-                ctx.fillStyle = "#bae6fd"; // lightblue
+                ctx.fillStyle = "#bae6fd"; 
                 ctx.fillRect(x, y, 100, 40);
                 
                 ctx.strokeStyle = "#0284c7";
@@ -1293,7 +1329,6 @@ countdown(<span class="code-num">3</span>)</code></pre>
             canvas = document.getElementById('sim-canvas');
             ctx = canvas.getContext('2d');
             queueData = [];
-            // 컨텍스트 환경 초기화 (UI 밀림 현상 완벽 차단)
             ctx.textBaseline = "alphabetic";
             drawQueue();
         }
@@ -1301,7 +1336,6 @@ countdown(<span class="code-num">3</span>)</code></pre>
         function drawQueue() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
             
-            // 컨테이너 그리기 (가로 형태)
             ctx.beginPath();
             ctx.moveTo(40, 180);
             ctx.lineTo(360, 180);
@@ -1311,7 +1345,6 @@ countdown(<span class="code-num">3</span>)</code></pre>
             ctx.lineWidth = 4;
             ctx.stroke();
 
-            // 라벨 텍스트 (명시적으로 textBaseline을 bottom으로 고정)
             ctx.font = "bold 14px sans-serif";
             ctx.textBaseline = "bottom";
             ctx.fillStyle = "#2563eb";
@@ -1322,7 +1355,6 @@ countdown(<span class="code-num">3</span>)</code></pre>
             ctx.textAlign = "right";
             ctx.fillText("IN (rear)", 360, 170);
 
-            // 블록 그리기 (텍스트 기준점 middle로 변경)
             ctx.font = "bold 14px sans-serif";
             ctx.textBaseline = "middle";
             ctx.textAlign = "center";
