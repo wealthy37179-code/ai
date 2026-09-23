@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>2027학년도 수시 10월~12월 대학일정 달력</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Malgun Gothic', '맑은 고딕', sans-serif;
+        }
+        body {
+            background-color: #f8fafc;
+            color: #1e293b;
+            padding: 20px;
+        }
+        
+        .calendar-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+            padding: 24px;
+            border: 1px solid #e2e8f0;
+        }
+
+        /* 헤더 영역 */
+        .calendar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        .header-title-box {
+            display: flex;
+            align-items: center;
+            gap: 16px;
+        }
+        .month-nav-btn {
+            background: #f1f5f9;
+            border: none;
+            color: #475569;
+            font-size: 18px;
+            font-weight: bold;
+            width: 36px;
+            height: 36px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .month-nav-btn:hover {
+            background: #e2e8f0;
+            color: #0f172a;
+        }
+        .calendar-title {
+            font-size: 24px;
+            font-weight: 800;
+            color: #0f172a;
+        }
+        .calendar-info {
+            font-size: 13px;
+            color: #64748b;
+        }
+        
+        /* 범례 (Legend) */
+        .legend-box {
+            display: flex;
+            gap: 12px;
+            font-size: 13px;
+            font-weight: 600;
+        }
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
+        .legend-color {
+            width: 12px;
+            height: 12px;
+            border-radius: 3px;
+        }
+
+        /* 달력 그리드 */
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 1px;
+            background-color: #e2e8f0;
+            border: 1px solid #e2e8f0;
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .day-name {
+            background-color: #f8fafc;
+            text-align: center;
+            padding: 12px 0;
+            font-weight: 700;
+            font-size: 14px;
+            color: #475569;
+        }
+        .day-name.sun { color: #dc2626; }
+        .day-name.sat { color: #2563eb; }
+
+        .day-cell {
+            background-color: #ffffff;
+            min-height: 140px;
+            padding: 8px;
+            display: flex;
+            flex-direction: column;
+        }
+        .day-cell.other-month {
+            background-color: #fcfcfd;
+            color: #cbd5e1;
+        }
+        
+        .date-number {
+            font-size: 14px;
+            font-weight: 700;
+            margin-bottom: 6px;
+            color: #334155;
+            display: inline-block;
+        }
+        .day-cell:nth-child(7n+1) .date-number { color: #ef4444; } /* 일요일 빨간색 */
+        .day-cell:nth-child(7n) .date-number { color: #3b82f6; }   /* 토요일 파란색 */
+        .other-month .date-number { color: #cbd5e1 !important; }
+
+        /* 이벤트 배지 */
+        .event-list {
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            flex: 1;
+        }
+        .event-badge {
+            padding: 4px 6px;
+            border-radius: 4px;
+            font-size: 11.5px;
+            line-height: 1.4;
+            border: 1px solid transparent;
+            word-break: break-all;
+        }
+        .event-badge strong {
+            display: inline-block;
+            margin-bottom: 2px;
+        }
+        .event-badge .evt-time {
+            font-weight: bold;
+            color: #0f172a;
+            background: rgba(255,255,255,0.6);
+            padding: 0 4px;
+            border-radius: 2px;
+            margin-left: 4px;
+        }
+        
+    </style>
+</head>
+<body>
+
+    <div class="calendar-container">
+        
+        <div class="calendar-header">
+            <div class="header-title-box">
+                <button class="month-nav-btn" onclick="changeMonth(-1)">&lt;</button>
+                <div class="calendar-title" id="current-month-title">2026년 10월</div>
+                <button class="month-nav-btn" onclick="changeMonth(1)">&gt;</button>
+            </div>
+            <div>
+                <div class="calendar-info" style="text-align:right; margin-bottom:6px;">
+                    ※ 관심대학 리스트 기준 2027학년도 수시 일정 (고사장 및 시간 최종 확인 요망)
+                </div>
+                <div class="legend-box" style="justify-content: flex-end;">
+                    <div class="legend-item"><div class="legend-color" style="background:#eff6ff; border:1px solid #bfdbfe;"></div> <span style="color:#1d4ed8;">1단계 발표</span></div>
+                    <div class="legend-item"><div class="legend-color" style="background:#f0fdf4; border:1px solid #bbf7d0;"></div> <span style="color:#15803d;">면접</span></div>
+                    <div class="legend-item"><div class="legend-color" style="background:#fff7ed; border:1px solid #fed7aa;"></div> <span style="color:#c2410c;">실기</span></div>
+                    <div class="legend-item"><div class="legend-color" style="background:#faf5ff; border:1px solid #e9d5ff;"></div> <span style="color:#7e22ce;">복합일정</span></div>
+                </div>
+            </div>
+        </div>
+
+        <div class="calendar-grid" id="calendar-grid">
+            <!-- 요일 헤더 -->
+            <div class="day-name sun">일</div>
+            <div class="day-name">월</div>
+            <div class="day-name">화</div>
+            <div class="day-name">수</div>
+            <div class="day-name">목</div>
+            <div class="day-name">금</div>
+            <div class="day-name sat">토</div>
+            <!-- 일자 셀이 여기에 동적 생성됨 -->
+        </div>
+
+    </div>
+
+    <script>
+        // 엑셀에서 추출한 10월~12월 전체 일정 데이터
+        const eventsData = [
+          {"start_date": "2026-10-01", "end_date": "2026-10-01", "type": "실기", "student": "이가예", "univ": "세한대학교(당진)", "dept": "AI융합콘텐츠학 부", "time": "", "bg_color": "#fff7ed", "text_color": "#c2410c"},
+          {"start_date": "2026-10-02", "end_date": "2026-10-02", "type": "1단계", "student": "우해나", "univ": "안양대학교(강화)", "dept": "게임콘텐츠학과", "time": "", "bg_color": "#eff6ff", "text_color": "#1d4ed8"},
+          {"start_date": "2026-10-02", "end_date": "2026-10-02", "type": "1단계", "student": "조혜원", "univ": "인천가톨릭대 학교(송도)", "dept": "융합디자인학과", "time": "11:00", "bg_color": "#eff6ff", "text_color": "#1d4ed8"},
+          {"start_date": "2026-10-02", "end_date": "2026-10-11", "type": "실기", "student": "장리아", "univ": "서경대학교(서울)", "dept": "영화영상학과", "time": "", "bg_color": "#fff7ed", "text_color": "#c2410c"},
+          {"start_date": "2026-10-03", "end_date": "2026-10-05", "type": "실기", "student": "장리아", "univ": "성결대학교(안양)", "dept": "영화영상학과", "time": "", "bg_color": "#fff7ed", "text_color": "#c2410c"},
+          {"start_date": "2026-10-03", "end_date": "2026-10-04", "type": "실기", "student": "장리아", "univ": "숭실대학교(서울)", "dept": "예술창작학부 영화예술전공", "time": "", "bg_color": "#fff7ed", "text_color": "#c2410c"},
+          {"start_date": "2026-10-03", "end_date": "2026-10-03", "type": "실기", "student": "최선호", "univ": "대전대학교(대전)", "dept": "웹툰애니메이션 학과", "time": "", "bg_color": "#fff7ed", "text_color": "#c2410c"},
+          {"start_date": "2026-10-05", "end_date": "2026-10-05", "type": "실기", "student": "최예라", "univ": "수원대학교(수원)", "dept": "조형예술학부", "time": "", "bg_color": "#fff7ed", "text_color": "#c2410c"},
+          {"start_date": "2026-10-09", "end_date": "2026-10-11", "type": "실기", "student": "장리아", "univ": "수원대학교(수원)", "dept": "영화예술", "time": "", "bg_color": "#fff7ed", "text_color": "#c2410c"},
+          {"start_date": "2026-10-10", "end_date": "2026-10-10", "type": "면접", "student": "우해나", "univ": "안양대학교(강화)", "dept": "게임콘텐츠학과", "time": "", "bg_color": "#f0fdf4", "text_color": "#15803d"},
+          {"start_date": "2026-10-13", "end_date": "2026-10-13", "type": "1단계", "student": "장리아", "univ": "숭실대학교(서울)", "dept": "예술창작학부 영화예술전공", "time": "", "bg_color": "#eff6ff", "text_color": "#1d4ed8"},
+          {"start_date": "2026-10-14", "end_date": "2026-10-14", "type": "1단계", "student": "장리아", "univ": "서경대학교(서울)", "dept": "영화영상학과", "time": "16:00", "bg_color": "#eff6ff", "text_color": "#1d4ed8"},
+          {"start_date": "2026-10-16", "end_date": "2026-10-16", "type": "실기", "student": "조혜원", "univ": "국립한밭대학 교(대전)", "dept": "산업디자인학과", "time": "", "bg_color": "#fff7ed", "text_color": "#c2410c"},
+          {"start_date": "2026-10-17", "end_date": "2026-10-17", "type": "면접", "student": "이민우", "univ": "건양대학교(논산)", "dept": "방위산업공학전 공", "time": "", "bg_color": "#f0fdf4", "text_color": "#15803d"},
+          {"start_date": "2026-10-17", "end_date": "2026-10-17", "type": "실기", "student": "이가예", "univ": "목원대학교(대전)", "dept": "웹툰학과", "time": "", "bg_color": "#fff7ed", "text_color": "#c2410c"},
+          {"start_date": "2026-10-17", "end_date": "2026-10-17", "type": "실기", "student": "장리아", "univ": "서경대학교(서울)", "dept": "영화영상학과", "time": "", "bg_color": "#fff7ed", "text_color": "#c2410c"},
+          {"start_date": "2026-10-20", "end_date": "2026-10-20", "type": "1단계", "student": "조혜원", "univ": "단국대학교(죽전)", "dept": "디자인학부 패 션산업디자인전 공", "time": "18:00", "bg_color": "#eff6ff", "text_color": "#1d4ed8"},
+          {"start_date": "2026-10-20", "end_date": "2026-10-20", "type": "1단계", "student": "하시헌", "univ": "성균관대학교 (수원)", "dept": "스포츠과학과", "time": "", "bg_color": "#eff6ff", "text_color": "#1d4ed8"},
+          {"start_date": "2026-10-20", "end_date": "2026-10-20", "type": "실기", "student": "최예라", "univ": "부산대학교(부산)", "dept": "미술학과 조소 전공", "time": "", "bg_color": "#fff7ed", "text_color": "#c2410c"},
+          {"start_date": "2026-10-24", "end_date": "2026-10-25", "type": "실기", "student": "장리아", "univ": "숭실대학교(서울)", "dept": "예술창작학부 영화예술전공", "time": "", "bg_color": "#fff7ed", "text_color": "#c2410c"},
+          {"start_date": "2026-10-25", "end_date": "2026-10-25", "type": "면접", "student": "하시헌", "univ": "성균관대학교 (수원)", "dept": "스포츠과학과", "time": "", "bg_color": "#f0fdf4", "text_color": "#15803d"},
+          {"start_date": "2026-10-26", "end_date": "2026-10-27", "type": "실기", "student": "이가예", "univ": "청주대학교(청주)", "dept": "만화애니메이션 학과", "time": "", "bg_color": "#fff7ed", "text_color": "#c2410c"},
+          {"start_date": "2026-10-29", "end_date": "2026-10-29", "type": "면접", "student": "이민우", "univ": "한서대학교(서산)", "dept": "방사선학과", "time": "", "bg_color": "#f0fdf4", "text_color": "#15803d"},
+          {"start_date": "2026-10-30", "end_date": "2026-10-30", "type": "실기", "student": "이가예", "univ": "서원대학교(청주)", "dept": "웹툰콘텐츠학과", "time": "", "bg_color": "#fff7ed", "text_color": "#c2410c"},
+          {"start_date": "2026-10-30", "end_date": "2026-10-30", "type": "실기", "student": "최예라", "univ": "경북대학교(대구)", "dept": "미술학과(한국 화전공, 서양화 전공, 조소전공 , 조형예술이론 전공)", "time": "", "bg_color": "#fff7ed", "text_color": "#c2410c"},
+          {"start_date": "2026-10-31", "end_date": "2026-10-31", "type": "실기", "student": "이가예", "univ": "배재대학교(대전)", "dept": "아트앤웹툰학부 (아트앤웹툰)", "time": "", "bg_color": "#fff7ed", "text_color": "#c2410c"},
+          {"start_date": "2026-10-31", "end_date": "2026-10-31", "type": "실기", "student": "조혜원", "univ": "인천가톨릭대 학교(송도)", "dept": "융합디자인학과", "time": "10:00", "bg_color": "#fff7ed", "text_color": "#c2410c"},
+          
+          {"start_date": "2026-11-01", "end_date": "2026-11-01", "type": "실기", "student": "최예라", "univ": "충남대학교(대전)", "dept": "조소과", "time": "", "bg_color": "#fff7ed", "text_color": "#c2410c"},
+          {"start_date": "2026-11-06", "end_date": "2026-11-06", "type": "1단계", "student": "한우림", "univ": "국립한밭대학 교(대전)", "dept": "도시공학과", "time": "15:00 이후", "bg_color": "#eff6ff", "text_color": "#1d4ed8"},
+          {"start_date": "2026-11-12", "end_date": "2026-11-12", "type": "실기", "student": "조혜원", "univ": "전북대학교(전주)", "dept": "미술학과(가구 조형디자인)", "time": "", "bg_color": "#fff7ed", "text_color": "#c2410c"},
+          {"start_date": "2026-11-12", "end_date": "2026-11-12", "type": "실기", "student": "최예라", "univ": "전북대학교(전주)", "dept": "미술학과(한국 화, 회화/시각 예술, 조소/공 공미술)", "time": "", "bg_color": "#fff7ed", "text_color": "#c2410c"},
+          {"start_date": "2026-11-13", "end_date": "2026-11-13", "type": "1단계", "student": "명균호", "univ": "전남대학교(광주)", "dept": "물리학과", "time": "15:00", "bg_color": "#eff6ff", "text_color": "#1d4ed8"},
+          {"start_date": "2026-11-13", "end_date": "2026-11-13", "type": "1단계", "student": "조혜원", "univ": "전남대학교(광주)", "dept": "디자인학과", "time": "15:00", "bg_color": "#eff6ff", "text_color": "#1d4ed8"},
+          {"start_date": "2026-11-13", "end_date": "2026-11-13", "type": "1단계", "student": "최예라", "univ": "전남대학교(광주)", "dept": "미술학과(조소 전공)", "time": "15:00", "bg_color": "#eff6ff", "text_color": "#1d4ed8"},
+          {"start_date": "2026-11-15", "end_date": "2026-11-15", "type": "실기", "student": "조혜원", "univ": "단국대학교(죽전)", "dept": "디자인학부 패 션산업디자인전 공", "time": "10:30~15:30", "bg_color": "#fff7ed", "text_color": "#c2410c"},
+          {"start_date": "2026-11-18", "end_date": "2026-11-18", "type": "1단계", "student": "최현서", "univ": "을지대학교(성남)", "dept": "간호학과", "time": "", "bg_color": "#eff6ff", "text_color": "#1d4ed8"},
+          {"start_date": "2026-11-19", "end_date": "2026-11-19", "type": "1단계", "student": "고다연", "univ": "건국대학교(글로컬)", "dept": "사회복지학과", "time": "", "bg_color": "#eff6ff", "text_color": "#1d4ed8"},
+          {"start_date": "2026-11-20", "end_date": "2026-11-20", "type": "1단계", "student": "명균호", "univ": "단국대학교(죽전)", "dept": "전자전기공학과", "time": "18:00", "bg_color": "#eff6ff", "text_color": "#1d4ed8"},
+          {"start_date": "2026-11-20", "end_date": "2026-11-20", "type": "1단계", "student": "명균호", "univ": "충남대학교(대전)", "dept": "자율운항시스템 공학과", "time": "15:00", "bg_color": "#eff6ff", "text_color": "#1d4ed8"},
+          {"start_date": "2026-11-20", "end_date": "2026-11-20", "type": "1단계", "student": "유예영", "univ": "전북대학교(전주)", "dept": "생활과학계열", "time": "14:00", "bg_color": "#eff6ff", "text_color": "#1d4ed8"},
+          {"start_date": "2026-11-20", "end_date": "2026-11-20", "type": "1단계", "student": "임지효", "univ": "서울과학기술 대학교(서울)", "dept": "바이오메디컬학 과", "time": "14:00", "bg_color": "#eff6ff", "text_color": "#1d4ed8"},
+          {"start_date": "2026-11-20", "end_date": "2026-11-20", "type": "1단계", "student": "임지효", "univ": "충남대학교(대전)", "dept": "생명정보융합학 과", "time": "15:00", "bg_color": "#eff6ff", "text_color": "#1d4ed8"},
+          {"start_date": "2026-11-20", "end_date": "2026-11-20", "type": "1단계", "student": "조은찬", "univ": "건국대학교(서울)", "dept": "KU자유전공학부", "time": "14:00", "bg_color": "#eff6ff", "text_color": "#1d4ed8"},
+          {"start_date": "2026-11-20", "end_date": "2026-11-20", "type": "1단계", "student": "조은찬", "univ": "서울시립대학 교(서울)", "dept": "물리학과", "time": "", "bg_color": "#eff6ff", "text_color": "#1d4ed8"},
+          {"start_date": "2026-11-20", "end_date": "2026-11-20", "type": "1단계", "student": "조은찬", "univ": "충남대학교(대전)", "dept": "기계공학교육과", "time": "15:00", "bg_color": "#eff6ff", "text_color": "#1d4ed8"},
+          {"start_date": "2026-11-20", "end_date": "2026-11-20", "type": "1단계", "student": "최현서", "univ": "울산대학교(울산)", "dept": "간호학과", "time": "16:00", "bg_color": "#eff6ff", "text_color": "#1d4ed8"},
+          {"start_date": "2026-11-20", "end_date": "2026-11-20", "type": "1단계", "student": "최현서", "univ": "충남대학교(대전)", "dept": "간호학과", "time": "15:00", "bg_color": "#eff6ff", "text_color": "#1d4ed8"},
+          {"start_date": "2026-11-20", "end_date": "2026-11-20", "type": "1단계", "student": "하시헌", "univ": "서울시립대학 교(서울)", "dept": "스포츠과학과", "time": "", "bg_color": "#eff6ff", "text_color": "#1d4ed8"},
+          {"start_date": "2026-11-20", "end_date": "2026-11-20", "type": "면접", "student": "한우림", "univ": "국립한밭대학 교(대전)", "dept": "도시공학과", "time": "", "bg_color": "#f0fdf4", "text_color": "#15803d"},
+          {"start_date": "2026-11-21", "end_date": "2026-11-21", "type": "면접", "student": "최현서", "univ": "을지대학교(성남)", "dept": "간호학과", "time": "", "bg_color": "#f0fdf4", "text_color": "#15803d"},
+          {"start_date": "2026-11-24", "end_date": "2026-11-24", "type": "실기", "student": "조혜원", "univ": "전남대학교(광주)", "dept": "디자인학과", "time": "", "bg_color": "#fff7ed", "text_color": "#c2410c"},
+          {"start_date": "2026-11-24", "end_date": "2026-11-24", "type": "실기", "student": "최예라", "univ": "전남대학교(광주)", "dept": "미술학과(조소 전공)", "time": "", "bg_color": "#fff7ed", "text_color": "#c2410c"},
+          {"start_date": "2026-11-25", "end_date": "2026-11-25", "type": "1단계", "student": "임지효", "univ": "서울여자대학 교(서울)", "dept": "생명환경공학과", "time": "18:00", "bg_color": "#eff6ff", "text_color": "#1d4ed8"},
+          {"start_date": "2026-11-25", "end_date": "2026-11-25", "type": "1단계", "student": "천지은", "univ": "경희대학교(서울)", "dept": "경영회계계열", "time": "18:00", "bg_color": "#eff6ff", "text_color": "#1d4ed8"},
+          {"start_date": "2026-11-25", "end_date": "2026-11-25", "type": "1단계", "student": "하시헌", "univ": "경희대학교(국제)", "dept": "스포츠의학과", "time": "18:00", "bg_color": "#eff6ff", "text_color": "#1d4ed8"},
+          {"start_date": "2026-11-26", "end_date": "2026-11-26", "type": "1단계", "student": "조은찬", "univ": "중앙대학교(서울)", "dept": "에너지시스템공 학부", "time": "14:00", "bg_color": "#eff6ff", "text_color": "#1d4ed8"},
+          {"start_date": "2026-11-26", "end_date": "2026-11-26", "type": "면접", "student": "유예영", "univ": "전북대학교(전주)", "dept": "생활과학계열", "time": "", "bg_color": "#f0fdf4", "text_color": "#15803d"},
+          {"start_date": "2026-11-28", "end_date": "2026-11-29", "type": "면접", "student": "고다연", "univ": "건국대학교(글로컬)", "dept": "사회복지학과", "time": "", "bg_color": "#f0fdf4", "text_color": "#15803d"},
+          {"start_date": "2026-11-28", "end_date": "2026-11-28", "type": "면접", "student": "임지효", "univ": "서울과학기술 대학교(서울)", "dept": "바이오메디컬학 과", "time": "", "bg_color": "#f0fdf4", "text_color": "#15803d"},
+          {"start_date": "2026-11-28", "end_date": "2026-11-28", "type": "면접", "student": "임지효", "univ": "서울여자대학 교(서울)", "dept": "생명환경공학과", "time": "", "bg_color": "#f0fdf4", "text_color": "#15803d"},
+          {"start_date": "2026-11-28", "end_date": "2026-11-28", "type": "면접", "student": "최현서", "univ": "울산대학교(울산)", "dept": "간호학과", "time": "", "bg_color": "#f0fdf4", "text_color": "#15803d"},
+          {"start_date": "2026-11-28", "end_date": "2026-11-28", "type": "면접", "student": "하시헌", "univ": "서울시립대학 교(서울)", "dept": "스포츠과학과", "time": "10:00", "bg_color": "#f0fdf4", "text_color": "#15803d"},
+          {"start_date": "2026-11-29", "end_date": "2026-11-29", "type": "면접", "student": "조은찬", "univ": "서울시립대학 교(서울)", "dept": "물리학과", "time": "10:00", "bg_color": "#f0fdf4", "text_color": "#15803d"},
+          
+          {"start_date": "2026-12-02", "end_date": "2026-12-02", "type": "면접", "student": "명균호", "univ": "전남대학교(광주)", "dept": "물리학과", "time": "", "bg_color": "#f0fdf4", "text_color": "#15803d"},
+          {"start_date": "2026-12-02", "end_date": "2026-12-02", "type": "면접", "student": "임지효", "univ": "충남대학교(대전)", "dept": "생명정보융합학 과", "time": "", "bg_color": "#f0fdf4", "text_color": "#15803d"},
+          {"start_date": "2026-12-02", "end_date": "2026-12-02", "type": "면접", "student": "최현서", "univ": "충남대학교(대전)", "dept": "간호학과", "time": "", "bg_color": "#f0fdf4", "text_color": "#15803d"},
+          {"start_date": "2026-12-03", "end_date": "2026-12-03", "type": "면접", "student": "명균호", "univ": "충남대학교(대전)", "dept": "자율운항시스템 공학과", "time": "", "bg_color": "#f0fdf4", "text_color": "#15803d"},
+          {"start_date": "2026-12-04", "end_date": "2026-12-04", "type": "면접", "student": "조은찬", "univ": "충남대학교(대전)", "dept": "기계공학교육과", "time": "", "bg_color": "#f0fdf4", "text_color": "#15803d"},
+          {"start_date": "2026-12-05", "end_date": "2026-12-05", "type": "면접", "student": "조은찬", "univ": "중앙대학교(서울)", "dept": "에너지시스템공 학부", "time": "", "bg_color": "#f0fdf4", "text_color": "#15803d"},
+          {"start_date": "2026-12-05", "end_date": "2026-12-05", "type": "면접", "student": "천지은", "univ": "경희대학교(서울)", "dept": "경영회계계열", "time": "오후", "bg_color": "#f0fdf4", "text_color": "#15803d"},
+          {"start_date": "2026-12-05", "end_date": "2026-12-05", "type": "면접", "student": "하시헌", "univ": "경희대학교(국제)", "dept": "스포츠의학과", "time": "오전", "bg_color": "#f0fdf4", "text_color": "#15803d"},
+          {"start_date": "2026-12-06", "end_date": "2026-12-06", "type": "면접", "student": "명균호", "univ": "단국대학교(죽전)", "dept": "전자전기공학과", "time": "", "bg_color": "#f0fdf4", "text_color": "#15803d"},
+          {"start_date": "2026-12-06", "end_date": "2026-12-06", "type": "면접", "student": "조은찬", "univ": "건국대학교(서울)", "dept": "KU자유전공학부", "time": "", "bg_color": "#f0fdf4", "text_color": "#15803d"}
+        ];
+
+        let currentYear = 2026;
+        let currentMonth = 10; // 10: 10월, 11: 11월, 12: 12월
+
+        function changeMonth(step) {
+            currentMonth += step;
+            // 10월부터 12월까지만 네비게이션 허용
+            if (currentMonth > 12) currentMonth = 12;
+            if (currentMonth < 10) currentMonth = 10;
+            renderCalendar();
+        }
+
+        // 해당 날짜가 시작일~종료일 범위에 속하는지 체크
+        function isDateInEvent(dateStr, startDateStr, endDateStr) {
+            const date = new Date(dateStr);
+            const start = new Date(startDateStr);
+            const end = new Date(endDateStr);
+            return date >= start && date <= end;
+        }
+
+        function renderCalendar() {
+            const titleEl = document.getElementById('current-month-title');
+            titleEl.innerText = `${currentYear}년 ${currentMonth}월`;
+
+            const gridEl = document.getElementById('calendar-grid');
+            
+            // 기존 셀 삭제 (요일 헤더는 유지)
+            const cells = gridEl.querySelectorAll('.day-cell');
+            cells.forEach(cell => cell.remove());
+
+            // 1일의 요일 파악 및 말일 파악
+            const firstDay = new Date(currentYear, currentMonth - 1, 1).getDay(); 
+            const lastDate = new Date(currentYear, currentMonth, 0).getDate();
+            const prevMonthLastDate = new Date(currentYear, currentMonth - 1, 0).getDate();
+
+            // 이전 달 빈 칸 그리기
+            for (let i = firstDay - 1; i >= 0; i--) {
+                const dayNum = prevMonthLastDate - i;
+                const cell = document.createElement('div');
+                cell.className = 'day-cell other-month';
+                cell.innerHTML = `<div class="date-number">${dayNum}</div>`;
+                gridEl.appendChild(cell);
+            }
+
+            // 현재 달 날짜 그리기
+            for (let day = 1; day <= lastDate; day++) {
+                const cell = document.createElement('div');
+                cell.className = 'day-cell';
+                
+                // YYYY-MM-DD 포맷 생성
+                const monthStr = currentMonth.toString().padStart(2, '0');
+                const dayStr = day.toString().padStart(2, '0');
+                const currentDateStr = `${currentYear}-${monthStr}-${dayStr}`;
+
+                let html = `<div class="date-number">${day}</div>`;
+                html += `<div class="event-list">`;
+
+                // 해당 날짜에 맞는 일정 필터링
+                const dayEvents = eventsData.filter(evt => isDateInEvent(currentDateStr, evt.start_date, evt.end_date));
+                
+                dayEvents.forEach(evt => {
+                    const timeBadge = evt.time ? `<span class="evt-time">${evt.time}</span>` : '';
+                    html += `
+                        <div class="event-badge" style="background-color: ${evt.bg_color}; color: ${evt.text_color}; border-color: ${evt.text_color}40;">
+                            <strong>[${evt.type}] ${evt.student}</strong> ${timeBadge}<br>
+                            ${evt.univ.replace(/\(.*?\)/g, '')} <span style="font-size:10px; color:#64748b;">${evt.dept}</span>
+                        </div>
+                    `;
+                });
+
+                html += `</div>`;
+                cell.innerHTML = html;
+                gridEl.appendChild(cell);
+            }
+
+            // 다음 달 빈 칸 그리기 (그리드가 7칸씩 꽉 차도록)
+            const totalCells = firstDay + lastDate;
+            const remainingCells = (7 - (totalCells % 7)) % 7;
+            
+            for (let day = 1; day <= remainingCells; day++) {
+                const cell = document.createElement('div');
+                cell.className = 'day-cell other-month';
+                cell.innerHTML = `<div class="date-number">${day}</div>`;
+                gridEl.appendChild(cell);
+            }
+        }
+
+        // 초기 렌더링 (10월)
+        window.onload = renderCalendar;
+    </script>
+</body>
+</html>
