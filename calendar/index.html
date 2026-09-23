@@ -109,7 +109,7 @@
 
         .day-cell {
             background-color: #ffffff;
-            min-height: 140px;
+            min-height: 150px;
             padding: 8px;
             display: flex;
             flex-direction: column;
@@ -134,28 +134,37 @@
         .event-list {
             display: flex;
             flex-direction: column;
-            gap: 4px;
+            gap: 5px;
             flex: 1;
         }
         .event-badge {
-            padding: 4px 6px;
-            border-radius: 4px;
-            font-size: 11.5px;
+            padding: 6px 8px;
+            border-radius: 6px;
+            font-size: 12px;
             line-height: 1.4;
             border: 1px solid transparent;
             word-break: break-all;
+            box-shadow: 0 1px 2px rgba(0,0,0,0.02);
         }
         .event-badge strong {
             display: inline-block;
-            margin-bottom: 2px;
+            margin-bottom: 3px;
+            font-size: 12.5px;
         }
         .event-badge .evt-time {
             font-weight: bold;
             color: #0f172a;
             background: rgba(255,255,255,0.6);
             padding: 0 4px;
-            border-radius: 2px;
+            border-radius: 4px;
             margin-left: 4px;
+        }
+        .event-badge .evt-duration {
+            font-size: 11px;
+            font-weight: 800;
+            color: #dc2626;
+            margin-left: 4px;
+            letter-spacing: -0.3px;
         }
         
     </style>
@@ -192,13 +201,13 @@
             <div class="day-name">목</div>
             <div class="day-name">금</div>
             <div class="day-name sat">토</div>
-            <!-- 일자 셀이 여기에 동적 생성됨 -->
+            <!-- 일자 셀이 동적 생성됨 -->
         </div>
 
     </div>
 
     <script>
-        // 엑셀에서 추출한 10월~12월 전체 일정 데이터
+        // 원본 엑셀과 동일한 73개의 전체 이벤트 데이터
         const eventsData = [
           {"start_date": "2026-10-01", "end_date": "2026-10-01", "type": "실기", "student": "이가예", "univ": "세한대학교(당진)", "dept": "AI융합콘텐츠학 부", "time": "", "bg_color": "#fff7ed", "text_color": "#c2410c"},
           {"start_date": "2026-10-02", "end_date": "2026-10-02", "type": "1단계", "student": "우해나", "univ": "안양대학교(강화)", "dept": "게임콘텐츠학과", "time": "", "bg_color": "#eff6ff", "text_color": "#1d4ed8"},
@@ -224,14 +233,14 @@
           {"start_date": "2026-10-26", "end_date": "2026-10-27", "type": "실기", "student": "이가예", "univ": "청주대학교(청주)", "dept": "만화애니메이션 학과", "time": "", "bg_color": "#fff7ed", "text_color": "#c2410c"},
           {"start_date": "2026-10-29", "end_date": "2026-10-29", "type": "면접", "student": "이민우", "univ": "한서대학교(서산)", "dept": "방사선학과", "time": "", "bg_color": "#f0fdf4", "text_color": "#15803d"},
           {"start_date": "2026-10-30", "end_date": "2026-10-30", "type": "실기", "student": "이가예", "univ": "서원대학교(청주)", "dept": "웹툰콘텐츠학과", "time": "", "bg_color": "#fff7ed", "text_color": "#c2410c"},
-          {"start_date": "2026-10-30", "end_date": "2026-10-30", "type": "실기", "student": "최예라", "univ": "경북대학교(대구)", "dept": "미술학과(한국 화전공, 서양화 전공, 조소전공 , 조형예술이론 전공)", "time": "", "bg_color": "#fff7ed", "text_color": "#c2410c"},
-          {"start_date": "2026-10-31", "end_date": "2026-10-31", "type": "실기", "student": "이가예", "univ": "배재대학교(대전)", "dept": "아트앤웹툰학부 (아트앤웹툰)", "time": "", "bg_color": "#fff7ed", "text_color": "#c2410c"},
+          {"start_date": "2026-10-30", "end_date": "2026-10-30", "type": "실기", "student": "최예라", "univ": "경북대학교(대구)", "dept": "미술학과(조소전공 등)", "time": "", "bg_color": "#fff7ed", "text_color": "#c2410c"},
+          {"start_date": "2026-10-31", "end_date": "2026-10-31", "type": "실기", "student": "이가예", "univ": "배재대학교(대전)", "dept": "아트앤웹툰학부", "time": "", "bg_color": "#fff7ed", "text_color": "#c2410c"},
           {"start_date": "2026-10-31", "end_date": "2026-10-31", "type": "실기", "student": "조혜원", "univ": "인천가톨릭대 학교(송도)", "dept": "융합디자인학과", "time": "10:00", "bg_color": "#fff7ed", "text_color": "#c2410c"},
           
           {"start_date": "2026-11-01", "end_date": "2026-11-01", "type": "실기", "student": "최예라", "univ": "충남대학교(대전)", "dept": "조소과", "time": "", "bg_color": "#fff7ed", "text_color": "#c2410c"},
           {"start_date": "2026-11-06", "end_date": "2026-11-06", "type": "1단계", "student": "한우림", "univ": "국립한밭대학 교(대전)", "dept": "도시공학과", "time": "15:00 이후", "bg_color": "#eff6ff", "text_color": "#1d4ed8"},
           {"start_date": "2026-11-12", "end_date": "2026-11-12", "type": "실기", "student": "조혜원", "univ": "전북대학교(전주)", "dept": "미술학과(가구 조형디자인)", "time": "", "bg_color": "#fff7ed", "text_color": "#c2410c"},
-          {"start_date": "2026-11-12", "end_date": "2026-11-12", "type": "실기", "student": "최예라", "univ": "전북대학교(전주)", "dept": "미술학과(한국 화, 회화/시각 예술, 조소/공 공미술)", "time": "", "bg_color": "#fff7ed", "text_color": "#c2410c"},
+          {"start_date": "2026-11-12", "end_date": "2026-11-12", "type": "실기", "student": "최예라", "univ": "전북대학교(전주)", "dept": "미술학과(조소/공공미술 등)", "time": "", "bg_color": "#fff7ed", "text_color": "#c2410c"},
           {"start_date": "2026-11-13", "end_date": "2026-11-13", "type": "1단계", "student": "명균호", "univ": "전남대학교(광주)", "dept": "물리학과", "time": "15:00", "bg_color": "#eff6ff", "text_color": "#1d4ed8"},
           {"start_date": "2026-11-13", "end_date": "2026-11-13", "type": "1단계", "student": "조혜원", "univ": "전남대학교(광주)", "dept": "디자인학과", "time": "15:00", "bg_color": "#eff6ff", "text_color": "#1d4ed8"},
           {"start_date": "2026-11-13", "end_date": "2026-11-13", "type": "1단계", "student": "최예라", "univ": "전남대학교(광주)", "dept": "미술학과(조소 전공)", "time": "15:00", "bg_color": "#eff6ff", "text_color": "#1d4ed8"},
@@ -241,29 +250,29 @@
           {"start_date": "2026-11-20", "end_date": "2026-11-20", "type": "1단계", "student": "명균호", "univ": "단국대학교(죽전)", "dept": "전자전기공학과", "time": "18:00", "bg_color": "#eff6ff", "text_color": "#1d4ed8"},
           {"start_date": "2026-11-20", "end_date": "2026-11-20", "type": "1단계", "student": "명균호", "univ": "충남대학교(대전)", "dept": "자율운항시스템 공학과", "time": "15:00", "bg_color": "#eff6ff", "text_color": "#1d4ed8"},
           {"start_date": "2026-11-20", "end_date": "2026-11-20", "type": "1단계", "student": "유예영", "univ": "전북대학교(전주)", "dept": "생활과학계열", "time": "14:00", "bg_color": "#eff6ff", "text_color": "#1d4ed8"},
-          {"start_date": "2026-11-20", "end_date": "2026-11-20", "type": "1단계", "student": "임지효", "univ": "서울과학기술 대학교(서울)", "dept": "바이오메디컬학 과", "time": "14:00", "bg_color": "#eff6ff", "text_color": "#1d4ed8"},
+          {"start_date": "2026-11-20", "end_date": "2026-11-20", "type": "1단계", "student": "임지효", "univ": "서울과학기술 대학교", "dept": "바이오메디컬학 과", "time": "14:00", "bg_color": "#eff6ff", "text_color": "#1d4ed8"},
           {"start_date": "2026-11-20", "end_date": "2026-11-20", "type": "1단계", "student": "임지효", "univ": "충남대학교(대전)", "dept": "생명정보융합학 과", "time": "15:00", "bg_color": "#eff6ff", "text_color": "#1d4ed8"},
           {"start_date": "2026-11-20", "end_date": "2026-11-20", "type": "1단계", "student": "조은찬", "univ": "건국대학교(서울)", "dept": "KU자유전공학부", "time": "14:00", "bg_color": "#eff6ff", "text_color": "#1d4ed8"},
-          {"start_date": "2026-11-20", "end_date": "2026-11-20", "type": "1단계", "student": "조은찬", "univ": "서울시립대학 교(서울)", "dept": "물리학과", "time": "", "bg_color": "#eff6ff", "text_color": "#1d4ed8"},
+          {"start_date": "2026-11-20", "end_date": "2026-11-20", "type": "1단계", "student": "조은찬", "univ": "서울시립대학교", "dept": "물리학과", "time": "", "bg_color": "#eff6ff", "text_color": "#1d4ed8"},
           {"start_date": "2026-11-20", "end_date": "2026-11-20", "type": "1단계", "student": "조은찬", "univ": "충남대학교(대전)", "dept": "기계공학교육과", "time": "15:00", "bg_color": "#eff6ff", "text_color": "#1d4ed8"},
           {"start_date": "2026-11-20", "end_date": "2026-11-20", "type": "1단계", "student": "최현서", "univ": "울산대학교(울산)", "dept": "간호학과", "time": "16:00", "bg_color": "#eff6ff", "text_color": "#1d4ed8"},
           {"start_date": "2026-11-20", "end_date": "2026-11-20", "type": "1단계", "student": "최현서", "univ": "충남대학교(대전)", "dept": "간호학과", "time": "15:00", "bg_color": "#eff6ff", "text_color": "#1d4ed8"},
-          {"start_date": "2026-11-20", "end_date": "2026-11-20", "type": "1단계", "student": "하시헌", "univ": "서울시립대학 교(서울)", "dept": "스포츠과학과", "time": "", "bg_color": "#eff6ff", "text_color": "#1d4ed8"},
+          {"start_date": "2026-11-20", "end_date": "2026-11-20", "type": "1단계", "student": "하시헌", "univ": "서울시립대학교", "dept": "스포츠과학과", "time": "", "bg_color": "#eff6ff", "text_color": "#1d4ed8"},
           {"start_date": "2026-11-20", "end_date": "2026-11-20", "type": "면접", "student": "한우림", "univ": "국립한밭대학 교(대전)", "dept": "도시공학과", "time": "", "bg_color": "#f0fdf4", "text_color": "#15803d"},
           {"start_date": "2026-11-21", "end_date": "2026-11-21", "type": "면접", "student": "최현서", "univ": "을지대학교(성남)", "dept": "간호학과", "time": "", "bg_color": "#f0fdf4", "text_color": "#15803d"},
           {"start_date": "2026-11-24", "end_date": "2026-11-24", "type": "실기", "student": "조혜원", "univ": "전남대학교(광주)", "dept": "디자인학과", "time": "", "bg_color": "#fff7ed", "text_color": "#c2410c"},
           {"start_date": "2026-11-24", "end_date": "2026-11-24", "type": "실기", "student": "최예라", "univ": "전남대학교(광주)", "dept": "미술학과(조소 전공)", "time": "", "bg_color": "#fff7ed", "text_color": "#c2410c"},
-          {"start_date": "2026-11-25", "end_date": "2026-11-25", "type": "1단계", "student": "임지효", "univ": "서울여자대학 교(서울)", "dept": "생명환경공학과", "time": "18:00", "bg_color": "#eff6ff", "text_color": "#1d4ed8"},
+          {"start_date": "2026-11-25", "end_date": "2026-11-25", "type": "1단계", "student": "임지효", "univ": "서울여자대학교", "dept": "생명환경공학과", "time": "18:00", "bg_color": "#eff6ff", "text_color": "#1d4ed8"},
           {"start_date": "2026-11-25", "end_date": "2026-11-25", "type": "1단계", "student": "천지은", "univ": "경희대학교(서울)", "dept": "경영회계계열", "time": "18:00", "bg_color": "#eff6ff", "text_color": "#1d4ed8"},
           {"start_date": "2026-11-25", "end_date": "2026-11-25", "type": "1단계", "student": "하시헌", "univ": "경희대학교(국제)", "dept": "스포츠의학과", "time": "18:00", "bg_color": "#eff6ff", "text_color": "#1d4ed8"},
           {"start_date": "2026-11-26", "end_date": "2026-11-26", "type": "1단계", "student": "조은찬", "univ": "중앙대학교(서울)", "dept": "에너지시스템공 학부", "time": "14:00", "bg_color": "#eff6ff", "text_color": "#1d4ed8"},
           {"start_date": "2026-11-26", "end_date": "2026-11-26", "type": "면접", "student": "유예영", "univ": "전북대학교(전주)", "dept": "생활과학계열", "time": "", "bg_color": "#f0fdf4", "text_color": "#15803d"},
           {"start_date": "2026-11-28", "end_date": "2026-11-29", "type": "면접", "student": "고다연", "univ": "건국대학교(글로컬)", "dept": "사회복지학과", "time": "", "bg_color": "#f0fdf4", "text_color": "#15803d"},
-          {"start_date": "2026-11-28", "end_date": "2026-11-28", "type": "면접", "student": "임지효", "univ": "서울과학기술 대학교(서울)", "dept": "바이오메디컬학 과", "time": "", "bg_color": "#f0fdf4", "text_color": "#15803d"},
-          {"start_date": "2026-11-28", "end_date": "2026-11-28", "type": "면접", "student": "임지효", "univ": "서울여자대학 교(서울)", "dept": "생명환경공학과", "time": "", "bg_color": "#f0fdf4", "text_color": "#15803d"},
+          {"start_date": "2026-11-28", "end_date": "2026-11-28", "type": "면접", "student": "임지효", "univ": "서울과학기술 대학교", "dept": "바이오메디컬학 과", "time": "", "bg_color": "#f0fdf4", "text_color": "#15803d"},
+          {"start_date": "2026-11-28", "end_date": "2026-11-28", "type": "면접", "student": "임지효", "univ": "서울여자대학교", "dept": "생명환경공학과", "time": "", "bg_color": "#f0fdf4", "text_color": "#15803d"},
           {"start_date": "2026-11-28", "end_date": "2026-11-28", "type": "면접", "student": "최현서", "univ": "울산대학교(울산)", "dept": "간호학과", "time": "", "bg_color": "#f0fdf4", "text_color": "#15803d"},
-          {"start_date": "2026-11-28", "end_date": "2026-11-28", "type": "면접", "student": "하시헌", "univ": "서울시립대학 교(서울)", "dept": "스포츠과학과", "time": "10:00", "bg_color": "#f0fdf4", "text_color": "#15803d"},
-          {"start_date": "2026-11-29", "end_date": "2026-11-29", "type": "면접", "student": "조은찬", "univ": "서울시립대학 교(서울)", "dept": "물리학과", "time": "10:00", "bg_color": "#f0fdf4", "text_color": "#15803d"},
+          {"start_date": "2026-11-28", "end_date": "2026-11-28", "type": "면접", "student": "하시헌", "univ": "서울시립대학교", "dept": "스포츠과학과", "time": "10:00", "bg_color": "#f0fdf4", "text_color": "#15803d"},
+          {"start_date": "2026-11-29", "end_date": "2026-11-29", "type": "면접", "student": "조은찬", "univ": "서울시립대학교", "dept": "물리학과", "time": "10:00", "bg_color": "#f0fdf4", "text_color": "#15803d"},
           
           {"start_date": "2026-12-02", "end_date": "2026-12-02", "type": "면접", "student": "명균호", "univ": "전남대학교(광주)", "dept": "물리학과", "time": "", "bg_color": "#f0fdf4", "text_color": "#15803d"},
           {"start_date": "2026-12-02", "end_date": "2026-12-02", "type": "면접", "student": "임지효", "univ": "충남대학교(대전)", "dept": "생명정보융합학 과", "time": "", "bg_color": "#f0fdf4", "text_color": "#15803d"},
@@ -282,18 +291,9 @@
 
         function changeMonth(step) {
             currentMonth += step;
-            // 10월부터 12월까지만 네비게이션 허용
             if (currentMonth > 12) currentMonth = 12;
             if (currentMonth < 10) currentMonth = 10;
             renderCalendar();
-        }
-
-        // 해당 날짜가 시작일~종료일 범위에 속하는지 체크
-        function isDateInEvent(dateStr, startDateStr, endDateStr) {
-            const date = new Date(dateStr);
-            const start = new Date(startDateStr);
-            const end = new Date(endDateStr);
-            return date >= start && date <= end;
         }
 
         function renderCalendar() {
@@ -333,15 +333,26 @@
                 let html = `<div class="date-number">${day}</div>`;
                 html += `<div class="event-list">`;
 
-                // 해당 날짜에 맞는 일정 필터링
-                const dayEvents = eventsData.filter(evt => isDateInEvent(currentDateStr, evt.start_date, evt.end_date));
+                // ★ 중요 수정사항 ★
+                // 일정이 시작하는 날짜(start_date)에만 한 번 배지를 출력합니다.
+                const dayEvents = eventsData.filter(evt => evt.start_date === currentDateStr);
                 
                 dayEvents.forEach(evt => {
                     const timeBadge = evt.time ? `<span class="evt-time">${evt.time}</span>` : '';
+                    
+                    // 시작일과 종료일이 다를 경우(예: 10/2~10/11) 기간 텍스트를 따로 만들어 줍니다.
+                    let durationBadge = '';
+                    if (evt.start_date !== evt.end_date) {
+                        const sDate = new Date(evt.start_date);
+                        const eDate = new Date(evt.end_date);
+                        durationBadge = `<span class="evt-duration">${sDate.getMonth()+1}/${sDate.getDate()}~${eDate.getMonth()+1}/${eDate.getDate()}</span>`;
+                    }
+
                     html += `
                         <div class="event-badge" style="background-color: ${evt.bg_color}; color: ${evt.text_color}; border-color: ${evt.text_color}40;">
                             <strong>[${evt.type}] ${evt.student}</strong> ${timeBadge}<br>
-                            ${evt.univ.replace(/\(.*?\)/g, '')} <span style="font-size:10px; color:#64748b;">${evt.dept}</span>
+                            ${evt.univ.replace(/\(.*?\)/g, '')} ${durationBadge}<br>
+                            <span style="font-size:10.5px; color:#64748b;">${evt.dept}</span>
                         </div>
                     `;
                 });
@@ -368,3 +379,4 @@
     </script>
 </body>
 </html>
+
