@@ -210,6 +210,15 @@
             align-items: center;
             gap: 8px;
         }
+        .section-h2 {
+            font-size: 16px;
+            font-weight: 700;
+            color: #1e293b;
+            margin: 24px 0 10px 0;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
         .section-desc {
             font-size: 14px;
             color: #334155;
@@ -286,7 +295,7 @@
     </header>
 
     <div class="main-container">
-        <!-- 사이드바: 3개 메인 주제 -->
+        <!-- 사이드바: 4개 메인 주제 -->
         <aside class="sidebar">
             <div class="sidebar-header">
                 <div class="sidebar-section-title">
@@ -297,17 +306,22 @@
             <ul class="menu-list">
                 <li class="menu-item active" onclick="selectLesson('lesson1', this)">
                     <span class="menu-icon">📋</span>
-                    <span>01. 파이썬 리스트</span>
+                    <span>01. 리스트</span>
                 </li>
 
                 <li class="menu-item" onclick="selectLesson('lesson2', this)">
                     <span class="menu-icon">📦</span>
-                    <span>02. 파이썬 함수</span>
+                    <span>02. 함수</span>
                 </li>
 
                 <li class="menu-item" onclick="selectLesson('lesson3', this)">
                     <span class="menu-icon">📖</span>
                     <span>03. 딕셔너리</span>
+                </li>
+
+                <li class="menu-item" onclick="selectLesson('lesson4', this)">
+                    <span class="menu-icon">📊</span>
+                    <span>04. 데이터 분석</span>
                 </li>
             </ul>
         </aside>
@@ -317,7 +331,7 @@
             <div class="content-header">
                 <div class="current-topic">
                     <span id="topic-icon">📋</span>
-                    <span id="topic-title">01. 파이썬 리스트</span>
+                    <span id="topic-title">01. 리스트</span>
                 </div>
             </div>
 
@@ -334,7 +348,7 @@
         const lessons = {
             // [01. 파이썬 리스트]
             lesson1: {
-                title: "01. 파이썬 리스트",
+                title: "01. 리스트",
                 icon: "📋",
                 html: `
                     <h1 class="article-title">파이썬 리스트(List)</h1>
@@ -575,7 +589,7 @@ valid_scores = [s <span class="code-keyword">for</span> s <span class="code-keyw
 
             // [02. 파이썬 함수]
             lesson2: {
-                title: "02. 파이썬 함수",
+                title: "02. 함수",
                 icon: "📦",
                 html: `
                     <h1 class="article-title">파이썬 함수(Function)</h1>
@@ -583,8 +597,8 @@ valid_scores = [s <span class="code-keyword">for</span> s <span class="code-keyw
                         자주 사용하는 코드를 하나로 묶는 함수의 정의부터 매개변수와 반환값, 지역/전역 변수의 유효 범위, 그리고 제어문(if, for)과의 결합을 거쳐 미니 프로젝트까지 단계별로 완벽히 정복합니다.
                     </div>
 
-                    <h1 class="chapter-h1">📦 [1차시] 함수 정의와 호출 기초</h1>
-                    <p class="section-desc"><b>핵심 개념 설명:</b> 자주 사용하는 안내문이나 코드를 매번 새롭게 작성하면 비효율적입니다. 파이썬에서는 자주 쓰는 동작을 <code>def</code> 키워드를 이용해 하나의 블록으로 묶어둘 수 있습니다. 이를 함수 정의라고 하며 정의된 함수는 이름을 호출해야만 비로소 실행됩니다.</p>
+                    <h1 class="chapter-h1">🛠️ [1차시] 함수 정의와 호출 기초</h1>
+                    <p class="section-desc"><b>핵심 개념 상세 설명:</b> 자주 사용하는 안내문이나 코드를 매번 새롭게 작성하면 비효율적입니다. 파이썬에서는 자주 쓰는 동작을 <code>def</code> 키워드를 이용해 하나의 블록으로 묶어둘 수 있습니다. 이를 함수 정의라고 하며 정의된 함수는 이름을 호출해야만 비로소 실행됩니다.</p>
                     <div class="code-block-wrapper">
                         <div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div>
                         <pre><code><span class="code-keyword">def</span> <span class="code-def">show_welcome</span>():
@@ -604,7 +618,7 @@ show_welcome()</code></pre>
                     </div>
 
                     <h1 class="chapter-h1" style="margin-top: 50px;">📥 [2차시] 매개변수(Parameter)를 통한 데이터 전달</h1>
-                    <p class="section-desc"><b>핵심 개념 설명:</b> 언제나 똑같은 결과만 보여주는 함수보다 외부에서 데이터를 입력받아 상황에 맞게 동작하는 함수가 훨씬 유용합니다. 함수를 정의할 때 괄호 안에 매개변수라는 빈 그릇을 만들어두면 외부에서 인수라는 실제 데이터를 던져줄 수 있습니다.</p>
+                    <p class="section-desc"><b>핵심 개념 상세 설명:</b> 언제나 똑같은 결과만 보여주는 함수보다 외부에서 데이터를 입력받아 상황에 맞게 동작하는 함수가 훨씬 유용합니다. 함수를 정의할 때 괄호 안에 매개변수라는 빈 그릇을 만들어두면 외부에서 인수라는 실제 데이터를 던져줄 수 있습니다.</p>
                     <div class="code-block-wrapper">
                         <div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div>
                         <pre><code><span class="code-keyword">def</span> <span class="code-def">analyze_ppl</span>(brand):
@@ -623,7 +637,7 @@ analyze_ppl(<span class="code-str">"한솔제과"</span>)</code></pre>
                     </div>
 
                     <h1 class="chapter-h1" style="margin-top: 50px;">📤 [3차시] return을 이용한 계산 결과 반환</h1>
-                    <p class="section-desc"><b>핵심 개념 설명:</b> 단순히 화면에 글자를 보여주고 끝나는 print와 달리 함수가 연산한 최종 결과값을 프로그램의 다른 부분에서 활용해야 할 때가 많습니다. 이때 return 키워드를 사용하면 계산된 수치를 함수 밖으로 꺼내어 변수에 저장할 수 있습니다.</p>
+                    <p class="section-desc"><b>핵심 개념 상세 설명:</b> 단순히 화면에 글자를 보여주고 끝나는 print와 달리 함수가 연산한 최종 결과값을 프로그램의 다른 부분에서 활용해야 할 때가 많습니다. 이때 return 키워드를 사용하면 계산된 수치를 함수 밖으로 꺼내어 변수에 저장할 수 있습니다.</p>
                     <div class="code-block-wrapper">
                         <div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div>
                         <pre><code><span class="code-keyword">def</span> <span class="code-def">calculate_total_score</span>(recognition, intent):
@@ -642,7 +656,7 @@ final_score = calculate_total_score(<span class="code-num">45</span>, <span clas
                     </div>
 
                     <h1 class="chapter-h1" style="margin-top: 50px;">🎯 [4차시] 위치 인수와 키워드 인수 활용</h1>
-                    <p class="section-desc"><b>핵심 개념 설명:</b> 함수에 여러 개의 매개변수가 있을 때 값을 전달하는 방식은 두 가지입니다. 코드를 작성한 순서대로 들어가는 위치 인수 방식과 매개변수의 이름을 직접 지정하여 순서와 상관없이 전달하는 키워드 인수 방식입니다.</p>
+                    <p class="section-desc"><b>핵심 개념 상세 설명:</b> 함수에 여러 개의 매개변수가 있을 때 값을 전달하는 방식은 두 가지입니다. 코드를 작성한 순서대로 들어가는 위치 인수 방식과 매개변수의 이름을 직접 지정하여 순서와 상관없이 전달하는 키워드 인수 방식입니다.</p>
                     <div class="code-block-wrapper">
                         <div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div>
                         <pre><code><span class="code-keyword">def</span> <span class="code-def">population_info</span>(city, district, count):
@@ -664,7 +678,7 @@ population_info(count=<span class="code-num">32000</span>, city=<span class="cod
                     </div>
 
                     <h1 class="chapter-h1" style="margin-top: 50px;">⚙️ [5차시] 기본값(Default) 매개변수의 적용</h1>
-                    <p class="section-desc"><b>핵심 개념 설명:</b> 매번 동일한 값을 전달해야 하는 번거로움을 줄이기 위해 함수 정의 시 매개변수에 기본값을 미리 설정해 둘 수 있습니다. 호출할 때 값을 생략하면 이 기본값이 작동하며 새로운 값을 전달하면 기본값을 무시하고 덮어씁니다.</p>
+                    <p class="section-desc"><b>핵심 개념 상세 설명:</b> 매번 동일한 값을 전달해야 하는 번거로움을 줄이기 위해 함수 정의 시 매개변수에 기본값을 미리 설정해 둘 수 있습니다. 호출할 때 값을 생략하면 이 기본값이 작동하며 새로운 값을 전달하면 기본값을 무시하고 덮어씁니다.</p>
                     <div class="code-block-wrapper">
                         <div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div>
                         <pre><code><span class="code-keyword">def</span> <span class="code-def">report_activity</span>(name, club=<span class="code-str">"데이터마이닝"</span>):
@@ -686,7 +700,7 @@ report_activity(<span class="code-str">"박학생"</span>, <span class="code-str
                     </div>
 
                     <h1 class="chapter-h1" style="margin-top: 50px;">🏠 [6차시] 지역 변수와 전역 변수의 이해</h1>
-                    <p class="section-desc"><b>핵심 개념 설명:</b> 함수 안에서 새롭게 만들어진 변수는 지역 변수라 불리며 함수가 종료되면 메모리에서 완전히 사라집니다. 반면 함수 밖에서 만들어진 변수는 전역 변수로 프로그램 전체에서 읽을 수 있습니다. 변수의 생명 주기와 유효 범위를 이해하는 것은 논리 오류를 막는 핵심입니다.</p>
+                    <p class="section-desc"><b>핵심 개념 상세 설명:</b> 함수 안에서 새롭게 만들어진 변수는 지역 변수라 불리며 함수가 종료되면 메모리에서 완전히 사라집니다. 반면 함수 밖에서 만들어진 변수는 전역 변수로 프로그램 전체에서 읽을 수 있습니다. 변수의 생명 주기와 유효 범위를 이해하는 것은 논리 오류를 막는 핵심입니다.</p>
                     <div class="code-block-wrapper">
                         <div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div>
                         <pre><code>base_population = <span class="code-num">380000</span> <span class="code-comment"># 전역 변수</span>
@@ -707,7 +721,7 @@ add_new_residents(<span class="code-num">5000</span>)
                     </div>
 
                     <h1 class="chapter-h1" style="margin-top: 50px;">⚖️ [7차시] 함수와 조건문(if)의 결합</h1>
-                    <p class="section-desc"><b>핵심 개념 설명:</b> 입력받은 매개변수의 값을 if 조건문으로 검사하여 참(True) 또는 거짓(False)을 반환하는 판별 함수를 만들 수 있습니다. 데이터의 유효성을 검사하거나 조건에 따른 처리를 모듈화할 때 매우 유용합니다.</p>
+                    <p class="section-desc"><b>핵심 개념 상세 설명:</b> 입력받은 매개변수의 값을 if 조건문으로 검사하여 참(True) 또는 거짓(False)을 반환하는 판별 함수를 만들 수 있습니다. 데이터의 유효성을 검사하거나 조건에 따른 처리를 모듈화할 때 매우 유용합니다.</p>
                     <div class="code-block-wrapper">
                         <div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div>
                         <pre><code><span class="code-keyword">def</span> <span class="code-def">is_effective_ppl</span>(score):
@@ -731,7 +745,7 @@ current_score = <span class="code-num">85</span>
                     </div>
 
                     <h1 class="chapter-h1" style="margin-top: 50px;">🔄 [8차시] 함수와 반복문(for)의 결합</h1>
-                    <p class="section-desc"><b>핵심 개념 설명:</b> 여러 개의 데이터가 담긴 파이썬 리스트를 함수의 매개변수로 한 번에 넘겨줄 수 있습니다. 함수 내부의 for 반복문을 통해 리스트 원소를 하나씩 꺼내어 누적 합계를 구하거나 평균을 계산하는 등 대량의 데이터를 손쉽게 다룹니다.</p>
+                    <p class="section-desc"><b>핵심 개념 상세 설명:</b> 여러 개의 데이터가 담긴 파이썬 리스트를 함수의 매개변수로 한 번에 넘겨줄 수 있습니다. 함수 내부의 for 반복문을 통해 리스트 원소를 하나씩 꺼내어 누적 합계를 구하거나 평균을 계산하는 등 대량의 데이터를 손쉽게 다룹니다.</p>
                     <div class="code-block-wrapper">
                         <div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div>
                         <pre><code><span class="code-keyword">def</span> <span class="code-def">calculate_total_population</span>(pop_list):
@@ -754,7 +768,7 @@ total_pop = calculate_total_population(district_populations)
                     </div>
 
                     <h1 class="chapter-h1" style="margin-top: 50px;">🔗 [9차시] 다중 함수의 파이프라인 연결</h1>
-                    <p class="section-desc"><b>핵심 개념 설명:</b> 복잡한 코드를 하나의 거대한 함수에 몰아넣기보다는 역할이 하나로 분명한 여러 개의 작은 함수로 나누어 설계하는 것이 좋습니다. 한 함수가 연산하여 반환한 결과값을 다음 함수의 입력으로 전달하며 협업하는 구조를 익힙니다.</p>
+                    <p class="section-desc"><b>핵심 개념 상세 설명:</b> 복잡한 코드를 하나의 거대한 함수에 몰아넣기보다는 역할이 하나로 분명한 여러 개의 작은 함수로 나누어 설계하는 것이 좋습니다. 한 함수가 연산하여 반환한 결과값을 다음 함수의 입력으로 전달하며 협업하는 구조를 익힙니다.</p>
                     <div class="code-block-wrapper">
                         <div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div>
                         <pre><code><span class="code-comment"># 1단계: 평균을 구하는 전문 함수</span>
@@ -786,7 +800,7 @@ final_rating = rate_effectiveness(average_val)
                     </div>
 
                     <h1 class="chapter-h1" style="margin-top: 50px;">🏆 [10차시] 종합 미니 프로젝트 - 데이터 분석 리포트 완성</h1>
-                    <p class="section-desc"><b>핵심 개념 설명:</b> 지금까지 배운 매개변수, 반환값, 조건문, 반복문, 함수 연결의 모든 개념을 조립하여 독립적인 기능을 수행하는 데이터 분석 미니 프로그램을 완성합니다.</p>
+                    <p class="section-desc"><b>핵심 개념 상세 설명:</b> 지금까지 배운 매개변수, 반환값, 조건문, 반복문, 함수 연결의 모든 개념을 조립하여 독립적인 기능을 수행하는 데이터 분석 미니 프로그램을 완성합니다.</p>
                     <div class="code-block-wrapper">
                         <div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div>
                         <pre><code><span class="code-keyword">def</span> <span class="code-def">calc_avg</span>(data_list):
@@ -996,6 +1010,274 @@ districts[<span class="code-str">"한솔동"</span>][<span class="code-str">"pop
                         • <b>키를 두 번 사용</b> : districts["한솔동"]은 안쪽 딕셔너리이며 여기에 ["population"]을 붙여 숫자를 얻습니다.<br>
                         • <b>안쪽 값 수정</b> : 한솔동의 인구만 18500으로 바꿉니다. 보람동의 자료에는 영향을 주지 않습니다.<br>
                         • <b>밀도 계산</b> : 인구를 면적으로 나눕니다. 
+                    </div>
+                `
+            },
+            
+            // [04. 데이터 분석]
+            lesson4: {
+                title: "04. 데이터 분석",
+                icon: "📊",
+                html: `
+                    <h1 class="article-title">pandas를 활용한 데이터 분석</h1>
+                    <div class="article-intro">
+                        데이터 전처리부터 요약 통계, 그룹화, 데이터 병합 및 시각화까지 파이썬 데이터 분석의 핵심 도구인 pandas의 실전 활용법을 학습합니다.
+                    </div>
+
+                    <h1 class="chapter-h1">📊 [1차시] Series와 DataFrame 만들기</h1>
+                    <p class="section-desc"><b>핵심 개념 설명:</b> pandas는 행과 열로 구성된 표 데이터를 다루는 파이썬 라이브러리입니다. Series는 이름표가 있는 1차원 자료이고 DataFrame은 여러 열로 이루어진 표입니다.</p>
+                    <div class="code-block-wrapper">
+                        <div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div>
+                        <pre><code><span class="code-keyword">import</span> pandas <span class="code-keyword">as</span> pd
+
+scores = pd.Series([<span class="code-num">82</span>, <span class="code-num">75</span>, <span class="code-num">90</span>], name=<span class="code-str">"score"</span>)
+data = {
+    <span class="code-str">"brand"</span>: [<span class="code-str">"세종우유"</span>, <span class="code-str">"한솔제과"</span>, <span class="code-str">"세종푸드"</span>],
+    <span class="code-str">"score"</span>: [<span class="code-num">82</span>, <span class="code-num">75</span>, <span class="code-num">90</span>],
+    <span class="code-str">"responses"</span>: [<span class="code-num">20</span>, <span class="code-num">18</span>, <span class="code-num">25</span>]
+}
+df = pd.DataFrame(data)
+
+<span class="code-keyword">print</span>(<span class="code-str">"한 열의 자료:"</span>)
+<span class="code-keyword">print</span>(scores)
+<span class="code-keyword">print</span>(<span class="code-str">"전체 표:"</span>)
+<span class="code-keyword">print</span>(df)
+<span class="code-keyword">print</span>(<span class="code-str">"행과 열의 개수:"</span>, df.shape)</code></pre>
+                    </div>
+                    <div class="result-box">
+                        <b>🔍 코드 톺아보기</b><br>
+                        • <code>import pandas as pd</code> : pandas를 pd라는 짧은 이름으로 사용합니다.<br>
+                        • <code>pd.DataFrame(data)</code> : 딕셔너리의 키는 열 이름이 되고 각 리스트는 열의 값이 됩니다.<br>
+                        • <code>df.shape</code> : (3, 3)은 3행 3열이라는 뜻입니다. 왼쪽의 기본 인덱스 0, 1, 2는 별도 데이터 열이 아닙니다.
+                    </div>
+
+                    <h1 class="chapter-h1" style="margin-top: 50px;">💾 [2차시] CSV 파일 저장과 불러오기</h1>
+                    <p class="section-desc"><b>핵심 개념 설명:</b> CSV는 쉼표로 열을 구분하는 텍스트 파일 형식입니다. pandas의 read_csv로 파일을 표로 읽고 to_csv로 분석 결과를 저장할 수 있습니다.</p>
+                    <div class="code-block-wrapper">
+                        <div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div>
+                        <pre><code><span class="code-keyword">import</span> pandas <span class="code-keyword">as</span> pd
+
+sample = pd.DataFrame({
+    <span class="code-str">"brand"</span>: [<span class="code-str">"세종우유"</span>, <span class="code-str">"한솔제과"</span>, <span class="code-str">"세종푸드"</span>],
+    <span class="code-str">"score"</span>: [<span class="code-num">82</span>, <span class="code-num">75</span>, <span class="code-num">90</span>]
+})
+file_name = <span class="code-str">"lesson02_survey.csv"</span>
+sample.to_csv(file_name, index=<span class="code-keyword">False</span>, encoding=<span class="code-str">"utf-8"</span>)
+
+df = pd.read_csv(file_name, encoding=<span class="code-str">"utf-8"</span>)
+<span class="code-keyword">print</span>(<span class="code-str">"읽어 온 자료:"</span>)
+<span class="code-keyword">print</span>(df.head())
+<span class="code-keyword">print</span>(<span class="code-str">"열 이름:"</span>, df.columns)
+<span class="code-keyword">print</span>(<span class="code-str">"행 수:"</span>, len(df))</code></pre>
+                    </div>
+                    <div class="result-box">
+                        <b>🔍 코드 톺아보기</b><br>
+                        • <code>to_csv</code>와 <code>index=False</code> : 표를 파일로 저장하면서 행 인덱스를 별도 열로 쓰지 않게 합니다.<br>
+                        • <code>encoding="utf-8"</code> : 한글 CSV의 인코딩을 지정합니다. 실제 파일은 저장된 인코딩에 맞추어 읽어야 합니다.<br>
+                        • <code>read_csv</code>와 경로 : 같은 작업 폴더의 파일을 읽습니다. head()는 기본적으로 처음 5행까지 보여줍니다.
+                    </div>
+
+                    <h1 class="chapter-h1" style="margin-top: 50px;">🔍 [3차시] 자료 구조와 기초 통계 확인</h1>
+                    <p class="section-desc"><b>핵심 개념 설명:</b> 분석을 시작하기 전에는 행과 열의 크기, 자료형, 누락값 유무를 먼저 살펴야 합니다. info는 열별 자료형과 값이 있는 개수를 보여주고 describe는 숫자 열의 기초 통계를 요약합니다.</p>
+                    <div class="code-block-wrapper">
+                        <div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div>
+                        <pre><code><span class="code-keyword">import</span> pandas <span class="code-keyword">as</span> pd
+
+df = pd.DataFrame({
+    <span class="code-str">"brand"</span>: [<span class="code-str">"A"</span>, <span class="code-str">"B"</span>, <span class="code-str">"C"</span>, <span class="code-str">"D"</span>],
+    <span class="code-str">"score"</span>: [<span class="code-num">80</span>, <span class="code-num">90</span>, <span class="code-keyword">None</span>, <span class="code-num">70</span>],
+    <span class="code-str">"responses"</span>: [<span class="code-num">20</span>, <span class="code-num">30</span>, <span class="code-num">10</span>, <span class="code-num">20</span>]
+})
+
+<span class="code-keyword">print</span>(<span class="code-str">"자료 일부:"</span>)
+<span class="code-keyword">print</span>(df.head(<span class="code-num">3</span>))
+<span class="code-keyword">print</span>(<span class="code-str">"크기:"</span>, df.shape)
+
+df.info()
+
+<span class="code-keyword">print</span>(<span class="code-str">"숫자 열 통계:"</span>)
+<span class="code-keyword">print</span>(df.describe())
+<span class="code-keyword">print</span>(<span class="code-str">"열별 누락값 수:"</span>)
+<span class="code-keyword">print</span>(df.isna().sum())</code></pre>
+                    </div>
+                    <div class="result-box">
+                        <b>🔍 코드 톺아보기</b><br>
+                        • <code>df.info()</code> : 자료형과 Non-Null Count를 확인합니다.<br>
+                        • <code>describe()</code> : count, mean, std, min, 사분위수, max를 보여줍니다. score의 유효 개수는 3이고 평균은 80입니다.<br>
+                        • <code>isna().sum()</code> : 누락 여부를 True/False로 표시한 뒤 열별로 합산합니다.
+                    </div>
+
+                    <h1 class="chapter-h1" style="margin-top: 50px;">🎯 [4차시] 열 선택과 loc iloc 이해하기</h1>
+                    <p class="section-desc"><b>핵심 개념 설명:</b> DataFrame에서 필요한 부분을 고를 때는 이름표로 선택하는 loc와 정수 위치로 선택하는 iloc를 구분해야 합니다.</p>
+                    <div class="code-block-wrapper">
+                        <div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div>
+                        <pre><code><span class="code-keyword">import</span> pandas <span class="code-keyword">as</span> pd
+
+df = pd.DataFrame({
+    <span class="code-str">"brand"</span>: [<span class="code-str">"세종우유"</span>, <span class="code-str">"한솔제과"</span>, <span class="code-str">"세종푸드"</span>],
+    <span class="code-str">"score"</span>: [<span class="code-num">82</span>, <span class="code-num">75</span>, <span class="code-num">90</span>],
+    <span class="code-str">"responses"</span>: [<span class="code-num">20</span>, <span class="code-num">18</span>, <span class="code-num">25</span>]
+}, index=[<span class="code-str">"a"</span>, <span class="code-str">"b"</span>, <span class="code-str">"c"</span>])
+
+<span class="code-keyword">print</span>(df[<span class="code-str">"score"</span>])
+<span class="code-keyword">print</span>(df[[<span class="code-str">"brand"</span>, <span class="code-str">"score"</span>]])
+
+<span class="code-keyword">print</span>(<span class="code-str">"이름표로 선택:"</span>)
+<span class="code-keyword">print</span>(df.loc[<span class="code-str">"a"</span>:<span class="code-str">"b"</span>, [<span class="code-str">"brand"</span>, <span class="code-str">"score"</span>]])
+
+<span class="code-keyword">print</span>(<span class="code-str">"위치로 선택:"</span>)
+<span class="code-keyword">print</span>(df.iloc[<span class="code-num">0</span>:<span class="code-num">2</span>, <span class="code-num">0</span>:<span class="code-num">2</span>])</code></pre>
+                    </div>
+                    <div class="result-box">
+                        <b>🔍 코드 톺아보기</b><br>
+                        • <b>한 겹과 두 겹 대괄호</b> : df["score"]는 Series입니다. 여러 열 이름을 리스트로 전달한 df[["brand", "score"]]는 DataFrame입니다.<br>
+                        • <code>loc["a":"b"]</code> : 이름표 범위의 끝 b를 포함합니다. 첫 두 행의 지정한 열을 선택합니다.<br>
+                        • <code>iloc[0:2, 0:2]</code> : 정수 위치의 끝 2는 제외합니다. 앞의 범위는 행, 뒤의 범위는 열입니다.
+                    </div>
+
+                    <h1 class="chapter-h1" style="margin-top: 50px;">⚡ [5차시] 조건 필터링과 정렬</h1>
+                    <p class="section-desc"><b>핵심 개념 설명:</b> 분석 질문을 조건식으로 바꾸면 관심 있는 행만 추출할 수 있습니다. pandas의 여러 조건은 and 대신 & 또는 |로 결합하고 각 조건을 괄호로 감쌉니다.</p>
+                    <div class="code-block-wrapper">
+                        <div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div>
+                        <pre><code><span class="code-keyword">import</span> pandas <span class="code-keyword">as</span> pd
+
+df = pd.DataFrame({
+    <span class="code-str">"brand"</span>: [<span class="code-str">"A"</span>, <span class="code-str">"B"</span>, <span class="code-str">"C"</span>, <span class="code-str">"D"</span>],
+    <span class="code-str">"score"</span>: [<span class="code-num">85</span>, <span class="code-num">72</span>, <span class="code-num">90</span>, <span class="code-num">88</span>],
+    <span class="code-str">"responses"</span>: [<span class="code-num">25</span>, <span class="code-num">30</span>, <span class="code-num">12</span>, <span class="code-num">22</span>]
+})
+
+condition = (df[<span class="code-str">"score"</span>] >= <span class="code-num">80</span>) & (df[<span class="code-str">"responses"</span>] >= <span class="code-num">20</span>)
+selected = df.loc[condition, [<span class="code-str">"brand"</span>, <span class="code-str">"score"</span>, <span class="code-str">"responses"</span>]]
+ranked = selected.sort_values(<span class="code-str">"score"</span>, ascending=<span class="code-keyword">False</span>)
+
+<span class="code-keyword">print</span>(<span class="code-str">"조건에 맞는 행:"</span>)
+<span class="code-keyword">print</span>(ranked)
+<span class="code-keyword">print</span>(<span class="code-str">"선택한 행수:"</span>, len(ranked))</code></pre>
+                    </div>
+                    <div class="result-box">
+                        <b>🔍 코드 톺아보기</b><br>
+                        • <b>조건식의 결과</b> : 각 행마다 참과 거짓이 담긴 Series를 만듭니다. &는 두 조건이 모두 참인 행을 고릅니다.<br>
+                        • <code>loc</code>로 필터링: 85점·25명인 A와 88점 22명인 D가 선택됩니다.<br>
+                        • <code>sort_values</code> : ascending=False는 내림차순입니다. 원래 df를 직접 바꾸지 않습니다.
+                    </div>
+
+                    <h1 class="chapter-h1" style="margin-top: 50px;">🧹 [6차시] 자료형 변환과 결측·중복 처리</h1>
+                    <p class="section-desc"><b>핵심 개념 설명:</b> 실제 자료에는 숫자처럼 보이는 문자열, 잘못 입력한 값, 누락값, 중복 행이 섞여 있을 수 있습니다. 숫자로 변환할 수 없는 값을 결측으로 바꾸고 중복을 제거한 뒤 분석 가능한 행을 선택합니다.</p>
+                    <div class="code-block-wrapper">
+                        <div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div>
+                        <pre><code><span class="code-keyword">import</span> pandas <span class="code-keyword">as</span> pd
+
+df = pd.DataFrame({
+    <span class="code-str">"id"</span>: [<span class="code-num">1</span>, <span class="code-num">2</span>, <span class="code-num">2</span>, <span class="code-num">3</span>, <span class="code-num">4</span>],
+    <span class="code-str">"score"</span>: [<span class="code-str">"80"</span>, <span class="code-str">"90"</span>, <span class="code-str">"90"</span>, <span class="code-str">"미응답"</span>, <span class="code-keyword">None</span>]
+})
+
+clean = df.drop_duplicates().copy()
+clean[<span class="code-str">"score"</span>] = pd.to_numeric(clean[<span class="code-str">"score"</span>], errors=<span class="code-str">"coerce"</span>)
+<span class="code-keyword">print</span>(<span class="code-str">"결측값 수:"</span>, clean[<span class="code-str">"score"</span>].isna().sum())
+
+valid = clean.dropna(subset=[<span class="code-str">"score"</span>]).copy()
+
+<span class="code-comment"># 평균 대체는 비교용</span>
+filled = clean[<span class="code-str">"score"</span>].fillna(clean[<span class="code-str">"score"</span>].mean())
+<span class="code-keyword">print</span>(<span class="code-str">"평균으로 대체한 경우:"</span>, filled.tolist())
+<span class="code-keyword">print</span>(<span class="code-str">"원본 행수:"</span>, len(df), <span class="code-str">"유효 행수:"</span>, len(valid))
+<span class="code-keyword">print</span>(<span class="code-str">"유효 점수 평균:"</span>, valid[<span class="code-str">"score"</span>].mean())</code></pre>
+                    </div>
+                    <div class="result-box">
+                        <b>🔍 코드 톺아보기</b><br>
+                        • <code>drop_duplicates</code> : 모든 열이 같은 중복 행 하나를 제거합니다.<br>
+                        • <code>to_numeric(..., errors="coerce")</code> : 미응답 같은 문자열을 결측값으로 바꿉니다. 비정상적인 값을 에러 대신 강제로 NaN(결측값)으로 변환합니다.<br>
+                        • <code>dropna</code>와 <code>fillna</code> : 분석에는 결측 행을 제외하고 평균을 구합니다. 평균 대체는 목적에 맞게 선택해야 합니다.
+                    </div>
+
+                    <h1 class="chapter-h1" style="margin-top: 50px;">🧮 [7차시] 파생 열 만들기와 요약 통계</h1>
+                    <p class="section-desc"><b>핵심 개념 설명:</b> 기존 열을 계산하여 새 열을 만들면 원래 자료에 없던 비교 기준을 얻을 수 있습니다. 광고를 본 사람 중 구매 의사를 밝힌 사람의 비율을 계산하고 요약합니다.</p>
+                    <div class="code-block-wrapper">
+                        <div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div>
+                        <pre><code><span class="code-keyword">import</span> pandas <span class="code-keyword">as</span> pd
+
+df = pd.DataFrame({
+    <span class="code-str">"brand"</span>: [<span class="code-str">"A"</span>, <span class="code-str">"B"</span>, <span class="code-str">"C"</span>, <span class="code-str">"D"</span>],
+    <span class="code-str">"viewers"</span>: [<span class="code-num">100</span>, <span class="code-num">80</span>, <span class="code-num">120</span>, <span class="code-num">0</span>],
+    <span class="code-str">"buyers"</span>: [<span class="code-num">25</span>, <span class="code-num">24</span>, <span class="code-num">30</span>, <span class="code-num">0</span>]
+})
+
+valid = df.loc[df[<span class="code-str">"viewers"</span>] > <span class="code-num">0</span>].copy()
+valid[<span class="code-str">"intent_rate"</span>] = valid[<span class="code-str">"buyers"</span>] / valid[<span class="code-str">"viewers"</span>] * <span class="code-num">100</span>
+valid[<span class="code-str">"intent_rate"</span>] = valid[<span class="code-str">"intent_rate"</span>].round(<span class="code-num">1</span>)
+<span class="code-keyword">print</span>(valid)
+
+<span class="code-keyword">print</span>(<span class="code-str">"브랜드별 비율의 단순 평균:"</span>, valid[<span class="code-str">"intent_rate"</span>].mean())
+weighted_rate = valid[<span class="code-str">"buyers"</span>].sum() / valid[<span class="code-str">"viewers"</span>].sum() * <span class="code-num">100</span>
+<span class="code-keyword">print</span>(<span class="code-str">"전체 응답자 기준 비율:"</span>, round(weighted_rate, <span class="code-num">1</span>))</code></pre>
+                    </div>
+                    <div class="result-box">
+                        <b>🔍 코드 톺아보기</b><br>
+                        • <b>열 단위 계산</b> : 각 행의 buyers를 같은 행의 viewers로 나눕니다. 별도 for 반복문 없이 전체 열을 계산합니다.<br>
+                        • <b>copy와 새열</b> : 필터링 결과를 복사한 뒤 intent_rate 열을 추가합니다.<br>
+                        • <b>평균의 해석</b> : 브랜드 비율의 단순 평균은 약 26.7%, 전체 응답자 기준 비율은 약 26.3% 입니다. 표본 수가 다르면 두 값은 다를 수 있습니다.
+                    </div>
+
+                    <h1 class="chapter-h1" style="margin-top: 50px;">📦 [8차시] groupby로 그룹별 분석하기</h1>
+                    <p class="section-desc"><b>핵심 개념 설명:</b> 전체 평균만 보면 브랜드나 매체 사이의 차이를 놓칠 수 있습니다. groupby는 같은 값을 가진 행을 묶고 각 그룹에 집계 함수를 적용합니다.</p>
+                    <div class="code-block-wrapper">
+                        <div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div>
+                        <pre><code><span class="code-keyword">import</span> pandas <span class="code-keyword">as</span> pd
+
+df = pd.DataFrame({
+    <span class="code-str">"brand"</span>: [<span class="code-str">"A"</span>, <span class="code-str">"A"</span>, <span class="code-str">"B"</span>, <span class="code-str">"B"</span>, <span class="code-str">"C"</span>, <span class="code-str">"C"</span>],
+    <span class="code-str">"media"</span>: [<span class="code-str">"영상"</span>, <span class="code-str">"포스터"</span>, <span class="code-str">"영상"</span>, <span class="code-str">"포스터"</span>, <span class="code-str">"영상"</span>, <span class="code-str">"포스터"</span>],
+    <span class="code-str">"score"</span>: [<span class="code-num">80</span>, <span class="code-num">90</span>, <span class="code-num">70</span>, <span class="code-num">80</span>, <span class="code-num">85</span>, <span class="code-num">95</span>]
+})
+
+summary = df.groupby(<span class="code-str">"brand"</span>, as_index=<span class="code-keyword">False</span>).agg(
+    responses=(<span class="code-str">"score"</span>, <span class="code-str">"count"</span>),
+    average=(<span class="code-str">"score"</span>, <span class="code-str">"mean"</span>),
+    highest=(<span class="code-str">"score"</span>, <span class="code-str">"max"</span>)
+)
+
+<span class="code-keyword">print</span>(<span class="code-str">"브랜드별 요약:"</span>)
+<span class="code-keyword">print</span>(summary)
+<span class="code-keyword">print</span>(<span class="code-str">"매체별 평균:"</span>)
+<span class="code-keyword">print</span>(df.groupby(<span class="code-str">"media"</span>)[<span class="code-str">"score"</span>].mean())</code></pre>
+                    </div>
+                    <div class="result-box">
+                        <b>🔍 코드 톺아보기</b><br>
+                        • <code>groupby("brand")</code> : 브랜드가 같은 행을 묶습니다. A의 평균은 85, B는 75, C는 90입니다.<br>
+                        • <code>agg</code>의 이름 지정 : 집계 결과 열 이름과 원본 열, 집계 함수를 함께 지정합니다.<br>
+                        • <code>as_index=False</code> : 브랜드를 일반 열로 남겨 결과를 다루기 쉽게 합니다.
+                    </div>
+
+                    <h1 class="chapter-h1" style="margin-top: 50px;">🔗 [9차시] 표 결합과 막대그래프 비교</h1>
+                    <p class="section-desc"><b>핵심 개념 설명:</b> 분석 자료와 설명 자료가 별도 표에 있을 때 공통 키를 기준으로 결합할 수 있습니다. merge로 브랜드별 점수와 분류를 연결한 뒤 막대그래프로 비교합니다.</p>
+                    <div class="code-block-wrapper">
+                        <div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div>
+                        <pre><code><span class="code-keyword">import</span> pandas <span class="code-keyword">as</span> pd
+<span class="code-keyword">import</span> matplotlib.pyplot <span class="code-keyword">as</span> plt
+
+scores = pd.DataFrame({<span class="code-str">"brand"</span>: [<span class="code-str">"A"</span>, <span class="code-str">"B"</span>, <span class="code-str">"C"</span>], <span class="code-str">"average"</span>: [<span class="code-num">85</span>, <span class="code-num">75</span>, <span class="code-num">90</span>]})
+info = pd.DataFrame({<span class="code-str">"brand"</span>: [<span class="code-str">"A"</span>, <span class="code-str">"B"</span>, <span class="code-str">"C"</span>], <span class="code-str">"category"</span>: [<span class="code-str">"음료"</span>, <span class="code-str">"과자"</span>, <span class="code-str">"식품"</span>]})
+
+merged = scores.merge(info, on=<span class="code-str">"brand"</span>, how=<span class="code-str">"left"</span>, validate=<span class="code-str">"one_to_one"</span>)
+<span class="code-comment"># 데이터 연결의 공통 기준 열을 brand로, 기준이 되는 왼쪽 데이터인 scores의 모든 행은 무조건 보존,</span>
+<span class="code-comment"># validate=one_to_one은 데이터가 정확히 1대1 관계로 연결되는지 검증</span>
+
+plt.figure(figsize=(<span class="code-num">8</span>, <span class="code-num">5</span>))
+plt.bar(merged[<span class="code-str">'brand'</span>], merged[<span class="code-str">'average'</span>])
+plt.title(<span class="code-str">"Average survey score by brand"</span>)
+plt.xlabel(<span class="code-str">"Brand"</span>)
+plt.ylabel(<span class="code-str">"Score"</span>)
+plt.ylim(<span class="code-num">0</span>, <span class="code-num">100</span>)
+plt.tight_layout()
+plt.show()</code></pre>
+                    </div>
+                    <div class="result-box">
+                        <b>🔍 코드 톺아보기</b><br>
+                        • <b>left 결합</b> : 왼쪽 scores의 브랜드를 모두 유지합니다. 오른쪽에 대응하는 키가 없으면 category가 결측값이 됩니다.<br>
+                        • <code>validate="one_to_one"</code> : 두 표 모두 브랜드 키가 유일한지 검사합니다.<br>
+                        • <b>막대그래프 해석</b> : 세로축을 0~100으로 고정하여 평균 차이를 비교합니다.
                     </div>
                 `
             }
