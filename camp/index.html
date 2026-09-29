@@ -84,7 +84,7 @@
             overflow: hidden;
         }
 
-        /* 사이드바 */
+        /* 사이드바 넓이 원상복구 (260px) */
         .sidebar {
             width: 260px;
             background: #ffffff;
@@ -210,6 +210,15 @@
             align-items: center;
             gap: 8px;
         }
+        .section-h2 {
+            font-size: 16px;
+            font-weight: 700;
+            color: #1e293b;
+            margin: 24px 0 10px 0;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+        }
         .section-desc {
             font-size: 14px;
             color: #334155;
@@ -286,7 +295,7 @@
     </header>
 
     <div class="main-container">
-        <!-- 사이드바 -->
+        <!-- 사이드바: 3개 메인 주제 -->
         <aside class="sidebar">
             <div class="sidebar-header">
                 <div class="sidebar-section-title">
@@ -339,11 +348,11 @@
                 html: `
                     <h1 class="article-title">파이썬 리스트(List)</h1>
                     <div class="article-intro">
-                        데이터를 순서대로 여러 개 묶어서 관리하는 파이썬의 가장 기본적인 자료구조인 리스트를 생성하고, 값을 꺼내고 자르고 바꾸는 핵심 조작법을 학습합니다[cite: 8].
+                        데이터를 순서대로 여러 개 묶어서 관리하는 파이썬의 가장 기본적인 자료구조인 리스트를 생성하고, 값을 꺼내고 자르고 바꾸는 핵심 조작법을 학습합니다.
                     </div>
 
                     <h1 class="chapter-h1">📌 [1차시] 리스트 생성과 데이터 묶기</h1>
-                    <p class="section-desc"><b>핵심 개념 설명:</b> 학생별 점수나 지역별 인구처럼 같은 종류의 데이터를 여러 개 다룰 때 변수를 하나씩 만들면 관리하기 어렵습니다[cite: 8]. 리스트는 대괄호 안에 여러 값을 순서대로 담는 자료형입니다[cite: 8].</p>
+                    <p class="section-desc"><b>핵심 개념 설명:</b> 학생별 점수나 지역별 인구처럼 같은 종류의 데이터를 여러 개 다룰 때 변수를 하나씩 만들면 관리하기 어렵습니다. 리스트는 대괄호 안에 여러 값을 순서대로 담는 자료형입니다.</p>
                     <div class="code-block-wrapper">
                         <div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div>
                         <pre><code><span class="code-comment"># 설문 점수를 순서대로 저장</span>
@@ -358,13 +367,13 @@ empty_data = []
                     </div>
                     <div class="result-box">
                         <b>🔍 코드 톺아보기</b><br>
-                        • <b>대괄호[]</b> : 쉼표로 구분한 값들을 하나의 리스트로 만듭니다[cite: 8]. 같은 값 75가 두 번 들어가도 각각의 원소로 저장됩니다[cite: 8].<br>
-                        • <code>len(scores)</code> : 리스트에 담긴 원소의 개수를 반환하므로 응답자 수는 5입니다[cite: 8].<br>
-                        • <b>빈 리스트</b> : []는 원소가 없는 리스트입니다[cite: 8]. 이후 데이터를 추가하는 출발점으로 사용할 수 있습니다[cite: 8].
+                        • <b>대괄호[]</b> : 쉼표로 구분한 값들을 하나의 리스트로 만듭니다. 같은 값 75가 두 번 들어가도 각각의 원소로 저장됩니다.<br>
+                        • <code>len(scores)</code> : 리스트에 담긴 원소의 개수를 반환하므로 응답자 수는 5입니다.<br>
+                        • <b>빈 리스트</b> : []는 원소가 없는 리스트입니다. 이후 데이터를 추가하는 출발점으로 사용할 수 있습니다.
                     </div>
 
                     <h1 class="chapter-h1" style="margin-top: 50px;">📌 [2차시] 인덱싱으로 필요한 값 꺼내기</h1>
-                    <p class="section-desc"><b>핵심 개념 설명:</b> 리스트의 각 원소에는 위치를 나타내는 인덱스가 있습니다[cite: 8]. 첫 번째 위치는 1이 아니라 0이며 음수 인덱스는 뒤에서부터 셉니다[cite: 8].</p>
+                    <p class="section-desc"><b>핵심 개념 설명:</b> 리스트의 각 원소에는 위치를 나타내는 인덱스가 있습니다. 첫 번째 위치는 1이 아니라 0이며 음수 인덱스는 뒤에서부터 셉니다.</p>
                     <div class="code-block-wrapper">
                         <div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div>
                         <pre><code>visitors = [<span class="code-num">120</span>, <span class="code-num">135</span>, <span class="code-num">128</span>, <span class="code-num">160</span>]
@@ -379,13 +388,13 @@ change = last_month - first_month
                     </div>
                     <div class="result-box">
                         <b>🔍 코드 톺아보기</b><br>
-                        • <code>visitors[0]</code> : 첫 번째 값 120을 가져옵니다[cite: 8]. 길이가 4인 리스트의 양수 인덱스는 0부터 3까지입니다[cite: 8].<br>
-                        • <code>visitors[-1]</code> : 마지막 값 160을 가져옵니다[cite: 8]. 자료가 추가되어도 마지막 원소를 가리킵니다[cite: 8].<br>
-                        • <code>change</code> : 꺼낸 값은 일반 숫자처럼 계산할 수 있으며 증가량은 40입니다[cite: 8].
+                        • <code>visitors[0]</code> : 첫 번째 값 120을 가져옵니다. 길이가 4인 리스트의 양수 인덱스는 0부터 3까지입니다.<br>
+                        • <code>visitors[-1]</code> : 마지막 값 160을 가져옵니다. 자료가 추가되어도 마지막 원소를 가리킵니다.<br>
+                        • <code>change</code> : 꺼낸 값은 일반 숫자처럼 계산할 수 있으며 증가량은 40입니다.
                     </div>
 
                     <h1 class="chapter-h1" style="margin-top: 50px;">📌 [3차시] 슬라이싱으로 구간 추출하기</h1>
-                    <p class="section-desc"><b>핵심 개념 설명:</b> 인덱싱이 값 하나를 꺼내는 방법이라면 슬라이싱은 원하는 구간을 새 리스트로 만드는 방법입니다[cite: 8]. [시작:끝]에서 끝 위치는 포함되지 않습니다[cite: 8].</p>
+                    <p class="section-desc"><b>핵심 개념 설명:</b> 인덱싱이 값 하나를 꺼내는 방법이라면 슬라이싱은 원하는 구간을 새 리스트로 만드는 방법입니다. [시작:끝]에서 끝 위치는 포함되지 않습니다.</p>
                     <div class="code-block-wrapper">
                         <div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div>
                         <pre><code>visitors = [<span class="code-num">120</span>, <span class="code-num">135</span>, <span class="code-num">128</span>, <span class="code-num">160</span>, <span class="code-num">175</span>, <span class="code-num">210</span>, <span class="code-num">190</span>]
@@ -402,13 +411,13 @@ reversed_data = visitors[::-<span class="code-num">1</span>]
                     </div>
                     <div class="result-box">
                         <b>🔍 코드 톺아보기</b><br>
-                        • <code>visitors[:3]</code> : 시작을 생략하면 처음부터 가져옵니다[cite: 8]. 인덱스 3은 제외되어 120, 135, 128이 선택됩니다[cite: 8].<br>
-                        • <code>visitors[5:7]</code> : 인덱스 5와 6의 값을 새 리스트에 담습니다[cite: 8].<br>
-                        • <b>간격과 역순</b> : 세 번째 값은 이동 간격입니다[cite: 8]. <code>::2</code>는 두 칸씩, <code>::-1</code>은 뒤에서 앞으로 이동하며 원본은 바뀌지 않습니다[cite: 8].
+                        • <code>visitors[:3]</code> : 시작을 생략하면 처음부터 가져옵니다. 인덱스 3은 제외되어 120, 135, 128이 선택됩니다.<br>
+                        • <code>visitors[5:7]</code> : 인덱스 5와 6의 값을 새 리스트에 담습니다.<br>
+                        • <b>간격과 역순</b> : 세 번째 값은 이동 간격입니다. <code>::2</code>는 두 칸씩, <code>::-1</code>은 뒤에서 앞으로 이동하며 원본은 바뀌지 않습니다.
                     </div>
 
                     <h1 class="chapter-h1" style="margin-top: 50px;">📌 [4차시] 원소 수정과 데이터 추가</h1>
-                    <p class="section-desc"><b>핵심 개념 설명:</b> 리스트는 만든 뒤에도 내용을 바꿀 수 있습니다[cite: 8]. 인덱스로 기존 값을 수정하고 append로 값 하나를 마지막에 추가합니다[cite: 8]. extend는 여러 원소를 풀어서 추가하고 insert는 지정한 위치에 값을 끼워 넣습니다[cite: 8].</p>
+                    <p class="section-desc"><b>핵심 개념 설명:</b> 리스트는 만든 뒤에도 내용을 바꿀 수 있습니다. 인덱스로 기존 값을 수정하고 append로 값 하나를 마지막에 추가합니다. extend는 여러 원소를 풀어서 추가하고 insert는 지정한 위치에 값을 끼워 넣습니다.</p>
                     <div class="code-block-wrapper">
                         <div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div>
                         <pre><code>scores = [<span class="code-num">70</span>, <span class="code-num">80</span>, <span class="code-num">90</span>]
@@ -425,13 +434,13 @@ scores.insert(<span class="code-num">1</span>, <span class="code-num">78</span>)
                     </div>
                     <div class="result-box">
                         <b>🔍 코드 톺아보기</b><br>
-                        • <code>scores[0] = 75</code> : 잘못 입력한 첫 점수 70을 75로 교체합니다[cite: 8].<br>
-                        • <code>append</code>와 <code>extend</code> : append(85)는 숫자 하나를 추가합니다[cite: 8]. extend([88, 92])는 두 숫자를 각각 추가합니다[cite: 8].<br>
-                        • <code>insert(1, 78)</code> : 인덱스 1 앞에 78을 넣습니다[cite: 8]. 뒤의 원소들은 한 칸씩 밀립니다[cite: 8].
+                        • <code>scores[0] = 75</code> : 잘못 입력한 첫 점수 70을 75로 교체합니다.<br>
+                        • <code>append</code>와 <code>extend</code> : append(85)는 숫자 하나를 추가합니다. extend([88, 92])는 두 숫자를 각각 추가합니다.<br>
+                        • <code>insert(1, 78)</code> : 인덱스 1 앞에 78을 넣습니다. 뒤의 원소들은 한 칸씩 밀립니다.
                     </div>
 
                     <h1 class="chapter-h1" style="margin-top: 50px;">📌 [5차시] 원소 삭제와 안전한 제거</h1>
-                    <p class="section-desc"><b>핵심 개념 설명:</b> 자료를 정리할 때는 값으로 지우는 방법과 위치로 지우는 방법을 구분해야 합니다[cite: 8]. remove는 처음 일치하는 값 하나를 삭제하고 pop은 지정한 위치의 값을 꺼내면서 삭제합니다[cite: 8].</p>
+                    <p class="section-desc"><b>핵심 개념 설명:</b> 자료를 정리할 때는 값으로 지우는 방법과 위치로 지우는 방법을 구분해야 합니다. remove는 처음 일치하는 값 하나를 삭제하고 pop은 지정한 위치의 값을 꺼내면서 삭제합니다.</p>
                     <div class="code-block-wrapper">
                         <div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div>
                         <pre><code>scores = [<span class="code-num">80</span>, <span class="code-num">0</span>, <span class="code-num">75</span>, <span class="code-num">0</span>, <span class="code-num">90</span>]
@@ -448,13 +457,13 @@ last_score = scores.pop()
                     </div>
                     <div class="result-box">
                         <b>🔍 코드 톺아보기</b><br>
-                        • <code>0 in scores</code> : 리스트에 0이 있는지 확인합니다[cite: 8]. 없는 값을 remove로 지우면 ValueError가 발생합니다[cite: 8].<br>
-                        • <code>remove(0)</code> : 처음 발견한 0만 제거합니다[cite: 8]. 모든 0을 제거하는 명령이 아니므로 다른 0은 남습니다[cite: 8].<br>
-                        • <code>pop</code>과 <code>del</code> : pop()은 마지막 값을 반환하며 삭제합니다[cite: 8]. del scores[0]은 해당 위치를 삭제합니다[cite: 8].
+                        • <code>0 in scores</code> : 리스트에 0이 있는지 확인합니다. 없는 값을 remove로 지우면 ValueError가 발생합니다.<br>
+                        • <code>remove(0)</code> : 처음 발견한 0만 제거합니다. 모든 0을 제거하는 명령이 아니므로 다른 0은 남습니다.<br>
+                        • <code>pop</code>과 <code>del</code> : pop()은 마지막 값을 반환하며 삭제합니다. del scores[0]은 해당 위치를 삭제합니다.
                     </div>
 
                     <h1 class="chapter-h1" style="margin-top: 50px;">📌 [6차시] 검색과 정렬로 자료 살펴보기</h1>
-                    <p class="section-desc"><b>핵심 개념 설명:</b> 특정 값이 몇 번 나오는지 확인하거나 크기순으로 정리하면 자료의 특징을 쉽게 파악할 수 있습니다[cite: 8].</p>
+                    <p class="section-desc"><b>핵심 개념 설명:</b> 특정 값이 몇 번 나오는지 확인하거나 크기순으로 정리하면 자료의 특징을 쉽게 파악할 수 있습니다.</p>
                     <div class="code-block-wrapper">
                         <div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div>
                         <pre><code>scores = [<span class="code-num">82</span>, <span class="code-num">75</span>, <span class="code-num">90</span>, <span class="code-num">88</span>, <span class="code-num">75</span>]
@@ -472,13 +481,13 @@ scores.sort()
                     </div>
                     <div class="result-box">
                         <b>🔍 코드 톺아보기</b><br>
-                        • <code>count</code>와 <code>index</code> : 75는 두 번 나오고 90의 인덱스는 2입니다[cite: 8]. 없는 값을 index로 찾으면 ValueError가 발생합니다[cite: 8].<br>
-                        • <code>sorted(..., reverse=True)</code> : 큰 값부터 정렬한 새 리스트를 만듭니다[cite: 8].<br>
-                        • <code>scores.sort()</code> : 원본을 오름차순으로 바꾸고 None을 반환합니다[cite: 8]. 
+                        • <code>count</code>와 <code>index</code> : 75는 두 번 나오고 90의 인덱스는 2입니다. 없는 값을 index로 찾으면 ValueError가 발생합니다.<br>
+                        • <code>sorted(..., reverse=True)</code> : 큰 값부터 정렬한 새 리스트를 만듭니다.<br>
+                        • <code>scores.sort()</code> : 원본을 오름차순으로 바꾸고 None을 반환합니다. 
                     </div>
 
                     <h1 class="chapter-h1" style="margin-top: 50px;">📌 [7차시] 반복문으로 합계와 평균 구하기</h1>
-                    <p class="section-desc"><b>핵심 개념 설명:</b> 리스트의 원소를 for 반복문으로 하나씩 꺼내면 같은 처리를 모든 자료에 적용할 수 있습니다[cite: 8].</p>
+                    <p class="section-desc"><b>핵심 개념 설명:</b> 리스트의 원소를 for 반복문으로 하나씩 꺼내면 같은 처리를 모든 자료에 적용할 수 있습니다.</p>
                     <div class="code-block-wrapper">
                         <div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div>
                         <pre><code>populations = [<span class="code-num">18000</span>, <span class="code-num">32000</span>, <span class="code-num">25000</span>, <span class="code-num">15000</span>]
@@ -496,12 +505,12 @@ total = <span class="code-num">0</span>
                     </div>
                     <div class="result-box">
                         <b>🔍 코드 톺아보기</b><br>
-                        • <code>total = 0</code> : 반복문 밖에서 누적 변수를 초기화합니다[cite: 8]. 반복문 안에서 0으로 만들면 이전 합계가 지워집니다[cite: 8].<br>
-                        • <b>빈 리스트 확인</b> : 자료가 없을 때 길이로 나누면 오류가 납니다[cite: 8]. max도 빈 자료에는 바로 사용할 수 없습니다[cite: 8].
+                        • <code>total = 0</code> : 반복문 밖에서 누적 변수를 초기화합니다. 반복문 안에서 0으로 만들면 이전 합계가 지워집니다.<br>
+                        • <b>빈 리스트 확인</b> : 자료가 없을 때 길이로 나누면 오류가 납니다. max도 빈 자료에는 바로 사용할 수 없습니다.
                     </div>
 
                     <h1 class="chapter-h1" style="margin-top: 50px;">📌 [8차시] 조건에 맞는 자료와 리스트 컴프리헨션</h1>
-                    <p class="section-desc"><b>핵심 개념 설명:</b> 분석에서는 전체 자료 중 조건에 맞는 값만 골라야 할 때가 많습니다[cite: 8]. 반복문과 조건문으로 새 리스트를 만들 수 있으며 짧은 처리라면 리스트 컴프리헨션으로 표현할 수 있습니다[cite: 8].</p>
+                    <p class="section-desc"><b>핵심 개념 설명:</b> 분석에서는 전체 자료 중 조건에 맞는 값만 골라야 할 때가 많습니다. 반복문과 조건문으로 새 리스트를 만들 수 있으며 짧은 처리라면 리스트 컴프리헨션으로 표현할 수 있습니다.</p>
                     <div class="code-block-wrapper">
                         <div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div>
                         <pre><code>scores = [<span class="code-num">65</span>, <span class="code-num">82</span>, <span class="code-num">90</span>, <span class="code-num">73</span>, <span class="code-num">88</span>]
@@ -519,13 +528,13 @@ adjusted_scores = [min(s + <span class="code-num">5</span>, <span class="code-nu
                     </div>
                     <div class="result-box">
                         <b>🔍 코드 톺아보기</b><br>
-                        • <b>조건과 append</b> : 80 이상인 값만 새 리스트에 추가하여 [82, 90, 88]을 얻습니다[cite: 8].<br>
-                        • <code>[s for s in scores if s >= 80]</code> : 원소를 꺼내고 조건을 확인한 뒤 결과에 넣는 작업을 한 줄로 표현합니다[cite: 8].<br>
-                        • <code>min(s+5, 100)</code> : 5점을 더하되 100을 넘지 않게 합니다[cite: 8].
+                        • <b>조건과 append</b> : 80 이상인 값만 새 리스트에 추가하여 [82, 90, 88]을 얻습니다.<br>
+                        • <code>[s for s in scores if s >= 80]</code> : 원소를 꺼내고 조건을 확인한 뒤 결과에 넣는 작업을 한 줄로 표현합니다.<br>
+                        • <code>min(s+5, 100)</code> : 5점을 더하되 100을 넘지 않게 합니다.
                     </div>
 
                     <h1 class="chapter-h1" style="margin-top: 50px;">📌 [9차시] 중첩 리스트와 복사 이해하기</h1>
-                    <p class="section-desc"><b>핵심 개념 설명:</b> 리스트 안에 리스트를 넣으면 행과 열이 있는 표처럼 자료를 다룰 수 있습니다[cite: 8].</p>
+                    <p class="section-desc"><b>핵심 개념 설명:</b> 리스트 안에 리스트를 넣으면 행과 열이 있는 표처럼 자료를 다룰 수 있습니다.</p>
                     <div class="code-block-wrapper">
                         <div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div>
                         <pre><code>survey = [[<span class="code-num">80</span>, <span class="code-num">70</span>], [<span class="code-num">90</span>, <span class="code-num">85</span>], [<span class="code-num">75</span>, <span class="code-num">80</span>]]
@@ -538,11 +547,11 @@ adjusted_scores = [min(s + <span class="code-num">5</span>, <span class="code-nu
                     </div>
                     <div class="result-box">
                         <b>🔍 코드 톺아보기</b><br>
-                        • <code>survey[1][0]</code> : 두 번째 행의 첫 번째 값 90입니다[cite: 8]. 행과 열의 인덱스가 모두 0부터 시작합니다[cite: 8].
+                        • <code>survey[1][0]</code> : 두 번째 행의 첫 번째 값 90입니다. 행과 열의 인덱스가 모두 0부터 시작합니다.
                     </div>
 
                     <h1 class="chapter-h1" style="margin-top: 50px;">🏆 [10차시] 종합 미니 프로젝트 - 설문 점수 리포트</h1>
-                    <p class="section-desc"><b>핵심 개념 설명:</b> 지금까지 배운 추가, 조건 추출, 정렬, 집계를 연결하여 설문 점수 분석 프로그램을 완성합니다[cite: 8]. 0부터 100까지를 유효한 점수로 정하고 범위 밖의 값은 제외합니다[cite: 8].</p>
+                    <p class="section-desc"><b>핵심 개념 설명:</b> 지금까지 배운 추가, 조건 추출, 정렬, 집계를 연결하여 설문 점수 분석 프로그램을 완성합니다. 0부터 100까지를 유효한 점수로 정하고 범위 밖의 값은 제외합니다.</p>
                     <div class="code-block-wrapper">
                         <div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div>
                         <pre><code>raw_scores = [<span class="code-num">82</span>, <span class="code-num">95</span>, -<span class="code-num">1</span>, <span class="code-num">73</span>, <span class="code-num">88</span>, <span class="code-num">105</span>, <span class="code-num">90</span>]
@@ -567,8 +576,8 @@ valid_scores = [s <span class="code-keyword">for</span> s <span class="code-keyw
                     </div>
                     <div class="result-box">
                         <b>🔍 코드 톺아보기</b><br>
-                        • <b>유효 범위 설정</b> : -1과 105를 제외합니다[cite: 8]. 실제 조사에서는 제외 기준을 먼저 정하고 제외한 개수도 함께 기록해야 합니다[cite: 8].<br>
-                        • <b>집계와 정렬 연결</b> : 유효 자료는 6개, 평균은 84.7점, 상위 점수는 [95, 90, 88], 80점 이상은 5개입니다[cite: 8].
+                        • <b>유효 범위 설정</b> : -1과 105를 제외합니다. 실제 조사에서는 제외 기준을 먼저 정하고 제외한 개수도 함께 기록해야 합니다.<br>
+                        • <b>집계와 정렬 연결</b> : 유효 자료는 6개, 평균은 84.7점, 상위 점수는 [95, 90, 88], 80점 이상은 5개입니다.
                     </div>
                 `
             },
@@ -580,12 +589,12 @@ valid_scores = [s <span class="code-keyword">for</span> s <span class="code-keyw
                 html: `
                     <h1 class="article-title">파이썬 함수(Function)</h1>
                     <div class="article-intro">
-                        자주 사용하는 코드를 하나로 묶는 함수의 정의부터 매개변수와 반환값, 지역/전역 변수의 유효 범위, 그리고 제어문(if, for)과의 결합을 거쳐 미니 프로젝트까지 단계별로 완벽히 정복합니다[cite: 9].
+                        자주 사용하는 코드를 하나로 묶는 함수의 정의부터 매개변수와 반환값, 지역/전역 변수의 유효 범위, 그리고 제어문(if, for)과의 결합을 거쳐 미니 프로젝트까지 단계별로 완벽히 정복합니다.
                     </div>
 
                     <!-- [1차시] -->
                     <h1 class="chapter-h1">📦 [1차시] 함수 정의와 호출 기초</h1>
-                    <p class="section-desc"><b>핵심 개념 상세 설명:</b> 자주 사용하는 안내문이나 코드를 매번 새롭게 작성하면 비효율적입니다[cite: 9]. 파이썬에서는 자주 쓰는 동작을 <code>def</code> 키워드를 이용해 하나의 블록으로 묶어둘 수 있습니다[cite: 9]. 이를 함수 정의라고 하며 정의된 함수는 이름을 호출해야만 비로소 실행됩니다[cite: 9].</p>
+                    <p class="section-desc"><b>핵심 개념 상세 설명:</b> 자주 사용하는 안내문이나 코드를 매번 새롭게 작성하면 비효율적입니다. 파이썬에서는 자주 쓰는 동작을 <code>def</code> 키워드를 이용해 하나의 블록으로 묶어둘 수 있습니다. 이를 함수 정의라고 하며 정의된 함수는 이름을 호출해야만 비로소 실행됩니다.</p>
                     <div class="code-block-wrapper">
                         <div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div>
                         <pre><code><span class="code-keyword">def</span> <span class="code-def">show_welcome</span>():
@@ -599,14 +608,14 @@ show_welcome()</code></pre>
                     </div>
                     <div class="result-box">
                         <b>🔍 코드 톺아보기</b><br>
-                        • <code>def show_welcome():</code> : show_welcome이라는 이름의 함수를 새롭게 정의합니다[cite: 9]. 뒤에 콜론을 붙여 블록의 시작을 알립니다[cite: 9].<br>
-                        • <b>들여쓰기 적용</b> : 콜론 다음 줄부터 들여쓰기된 모든 print 문장들은 하나의 함수 상자 안에 포장됩니다[cite: 9].<br>
-                        • <code>show_welcome()</code> : 포장해둔 함수 상자를 실행시키는 호출 명령어입니다[cite: 9]. 두 번 적었으므로 안내문이 두 번 출력됩니다[cite: 9].
+                        • <code>def show_welcome():</code> : show_welcome이라는 이름의 함수를 새롭게 정의합니다. 뒤에 콜론을 붙여 블록의 시작을 알립니다.<br>
+                        • <b>들여쓰기 적용</b> : 콜론 다음 줄부터 들여쓰기된 모든 print 문장들은 하나의 함수 상자 안에 포장됩니다.<br>
+                        • <code>show_welcome()</code> : 포장해둔 함수 상자를 실행시키는 호출 명령어입니다. 두 번 적었으므로 안내문이 두 번 출력됩니다.
                     </div>
 
                     <!-- [2차시] -->
                     <h1 class="chapter-h1" style="margin-top: 50px;">📥 [2차시] 매개변수(Parameter)를 통한 데이터 전달</h1>
-                    <p class="section-desc"><b>핵심 개념 상세 설명:</b> 언제나 똑같은 결과만 보여주는 함수보다 외부에서 데이터를 입력받아 상황에 맞게 동작하는 함수가 훨씬 유용합니다[cite: 9]. 함수를 정의할 때 괄호 안에 매개변수라는 빈 그릇을 만들어두면 외부에서 인수라는 실제 데이터를 던져줄 수 있습니다[cite: 9].</p>
+                    <p class="section-desc"><b>핵심 개념 상세 설명:</b> 언제나 똑같은 결과만 보여주는 함수보다 외부에서 데이터를 입력받아 상황에 맞게 동작하는 함수가 훨씬 유용합니다. 함수를 정의할 때 괄호 안에 매개변수라는 빈 그릇을 만들어두면 외부에서 인수라는 실제 데이터를 던져줄 수 있습니다.</p>
                     <div class="code-block-wrapper">
                         <div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div>
                         <pre><code><span class="code-keyword">def</span> <span class="code-def">analyze_ppl</span>(brand):
@@ -620,13 +629,13 @@ analyze_ppl(<span class="code-str">"한솔제과"</span>)</code></pre>
                     </div>
                     <div class="result-box">
                         <b>🔍 코드 톺아보기</b><br>
-                        • <code>brand</code> : 함수 외부에서 들어올 브랜드 이름을 담아두기 위해 준비된 매개변수입니다[cite: 9].<br>
-                        • <code>analyze_ppl("세종우유")</code> : 세종우유라는 실제 문자열 데이터 즉 인수를 함수로 전달하여 맞춤형 출력 결과를 만듭니다[cite: 9].
+                        • <code>brand</code> : 함수 외부에서 들어올 브랜드 이름을 담아두기 위해 준비된 매개변수입니다.<br>
+                        • <code>analyze_ppl("세종우유")</code> : 세종우유라는 실제 문자열 데이터 즉 인수를 함수로 전달하여 맞춤형 출력 결과를 만듭니다.
                     </div>
 
                     <!-- [3차시] -->
                     <h1 class="chapter-h1" style="margin-top: 50px;">📤 [3차시] return을 이용한 계산 결과 반환</h1>
-                    <p class="section-desc"><b>핵심 개념 상세 설명:</b> 단순히 화면에 글자를 보여주고 끝나는 print와 달리 함수가 연산한 최종 결과값을 프로그램의 다른 부분에서 활용해야 할 때가 많습니다[cite: 9]. 이때 return 키워드를 사용하면 계산된 수치를 함수 밖으로 꺼내어 변수에 저장할 수 있습니다[cite: 9].</p>
+                    <p class="section-desc"><b>핵심 개념 상세 설명:</b> 단순히 화면에 글자를 보여주고 끝나는 print와 달리 함수가 연산한 최종 결과값을 프로그램의 다른 부분에서 활용해야 할 때가 많습니다. 이때 return 키워드를 사용하면 계산된 수치를 함수 밖으로 꺼내어 변수에 저장할 수 있습니다.</p>
                     <div class="code-block-wrapper">
                         <div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div>
                         <pre><code><span class="code-keyword">def</span> <span class="code-def">calculate_total_score</span>(recognition, intent):
@@ -640,13 +649,13 @@ final_score = calculate_total_score(<span class="code-num">45</span>, <span clas
                     </div>
                     <div class="result-box">
                         <b>🔍 코드 톺아보기</b><br>
-                        • <code>return total</code> : recognition과 intent를 더한 값을 함수를 호출했던 위치로 돌려주고 함수를 즉시 종료합니다[cite: 9].<br>
-                        • <code>final_score = ...</code> : 함수가 돌려준 숫자 83이 final_score 변수에 저장되므로 이후 1.5를 곱하는 등 추가 연산에 바로 활용할 수 있습니다[cite: 9].
+                        • <code>return total</code> : recognition과 intent를 더한 값을 함수를 호출했던 위치로 돌려주고 함수를 즉시 종료합니다.<br>
+                        • <code>final_score = ...</code> : 함수가 돌려준 숫자 83이 final_score 변수에 저장되므로 이후 1.5를 곱하는 등 추가 연산에 바로 활용할 수 있습니다.
                     </div>
 
                     <!-- [4차시] -->
                     <h1 class="chapter-h1" style="margin-top: 50px;">🎯 [4차시] 위치 인수와 키워드 인수 활용</h1>
-                    <p class="section-desc"><b>핵심 개념 상세 설명:</b> 함수에 여러 개의 매개변수가 있을 때 값을 전달하는 방식은 두 가지입니다[cite: 9]. 코드를 작성한 순서대로 들어가는 위치 인수 방식과 매개변수의 이름을 직접 지정하여 순서와 상관없이 전달하는 키워드 인수 방식입니다[cite: 9].</p>
+                    <p class="section-desc"><b>핵심 개념 상세 설명:</b> 함수에 여러 개의 매개변수가 있을 때 값을 전달하는 방식은 두 가지입니다. 코드를 작성한 순서대로 들어가는 위치 인수 방식과 매개변수의 이름을 직접 지정하여 순서와 상관없이 전달하는 키워드 인수 방식입니다.</p>
                     <div class="code-block-wrapper">
                         <div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div>
                         <pre><code><span class="code-keyword">def</span> <span class="code-def">population_info</span>(city, district, count):
@@ -663,13 +672,13 @@ population_info(count=<span class="code-num">32000</span>, city=<span class="cod
                     </div>
                     <div class="result-box">
                         <b>🔍 코드 톺아보기</b><br>
-                        • <b>위치 인수 호출</b> : 첫 번째 인수는 city 두 번째는 district 세 번째는 count에 순서대로 엄격하게 들어갑니다[cite: 9].<br>
-                        • <b>키워드 인수 호출</b> : 매개변수 이름을 명시하였으므로 count를 가장 먼저 적어도 정확하게 count 매개변수로 값이 들어갑니다[cite: 9].
+                        • <b>위치 인수 호출</b> : 첫 번째 인수는 city 두 번째는 district 세 번째는 count에 순서대로 엄격하게 들어갑니다.<br>
+                        • <b>키워드 인수 호출</b> : 매개변수 이름을 명시하였으므로 count를 가장 먼저 적어도 정확하게 count 매개변수로 값이 들어갑니다.
                     </div>
 
                     <!-- [5차시] -->
                     <h1 class="chapter-h1" style="margin-top: 50px;">⚙️ [5차시] 기본값(Default) 매개변수의 적용</h1>
-                    <p class="section-desc"><b>핵심 개념 상세 설명:</b> 매번 동일한 값을 전달해야 하는 번거로움을 줄이기 위해 함수 정의 시 매개변수에 기본값을 미리 설정해 둘 수 있습니다[cite: 9]. 호출할 때 값을 생략하면 이 기본값이 작동하며 새로운 값을 전달하면 기본값을 무시하고 덮어씁니다[cite: 9].</p>
+                    <p class="section-desc"><b>핵심 개념 상세 설명:</b> 매번 동일한 값을 전달해야 하는 번거로움을 줄이기 위해 함수 정의 시 매개변수에 기본값을 미리 설정해 둘 수 있습니다. 호출할 때 값을 생략하면 이 기본값이 작동하며 새로운 값을 전달하면 기본값을 무시하고 덮어씁니다.</p>
                     <div class="code-block-wrapper">
                         <div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div>
                         <pre><code><span class="code-keyword">def</span> <span class="code-def">report_activity</span>(name, club=<span class="code-str">"데이터마이닝"</span>):
@@ -686,13 +695,13 @@ report_activity(<span class="code-str">"박학생"</span>, <span class="code-str
                     </div>
                     <div class="result-box">
                         <b>🔍 코드 톺아보기</b><br>
-                        • <code>club="데이터마이닝"</code> : 함수를 만들 때 기본 소속을 데이터마이닝으로 고정해 두었습니다[cite: 9].<br>
-                        • <code>report_activity("김학생")</code> : club 자리에 아무것도 넣지 않았으므로 파이썬이 알아서 데이터마이닝을 출력합니다[cite: 9].
+                        • <code>club="데이터마이닝"</code> : 함수를 만들 때 기본 소속을 데이터마이닝으로 고정해 두었습니다.<br>
+                        • <code>report_activity("김학생")</code> : club 자리에 아무것도 넣지 않았으므로 파이썬이 알아서 데이터마이닝을 출력합니다.
                     </div>
 
                     <!-- [6차시] -->
                     <h1 class="chapter-h1" style="margin-top: 50px;">🏠 [6차시] 지역 변수와 전역 변수의 이해</h1>
-                    <p class="section-desc"><b>핵심 개념 상세 설명:</b> 함수 안에서 새롭게 만들어진 변수는 지역 변수라 불리며 함수가 종료되면 메모리에서 완전히 사라집니다[cite: 9]. 반면 함수 밖에서 만들어진 변수는 전역 변수로 프로그램 전체에서 읽을 수 있습니다[cite: 9]. 변수의 생명 주기와 유효 범위를 이해하는 것은 논리 오류를 막는 핵심입니다[cite: 9].</p>
+                    <p class="section-desc"><b>핵심 개념 상세 설명:</b> 함수 안에서 새롭게 만들어진 변수는 지역 변수라 불리며 함수가 종료되면 메모리에서 완전히 사라집니다. 반면 함수 밖에서 만들어진 변수는 전역 변수로 프로그램 전체에서 읽을 수 있습니다. 변수의 생명 주기와 유효 범위를 이해하는 것은 논리 오류를 막는 핵심입니다.</p>
                     <div class="code-block-wrapper">
                         <div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div>
                         <pre><code>base_population = <span class="code-num">380000</span> <span class="code-comment"># 전역 변수</span>
@@ -708,13 +717,13 @@ add_new_residents(<span class="code-num">5000</span>)
                     </div>
                     <div class="result-box">
                         <b>🔍 코드 톺아보기</b><br>
-                        • <code>base_population</code> : 함수 외부 최상단에 선언되었으므로 함수 내부에서도 접근하여 사용할 수 있는 전역 변수입니다[cite: 9].<br>
-                        • <code>added</code> : 함수 내부에서 태어난 지역 변수이므로 밖에서 출력하려 하면 정의되지 않았다는 NameError가 발생합니다[cite: 9].
+                        • <code>base_population</code> : 함수 외부 최상단에 선언되었으므로 함수 내부에서도 접근하여 사용할 수 있는 전역 변수입니다.<br>
+                        • <code>added</code> : 함수 내부에서 태어난 지역 변수이므로 밖에서 출력하려 하면 정의되지 않았다는 NameError가 발생합니다.
                     </div>
 
                     <!-- [7차시] -->
                     <h1 class="chapter-h1" style="margin-top: 50px;">⚖️ [7차시] 함수와 조건문(if)의 결합</h1>
-                    <p class="section-desc"><b>핵심 개념 상세 설명:</b> 입력받은 매개변수의 값을 if 조건문으로 검사하여 참(True) 또는 거짓(False)을 반환하는 판별 함수를 만들 수 있습니다[cite: 9]. 데이터의 유효성을 검사하거나 조건에 따른 처리를 모듈화할 때 매우 유용합니다[cite: 9].</p>
+                    <p class="section-desc"><b>핵심 개념 상세 설명:</b> 입력받은 매개변수의 값을 if 조건문으로 검사하여 참(True) 또는 거짓(False)을 반환하는 판별 함수를 만들 수 있습니다. 데이터의 유효성을 검사하거나 조건에 따른 처리를 모듈화할 때 매우 유용합니다.</p>
                     <div class="code-block-wrapper">
                         <div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div>
                         <pre><code><span class="code-keyword">def</span> <span class="code-def">is_effective_ppl</span>(score):
@@ -733,13 +742,13 @@ current_score = <span class="code-num">85</span>
                     </div>
                     <div class="result-box">
                         <b>🔍 코드 톺아보기</b><br>
-                        • <code>if score >= 80:</code> : 외부에서 전달받은 점수를 기준으로 내부에서 조건을 판별합니다[cite: 9].<br>
-                        • <code>return True</code> : 연산 결과에 따라 불리언(Boolean) 값을 반환하므로 메인 코드의 if문 조건식에 직관적으로 결합할 수 있습니다[cite: 9].
+                        • <code>if score >= 80:</code> : 외부에서 전달받은 점수를 기준으로 내부에서 조건을 판별합니다.<br>
+                        • <code>return True</code> : 연산 결과에 따라 불리언(Boolean) 값을 반환하므로 메인 코드의 if문 조건식에 직관적으로 결합할 수 있습니다.
                     </div>
 
                     <!-- [8차시] -->
                     <h1 class="chapter-h1" style="margin-top: 50px;">🔄 [8차시] 함수와 반복문(for)의 결합</h1>
-                    <p class="section-desc"><b>핵심 개념 상세 설명:</b> 여러 개의 데이터가 담긴 파이썬 리스트를 함수의 매개변수로 한 번에 넘겨줄 수 있습니다[cite: 9]. 함수 내부의 for 반복문을 통해 리스트 원소를 하나씩 꺼내어 누적 합계를 구하거나 평균을 계산하는 등 대량의 데이터를 손쉽게 다룹니다[cite: 9].</p>
+                    <p class="section-desc"><b>핵심 개념 상세 설명:</b> 여러 개의 데이터가 담긴 파이썬 리스트를 함수의 매개변수로 한 번에 넘겨줄 수 있습니다. 함수 내부의 for 반복문을 통해 리스트 원소를 하나씩 꺼내어 누적 합계를 구하거나 평균을 계산하는 등 대량의 데이터를 손쉽게 다룹니다.</p>
                     <div class="code-block-wrapper">
                         <div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div>
                         <pre><code><span class="code-keyword">def</span> <span class="code-def">calculate_total_population</span>(pop_list):
@@ -757,13 +766,13 @@ total_pop = calculate_total_population(district_populations)
                     </div>
                     <div class="result-box">
                         <b>🔍 코드 톺아보기</b><br>
-                        • <code>for pop in pop_list:</code> : 전달받은 리스트에서 데이터를 순차적으로 하나씩 꺼내어 반복문을 실행합니다[cite: 9].<br>
-                        • <code>total = total + pop</code> : 초기값이 0인 total 변수에 꺼낸 인구수를 계속해서 누적 합산합니다[cite: 9].
+                        • <code>for pop in pop_list:</code> : 전달받은 리스트에서 데이터를 순차적으로 하나씩 꺼내어 반복문을 실행합니다.<br>
+                        • <code>total = total + pop</code> : 초기값이 0인 total 변수에 꺼낸 인구수를 계속해서 누적 합산합니다.
                     </div>
 
                     <!-- [9차시] -->
                     <h1 class="chapter-h1" style="margin-top: 50px;">🔗 [9차시] 다중 함수의 파이프라인 연결</h1>
-                    <p class="section-desc"><b>핵심 개념 상세 설명:</b> 복잡한 코드를 하나의 거대한 함수에 몰아넣기보다는 역할이 하나로 분명한 여러 개의 작은 함수로 나누어 설계하는 것이 좋습니다[cite: 9]. 한 함수가 연산하여 반환한 결과값을 다음 함수의 입력으로 전달하며 협업하는 구조를 익힙니다[cite: 9].</p>
+                    <p class="section-desc"><b>핵심 개념 상세 설명:</b> 복잡한 코드를 하나의 거대한 함수에 몰아넣기보다는 역할이 하나로 분명한 여러 개의 작은 함수로 나누어 설계하는 것이 좋습니다. 한 함수가 연산하여 반환한 결과값을 다음 함수의 입력으로 전달하며 협업하는 구조를 익힙니다.</p>
                     <div class="code-block-wrapper">
                         <div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div>
                         <pre><code><span class="code-comment"># 1단계: 평균을 구하는 전문 함수</span>
@@ -790,13 +799,13 @@ final_rating = rate_effectiveness(average_val)
                     </div>
                     <div class="result-box">
                         <b>🔍 코드 톺아보기</b><br>
-                        • <code>get_average</code> / <code>rate_effectiveness</code> : 계산 기능과 판별 기능을 분리하여 코드를 수정하고 디버깅하기 훨씬 수월하게 설계했습니다[cite: 9].<br>
-                        • <code>rate_effectiveness(average_val)</code> : get_average가 계산해 낸 결과값을 변수에 잠시 담아둔 뒤 이를 그대로 다음 함수의 매개변수로 넘겨줍니다[cite: 9].
+                        • <code>get_average</code> / <code>rate_effectiveness</code> : 계산 기능과 판별 기능을 분리하여 코드를 수정하고 디버깅하기 훨씬 수월하게 설계했습니다.<br>
+                        • <code>rate_effectiveness(average_val)</code> : get_average가 계산해 낸 결과값을 변수에 잠시 담아둔 뒤 이를 그대로 다음 함수의 매개변수로 넘겨줍니다.
                     </div>
 
                     <!-- [10차시] -->
                     <h1 class="chapter-h1" style="margin-top: 50px;">🏆 [10차시] 종합 미니 프로젝트 - 데이터 분석 리포트 완성</h1>
-                    <p class="section-desc"><b>핵심 개념 상세 설명:</b> 지금까지 배운 매개변수, 반환값, 조건문, 반복문, 함수 연결의 모든 개념을 조립하여 독립적인 기능을 수행하는 데이터 분석 미니 프로그램을 완성합니다[cite: 9].</p>
+                    <p class="section-desc"><b>핵심 개념 상세 설명:</b> 지금까지 배운 매개변수, 반환값, 조건문, 반복문, 함수 연결의 모든 개념을 조립하여 독립적인 기능을 수행하는 데이터 분석 미니 프로그램을 완성합니다.</p>
                     <div class="code-block-wrapper">
                         <div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div>
                         <pre><code><span class="code-keyword">def</span> <span class="code-def">calc_avg</span>(data_list):
@@ -830,9 +839,9 @@ generate_report(target_brand, collected_data)</code></pre>
                     </div>
                     <div class="result-box">
                         <b>🔍 코드 톺아보기</b><br>
-                        • <b>부품 함수 분리</b> : 수학적 계산과 조건 판별을 각각 <code>calc_avg</code>와 <code>judge_trend</code>로 독립시켰습니다[cite: 9].<br>
-                        • <code>generate_report</code> : 마치 오케스트라의 지휘자처럼 부품 함수들을 호출해 결과를 취합하고 최종 화면 출력을 관장합니다[cite: 9].<br>
-                        • <b>메인 실행부의 간결함</b> : 데이터를 모아서 지휘자 함수 하나만 호출하면 모든 과정이 깔끔하게 처리되는 모듈화의 장점을 극대화했습니다[cite: 9].
+                        • <b>부품 함수 분리</b> : 수학적 계산과 조건 판별을 각각 <code>calc_avg</code>와 <code>judge_trend</code>로 독립시켰습니다.<br>
+                        • <code>generate_report</code> : 마치 오케스트라의 지휘자처럼 부품 함수들을 호출해 결과를 취합하고 최종 화면 출력을 관장합니다.<br>
+                        • <b>메인 실행부의 간결함</b> : 데이터를 모아서 지휘자 함수 하나만 호출하면 모든 과정이 깔끔하게 처리되는 모듈화의 장점을 극대화했습니다.
                     </div>
                 `
             },
@@ -844,12 +853,12 @@ generate_report(target_brand, collected_data)</code></pre>
                 html: `
                     <h1 class="article-title">파이썬 딕셔너리(Dictionary)</h1>
                     <div class="article-intro">
-                        데이터를 키(Key)와 값(Value)의 쌍으로 저장하여, 직관적이고 효율적으로 데이터를 관리하고 검색하는 딕셔너리 자료형의 모든 것을 배웁니다[cite: 10].
+                        데이터를 키(Key)와 값(Value)의 쌍으로 저장하여, 직관적이고 효율적으로 데이터를 관리하고 검색하는 딕셔너리 자료형의 모든 것을 배웁니다.
                     </div>
 
                     <!-- [1차시] -->
                     <h1 class="chapter-h1">📌 [1차시] 키와 값으로 데이터 저장하기</h1>
-                    <p class="section-desc"><b>핵심 개념 설명:</b> 리스트가 위치를 기준으로 값을 찾는다면 딕셔너리는 이름표인 키로 값을 찾습니다[cite: 10]. 중괄호 안에 키와 값을 콜론으로 연결하여 저장합니다[cite: 10]. 한 지역의 이름, 인구, 면적을 하나의 딕셔너리로 묶어 의미가 분명한 자료를 만듭니다[cite: 10].</p>
+                    <p class="section-desc"><b>핵심 개념 설명:</b> 리스트가 위치를 기준으로 값을 찾는다면 딕셔너리는 이름표인 키로 값을 찾습니다. 중괄호 안에 키와 값을 콜론으로 연결하여 저장합니다. 한 지역의 이름, 인구, 면적을 하나의 딕셔너리로 묶어 의미가 분명한 자료를 만듭니다.</p>
                     <div class="code-block-wrapper">
                         <div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div>
                         <pre><code>district = {
@@ -865,14 +874,14 @@ generate_report(target_brand, collected_data)</code></pre>
                     </div>
                     <div class="result-box">
                         <b>🔍 코드 톺아보기</b><br>
-                        • <b>키: 값</b> : name은 키이고 한솔동은 값입니다[cite: 10]. 문자열 키는 따옴표로 표시합니다[cite: 10].<br>
-                        • <code>district["population"]</code> : 인덱스 대신 키를 사용해 인구 18000을 가져옵니다[cite: 10].<br>
-                        • <code>len(district)</code> : 키와 값의 쌍을 세므로 결과는 3입니다[cite: 10]. 같은 키를 중복 작성하면 뒤의 값이 앞의 값을 덮어씁니다[cite: 10].
+                        • <b>키: 값</b> : name은 키이고 한솔동은 값입니다. 문자열 키는 따옴표로 표시합니다.<br>
+                        • <code>district["population"]</code> : 인덱스 대신 키를 사용해 인구 18000을 가져옵니다.<br>
+                        • <code>len(district)</code> : 키와 값의 쌍을 세므로 결과는 3입니다. 같은 키를 중복 작성하면 뒤의 값이 앞의 값을 덮어씁니다.
                     </div>
 
                     <!-- [2차시] -->
                     <h1 class="chapter-h1" style="margin-top: 50px;">📌 [2차시] 안전한 조회와 키 존재 확인</h1>
-                    <p class="section-desc"><b>핵심 개념 설명:</b> 자료마다 모든 항목이 들어 있는 것은 아닙니다[cite: 10]. 존재하지 않는 키를 대괄호로 조회하면 KeyError가 발생합니다[cite: 10]. get은 키가 없을 때 사용할 기본값을 지정할 수 있고 in은 키의 존재 여부를 확인합니다[cite: 10].</p>
+                    <p class="section-desc"><b>핵심 개념 설명:</b> 자료마다 모든 항목이 들어 있는 것은 아닙니다. 존재하지 않는 키를 대괄호로 조회하면 KeyError가 발생합니다. get은 키가 없을 때 사용할 기본값을 지정할 수 있고 in은 키의 존재 여부를 확인합니다.</p>
                     <div class="code-block-wrapper">
                         <div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div>
                         <pre><code>district = {<span class="code-str">"name"</span>: <span class="code-str">"한솔동"</span>, <span class="code-str">"population"</span>: <span class="code-num">18000</span>}
@@ -889,14 +898,14 @@ generate_report(target_brand, collected_data)</code></pre>
                     </div>
                     <div class="result-box">
                         <b>🔍 코드 톺아보기</b><br>
-                        • <code>get(키, 기본값)</code> : area가 없으므로 미조사를 반환합니다[cite: 10]. 기본값을 생략한 없는 키의 결과는 None입니다[cite: 10].<br>
-                        • <code>in district</code> : 값이 아니라 키를 검사합니다[cite: 10]. population은 키이므로 조건이 참입니다[cite: 10].<br>
-                        • <code>values()</code> : 딕셔너리에 담긴 값들을 살펴봅니다[cite: 10]. 한솔동이 값으로 있는지 확인하면 True가 나옵니다[cite: 10].
+                        • <code>get(키, 기본값)</code> : area가 없으므로 미조사를 반환합니다. 기본값을 생략한 없는 키의 결과는 None입니다.<br>
+                        • <code>in district</code> : 값이 아니라 키를 검사합니다. population은 키이므로 조건이 참입니다.<br>
+                        • <code>values()</code> : 딕셔너리에 담긴 값들을 살펴봅니다. 한솔동이 값으로 있는지 확인하면 True가 나옵니다.
                     </div>
 
                     <!-- [3차시] -->
                     <h1 class="chapter-h1" style="margin-top: 50px;">📌 [3차시] 항목 추가와 값 수정</h1>
-                    <p class="section-desc"><b>핵심 개념 설명:</b> 딕셔너리의 키에 값을 대입하면 새 키는 추가되고 기존 키는 수정됩니다[cite: 10]. 여러 항목을 한 번에 반영하려면 update를 사용합니다[cite: 10].</p>
+                    <p class="section-desc"><b>핵심 개념 설명:</b> 딕셔너리의 키에 값을 대입하면 새 키는 추가되고 기존 키는 수정됩니다. 여러 항목을 한 번에 반영하려면 update를 사용합니다.</p>
                     <div class="code-block-wrapper">
                         <div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div>
                         <pre><code>district = {<span class="code-str">"name"</span>: <span class="code-str">"한솔동"</span>, <span class="code-str">"population"</span>: <span class="code-num">18000</span>}
@@ -912,14 +921,14 @@ district.update({<span class="code-str">"population"</span>: <span class="code-n
                     </div>
                     <div class="result-box">
                         <b>🔍 코드 톺아보기</b><br>
-                        • <b>새 키에 대입</b> : year는 없던 키이므로 새 항목이 생깁니다[cite: 10]. 키의 순서는 삽입 순서를 따릅니다[cite: 10].<br>
-                        • <b>기존 키에 대입</b> : population의 값이 바뀔 뿐 같은 이름의 항목이 추가되지는 않습니다[cite: 10].<br>
-                        • <code>update</code> : 기존 population은 19000으로 바꾸고 schools는 새로 추가합니다[cite: 10]. 최종 항목 수는 4입니다[cite: 10].
+                        • <b>새 키에 대입</b> : year는 없던 키이므로 새 항목이 생깁니다. 키의 순서는 삽입 순서를 따릅니다.<br>
+                        • <b>기존 키에 대입</b> : population의 값이 바뀔 뿐 같은 이름의 항목이 추가되지는 않습니다.<br>
+                        • <code>update</code> : 기존 population은 19000으로 바꾸고 schools는 새로 추가합니다. 최종 항목 수는 4입니다.
                     </div>
 
                     <!-- [4차시] -->
                     <h1 class="chapter-h1" style="margin-top: 50px;">📌 [4차시] 항목 삭제와 기본값 등록</h1>
-                    <p class="section-desc"><b>핵심 개념 설명:</b> 불필요한 항목을 없앨 때 pop은 삭제한 값을 돌려주고 del은 지정한 항목을 삭제합니다[cite: 10]. 반대로 setdefault는 키가 없을 때만 기본값을 등록합니다[cite: 10].</p>
+                    <p class="section-desc"><b>핵심 개념 설명:</b> 불필요한 항목을 없앨 때 pop은 삭제한 값을 돌려주고 del은 지정한 항목을 삭제합니다. 반대로 setdefault는 키가 없을 때만 기본값을 등록합니다.</p>
                     <div class="code-block-wrapper">
                         <div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div>
                         <pre><code>record = {<span class="code-str">"brand"</span>: <span class="code-str">"세종우유"</span>, <span class="code-str">"score"</span>: <span class="code-num">85</span>, <span class="code-str">"memo"</span>: <span class="code-str">"임시"</span>}
@@ -936,14 +945,14 @@ record.setdefault(<span class="code-str">"score"</span>, <span class="code-num">
                     </div>
                     <div class="result-box">
                         <b>🔍 코드 톺아보기</b><br>
-                        • <code>pop(키, 기본값)</code> : memo를 삭제하면서 임시를 반환합니다[cite: 10]. 없는 phone은 기본값 없음을 반환하므로 오류가 나지 않습니다[cite: 10].<br>
-                        • <code>setdefault</code> : responses가 없어서 0을 저장합니다[cite: 10]. score는 이미 있으므로 85를 유지합니다[cite: 10].<br>
-                        • <code>del record["brand"]</code> : brand 항목을 삭제합니다[cite: 10]. 없는 키를 del로 삭제하면 오류가 납니다[cite: 10].
+                        • <code>pop(키, 기본값)</code> : memo를 삭제하면서 임시를 반환합니다. 없는 phone은 기본값 없음을 반환하므로 오류가 나지 않습니다.<br>
+                        • <code>setdefault</code> : responses가 없어서 0을 저장합니다. score는 이미 있으므로 85를 유지합니다.<br>
+                        • <code>del record["brand"]</code> : brand 항목을 삭제합니다. 없는 키를 del로 삭제하면 오류가 납니다.
                     </div>
 
                     <!-- [5차시] -->
                     <h1 class="chapter-h1" style="margin-top: 50px;">📌 [5차시] keys, values, items와 반복문</h1>
-                    <p class="section-desc"><b>핵심 개념 설명:</b> 여러 지역을 한 번에 살펴보려면 딕셔너리의 키와 값을 순회해야 합니다[cite: 10]. keys는 키, values는 값, items는 키와 값의 쌍을 제공합니다[cite: 10].</p>
+                    <p class="section-desc"><b>핵심 개념 설명:</b> 여러 지역을 한 번에 살펴보려면 딕셔너리의 키와 값을 순회해야 합니다. keys는 키, values는 값, items는 키와 값의 쌍을 제공합니다.</p>
                     <div class="code-block-wrapper">
                         <div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div>
                         <pre><code>populations = {<span class="code-str">"한솔동"</span>: <span class="code-num">18000</span>, <span class="code-str">"보람동"</span>: <span class="code-num">32000</span>, <span class="code-str">"새롬동"</span>: <span class="code-num">25000</span>}
@@ -961,14 +970,14 @@ total = <span class="code-num">0</span>
                     </div>
                     <div class="result-box">
                         <b>🔍 코드 톺아보기</b><br>
-                        • <code>keys</code>와 <code>values</code> : 키 또는 값만 골라 볼 수 있습니다[cite: 10]. list로 변환하면 리스트 형태로 출력됩니다[cite: 10].<br>
-                        • <code>for name, population in populations.items():</code> : 각 쌍의 키를 name에, 값을 population에 나누어 저장합니다[cite: 10].<br>
-                        • <b>합계 계산</b> : 세 지역의 합계는 75,000입니다[cite: 10]. 딕셔너리를 직접 반복하면 기본적으로 키가 나온다는 점에 주의합니다[cite: 10].
+                        • <code>keys</code>와 <code>values</code> : 키 또는 값만 골라 볼 수 있습니다. list로 변환하면 리스트 형태로 출력됩니다.<br>
+                        • <code>for name, population in populations.items():</code> : 각 쌍의 키를 name에, 값을 population에 나누어 저장합니다.<br>
+                        • <b>합계 계산</b> : 세 지역의 합계는 75,000입니다. 딕셔너리를 직접 반복하면 기본적으로 키가 나온다는 점에 주의합니다.
                     </div>
 
                     <!-- [6차시] -->
                     <h1 class="chapter-h1" style="margin-top: 50px;">📌 [6차시] get을 활용한 빈도 집계</h1>
-                    <p class="section-desc"><b>핵심 개념 설명:</b> 같은 응답이 몇 번 나왔는지 집계할 때 딕셔너리가 유용합니다[cite: 10]. 응답 내용을 키로 삼고 횟수를 값으로 저장합니다[cite: 10]. 처음 나온 응답은 0에서 시작하고 이미 나온 응답은 기존 횟수에 1을 더하는 방식으로 선호 브랜드를 집계합니다[cite: 10].</p>
+                    <p class="section-desc"><b>핵심 개념 설명:</b> 같은 응답이 몇 번 나왔는지 집계할 때 딕셔너리가 유용합니다. 응답 내용을 키로 삼고 횟수를 값으로 저장합니다. 처음 나온 응답은 0에서 시작하고 이미 나온 응답은 기존 횟수에 1을 더하는 방식으로 선호 브랜드를 집계합니다.</p>
                     <div class="code-block-wrapper">
                         <div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div>
                         <pre><code>responses = [<span class="code-str">"세종우유"</span>, <span class="code-str">"한솔제과"</span>, <span class="code-str">"세종우유"</span>, <span class="code-str">"세종푸드"</span>, <span class="code-str">"한솔제과"</span>, <span class="code-str">"세종우유"</span>]
@@ -985,14 +994,14 @@ counts = {}
                     </div>
                     <div class="result-box">
                         <b>🔍 코드 톺아보기</b><br>
-                        • <b>빈 딕셔너리</b> : 집계를 시작하기 전에는 어떤 브랜드가 나올지 몰라도 됩니다[cite: 10]. 발견한 브랜드를 차례로 추가합니다[cite: 10].<br>
-                        • <code>get(brand, 0) + 1</code> : 처음 나온 브랜드는 0+1, 다시 나온 브랜드는 기존 횟수 + 1이 저장됩니다[cite: 10].<br>
-                        • <b>빈도와 비율</b> : 전체 응답 수 6으로 나누어 비율을 구합니다[cite: 10].
+                        • <b>빈 딕셔너리</b> : 집계를 시작하기 전에는 어떤 브랜드가 나올지 몰라도 됩니다. 발견한 브랜드를 차례로 추가합니다.<br>
+                        • <code>get(brand, 0) + 1</code> : 처음 나온 브랜드는 0+1, 다시 나온 브랜드는 기존 횟수 + 1이 저장됩니다.<br>
+                        • <b>빈도와 비율</b> : 전체 응답 수 6으로 나누어 비율을 구합니다.
                     </div>
 
                     <!-- [7차시] -->
                     <h1 class="chapter-h1" style="margin-top: 50px;">📌 [7차시] 중첩 딕셔너리로 지역 정보 관리</h1>
-                    <p class="section-desc"><b>핵심 개념 설명:</b> 지역마다 인구와 면적을 함께 저장하려면 값 자리에 또 다른 딕셔너리를 넣을 수 있습니다[cite: 10]. 바깥쪽 키는 지역을, 안쪽 키는 정보 항목을 구분합니다[cite: 10].</p>
+                    <p class="section-desc"><b>핵심 개념 설명:</b> 지역마다 인구와 면적을 함께 저장하려면 값 자리에 또 다른 딕셔너리를 넣을 수 있습니다. 바깥쪽 키는 지역을, 안쪽 키는 정보 항목을 구분합니다.</p>
                     <div class="code-block-wrapper">
                         <div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div>
                         <pre><code>districts = {
@@ -1010,9 +1019,9 @@ districts[<span class="code-str">"한솔동"</span>][<span class="code-str">"pop
                     </div>
                     <div class="result-box">
                         <b>🔍 코드 톺아보기</b><br>
-                        • <b>키를 두 번 사용</b> : districts["한솔동"]은 안쪽 딕셔너리이며 여기에 ["population"]을 붙여 숫자를 얻습니다[cite: 10].<br>
-                        • <b>안쪽 값 수정</b> : 한솔동의 인구만 18500으로 바꿉니다[cite: 10]. 보람동의 자료에는 영향을 주지 않습니다[cite: 10].<br>
-                        • <b>밀도 계산</b> : 인구를 면적으로 나눕니다[cite: 10]. 
+                        • <b>키를 두 번 사용</b> : districts["한솔동"]은 안쪽 딕셔너리이며 여기에 ["population"]을 붙여 숫자를 얻습니다.<br>
+                        • <b>안쪽 값 수정</b> : 한솔동의 인구만 18500으로 바꿉니다. 보람동의 자료에는 영향을 주지 않습니다.<br>
+                        • <b>밀도 계산</b> : 인구를 면적으로 나눕니다. 
                     </div>
                 `
             }
