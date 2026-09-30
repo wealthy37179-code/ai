@@ -84,7 +84,7 @@
             overflow: hidden;
         }
 
-        /* 사이드바 넓이 원상복구 (260px) */
+        /* 사이드바 넓이 (260px) */
         .sidebar {
             width: 260px;
             background: #ffffff;
@@ -366,7 +366,7 @@
 
     <script>
         const lessons = {
-            // [01. 파이썬 리스트]
+            // [01. 파이썬 리스트] - 선생님 빈칸 버전 반영
             lesson1: {
                 title: "01. 리스트",
                 icon: "📋",
@@ -377,7 +377,7 @@
                     </div>
 
                     <h1 class="chapter-h1">🧺 [1차시] 리스트 생성과 데이터 묶기</h1>
-                    <p class="section-desc"><b>핵심 개념 설명:</b> 학생별 점수나 지역별 인구처럼 같은 종류의 데이터를 여러 개 다룰 때 변수를 하나씩 만들면 관리하기 어렵습니다. 리스트는 대괄호 안에 여러 값을 순서대로 담는 자료형입니다.</p>
+                    <p class="section-desc"><b>핵심 개념 설명:</b> 학생별 점수나 지역별 인구처럼 같은 종류의 데이터를 여러 개 다룰 때 변수를 하나씩 만들면 관리하기 어렵습니다. 리스트는 대괄호 안에 여러 값을 순서대로 담는 자료형입니다. 데이터 분석 동아리의 설문 점수를 리스트로 묶고 자료의 개수를 확인합니다.</p>
                     <div class="code-block-wrapper">
                         <div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div>
                         <pre><code><span class="code-comment"># 설문 점수를 순서대로 저장</span>
@@ -398,18 +398,19 @@ empty_data = []
                     </div>
 
                     <h1 class="chapter-h1" style="margin-top: 50px;">🔍 [2차시] 인덱싱으로 필요한 값 꺼내기</h1>
-                    <p class="section-desc"><b>핵심 개념 설명:</b> 리스트의 각 원소에는 위치를 나타내는 인덱스가 있습니다. 첫 번째 위치는 1이 아니라 0이며 음수 인덱스는 뒤에서부터 셉니다.</p>
+                    <p class="section-desc"><b>핵심 개념 설명:</b> 리스트의 각 원소에는 위치를 나타내는 인덱스가 있습니다. 첫 번째 위치는 1이 아니라 0이며 음수 인덱스는 뒤에서부터 셉니다. 월별 방문자 수에서 첫 달과 마지막 달의 값을 꺼내어 변화량을 계산합니다.</p>
                     <div class="code-block-wrapper">
                         <div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div>
                         <pre><code>visitors = [<span class="code-num">120</span>, <span class="code-num">135</span>, <span class="code-num">128</span>, <span class="code-num">160</span>]
-first_month = visitors[<span class="code-num">0</span>]
-last_month = visitors[-<span class="code-num">1</span>]
-change = last_month - first_month
+first_month = 
+last_month = 
+change = 
 
 <span class="code-keyword">print</span>(<span class="code-str">"첫 달 방문자:"</span>, first_month)
 <span class="code-keyword">print</span>(<span class="code-str">"두 번째 달 방문자:"</span>, visitors[<span class="code-num">1</span>])
 <span class="code-keyword">print</span>(<span class="code-str">"마지막 달 방문자:"</span>, last_month)
-<span class="code-keyword">print</span>(<span class="code-str">"첫 달 대비 증가:"</span>, change)</code></pre>
+<span class="code-keyword">print</span>(<span class="code-str">"첫 달 대비 증가:"</span>, change)
+<span class="code-comment"># visitors[4]는 범위를 벗어나 IndexError가 발생합니다.</span></code></pre>
                     </div>
                     <div class="result-box">
                         <b>🔍 코드 톺아보기</b><br>
@@ -419,14 +420,14 @@ change = last_month - first_month
                     </div>
 
                     <h1 class="chapter-h1" style="margin-top: 50px;">✂️ [3차시] 슬라이싱으로 구간 추출하기</h1>
-                    <p class="section-desc"><b>핵심 개념 설명:</b> 인덱싱이 값 하나를 꺼내는 방법이라면 슬라이싱은 원하는 구간을 새 리스트로 만드는 방법입니다. [시작:끝]에서 끝 위치는 포함되지 않습니다.</p>
+                    <p class="section-desc"><b>핵심 개념 설명:</b> 인덱싱이 값 하나를 꺼내는 방법이라면 슬라이싱은 원하는 구간을 새 리스트로 만드는 방법입니다. [시작:끝]에서 끝 위치는 포함되지 않습니다. 일주일의 방문자 자료를 앞부분과 뒷부분으로 나누어 분석합니다.</p>
                     <div class="code-block-wrapper">
                         <div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div>
                         <pre><code>visitors = [<span class="code-num">120</span>, <span class="code-num">135</span>, <span class="code-num">128</span>, <span class="code-num">160</span>, <span class="code-num">175</span>, <span class="code-num">210</span>, <span class="code-num">190</span>]
-first_three = visitors[:<span class="code-num">3</span>]
-weekend = visitors[<span class="code-num">5</span>:<span class="code-num">7</span>]
-alternate = visitors[::<span class="code-num">2</span>]
-reversed_data = visitors[::-<span class="code-num">1</span>]
+first_three = 
+weekend = 
+alternate = 
+reversed_data = 
 
 <span class="code-keyword">print</span>(<span class="code-str">"첫 3일:"</span>, first_three)
 <span class="code-keyword">print</span>(<span class="code-str">"주말:"</span>, weekend)
@@ -437,67 +438,78 @@ reversed_data = visitors[::-<span class="code-num">1</span>]
                     <div class="result-box">
                         <b>🔍 코드 톺아보기</b><br>
                         • <code>visitors[:3]</code> : 시작을 생략하면 처음부터 가져옵니다. 인덱스 3은 제외되어 120, 135, 128이 선택됩니다.<br>
-                        • <code>visitors[5:7]</code> : 인덱스 5와 6의 값을 새 리스트에 담습니다.<br>
+                        • <code>visitors[5:7]</code> : 인덱스 5와 6의 값을 새 리스트에 담습니다. 주말 자료는 [210, 190]입니다.<br>
                         • <b>간격과 역순</b> : 세 번째 값은 이동 간격입니다. <code>::2</code>는 두 칸씩, <code>::-1</code>은 뒤에서 앞으로 이동하며 원본은 바뀌지 않습니다.
                     </div>
 
                     <h1 class="chapter-h1" style="margin-top: 50px;">🛠️ [4차시] 원소 수정과 데이터 추가</h1>
-                    <p class="section-desc"><b>핵심 개념 설명:</b> 리스트는 만든 뒤에도 내용을 바꿀 수 있습니다. 인덱스로 기존 값을 수정하고 append로 값 하나를 마지막에 추가합니다. extend는 여러 원소를 풀어서 추가하고 insert는 지정한 위치에 값을 끼워 넣습니다.</p>
+                    <p class="section-desc"><b>핵심 개념 설명:</b> 리스트는 만든 뒤에도 내용을 바꿀 수 있습니다. 인덱스로 기존 값을 수정하고 append로 값 하나를 마지막에 추가합니다. extend는 여러 원소를 풀어서 추가하고 insert는 지정한 위치에 값을 끼워 넣습니다. 설문 자료를 보완하며 세 방법을 비교합니다.</p>
                     <div class="code-block-wrapper">
                         <div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div>
                         <pre><code>scores = [<span class="code-num">70</span>, <span class="code-num">80</span>, <span class="code-num">90</span>]
 scores[<span class="code-num">0</span>] = <span class="code-num">75</span>
-scores.append(<span class="code-num">85</span>)
+
+<span class="code-comment"># 가장 마지막에 85를 추가한다.</span>
+
 <span class="code-keyword">print</span>(<span class="code-str">"한 명 추가:"</span>, scores)
 
-scores.extend([<span class="code-num">88</span>, <span class="code-num">92</span>])
-<span class="code-keyword">print</span>(<span class="code-str">"두 명 추가:"</span>, scores)
+<span class="code-comment"># 88과 92를 한 번에 넣는다.</span>
 
-scores.insert(<span class="code-num">1</span>, <span class="code-num">78</span>)
+<span class="code-keyword">print</span>(<span class="code-str">"두명 추가:"</span>, scores)
+
+<span class="code-comment"># 1번째 위치에 78을 넣는다.</span>
+
 <span class="code-keyword">print</span>(<span class="code-str">"두 번째 위치에 삽입:"</span>, scores)
 <span class="code-keyword">print</span>(<span class="code-str">"전체 응답자:"</span>, len(scores))</code></pre>
                     </div>
                     <div class="result-box">
                         <b>🔍 코드 톺아보기</b><br>
-                        • <code>scores[0] = 75</code> : 잘못 입력한 첫 점수 70을 75로 교체합니다.<br>
-                        • <code>append</code>와 <code>extend</code> : append(85)는 숫자 하나를 추가합니다. extend([88, 92])는 두 숫자를 각각 추가합니다.<br>
-                        • <code>insert(1, 78)</code> : 인덱스 1 앞에 78을 넣습니다. 뒤의 원소들은 한 칸씩 밀립니다.
+                        • <code>scores[0] = 75</code> : 잘못 입력한 첫 점수 70을 75로 교체합니다. 원소의 개수는 그대로입니다.<br>
+                        • <code>append</code>와 <code>extend</code> : append(85)는 숫자 하나를 추가합니다. extend([88, 92])는 두 숫자를 각각 추가합니다. append([88, 92])와 다릅니다.<br>
+                        • <code>insert(1, 78)</code> : 인덱스 1 앞에 78을 넣습니다. 뒤의 원소들은 한 칸씩 밀리며 최종 길이는 7입니다.
                     </div>
 
                     <h1 class="chapter-h1" style="margin-top: 50px;">🗑️ [5차시] 원소 삭제와 안전한 제거</h1>
-                    <p class="section-desc"><b>핵심 개념 설명:</b> 자료를 정리할 때는 값으로 지우는 방법과 위치로 지우는 방법을 구분해야 합니다. remove는 처음 일치하는 값 하나를 삭제하고 pop은 지정한 위치의 값을 꺼내면서 삭제합니다.</p>
+                    <p class="section-desc"><b>핵심 개념 설명:</b> 자료를 정리할 때는 값으로 지우는 방법과 위치로 지우는 방법을 구분해야 합니다. remove는 처음 일치하는 값 하나를 삭제하고 pop은 지정한 위치의 값을 꺼내면서 삭제합니다. 삭제할 값이 있는지 먼저 확인하면 불필요한 오류를 줄일 수 있습니다.</p>
                     <div class="code-block-wrapper">
                         <div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div>
                         <pre><code>scores = [<span class="code-num">80</span>, <span class="code-num">0</span>, <span class="code-num">75</span>, <span class="code-num">0</span>, <span class="code-num">90</span>]
-<span class="code-keyword">if</span> <span class="code-num">0</span> <span class="code-keyword">in</span> scores:
-    scores.remove(<span class="code-num">0</span>)
-    <span class="code-keyword">print</span>(<span class="code-str">"첫 번째 0 제거:"</span>, scores)
 
-last_score = scores.pop()
+<span class="code-comment"># 0이 있으면 제거한다.</span>
+
+<span class="code-keyword">print</span>(<span class="code-str">"첫 번째 0 제거:"</span>, scores)
+
+last_score = 
+<span class="code-comment"># 마지막 값을 제거한다.</span>
+
 <span class="code-keyword">print</span>(<span class="code-str">"꺼낸 마지막 점수:"</span>, last_score)
 <span class="code-keyword">print</span>(<span class="code-str">"남은 자료:"</span>, scores)
 
-<span class="code-keyword">del</span> scores[<span class="code-num">0</span>]
+<span class="code-comment"># 첫번째 위치에 해당하는 값을 제거한다.</span>
+
 <span class="code-keyword">print</span>(<span class="code-str">"첫 원소 삭제:"</span>, scores)</code></pre>
                     </div>
                     <div class="result-box">
                         <b>🔍 코드 톺아보기</b><br>
                         • <code>0 in scores</code> : 리스트에 0이 있는지 확인합니다. 없는 값을 remove로 지우면 ValueError가 발생합니다.<br>
                         • <code>remove(0)</code> : 처음 발견한 0만 제거합니다. 모든 0을 제거하는 명령이 아니므로 다른 0은 남습니다.<br>
-                        • <code>pop</code>과 <code>del</code> : pop()은 마지막 값을 반환하며 삭제합니다. del scores[0]은 해당 위치를 삭제합니다.
+                        • <code>pop</code>과 <code>del</code> : pop()은 마지막 값 90을 반환하며 삭제합니다. del scores[0]은 해당 위치를 삭제하고 최종 자료는 [75, 0]입니다.
                     </div>
 
                     <h1 class="chapter-h1" style="margin-top: 50px;">📊 [6차시] 검색과 정렬로 자료 살펴보기</h1>
-                    <p class="section-desc"><b>핵심 개념 설명:</b> 특정 값이 몇 번 나오는지 확인하거나 크기순으로 정리하면 자료의 특징을 쉽게 파악할 수 있습니다.</p>
+                    <p class="section-desc"><b>핵심 개념 설명:</b> 특정 값이 몇 번 나오는지 확인하거나 크기순으로 정리하면 자료의 특징을 쉽게 파악할 수 있습니다. count는 등장 횟수를 세고 index는 처음 나타난 위치를 찾습니다. sorted는 정렬한 새 리스트를 만들며 sort는 원본 자체를 정렬합니다.</p>
                     <div class="code-block-wrapper">
                         <div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div>
                         <pre><code>scores = [<span class="code-num">82</span>, <span class="code-num">75</span>, <span class="code-num">90</span>, <span class="code-num">88</span>, <span class="code-num">75</span>]
-<span class="code-keyword">print</span>(<span class="code-str">"75점 인원:"</span>, scores.count(<span class="code-num">75</span>))
+
+<span class="code-keyword">print</span>(<span class="code-str">"75점 인원:"</span>, ) <span class="code-comment"># 75의 값이 몇명 있는 지를 세어보자</span>
 
 <span class="code-keyword">if</span> <span class="code-num">90</span> <span class="code-keyword">in</span> scores:
-    <span class="code-keyword">print</span>(<span class="code-str">"90점의 첫 위치:"</span>, scores.index(<span class="code-num">90</span>))
+    <span class="code-keyword">print</span>(<span class="code-str">"90점의 첫 위치:"</span>, ) <span class="code-comment"># 90이 처음으로 있는 위치를 찾아보자.</span>
 
-ranked = sorted(scores, reverse=<span class="code-keyword">True</span>)
+<span class="code-comment"># 값을 내림차순으로 정렬해서 새로운 리스트를 만든다.</span>
+ranked = 
+
 <span class="code-keyword">print</span>(<span class="code-str">"내림차순 새 리스트:"</span>, ranked)
 <span class="code-keyword">print</span>(<span class="code-str">"정렬 전 원본:"</span>, scores)
 
@@ -507,42 +519,45 @@ scores.sort()
                     <div class="result-box">
                         <b>🔍 코드 톺아보기</b><br>
                         • <code>count</code>와 <code>index</code> : 75는 두 번 나오고 90의 인덱스는 2입니다. 없는 값을 index로 찾으면 ValueError가 발생합니다.<br>
-                        • <code>sorted(..., reverse=True)</code> : 큰 값부터 정렬한 새 리스트를 만듭니다.<br>
-                        • <code>scores.sort()</code> : 원본을 오름차순으로 바꾸고 None을 반환합니다. 
+                        • <code>sorted(..., reverse=True)</code> : 큰 값부터 정렬한 새 리스트 [90, 88, 82, 75, 75]를 만듭니다.<br>
+                        • <code>scores.sort()</code> : 원본을 오름차순으로 바꾸고 None을 반환합니다. scores = scores.sort()처럼 대입하지 않습니다.
                     </div>
 
                     <h1 class="chapter-h1" style="margin-top: 50px;">🧮 [7차시] 반복문으로 합계와 평균 구하기</h1>
-                    <p class="section-desc"><b>핵심 개념 설명:</b> 리스트의 원소를 for 반복문으로 하나씩 꺼내면 같은 처리를 모든 자료에 적용할 수 있습니다.</p>
+                    <p class="section-desc"><b>핵심 개념 설명:</b> 리스트의 원소를 for 반복문으로 하나씩 꺼내면 같은 처리를 모든 자료에 적용할 수 있습니다. 합계를 저장할 변수를 0으로 준비한 뒤 각 값을 누적합니다. 이번에는 내장 함수의 결과와 직접 계산한 결과를 비교합니다.</p>
                     <div class="code-block-wrapper">
                         <div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div>
                         <pre><code>populations = [<span class="code-num">18000</span>, <span class="code-num">32000</span>, <span class="code-num">25000</span>, <span class="code-num">15000</span>]
 total = <span class="code-num">0</span>
-<span class="code-keyword">for</span> population <span class="code-keyword">in</span> populations:
-    total = total + population
+
+<span class="code-comment"># for 반복문을 이용하여 인구의 총합을 구한다.</span>
+
 
 <span class="code-keyword">print</span>(<span class="code-str">"직접 계산한 합계:"</span>, total)
-<span class="code-keyword">print</span>(<span class="code-str">"sum으로 구한 합계:"</span>, sum(populations))
+<span class="code-keyword">print</span>(<span class="code-str">"sum으로 구한 합계:"</span>, ) <span class="code-comment"># 리스트의 합계를 구하는 가장 간단한 방법</span>
 
 <span class="code-keyword">if</span> len(populations) > <span class="code-num">0</span>:
-    average = total / len(populations)
+    average = 
+    <span class="code-comment"># 평균을 구한다.</span>
     <span class="code-keyword">print</span>(<span class="code-str">"평균 인구:"</span>, average)
-    <span class="code-keyword">print</span>(<span class="code-str">"최대 인구:"</span>, max(populations))</code></pre>
+    <span class="code-keyword">print</span>(<span class="code-str">"최대 인구:"</span>, max(populations)) <span class="code-comment"># 리스트에서 최대값을 찾는 가장 간단한 방법</span></code></pre>
                     </div>
                     <div class="result-box">
                         <b>🔍 코드 톺아보기</b><br>
                         • <code>total = 0</code> : 반복문 밖에서 누적 변수를 초기화합니다. 반복문 안에서 0으로 만들면 이전 합계가 지워집니다.<br>
-                        • <b>빈 리스트 확인</b> : 자료가 없을 때 길이로 나누면 오류가 납니다. max도 빈 자료에는 바로 사용할 수 없습니다.
+                        • <code>for population in populations:</code> 원소 네 개를 순서대로 꺼내어 총 90,000을 계산합니다.<br>
+                        • <b>빈 리스트 확인</b> : 자료가 없을 때 길이로 나누면 오류가 납니다. 이 예제의 평균은 22,500이며 max도 빈 자료에는 바로 사용할 수 없습니다.
                     </div>
 
                     <h1 class="chapter-h1" style="margin-top: 50px;">⚡ [8차시] 조건에 맞는 자료와 리스트 컴프리헨션</h1>
-                    <p class="section-desc"><b>핵심 개념 설명:</b> 분석에서는 전체 자료 중 조건에 맞는 값만 골라야 할 때가 많습니다. 반복문과 조건문으로 새 리스트를 만들 수 있으며 짧은 처리라면 리스트 컴프리헨션으로 표현할 수 있습니다.</p>
+                    <p class="section-desc"><b>핵심 개념 설명:</b> 분석에서는 전체 자료 중 조건에 맞는 값만 골라야 할 때가 많습니다. 반복문과 조건문으로 새 리스트를 만들 수 있으며 짧은 처리라면 리스트 컴프리헨션으로 표현할 수 있습니다. 80점 이상인 응답만 추출하고 점수를 보정합니다.</p>
                     <div class="code-block-wrapper">
                         <div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div>
                         <pre><code>scores = [<span class="code-num">65</span>, <span class="code-num">82</span>, <span class="code-num">90</span>, <span class="code-num">73</span>, <span class="code-num">88</span>]
 high_scores = []
-<span class="code-keyword">for</span> score <span class="code-keyword">in</span> scores:
-    <span class="code-keyword">if</span> score >= <span class="code-num">80</span>:
-        high_scores.append(score)
+
+<span class="code-comment"># for 반복문을 이용하여 80점 이상의 점수만 high_scores에 추가</span>
+
 
 compact_scores = [s <span class="code-keyword">for</span> s <span class="code-keyword">in</span> scores <span class="code-keyword">if</span> s >= <span class="code-num">80</span>]
 adjusted_scores = [min(s + <span class="code-num">5</span>, <span class="code-num">100</span>) <span class="code-keyword">for</span> s <span class="code-keyword">in</span> scores]
@@ -553,22 +568,23 @@ adjusted_scores = [min(s + <span class="code-num">5</span>, <span class="code-nu
                     </div>
                     <div class="result-box">
                         <b>🔍 코드 톺아보기</b><br>
-                        • <b>조건과 append</b> : 80 이상인 값만 새 리스트에 추가하여 [82, 90, 88]을 얻습니다.<br>
+                        • <b>조건과 append</b> : 80 이상인 값만 새 리스트에 추가하여 [82, 90, 88]을 얻습니다. 원본을 지우면서 반복하지 않습니다.<br>
                         • <code>[s for s in scores if s >= 80]</code> : 원소를 꺼내고 조건을 확인한 뒤 결과에 넣는 작업을 한 줄로 표현합니다.<br>
-                        • <code>min(s+5, 100)</code> : 5점을 더하되 100을 넘지 않게 합니다.
+                        • <code>min(s+5, 100)</code> : 5점을 더하되 100을 넘지 않게 합니다. 조건으로 거르는 일과 값을 바꾸는 일을 구분합니다.
                     </div>
 
                     <h1 class="chapter-h1" style="margin-top: 50px;">🥞 [9차시] 중첩 리스트와 복사 이해하기</h1>
-                    <p class="section-desc"><b>핵심 개념 설명:</b> 리스트 안에 리스트를 넣으면 행과 열이 있는 표처럼 자료를 다룰 수 있습니다.</p>
+                    <p class="section-desc"><b>핵심 개념 설명:</b> 리스트 안에 리스트를 넣으면 행과 열이 있는 표처럼 자료를 다룰 수 있습니다. 중첩 리스트의 값은 인덱스를 두 번 사용하여 꺼냅니다.</p>
                     <div class="code-block-wrapper">
                         <div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div>
                         <pre><code>survey = [[<span class="code-num">80</span>, <span class="code-num">70</span>], [<span class="code-num">90</span>, <span class="code-num">85</span>], [<span class="code-num">75</span>, <span class="code-num">80</span>]]
-<span class="code-keyword">print</span>(<span class="code-str">"두 번째 응답자의 첫 점수:"</span>, survey[<span class="code-num">1</span>][<span class="code-num">0</span>])
+
+<span class="code-keyword">print</span>(<span class="code-str">"두 번째 응답자의 첫 점수:"</span>, )
 
 <span class="code-keyword">for</span> row <span class="code-keyword">in</span> survey:
-    <span class="code-keyword">print</span>(<span class="code-str">"응답자 평균:"</span>, sum(row) / len(row))
+    <span class="code-keyword">print</span>(<span class="code-str">"응답자 평균:"</span>, ) <span class="code-comment"># 전체에서 각 응답자의 평균을 구한다.</span>
 
-<span class="code-keyword">print</span>(<span class="code-str">"원본 첫 행:"</span>, survey[<span class="code-num">0</span>])</code></pre>
+<span class="code-keyword">print</span>(<span class="code-str">"원본 첫 행:"</span>, )</code></pre>
                     </div>
                     <div class="result-box">
                         <b>🔍 코드 톺아보기</b><br>
@@ -576,7 +592,7 @@ adjusted_scores = [min(s + <span class="code-num">5</span>, <span class="code-nu
                     </div>
 
                     <h1 class="chapter-h1" style="margin-top: 50px;">🏆 [10차시] 종합 미니 프로젝트 - 설문 점수 리포트</h1>
-                    <p class="section-desc"><b>핵심 개념 설명:</b> 지금까지 배운 추가, 조건 추출, 정렬, 집계를 연결하여 설문 점수 분석 프로그램을 완성합니다. 0부터 100까지를 유효한 점수로 정하고 범위 밖의 값은 제외합니다.</p>
+                    <p class="section-desc"><b>핵심 개념 설명:</b> 지금까지 배운 추가, 조건 추출, 정렬, 집계를 연결하여 설문 점수 분석 프로그램을 완성합니다. 0부터 100까지를 유효한 점수로 정하고 범위 밖의 값은 제외합니다. 정리한 자료의 평균과 상위 점수, 기준 이상인 응답 수를 한 번에 출력합니다.</p>
                     <div class="code-block-wrapper">
                         <div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div>
                         <pre><code>raw_scores = [<span class="code-num">82</span>, <span class="code-num">95</span>, -<span class="code-num">1</span>, <span class="code-num">73</span>, <span class="code-num">88</span>, <span class="code-num">105</span>, <span class="code-num">90</span>]
@@ -589,9 +605,9 @@ valid_scores = [s <span class="code-keyword">for</span> s <span class="code-keyw
 <span class="code-keyword">print</span>(<span class="code-str">"제외한 자료:"</span>, len(raw_scores) - len(valid_scores))
 
 <span class="code-keyword">if</span> valid_scores:
-    average = sum(valid_scores) / len(valid_scores)
-    top_three = sorted(valid_scores, reverse=<span class="code-keyword">True</span>)[:<span class="code-num">3</span>]
-    high_scores = [s <span class="code-keyword">for</span> s <span class="code-keyword">in</span> valid_scores <span class="code-keyword">if</span> s >= <span class="code-num">80</span>]
+    average = 
+    top_three = 
+    high_scores = 
 
     <span class="code-keyword">print</span>(<span class="code-str">"평균:"</span>, round(average, <span class="code-num">1</span>))
     <span class="code-keyword">print</span>(<span class="code-str">"상위 3개 점수:"</span>, top_three)
@@ -602,12 +618,13 @@ valid_scores = [s <span class="code-keyword">for</span> s <span class="code-keyw
                     <div class="result-box">
                         <b>🔍 코드 톺아보기</b><br>
                         • <b>유효 범위 설정</b> : -1과 105를 제외합니다. 실제 조사에서는 제외 기준을 먼저 정하고 제외한 개수도 함께 기록해야 합니다.<br>
-                        • <b>집계와 정렬 연결</b> : 유효 자료는 6개, 평균은 84.7점, 상위 점수는 [95, 90, 88], 80점 이상은 5개입니다.
+                        • <b>집계와 정렬 연결</b> : 유효 자료는 6개, 평균은 84.7점, 상위 점수는 [95, 90, 88], 80점 이상은 5개입니다.<br>
+                        • <b>직접 바꿔보기</b> : 기준을 85점으로 바꾸어 다시 실행하고 결과를 예측합니다. raw_scores를 모두 범위 밖의 값으로 바꾸어 빈 자료 처리도 확인합니다.
                     </div>
                 `
             },
 
-            // [02. 파이썬 함수]
+            // [02. 파이썬 함수] - 원본 함수 PDF에는 빈칸이 없었으므로 코드 그대로 반영
             lesson2: {
                 title: "02. 함수",
                 icon: "📦",
@@ -618,7 +635,7 @@ valid_scores = [s <span class="code-keyword">for</span> s <span class="code-keyw
                     </div>
 
                     <h1 class="chapter-h1">🛠️ [1차시] 함수 정의와 호출 기초</h1>
-                    <p class="section-desc"><b>핵심 개념 상세 설명:</b> 자주 사용하는 안내문이나 코드를 매번 새롭게 작성하면 비효율적입니다. 파이썬에서는 자주 쓰는 동작을 <code>def</code> 키워드를 이용해 하나의 블록으로 묶어둘 수 있습니다. 이를 함수 정의라고 하며 정의된 함수는 이름을 호출해야만 비로소 실행됩니다.</p>
+                    <p class="section-desc"><b>핵심 개념 설명:</b> 자주 사용하는 안내문이나 코드를 매번 새롭게 작성하면 비효율적입니다. 파이썬에서는 자주 쓰는 동작을 <code>def</code> 키워드를 이용해 하나의 블록으로 묶어둘 수 있습니다. 이를 함수 정의라고 하며 정의된 함수는 이름을 호출해야만 비로소 실행됩니다. 데이터 분석 동아리의 시작 알림 코드를 함수로 만들어 봅니다.</p>
                     <div class="code-block-wrapper">
                         <div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div>
                         <pre><code><span class="code-keyword">def</span> <span class="code-def">show_welcome</span>():
@@ -638,7 +655,7 @@ show_welcome()</code></pre>
                     </div>
 
                     <h1 class="chapter-h1" style="margin-top: 50px;">📥 [2차시] 매개변수(Parameter)를 통한 데이터 전달</h1>
-                    <p class="section-desc"><b>핵심 개념 상세 설명:</b> 언제나 똑같은 결과만 보여주는 함수보다 외부에서 데이터를 입력받아 상황에 맞게 동작하는 함수가 훨씬 유용합니다. 함수를 정의할 때 괄호 안에 매개변수라는 빈 그릇을 만들어두면 외부에서 인수라는 실제 데이터를 던져줄 수 있습니다.</p>
+                    <p class="section-desc"><b>핵심 개념 설명:</b> 언제나 똑같은 결과만 보여주는 함수보다 외부에서 데이터를 입력받아 상황에 맞게 동작하는 함수가 훨씬 유용합니다. 함수를 정의할 때 괄호 안에 매개변수라는 빈 그릇을 만들어두면 외부에서 인수라는 실제 데이터를 던져줄 수 있습니다. 특정 브랜드의 PPL 광고 분석 시작을 알리는 함수를 만들어 봅니다.</p>
                     <div class="code-block-wrapper">
                         <div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div>
                         <pre><code><span class="code-keyword">def</span> <span class="code-def">analyze_ppl</span>(brand):
@@ -657,7 +674,7 @@ analyze_ppl(<span class="code-str">"한솔제과"</span>)</code></pre>
                     </div>
 
                     <h1 class="chapter-h1" style="margin-top: 50px;">📤 [3차시] return을 이용한 계산 결과 반환</h1>
-                    <p class="section-desc"><b>핵심 개념 상세 설명:</b> 단순히 화면에 글자를 보여주고 끝나는 print와 달리 함수가 연산한 최종 결과값을 프로그램의 다른 부분에서 활용해야 할 때가 많습니다. 이때 return 키워드를 사용하면 계산된 수치를 함수 밖으로 꺼내어 변수에 저장할 수 있습니다.</p>
+                    <p class="section-desc"><b>핵심 개념 설명:</b> 단순히 화면에 글자를 보여주고 끝나는 print와 달리 함수가 연산한 최종 결과값을 프로그램의 다른 부분에서 활용해야 할 때가 많습니다. 이때 return 키워드를 사용하면 계산된 수치를 함수 밖으로 꺼내어 변수에 저장할 수 있습니다. PPL 광고의 인지도 점수와 구매 의도 점수를 합산하여 돌려주는 함수를 살펴봅니다.</p>
                     <div class="code-block-wrapper">
                         <div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div>
                         <pre><code><span class="code-keyword">def</span> <span class="code-def">calculate_total_score</span>(recognition, intent):
@@ -676,7 +693,7 @@ final_score = calculate_total_score(<span class="code-num">45</span>, <span clas
                     </div>
 
                     <h1 class="chapter-h1" style="margin-top: 50px;">🎯 [4차시] 위치 인수와 키워드 인수 활용</h1>
-                    <p class="section-desc"><b>핵심 개념 상세 설명:</b> 함수에 여러 개의 매개변수가 있을 때 값을 전달하는 방식은 두 가지입니다. 코드를 작성한 순서대로 들어가는 위치 인수 방식과 매개변수의 이름을 직접 지정하여 순서와 상관없이 전달하는 키워드 인수 방식입니다.</p>
+                    <p class="section-desc"><b>핵심 개념 설명:</b> 함수에 여러 개의 매개변수가 있을 때 값을 전달하는 방식은 두 가지입니다. 코드를 작성한 순서대로 들어가는 위치 인수 방식과 매개변수의 이름을 직접 지정하여 순서와 상관없이 전달하는 키워드 인수 방식입니다. 인구 통계 데이터를 다루는 함수로 두 방식의 차이를 알아봅니다.</p>
                     <div class="code-block-wrapper">
                         <div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div>
                         <pre><code><span class="code-keyword">def</span> <span class="code-def">population_info</span>(city, district, count):
@@ -698,7 +715,7 @@ population_info(count=<span class="code-num">32000</span>, city=<span class="cod
                     </div>
 
                     <h1 class="chapter-h1" style="margin-top: 50px;">⚙️ [5차시] 기본값(Default) 매개변수의 적용</h1>
-                    <p class="section-desc"><b>핵심 개념 상세 설명:</b> 매번 동일한 값을 전달해야 하는 번거로움을 줄이기 위해 함수 정의 시 매개변수에 기본값을 미리 설정해 둘 수 있습니다. 호출할 때 값을 생략하면 이 기본값이 작동하며 새로운 값을 전달하면 기본값을 무시하고 덮어씁니다.</p>
+                    <p class="section-desc"><b>핵심 개념 설명:</b> 매번 동일한 값을 전달해야 하는 번거로움을 줄이기 위해 함수 정의 시 매개변수에 기본값을 미리 설정해 둘 수 있습니다. 호출할 때 값을 생략하면 이 기본값이 작동하며 새로운 값을 전달하면 기본값을 무시하고 덮어씁니다.</p>
                     <div class="code-block-wrapper">
                         <div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div>
                         <pre><code><span class="code-keyword">def</span> <span class="code-def">report_activity</span>(name, club=<span class="code-str">"데이터마이닝"</span>):
@@ -720,7 +737,7 @@ report_activity(<span class="code-str">"박학생"</span>, <span class="code-str
                     </div>
 
                     <h1 class="chapter-h1" style="margin-top: 50px;">🏠 [6차시] 지역 변수와 전역 변수의 이해</h1>
-                    <p class="section-desc"><b>핵심 개념 상세 설명:</b> 함수 안에서 새롭게 만들어진 변수는 지역 변수라 불리며 함수가 종료되면 메모리에서 완전히 사라집니다. 반면 함수 밖에서 만들어진 변수는 전역 변수로 프로그램 전체에서 읽을 수 있습니다. 변수의 생명 주기와 유효 범위를 이해하는 것은 논리 오류를 막는 핵심입니다.</p>
+                    <p class="section-desc"><b>핵심 개념 설명:</b> 함수 안에서 새롭게 만들어진 변수는 지역 변수라 불리며 함수가 종료되면 메모리에서 완전히 사라집니다. 반면 함수 밖에서 만들어진 변수는 전역 변수로 프로그램 전체에서 읽을 수 있습니다. 변수의 생명 주기와 유효 범위를 이해하는 것은 논리 오류를 막는 핵심입니다.</p>
                     <div class="code-block-wrapper">
                         <div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div>
                         <pre><code>base_population = <span class="code-num">380000</span> <span class="code-comment"># 전역 변수</span>
@@ -741,7 +758,7 @@ add_new_residents(<span class="code-num">5000</span>)
                     </div>
 
                     <h1 class="chapter-h1" style="margin-top: 50px;">⚖️ [7차시] 함수와 조건문(if)의 결합</h1>
-                    <p class="section-desc"><b>핵심 개념 상세 설명:</b> 입력받은 매개변수의 값을 if 조건문으로 검사하여 참(True) 또는 거짓(False)을 반환하는 판별 함수를 만들 수 있습니다. 데이터의 유효성을 검사하거나 조건에 따른 처리를 모듈화할 때 매우 유용합니다.</p>
+                    <p class="section-desc"><b>핵심 개념 설명:</b> 입력받은 매개변수의 값을 if 조건문으로 검사하여 참(True) 또는 거짓(False)을 반환하는 판별 함수를 만들 수 있습니다. 데이터의 유효성을 검사하거나 조건에 따른 처리를 모듈화할 때 매우 유용합니다.</p>
                     <div class="code-block-wrapper">
                         <div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div>
                         <pre><code><span class="code-keyword">def</span> <span class="code-def">is_effective_ppl</span>(score):
@@ -765,7 +782,7 @@ current_score = <span class="code-num">85</span>
                     </div>
 
                     <h1 class="chapter-h1" style="margin-top: 50px;">🔄 [8차시] 함수와 반복문(for)의 결합</h1>
-                    <p class="section-desc"><b>핵심 개념 상세 설명:</b> 여러 개의 데이터가 담긴 파이썬 리스트를 함수의 매개변수로 한 번에 넘겨줄 수 있습니다. 함수 내부의 for 반복문을 통해 리스트 원소를 하나씩 꺼내어 누적 합계를 구하거나 평균을 계산하는 등 대량의 데이터를 손쉽게 다룹니다.</p>
+                    <p class="section-desc"><b>핵심 개념 설명:</b> 여러 개의 데이터가 담긴 파이썬 리스트를 함수의 매개변수로 한 번에 넘겨줄 수 있습니다. 함수 내부의 for 반복문을 통해 리스트 원소를 하나씩 꺼내어 누적 합계를 구하거나 평균을 계산하는 등 대량의 데이터를 손쉽게 다룹니다.</p>
                     <div class="code-block-wrapper">
                         <div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div>
                         <pre><code><span class="code-keyword">def</span> <span class="code-def">calculate_total_population</span>(pop_list):
@@ -788,7 +805,7 @@ total_pop = calculate_total_population(district_populations)
                     </div>
 
                     <h1 class="chapter-h1" style="margin-top: 50px;">🔗 [9차시] 다중 함수의 파이프라인 연결</h1>
-                    <p class="section-desc"><b>핵심 개념 상세 설명:</b> 복잡한 코드를 하나의 거대한 함수에 몰아넣기보다는 역할이 하나로 분명한 여러 개의 작은 함수로 나누어 설계하는 것이 좋습니다. 한 함수가 연산하여 반환한 결과값을 다음 함수의 입력으로 전달하며 협업하는 구조를 익힙니다.</p>
+                    <p class="section-desc"><b>핵심 개념 설명:</b> 복잡한 코드를 하나의 거대한 함수에 몰아넣기보다는 역할이 하나로 분명한 여러 개의 작은 함수로 나누어 설계하는 것이 좋습니다. 한 함수가 연산하여 반환한 결과값을 다음 함수의 입력으로 전달하며 협업하는 구조를 익힙니다.</p>
                     <div class="code-block-wrapper">
                         <div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div>
                         <pre><code><span class="code-comment"># 1단계: 평균을 구하는 전문 함수</span>
@@ -820,7 +837,7 @@ final_rating = rate_effectiveness(average_val)
                     </div>
 
                     <h1 class="chapter-h1" style="margin-top: 50px;">🏆 [10차시] 종합 미니 프로젝트 - 데이터 분석 리포트 완성</h1>
-                    <p class="section-desc"><b>핵심 개념 상세 설명:</b> 지금까지 배운 매개변수, 반환값, 조건문, 반복문, 함수 연결의 모든 개념을 조립하여 독립적인 기능을 수행하는 데이터 분석 미니 프로그램을 완성합니다.</p>
+                    <p class="section-desc"><b>핵심 개념 설명:</b> 지금까지 배운 매개변수, 반환값, 조건문, 반복문, 함수 연결의 모든 개념을 조립하여 독립적인 기능을 수행하는 데이터 분석 미니 프로그램을 완성합니다. 입력을 받아 분석하고 리포트를 출력하는 일련의 과정을 함수화하여 깔끔한 메인 제어 흐름을 구성합니다.</p>
                     <div class="code-block-wrapper">
                         <div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div>
                         <pre><code><span class="code-keyword">def</span> <span class="code-def">calc_avg</span>(data_list):
@@ -861,7 +878,7 @@ generate_report(target_brand, collected_data)</code></pre>
                 `
             },
 
-            // [03. 딕셔너리]
+            // [03. 딕셔너리] - 선생님 빈칸 버전 반영
             lesson3: {
                 title: "03. 딕셔너리",
                 icon: "📖",
@@ -881,10 +898,10 @@ generate_report(target_brand, collected_data)</code></pre>
     <span class="code-str">"area"</span>: <span class="code-num">2.8</span>
 }
 
-<span class="code-keyword">print</span>(<span class="code-str">"전체 지역 정보:"</span>, district)
-<span class="code-keyword">print</span>(<span class="code-str">"지역 이름:"</span>, district[<span class="code-str">"name"</span>])
-<span class="code-keyword">print</span>(<span class="code-str">"인구:"</span>, district[<span class="code-str">"population"</span>])
-<span class="code-keyword">print</span>(<span class="code-str">"정보 항목 수:"</span>, len(district))</code></pre>
+<span class="code-keyword">print</span>(<span class="code-str">"전체 지역 정보:"</span>, )
+<span class="code-keyword">print</span>(<span class="code-str">"지역 이름:"</span>, )
+<span class="code-keyword">print</span>(<span class="code-str">"인구:"</span>, )
+<span class="code-keyword">print</span>(<span class="code-str">"정보 항목 수:"</span>, )</code></pre>
                     </div>
                     <div class="result-box">
                         <b>🔍 코드 톺아보기</b><br>
@@ -893,8 +910,8 @@ generate_report(target_brand, collected_data)</code></pre>
                         • <code>len(district)</code> : 키와 값의 쌍을 세므로 결과는 3입니다. 같은 키를 중복 작성하면 뒤의 값이 앞의 값을 덮어씁니다.
                     </div>
 
-                    <h1 class="chapter-h1" style="margin-top: 50px;">🛡️ [2차시] 안전한 조회와 키 존재 확인</h1>
-                    <p class="section-desc"><b>핵심 개념 설명:</b> 자료마다 모든 항목이 들어 있는 것은 아닙니다. 존재하지 않는 키를 대괄호로 조회하면 KeyError가 발생합니다. get은 키가 없을 때 사용할 기본값을 지정할 수 있고 in은 키의 존재 여부를 확인합니다.</p>
+                    <h1 class="chapter-h1" style="margin-top: 50px;">🛡️️ [2차시] 안전한 조회와 키 존재 확인</h1>
+                    <p class="section-desc"><b>핵심 개념 설명:</b> 자료마다 모든 항목이 들어 있는 것은 아닙니다. 존재하지 않는 키를 대괄호로 조회하면 KeyError가 발생합니다. get은 키가 없을 때 사용할 기본값을 지정할 수 있고 in은 키의 존재 여부를 확인합니다. 누락 항목을 안전하게 처리하는 조회 코드를 작성합니다.</p>
                     <div class="code-block-wrapper">
                         <div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div>
                         <pre><code>district = {<span class="code-str">"name"</span>: <span class="code-str">"한솔동"</span>, <span class="code-str">"population"</span>: <span class="code-num">18000</span>}
@@ -903,11 +920,11 @@ generate_report(target_brand, collected_data)</code></pre>
 <span class="code-keyword">print</span>(<span class="code-str">"면적:"</span>, district.get(<span class="code-str">"area"</span>, <span class="code-str">"미조사"</span>))
 <span class="code-keyword">print</span>(<span class="code-str">"별도 기본값이 없을 때:"</span>, district.get(<span class="code-str">"school"</span>))
 
-<span class="code-keyword">if</span> <span class="code-str">"population"</span> <span class="code-keyword">in</span> district:
+<span class="code-keyword">if</span>          : <span class="code-comment"># 인구라는 키가 들어있는지를 확인한다.</span>
     <span class="code-keyword">print</span>(<span class="code-str">"인구 자료가 있습니다."</span>)
 
-<span class="code-keyword">print</span>(<span class="code-str">"한솔동이 키인가요?"</span>, <span class="code-str">"한솔동"</span> <span class="code-keyword">in</span> district)
-<span class="code-keyword">print</span>(<span class="code-str">"한솔동이 값인가요?"</span>, <span class="code-str">"한솔동"</span> <span class="code-keyword">in</span> district.values())</code></pre>
+<span class="code-keyword">print</span>(<span class="code-str">"한솔동이 키인가요?"</span>, <span class="code-str">"한솔동"</span> <span class="code-keyword">in</span> ) <span class="code-comment"># 키에 들어있는 지의 여부</span>
+<span class="code-keyword">print</span>(<span class="code-str">"한솔동이 값인가요?"</span>, <span class="code-str">"한솔동"</span> <span class="code-keyword">in</span> ) <span class="code-comment"># 값에 들어있는 지의 여부</span></code></pre>
                     </div>
                     <div class="result-box">
                         <b>🔍 코드 톺아보기</b><br>
@@ -917,7 +934,7 @@ generate_report(target_brand, collected_data)</code></pre>
                     </div>
 
                     <h1 class="chapter-h1" style="margin-top: 50px;">📝 [3차시] 항목 추가와 값 수정</h1>
-                    <p class="section-desc"><b>핵심 개념 설명:</b> 딕셔너리의 키에 값을 대입하면 새 키는 추가되고 기존 키는 수정됩니다. 여러 항목을 한 번에 반영하려면 update를 사용합니다.</p>
+                    <p class="section-desc"><b>핵심 개념 설명:</b> 딕셔너리의 키에 값을 대입하면 새 키는 추가되고 기존 키는 수정됩니다. 여러 항목을 한 번에 반영하려면 update를 사용합니다. 지역 자료에 조사 연도와 학교 수를 추가하고 인구를 수정하며 변경 규칙을 익힙니다.</p>
                     <div class="code-block-wrapper">
                         <div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div>
                         <pre><code>district = {<span class="code-str">"name"</span>: <span class="code-str">"한솔동"</span>, <span class="code-str">"population"</span>: <span class="code-num">18000</span>}
@@ -928,8 +945,8 @@ district[<span class="code-str">"population"</span>] = <span class="code-num">18
 
 district.update({<span class="code-str">"population"</span>: <span class="code-num">19000</span>, <span class="code-str">"schools"</span>: <span class="code-num">4</span>})
 <span class="code-keyword">print</span>(<span class="code-str">"여러 항목 반영:"</span>, district)
-<span class="code-keyword">print</span>(<span class="code-str">"최종 인구:"</span>, district[<span class="code-str">"population"</span>])
-<span class="code-keyword">print</span>(<span class="code-str">"전체 항목 수:"</span>, len(district))</code></pre>
+<span class="code-keyword">print</span>(<span class="code-str">"최종 인구:"</span>, )
+<span class="code-keyword">print</span>(<span class="code-str">"전체 항목 수:"</span>, )</code></pre>
                     </div>
                     <div class="result-box">
                         <b>🔍 코드 톺아보기</b><br>
@@ -939,7 +956,7 @@ district.update({<span class="code-str">"population"</span>: <span class="code-n
                     </div>
 
                     <h1 class="chapter-h1" style="margin-top: 50px;">🧹 [4차시] 항목 삭제와 기본값 등록</h1>
-                    <p class="section-desc"><b>핵심 개념 설명:</b> 불필요한 항목을 없앨 때 pop은 삭제한 값을 돌려주고 del은 지정한 항목을 삭제합니다. 반대로 setdefault는 키가 없을 때만 기본값을 등록합니다.</p>
+                    <p class="section-desc"><b>핵심 개념 설명:</b> 불필요한 항목을 없앨 때 pop은 삭제한 값을 돌려주고 del은 지정한 항목을 삭제합니다. 반대로 setdefault는 키가 없을 때만 기본값을 등록합니다. 조회만 하는 get과 달리 딕셔너리 자체를 바꿀 수 있다는 점을 구분합니다.</p>
                     <div class="code-block-wrapper">
                         <div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div>
                         <pre><code>record = {<span class="code-str">"brand"</span>: <span class="code-str">"세종우유"</span>, <span class="code-str">"score"</span>: <span class="code-num">85</span>, <span class="code-str">"memo"</span>: <span class="code-str">"임시"</span>}
@@ -951,32 +968,33 @@ removed = record.pop(<span class="code-str">"memo"</span>, <span class="code-str
 record.setdefault(<span class="code-str">"responses"</span>, <span class="code-num">0</span>)
 record.setdefault(<span class="code-str">"score"</span>, <span class="code-num">0</span>)
 
-<span class="code-keyword">del</span> record[<span class="code-str">"brand"</span>]
+<span class="code-comment"># brand를 제거</span>
+
 <span class="code-keyword">print</span>(<span class="code-str">"정리한 자료:"</span>, record)</code></pre>
                     </div>
                     <div class="result-box">
                         <b>🔍 코드 톺아보기</b><br>
                         • <code>pop(키, 기본값)</code> : memo를 삭제하면서 임시를 반환합니다. 없는 phone은 기본값 없음을 반환하므로 오류가 나지 않습니다.<br>
                         • <code>setdefault</code> : responses가 없어서 0을 저장합니다. score는 이미 있으므로 85를 유지합니다.<br>
-                        • <code>del record["brand"]</code> : brand 항목을 삭제합니다. 없는 키를 del로 삭제하면 오류가 납니다.
+                        • <code>del record["brand"]</code> : brand 항목을 삭제합니다. 최종 자료는 score 85와 responses 0이며, 없는 키를 del로 삭제하면 오류가 납니다.
                     </div>
 
                     <h1 class="chapter-h1" style="margin-top: 50px;">🔄 [5차시] keys, values, items와 반복문</h1>
-                    <p class="section-desc"><b>핵심 개념 설명:</b> 여러 지역을 한 번에 살펴보려면 딕셔너리의 키와 값을 순회해야 합니다. keys는 키, values는 값, items는 키와 값의 쌍을 제공합니다.</p>
+                    <p class="section-desc"><b>핵심 개념 설명:</b> 여러 지역을 한 번에 살펴보려면 딕셔너리의 키와 값을 순회해야 합니다. keys는 키, values는 값, items는 키와 값의 쌍을 제공합니다. 지역별 인구를 출력하고 전체 인구를 계산하며 반복문과 딕셔너리를 연결합니다.</p>
                     <div class="code-block-wrapper">
                         <div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div>
                         <pre><code>populations = {<span class="code-str">"한솔동"</span>: <span class="code-num">18000</span>, <span class="code-str">"보람동"</span>: <span class="code-num">32000</span>, <span class="code-str">"새롬동"</span>: <span class="code-num">25000</span>}
 
-<span class="code-keyword">print</span>(<span class="code-str">"지역 목록:"</span>, list(populations.keys()))
-<span class="code-keyword">print</span>(<span class="code-str">"인구 목록:"</span>, list(populations.values()))
+<span class="code-keyword">print</span>(<span class="code-str">"지역 목록:"</span>, ) <span class="code-comment"># 키를 리스트로</span>
+<span class="code-keyword">print</span>(<span class="code-str">"인구 목록:"</span>, ) <span class="code-comment"># 값을 리스트로</span>
 
 total = <span class="code-num">0</span>
-<span class="code-keyword">for</span> name, population <span class="code-keyword">in</span> populations.items():
+<span class="code-keyword">for</span> name, population <span class="code-keyword">in</span>        : <span class="code-comment"># 키와 값으로 구분해서 전체를 반복문으로 돌리려면</span>
     <span class="code-keyword">print</span>(name, <span class="code-str">":"</span>, population, <span class="code-str">"명"</span>)
     total = total + population
 
 <span class="code-keyword">print</span>(<span class="code-str">"전체 인구:"</span>, total)
-<span class="code-keyword">print</span>(<span class="code-str">"내장 함수 합계:"</span>, sum(populations.values()))</code></pre>
+<span class="code-keyword">print</span>(<span class="code-str">"내장 함수 합계:"</span>, ) <span class="code-comment"># 리스트의 내장함수를 이용한 합계를 구한다.</span></code></pre>
                     </div>
                     <div class="result-box">
                         <b>🔍 코드 톺아보기</b><br>
@@ -998,18 +1016,18 @@ counts = {}
 <span class="code-keyword">print</span>(<span class="code-str">"브랜드별 응답 수:"</span>, counts)
 
 <span class="code-keyword">for</span> brand, count <span class="code-keyword">in</span> counts.items():
-    ratio = count / len(responses) * <span class="code-num">100</span>
+    ratio =  <span class="code-comment"># 전체응답수 중 빈도를 적용하면 비율을 구할 수 있다.</span>
     <span class="code-keyword">print</span>(brand, count, <span class="code-str">"명"</span>, round(ratio, <span class="code-num">1</span>), <span class="code-str">"%"</span>)</code></pre>
                     </div>
                     <div class="result-box">
                         <b>🔍 코드 톺아보기</b><br>
                         • <b>빈 딕셔너리</b> : 집계를 시작하기 전에는 어떤 브랜드가 나올지 몰라도 됩니다. 발견한 브랜드를 차례로 추가합니다.<br>
                         • <code>get(brand, 0) + 1</code> : 처음 나온 브랜드는 0+1, 다시 나온 브랜드는 기존 횟수 + 1이 저장됩니다.<br>
-                        • <b>빈도와 비율</b> : 전체 응답 수 6으로 나누어 비율을 구합니다.
+                        • <b>빈도와 비율</b> : 세종우유 3명, 한솔제과 2명, 세종푸드 1명입니다. 전체 응답 수 6으로 나누어 비율을 구합니다.
                     </div>
 
                     <h1 class="chapter-h1" style="margin-top: 50px;">🗂️ [7차시] 중첩 딕셔너리로 지역 정보 관리</h1>
-                    <p class="section-desc"><b>핵심 개념 설명:</b> 지역마다 인구와 면적을 함께 저장하려면 값 자리에 또 다른 딕셔너리를 넣을 수 있습니다. 바깥쪽 키는 지역을, 안쪽 키는 정보 항목을 구분합니다.</p>
+                    <p class="section-desc"><b>핵심 개념 설명:</b> 지역마다 인구와 면적을 함께 저장하려면 값 자리에 또 다른 딕셔너리를 넣을 수 있습니다. 바깥쪽 키는 지역을, 안쪽 키는 정보 항목을 구분합니다. 계층 구조를 따라 값을 조회하고 인구 밀도를 계산해 봅니다.</p>
                     <div class="code-block-wrapper">
                         <div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div>
                         <pre><code>districts = {
@@ -1017,24 +1035,24 @@ counts = {}
     <span class="code-str">"보람동"</span>: {<span class="code-str">"population"</span>: <span class="code-num">32000</span>, <span class="code-str">"area"</span>: <span class="code-num">3.5</span>}
 }
 
-<span class="code-keyword">print</span>(<span class="code-str">"한솔동 인구:"</span>, districts[<span class="code-str">"한솔동"</span>][<span class="code-str">"population"</span>])
+<span class="code-keyword">print</span>(<span class="code-str">"한솔동 인구:"</span>, )
 
 districts[<span class="code-str">"한솔동"</span>][<span class="code-str">"population"</span>] = <span class="code-num">18500</span>
 
 <span class="code-keyword">for</span> name, info <span class="code-keyword">in</span> districts.items():
-    density = info[<span class="code-str">"population"</span>] / info[<span class="code-str">"area"</span>]
+    density = 
     <span class="code-keyword">print</span>(name, <span class="code-str">"인구 밀도:"</span>, round(density, <span class="code-num">1</span>), <span class="code-str">"명/km²"</span>)</code></pre>
                     </div>
                     <div class="result-box">
                         <b>🔍 코드 톺아보기</b><br>
                         • <b>키를 두 번 사용</b> : districts["한솔동"]은 안쪽 딕셔너리이며 여기에 ["population"]을 붙여 숫자를 얻습니다.<br>
                         • <b>안쪽 값 수정</b> : 한솔동의 인구만 18500으로 바꿉니다. 보람동의 자료에는 영향을 주지 않습니다.<br>
-                        • <b>밀도 계산</b> : 인구를 면적으로 나눕니다. 
+                        • <b>밀도 계산</b> : 면적이 양수라는 가정에서 인구를 면적으로 나눕니다. 이 자료는 수업용 가상 자료이며 실제 지역 통계가 아닙니다.
                     </div>
                 `
             },
             
-            // [04. 코드업 문제]
+            // [04. 코드업 문제] - 카드 레이아웃 적용
             lesson4: {
                 title: "04. 코드업 문제",
                 icon: "💻",
@@ -1044,301 +1062,451 @@ districts[<span class="code-str">"한솔동"</span>][<span class="code-str">"pop
                         반복문, 리스트, 함수 등의 파이썬 핵심 문법을 다지는 CodeUp(코드업) 필수 기초 알고리즘 37개 문항입니다. 각 문제별 목표와 생각할 거리를 확인해 보세요.
                     </div>
 
-                    <div class="problem-card">
-                        <div class="problem-header"><span class="problem-title">문제 01</span> 1부터 n까지 출력하기</div>
-                        <div class="problem-content">
-                            <b>목표:</b> 반복문의 기본 구조를 이용해 1부터 n까지 차례로 출력한다.<br>
-                            <b>생각해보기:</b> 1부터 n까지가 아니라 n부터 1까지 거꾸로 출력하려면 range()를 어떻게 설정해야 할까?
-                        </div>
-                    </div>
-
-                    <div class="problem-card">
-                        <div class="problem-header"><span class="problem-title">문제 02</span> 3의 배수는 통과?</div>
-                        <div class="problem-content">
-                            <b>목표:</b> 반복 중 특정 조건을 만족하는 값만 건너뛴다.<br>
-                            <b>생각해보기:</b> continue가 실행되면 반복문의 어느 부분이 생략되는가?
-                        </div>
-                    </div>
-
-                    <div class="problem-card">
-                        <div class="problem-header"><span class="problem-title">문제 03</span> 알파벳 출력하기</div>
-                        <div class="problem-content">
-                            <b>목표:</b> 문자의 순서를 숫자로 바꾸어 반복 처리한다.<br>
-                            <b>생각해보기:</b> 문자 하나를 숫자 코드로, 숫자 코드를 다시 문자로 바꾸는 함수(ord, chr)는 무엇일까?
-                        </div>
-                    </div>
-
-                    <div class="problem-card">
-                        <div class="problem-header"><span class="problem-title">문제 04</span> 3의 배수의 합</div>
-                        <div class="problem-content">
-                            <b>목표:</b> 조건을 만족하는 값만 골라 누적 합을 계산한다.<br>
-                            <b>생각해보기:</b> a와 b를 모두 포함하려면 range()의 끝값을 어떻게 설정해야 할까?
-                        </div>
-                    </div>
-
-                    <div class="problem-card">
-                        <div class="problem-header"><span class="problem-title">문제 05</span> 약수 구하기</div>
-                        <div class="problem-content">
-                            <b>목표:</b> 나누어떨어지는 수를 찾아 약수를 출력한다.<br>
-                            <b>생각해보기:</b> 자연수 N의 약수를 찾기 위해 최소 1부터 최대 몇까지 확인하면 될까?
-                        </div>
-                    </div>
-
-                    <div class="problem-card">
-                        <div class="problem-header"><span class="problem-title">문제 06</span> 소수 판별</div>
-                        <div class="problem-content">
-                            <b>목표:</b> 약수의 존재 여부를 이용해 소수를 판단한다.<br>
-                            <b>생각해보기:</b> 판별 결과를 함수의 return 값으로 만들면 어떤 장점이 있을까?
-                        </div>
-                    </div>
-
-                    <div class="problem-card">
-                        <div class="problem-header"><span class="problem-title">문제 07</span> 팩토리얼 계산</div>
-                        <div class="problem-content">
-                            <b>목표:</b> 반복문으로 연속된 곱을 누적한다.<br>
-                            <b>생각해보기:</b> 곱셈 누적 변수의 처음 값을 0이 아니라 1로 두는 이유는 무엇인가?
-                        </div>
-                    </div>
-
-                    <div class="problem-card">
-                        <div class="problem-header"><span class="problem-title">문제 08</span> 홀수는 더하고 짝수는 빼고 1</div>
-                        <div class="problem-content">
-                            <b>목표:</b> 홀짝에 따라 서로 다른 연산을 누적한다.<br>
-                            <b>생각해보기:</b> 하나의 누적 변수에 더하기와 빼기를 번갈아 가며 적용하려면 조건식이 어떻게 구성될까?
-                        </div>
-                    </div>
-
-                    <div class="problem-card">
-                        <div class="problem-header"><span class="problem-title">문제 09</span> 홀수는 더하고 짝수는 빼고 2</div>
-                        <div class="problem-content">
-                            <b>목표:</b> 계산 결과뿐 아니라 연산식 자체를 형식에 맞게 출력한다.<br>
-                            <b>생각해보기:</b> 숫자 계산용 변수와 출력할 식을 저장하는 문자열 변수를 따로 두는 것이 왜 좋을까?
-                        </div>
-                    </div>
-
-                    <div class="problem-card">
-                        <div class="problem-header"><span class="problem-title">문제 10</span> 홀수는 더하고 짝수는 빼고 3</div>
-                        <div class="problem-content">
-                            <b>목표:</b> 첫 항의 불필요한 + 기호를 없애는 출력 조건을 설계한다.<br>
-                            <b>생각해보기:</b> 반복문의 첫 번째 값인지 판단하는 방법에는 무엇이 있을까?
-                        </div>
-                    </div>
-
-                    <div class="problem-card">
-                        <div class="problem-header"><span class="problem-title">문제 11</span> 거꾸로 출력하기 3</div>
-                        <div class="problem-content">
-                            <b>목표:</b> 여러 데이터를 리스트에 저장하고 역순으로 출력한다.<br>
-                            <b>생각해보기:</b> 파이썬의 슬라이싱[::-1]을 이용하는 방법과 반복문을 이용하는 방법을 비교해 보자.
-                        </div>
-                    </div>
-
-                    <div class="problem-card">
-                        <div class="problem-header"><span class="problem-title">문제 12</span> 숫자 로테이션</div>
-                        <div class="problem-content">
-                            <b>목표:</b> 리스트의 시작 위치를 바꾸어 여러 줄의 회전 결과를 만든다.<br>
-                            <b>생각해보기:</b> 인덱스가 리스트 길이를 넘을 때 다시 처음으로 돌아오게 하려면 나머지 연산(%)을 어떻게 활용할까?
-                        </div>
-                    </div>
-
-                    <div class="problem-card">
-                        <div class="problem-header"><span class="problem-title">문제 13</span> 문자열 출력하기 1</div>
-                        <div class="problem-content">
-                            <b>목표:</b> 문자열에서 특정 문자를 제거한다.<br>
-                            <b>생각해보기:</b> 문자열의 replace() 함수를 활용하면 어떤 간단한 코드를 작성할 수 있을까?
-                        </div>
-                    </div>
-
-                    <div class="problem-card">
-                        <div class="problem-header"><span class="problem-title">문제 14</span> 기억력 테스트 1</div>
-                        <div class="problem-content">
-                            <b>목표:</b> 리스트의 위치를 이용해 k번째 값을 찾는다.<br>
-                            <b>생각해보기:</b> 사람이 말하는 1번째와 파이썬 리스트의 첫 번째 인덱스(0)의 차이를 어떻게 조율할까?
-                        </div>
-                    </div>
-
-                    <div class="problem-card">
-                        <div class="problem-header"><span class="problem-title">문제 15</span> 올바른 괄호 1</div>
-                        <div class="problem-content">
-                            <b>목표:</b> 문자열에서 특정 문자의 등장 횟수를 센다.<br>
-                            <b>생각해보기:</b> 파이썬의 문자열 count() 메서드를 사용하면 코드를 얼마나 단축할 수 있을까?
-                        </div>
-                    </div>
-
-                    <div class="problem-card">
-                        <div class="problem-header"><span class="problem-title">문제 16</span> 빠진 카드</div>
-                        <div class="problem-content">
-                            <b>목표:</b> 연속된 번호 중 빠진 하나를 찾아낸다.<br>
-                            <b>생각해보기:</b> 1부터 N까지의 총합에서 현재 남아있는 카드들의 합을 빼면 어떤 결과를 얻을 수 있을까?
-                        </div>
-                    </div>
-
-                    <div class="problem-card">
-                        <div class="problem-header"><span class="problem-title">문제 17</span> 알파벳 개수 출력하기</div>
-                        <div class="problem-content">
-                            <b>목표:</b> 문자열 속 각 알파벳의 빈도수를 집계한다.<br>
-                            <b>생각해보기:</b> ord(ch) - ord('a')를 사용하면 리스트의 어떤 인덱스를 얻을 수 있을까?
-                        </div>
-                    </div>
-
-                    <div class="problem-card">
-                        <div class="problem-header"><span class="problem-title">문제 18</span> 2진수 변환</div>
-                        <div class="problem-content">
-                            <b>목표:</b> 10진수를 2진수 표현으로 변환한다.<br>
-                            <b>생각해보기:</b> 2로 계속 나눈 나머지를 저장한 뒤, 왜 역순으로 뒤집어서 읽어야 할까?
-                        </div>
-                    </div>
-
-                    <div class="problem-card">
-                        <div class="problem-header"><span class="problem-title">문제 19</span> 3등 찾기</div>
-                        <div class="problem-content">
-                            <b>목표:</b> 이름과 점수를 함께 저장하고 점수 기준으로 정렬한다.<br>
-                            <b>생각해보기:</b> 점수를 기준으로 내림차순 정렬하려면 sort()의 key 옵션을 어떻게 지정할까?
-                        </div>
-                    </div>
-
-                    <div class="problem-card">
-                        <div class="problem-header"><span class="problem-title">문제 20</span> 자리 배치</div>
-                        <div class="problem-content">
-                            <b>목표:</b> 정렬된 데이터를 정해진 열 수만큼 나누어 출력한다.<br>
-                            <b>생각해보기:</b> 현재 출력한 개수를 이용해 줄바꿈 시점을 나머지 연산으로 판단할 수 있을까?
-                        </div>
-                    </div>
-
-                    <div class="problem-card">
-                        <div class="problem-header"><span class="problem-title">문제 21</span> 기억력 테스트 2</div>
-                        <div class="problem-content">
-                            <b>목표:</b> 많은 데이터에서 값의 존재 여부를 빠르게 확인한다.<br>
-                            <b>생각해보기:</b> 파이썬 set 자료형의 in 연산을 활용하면 리스트보다 탐색 속도가 얼마나 빨라질까?
-                        </div>
-                    </div>
-
-                    <div class="problem-card">
-                        <div class="problem-header"><span class="problem-title">문제 22</span> 비교</div>
-                        <div class="problem-content">
-                            <b>목표:</b> 각 원소를 나머지 모든 원소와 비교해 관계를 출력한다.<br>
-                            <b>생각해보기:</b> 한 숫자마다 다른 모든 숫자를 차례대로 비교하려면 반복문을 어떻게 중첩해야 할까?
-                        </div>
-                    </div>
-
-                    <div class="problem-card">
-                        <div class="problem-header"><span class="problem-title">문제 23</span> 홀수·짝수 판별 함수</div>
-                        <div class="problem-content">
-                            <b>목표:</b> 정수를 전달받아 홀수와 짝수를 구분하여 출력한다.<br>
-                            <b>생각해보기:</b> 이 문제의 판별 함수는 값을 반환(return)하는 함수와 어떤 점이 다른가?
-                        </div>
-                    </div>
-
-                    <div class="problem-card">
-                        <div class="problem-header"><span class="problem-title">문제 24</span> 음수·0·양수 판별 함수</div>
-                        <div class="problem-content">
-                            <b>목표:</b> 하나의 정수를 세 가지 상태로 분류해 알맞은 문자열을 출력한다.<br>
-                            <b>생각해보기:</b> if문을 세 개 따로 쓰는 것과 if/elif/else를 쓰는 것은 논리적으로 어떤 차이가 있을까?
-                        </div>
-                    </div>
-
-                    <div class="problem-card">
-                        <div class="problem-header"><span class="problem-title">문제 25</span> 점수에 따른 학점 반환</div>
-                        <div class="problem-content">
-                            <b>목표:</b> 점수 구간을 조건문으로 나누고 학점을 반환한다.<br>
-                            <b>생각해보기:</b> 결과를 곧바로 print 하지 않고 return 하면 함수를 호출한 메인 프로그램에서 무엇을 할 수 있을까?
-                        </div>
-                    </div>
-
-                    <div class="problem-card">
-                        <div class="problem-header"><span class="problem-title">문제 26</span> 1부터 n까지의 합 반환</div>
-                        <div class="problem-content">
-                            <b>목표:</b> 반복문과 누적 변수를 이용해 1부터 n까지의 합을 반환한다.<br>
-                            <b>생각해보기:</b> 1부터 n까지 온전히 반복하려면 range() 함수의 끝값을 어떻게 설정해야 할까?
-                        </div>
-                    </div>
-
-                    <div class="problem-card">
-                        <div class="problem-header"><span class="problem-title">문제 27</span> 팩토리얼 반환 함수</div>
-                        <div class="problem-content">
-                            <b>목표:</b> 1부터 n까지의 곱을 누적하여 n!을 반환한다.<br>
-                            <b>생각해보기:</b> 합을 구하는 함수와 곱을 구하는 함수에서 초기값(0 vs 1)은 어떻게 달라져야 하는가?
-                        </div>
-                    </div>
-
-                    <div class="problem-card">
-                        <div class="problem-header"><span class="problem-title">문제 28</span> 약수의 개수 반환</div>
-                        <div class="problem-content">
-                            <b>목표:</b> 나누어떨어지는 수를 세어 약수의 개수를 반환한다.<br>
-                            <b>생각해보기:</b> n 자신도 항상 자신의 약수에 포함되는 이유를 설명해 보자.
-                        </div>
-                    </div>
-
-                    <div class="problem-card">
-                        <div class="problem-header"><span class="problem-title">문제 29</span> 두 정수 중 큰 값 반환</div>
-                        <div class="problem-content">
-                            <b>목표:</b> 두 값을 비교해 더 큰 값을 반환하는 함수를 작성한다.<br>
-                            <b>생각해보기:</b> 세 수 중 가장 큰 값을 찾을 때, 이 두 수 비교 함수를 어떻게 재사용할 수 있을까?
-                        </div>
-                    </div>
-
-                    <div class="problem-card">
-                        <div class="problem-header"><span class="problem-title">문제 30</span> 두 정수 중 작은 값 반환</div>
-                        <div class="problem-content">
-                            <b>목표:</b> 두 값을 비교해 더 작은 값을 반환하는 함수를 작성한다.<br>
-                            <b>생각해보기:</b> 두 값이 완벽히 같은 경우에는 어떻게 예외 처리를 해야 할까?
-                        </div>
-                    </div>
-
-                    <div class="problem-card">
-                        <div class="problem-header"><span class="problem-title">문제 31</span> 세 정수의 중간값 반환</div>
-                        <div class="problem-content">
-                            <b>목표:</b> 세 값의 대소 관계를 비교하여 가운데 값을 반환한다.<br>
-                            <b>생각해보기:</b> 최댓값과 최솟값을 먼저 찾았다면 세 수의 총합에서 무엇을 빼면 중간값이 되는가?
-                        </div>
-                    </div>
-
-                    <div class="problem-card">
-                        <div class="problem-header"><span class="problem-title">문제 32</span> 최대공약수 반환</div>
-                        <div class="problem-content">
-                            <b>목표:</b> 두 자연수의 공통 약수 중 가장 큰 값을 구한다.<br>
-                            <b>생각해보기:</b> 유클리드 호제법 알고리즘을 파이썬 함수로 구현하면 실행 속도가 얼마나 빨라질까?
-                        </div>
-                    </div>
-
-                    <div class="problem-card">
-                        <div class="problem-header"><span class="problem-title">문제 33</span> 최소공배수 반환</div>
-                        <div class="problem-content">
-                            <b>목표:</b> 두 자연수의 최소공배수를 계산한다.<br>
-                            <b>생각해보기:</b> 두 수의 곱을 최대공약수로 나누면 왜 최소공배수가 계산되는지 원리를 설명해 보자.
-                        </div>
-                    </div>
-
-                    <div class="problem-card">
-                        <div class="problem-header"><span class="problem-title">문제 34</span> mymax 함수 작성</div>
-                        <div class="problem-content">
-                            <b>목표:</b> 정해진 함수명과 매개변수 조건에 맞춰 최댓값 함수를 작성한다.<br>
-                            <b>생각해보기:</b> 함수 이름을 명세와 다르게 임의로 바꾸면 채점 서버에서 어떤 문제가 생길까?
-                        </div>
-                    </div>
-
-                    <div class="problem-card">
-                        <div class="problem-header"><span class="problem-title">문제 35</span> mymin 함수 작성</div>
-                        <div class="problem-content">
-                            <b>목표:</b> 정해진 함수명과 매개변수 조건에 맞춰 최솟값 함수를 작성한다.<br>
-                            <b>생각해보기:</b> 함수의 반환 자료형이 정수로 고정되어 있다는 것은 시스템 구조에서 어떤 의미가 있을까?
-                        </div>
-                    </div>
-
-                    <div class="problem-card">
-                        <div class="problem-header"><span class="problem-title">문제 36</span> 원의 넓이 함수</div>
-                        <div class="problem-content">
-                            <b>목표:</b> 반지름을 매개변수로 받아 원의 넓이를 계산해 실수로 반환한다.<br>
-                            <b>생각해보기:</b> 결과를 항상 소수 둘째 자리까지만 표시하려면 파이썬의 어떤 출력 형식을 사용해야 할까?
-                        </div>
-                    </div>
-
-                    <div class="problem-card">
-                        <div class="problem-header"><span class="problem-title">문제 37</span> 절대값 함수</div>
-                        <div class="problem-content">
-                            <b>목표:</b> 정수 또는 실수의 부호를 판단해 절대값을 반환한다.<br>
-                            <b>생각해보기:</b> 파이썬 함수는 변수 타입을 미리 지정하지 않기 때문에 정수와 실수를 모두 처리할 수 있는 동적 타이핑의 장점을 어떻게 활용할 수 있을까?
-                        </div>
-                    </div>
+                    
+    <div class="code-block-wrapper" style="margin-bottom: 20px;">
+        <div class="code-header" style="background: #1e293b; color: #38bdf8;">
+            <span style="font-weight: 800; font-size: 14px;">📝 문제 01. 1부터 n까지 출력하기</span>
+        </div>
+        <div style="background: #f8fafc; padding: 16px; border: 1px solid #cbd5e1; border-top: none; border-radius: 0 0 10px 10px; font-size: 13.5px; color: #334155; line-height: 1.6;">
+            <b>목표:</b> 파이썬 기초 문법을 활용하여 알고리즘을 설계하고 입력값에 따른 정확한 출력값을 반환합니다.<br>
+            <b>확인 문제:</b><br>
+            1. 이 문제를 해결하기 위해 어떤 제어문(if, for, while)이나 자료구조(List, Dict)가 필요할까요?<br>
+            2. 입력값의 범위가 커질 때(예: N=100,000) 실행 시간을 단축할 수 있는 더 효율적인 방법이 있을까요?
+        </div>
+    </div>
+    
+    <div class="code-block-wrapper" style="margin-bottom: 20px;">
+        <div class="code-header" style="background: #1e293b; color: #38bdf8;">
+            <span style="font-weight: 800; font-size: 14px;">📝 문제 02. 3의 배수는 통과?</span>
+        </div>
+        <div style="background: #f8fafc; padding: 16px; border: 1px solid #cbd5e1; border-top: none; border-radius: 0 0 10px 10px; font-size: 13.5px; color: #334155; line-height: 1.6;">
+            <b>목표:</b> 파이썬 기초 문법을 활용하여 알고리즘을 설계하고 입력값에 따른 정확한 출력값을 반환합니다.<br>
+            <b>확인 문제:</b><br>
+            1. 이 문제를 해결하기 위해 어떤 제어문(if, for, while)이나 자료구조(List, Dict)가 필요할까요?<br>
+            2. 입력값의 범위가 커질 때(예: N=100,000) 실행 시간을 단축할 수 있는 더 효율적인 방법이 있을까요?
+        </div>
+    </div>
+    
+    <div class="code-block-wrapper" style="margin-bottom: 20px;">
+        <div class="code-header" style="background: #1e293b; color: #38bdf8;">
+            <span style="font-weight: 800; font-size: 14px;">📝 문제 03. 알파벳 출력하기</span>
+        </div>
+        <div style="background: #f8fafc; padding: 16px; border: 1px solid #cbd5e1; border-top: none; border-radius: 0 0 10px 10px; font-size: 13.5px; color: #334155; line-height: 1.6;">
+            <b>목표:</b> 파이썬 기초 문법을 활용하여 알고리즘을 설계하고 입력값에 따른 정확한 출력값을 반환합니다.<br>
+            <b>확인 문제:</b><br>
+            1. 이 문제를 해결하기 위해 어떤 제어문(if, for, while)이나 자료구조(List, Dict)가 필요할까요?<br>
+            2. 입력값의 범위가 커질 때(예: N=100,000) 실행 시간을 단축할 수 있는 더 효율적인 방법이 있을까요?
+        </div>
+    </div>
+    
+    <div class="code-block-wrapper" style="margin-bottom: 20px;">
+        <div class="code-header" style="background: #1e293b; color: #38bdf8;">
+            <span style="font-weight: 800; font-size: 14px;">📝 문제 04. 3의 배수의 합</span>
+        </div>
+        <div style="background: #f8fafc; padding: 16px; border: 1px solid #cbd5e1; border-top: none; border-radius: 0 0 10px 10px; font-size: 13.5px; color: #334155; line-height: 1.6;">
+            <b>목표:</b> 파이썬 기초 문법을 활용하여 알고리즘을 설계하고 입력값에 따른 정확한 출력값을 반환합니다.<br>
+            <b>확인 문제:</b><br>
+            1. 이 문제를 해결하기 위해 어떤 제어문(if, for, while)이나 자료구조(List, Dict)가 필요할까요?<br>
+            2. 입력값의 범위가 커질 때(예: N=100,000) 실행 시간을 단축할 수 있는 더 효율적인 방법이 있을까요?
+        </div>
+    </div>
+    
+    <div class="code-block-wrapper" style="margin-bottom: 20px;">
+        <div class="code-header" style="background: #1e293b; color: #38bdf8;">
+            <span style="font-weight: 800; font-size: 14px;">📝 문제 05. 약수 구하기</span>
+        </div>
+        <div style="background: #f8fafc; padding: 16px; border: 1px solid #cbd5e1; border-top: none; border-radius: 0 0 10px 10px; font-size: 13.5px; color: #334155; line-height: 1.6;">
+            <b>목표:</b> 파이썬 기초 문법을 활용하여 알고리즘을 설계하고 입력값에 따른 정확한 출력값을 반환합니다.<br>
+            <b>확인 문제:</b><br>
+            1. 이 문제를 해결하기 위해 어떤 제어문(if, for, while)이나 자료구조(List, Dict)가 필요할까요?<br>
+            2. 입력값의 범위가 커질 때(예: N=100,000) 실행 시간을 단축할 수 있는 더 효율적인 방법이 있을까요?
+        </div>
+    </div>
+    
+    <div class="code-block-wrapper" style="margin-bottom: 20px;">
+        <div class="code-header" style="background: #1e293b; color: #38bdf8;">
+            <span style="font-weight: 800; font-size: 14px;">📝 문제 06. 소수 판별</span>
+        </div>
+        <div style="background: #f8fafc; padding: 16px; border: 1px solid #cbd5e1; border-top: none; border-radius: 0 0 10px 10px; font-size: 13.5px; color: #334155; line-height: 1.6;">
+            <b>목표:</b> 파이썬 기초 문법을 활용하여 알고리즘을 설계하고 입력값에 따른 정확한 출력값을 반환합니다.<br>
+            <b>확인 문제:</b><br>
+            1. 이 문제를 해결하기 위해 어떤 제어문(if, for, while)이나 자료구조(List, Dict)가 필요할까요?<br>
+            2. 입력값의 범위가 커질 때(예: N=100,000) 실행 시간을 단축할 수 있는 더 효율적인 방법이 있을까요?
+        </div>
+    </div>
+    
+    <div class="code-block-wrapper" style="margin-bottom: 20px;">
+        <div class="code-header" style="background: #1e293b; color: #38bdf8;">
+            <span style="font-weight: 800; font-size: 14px;">📝 문제 07. 팩토리얼 계산</span>
+        </div>
+        <div style="background: #f8fafc; padding: 16px; border: 1px solid #cbd5e1; border-top: none; border-radius: 0 0 10px 10px; font-size: 13.5px; color: #334155; line-height: 1.6;">
+            <b>목표:</b> 파이썬 기초 문법을 활용하여 알고리즘을 설계하고 입력값에 따른 정확한 출력값을 반환합니다.<br>
+            <b>확인 문제:</b><br>
+            1. 이 문제를 해결하기 위해 어떤 제어문(if, for, while)이나 자료구조(List, Dict)가 필요할까요?<br>
+            2. 입력값의 범위가 커질 때(예: N=100,000) 실행 시간을 단축할 수 있는 더 효율적인 방법이 있을까요?
+        </div>
+    </div>
+    
+    <div class="code-block-wrapper" style="margin-bottom: 20px;">
+        <div class="code-header" style="background: #1e293b; color: #38bdf8;">
+            <span style="font-weight: 800; font-size: 14px;">📝 문제 08. 홀수는 더하고 짝수는 빼고 1</span>
+        </div>
+        <div style="background: #f8fafc; padding: 16px; border: 1px solid #cbd5e1; border-top: none; border-radius: 0 0 10px 10px; font-size: 13.5px; color: #334155; line-height: 1.6;">
+            <b>목표:</b> 파이썬 기초 문법을 활용하여 알고리즘을 설계하고 입력값에 따른 정확한 출력값을 반환합니다.<br>
+            <b>확인 문제:</b><br>
+            1. 이 문제를 해결하기 위해 어떤 제어문(if, for, while)이나 자료구조(List, Dict)가 필요할까요?<br>
+            2. 입력값의 범위가 커질 때(예: N=100,000) 실행 시간을 단축할 수 있는 더 효율적인 방법이 있을까요?
+        </div>
+    </div>
+    
+    <div class="code-block-wrapper" style="margin-bottom: 20px;">
+        <div class="code-header" style="background: #1e293b; color: #38bdf8;">
+            <span style="font-weight: 800; font-size: 14px;">📝 문제 09. 홀수는 더하고 짝수는 빼고 2</span>
+        </div>
+        <div style="background: #f8fafc; padding: 16px; border: 1px solid #cbd5e1; border-top: none; border-radius: 0 0 10px 10px; font-size: 13.5px; color: #334155; line-height: 1.6;">
+            <b>목표:</b> 파이썬 기초 문법을 활용하여 알고리즘을 설계하고 입력값에 따른 정확한 출력값을 반환합니다.<br>
+            <b>확인 문제:</b><br>
+            1. 이 문제를 해결하기 위해 어떤 제어문(if, for, while)이나 자료구조(List, Dict)가 필요할까요?<br>
+            2. 입력값의 범위가 커질 때(예: N=100,000) 실행 시간을 단축할 수 있는 더 효율적인 방법이 있을까요?
+        </div>
+    </div>
+    
+    <div class="code-block-wrapper" style="margin-bottom: 20px;">
+        <div class="code-header" style="background: #1e293b; color: #38bdf8;">
+            <span style="font-weight: 800; font-size: 14px;">📝 문제 10. 홀수는 더하고 짝수는 빼고 3</span>
+        </div>
+        <div style="background: #f8fafc; padding: 16px; border: 1px solid #cbd5e1; border-top: none; border-radius: 0 0 10px 10px; font-size: 13.5px; color: #334155; line-height: 1.6;">
+            <b>목표:</b> 파이썬 기초 문법을 활용하여 알고리즘을 설계하고 입력값에 따른 정확한 출력값을 반환합니다.<br>
+            <b>확인 문제:</b><br>
+            1. 이 문제를 해결하기 위해 어떤 제어문(if, for, while)이나 자료구조(List, Dict)가 필요할까요?<br>
+            2. 입력값의 범위가 커질 때(예: N=100,000) 실행 시간을 단축할 수 있는 더 효율적인 방법이 있을까요?
+        </div>
+    </div>
+    
+    <div class="code-block-wrapper" style="margin-bottom: 20px;">
+        <div class="code-header" style="background: #1e293b; color: #38bdf8;">
+            <span style="font-weight: 800; font-size: 14px;">📝 문제 11. 거꾸로 출력하기 3</span>
+        </div>
+        <div style="background: #f8fafc; padding: 16px; border: 1px solid #cbd5e1; border-top: none; border-radius: 0 0 10px 10px; font-size: 13.5px; color: #334155; line-height: 1.6;">
+            <b>목표:</b> 파이썬 기초 문법을 활용하여 알고리즘을 설계하고 입력값에 따른 정확한 출력값을 반환합니다.<br>
+            <b>확인 문제:</b><br>
+            1. 이 문제를 해결하기 위해 어떤 제어문(if, for, while)이나 자료구조(List, Dict)가 필요할까요?<br>
+            2. 입력값의 범위가 커질 때(예: N=100,000) 실행 시간을 단축할 수 있는 더 효율적인 방법이 있을까요?
+        </div>
+    </div>
+    
+    <div class="code-block-wrapper" style="margin-bottom: 20px;">
+        <div class="code-header" style="background: #1e293b; color: #38bdf8;">
+            <span style="font-weight: 800; font-size: 14px;">📝 문제 12. 숫자 로테이션</span>
+        </div>
+        <div style="background: #f8fafc; padding: 16px; border: 1px solid #cbd5e1; border-top: none; border-radius: 0 0 10px 10px; font-size: 13.5px; color: #334155; line-height: 1.6;">
+            <b>목표:</b> 파이썬 기초 문법을 활용하여 알고리즘을 설계하고 입력값에 따른 정확한 출력값을 반환합니다.<br>
+            <b>확인 문제:</b><br>
+            1. 이 문제를 해결하기 위해 어떤 제어문(if, for, while)이나 자료구조(List, Dict)가 필요할까요?<br>
+            2. 입력값의 범위가 커질 때(예: N=100,000) 실행 시간을 단축할 수 있는 더 효율적인 방법이 있을까요?
+        </div>
+    </div>
+    
+    <div class="code-block-wrapper" style="margin-bottom: 20px;">
+        <div class="code-header" style="background: #1e293b; color: #38bdf8;">
+            <span style="font-weight: 800; font-size: 14px;">📝 문제 13. 문자열 출력하기 1</span>
+        </div>
+        <div style="background: #f8fafc; padding: 16px; border: 1px solid #cbd5e1; border-top: none; border-radius: 0 0 10px 10px; font-size: 13.5px; color: #334155; line-height: 1.6;">
+            <b>목표:</b> 파이썬 기초 문법을 활용하여 알고리즘을 설계하고 입력값에 따른 정확한 출력값을 반환합니다.<br>
+            <b>확인 문제:</b><br>
+            1. 이 문제를 해결하기 위해 어떤 제어문(if, for, while)이나 자료구조(List, Dict)가 필요할까요?<br>
+            2. 입력값의 범위가 커질 때(예: N=100,000) 실행 시간을 단축할 수 있는 더 효율적인 방법이 있을까요?
+        </div>
+    </div>
+    
+    <div class="code-block-wrapper" style="margin-bottom: 20px;">
+        <div class="code-header" style="background: #1e293b; color: #38bdf8;">
+            <span style="font-weight: 800; font-size: 14px;">📝 문제 14. 기억력 테스트 1</span>
+        </div>
+        <div style="background: #f8fafc; padding: 16px; border: 1px solid #cbd5e1; border-top: none; border-radius: 0 0 10px 10px; font-size: 13.5px; color: #334155; line-height: 1.6;">
+            <b>목표:</b> 파이썬 기초 문법을 활용하여 알고리즘을 설계하고 입력값에 따른 정확한 출력값을 반환합니다.<br>
+            <b>확인 문제:</b><br>
+            1. 이 문제를 해결하기 위해 어떤 제어문(if, for, while)이나 자료구조(List, Dict)가 필요할까요?<br>
+            2. 입력값의 범위가 커질 때(예: N=100,000) 실행 시간을 단축할 수 있는 더 효율적인 방법이 있을까요?
+        </div>
+    </div>
+    
+    <div class="code-block-wrapper" style="margin-bottom: 20px;">
+        <div class="code-header" style="background: #1e293b; color: #38bdf8;">
+            <span style="font-weight: 800; font-size: 14px;">📝 문제 15. 올바른 괄호 1</span>
+        </div>
+        <div style="background: #f8fafc; padding: 16px; border: 1px solid #cbd5e1; border-top: none; border-radius: 0 0 10px 10px; font-size: 13.5px; color: #334155; line-height: 1.6;">
+            <b>목표:</b> 파이썬 기초 문법을 활용하여 알고리즘을 설계하고 입력값에 따른 정확한 출력값을 반환합니다.<br>
+            <b>확인 문제:</b><br>
+            1. 이 문제를 해결하기 위해 어떤 제어문(if, for, while)이나 자료구조(List, Dict)가 필요할까요?<br>
+            2. 입력값의 범위가 커질 때(예: N=100,000) 실행 시간을 단축할 수 있는 더 효율적인 방법이 있을까요?
+        </div>
+    </div>
+    
+    <div class="code-block-wrapper" style="margin-bottom: 20px;">
+        <div class="code-header" style="background: #1e293b; color: #38bdf8;">
+            <span style="font-weight: 800; font-size: 14px;">📝 문제 16. 빠진 카드</span>
+        </div>
+        <div style="background: #f8fafc; padding: 16px; border: 1px solid #cbd5e1; border-top: none; border-radius: 0 0 10px 10px; font-size: 13.5px; color: #334155; line-height: 1.6;">
+            <b>목표:</b> 파이썬 기초 문법을 활용하여 알고리즘을 설계하고 입력값에 따른 정확한 출력값을 반환합니다.<br>
+            <b>확인 문제:</b><br>
+            1. 이 문제를 해결하기 위해 어떤 제어문(if, for, while)이나 자료구조(List, Dict)가 필요할까요?<br>
+            2. 입력값의 범위가 커질 때(예: N=100,000) 실행 시간을 단축할 수 있는 더 효율적인 방법이 있을까요?
+        </div>
+    </div>
+    
+    <div class="code-block-wrapper" style="margin-bottom: 20px;">
+        <div class="code-header" style="background: #1e293b; color: #38bdf8;">
+            <span style="font-weight: 800; font-size: 14px;">📝 문제 17. 알파벳 개수 출력하기</span>
+        </div>
+        <div style="background: #f8fafc; padding: 16px; border: 1px solid #cbd5e1; border-top: none; border-radius: 0 0 10px 10px; font-size: 13.5px; color: #334155; line-height: 1.6;">
+            <b>목표:</b> 파이썬 기초 문법을 활용하여 알고리즘을 설계하고 입력값에 따른 정확한 출력값을 반환합니다.<br>
+            <b>확인 문제:</b><br>
+            1. 이 문제를 해결하기 위해 어떤 제어문(if, for, while)이나 자료구조(List, Dict)가 필요할까요?<br>
+            2. 입력값의 범위가 커질 때(예: N=100,000) 실행 시간을 단축할 수 있는 더 효율적인 방법이 있을까요?
+        </div>
+    </div>
+    
+    <div class="code-block-wrapper" style="margin-bottom: 20px;">
+        <div class="code-header" style="background: #1e293b; color: #38bdf8;">
+            <span style="font-weight: 800; font-size: 14px;">📝 문제 18. 2진수 변환</span>
+        </div>
+        <div style="background: #f8fafc; padding: 16px; border: 1px solid #cbd5e1; border-top: none; border-radius: 0 0 10px 10px; font-size: 13.5px; color: #334155; line-height: 1.6;">
+            <b>목표:</b> 파이썬 기초 문법을 활용하여 알고리즘을 설계하고 입력값에 따른 정확한 출력값을 반환합니다.<br>
+            <b>확인 문제:</b><br>
+            1. 이 문제를 해결하기 위해 어떤 제어문(if, for, while)이나 자료구조(List, Dict)가 필요할까요?<br>
+            2. 입력값의 범위가 커질 때(예: N=100,000) 실행 시간을 단축할 수 있는 더 효율적인 방법이 있을까요?
+        </div>
+    </div>
+    
+    <div class="code-block-wrapper" style="margin-bottom: 20px;">
+        <div class="code-header" style="background: #1e293b; color: #38bdf8;">
+            <span style="font-weight: 800; font-size: 14px;">📝 문제 19. 3등 찾기</span>
+        </div>
+        <div style="background: #f8fafc; padding: 16px; border: 1px solid #cbd5e1; border-top: none; border-radius: 0 0 10px 10px; font-size: 13.5px; color: #334155; line-height: 1.6;">
+            <b>목표:</b> 파이썬 기초 문법을 활용하여 알고리즘을 설계하고 입력값에 따른 정확한 출력값을 반환합니다.<br>
+            <b>확인 문제:</b><br>
+            1. 이 문제를 해결하기 위해 어떤 제어문(if, for, while)이나 자료구조(List, Dict)가 필요할까요?<br>
+            2. 입력값의 범위가 커질 때(예: N=100,000) 실행 시간을 단축할 수 있는 더 효율적인 방법이 있을까요?
+        </div>
+    </div>
+    
+    <div class="code-block-wrapper" style="margin-bottom: 20px;">
+        <div class="code-header" style="background: #1e293b; color: #38bdf8;">
+            <span style="font-weight: 800; font-size: 14px;">📝 문제 20. 자리 배치</span>
+        </div>
+        <div style="background: #f8fafc; padding: 16px; border: 1px solid #cbd5e1; border-top: none; border-radius: 0 0 10px 10px; font-size: 13.5px; color: #334155; line-height: 1.6;">
+            <b>목표:</b> 파이썬 기초 문법을 활용하여 알고리즘을 설계하고 입력값에 따른 정확한 출력값을 반환합니다.<br>
+            <b>확인 문제:</b><br>
+            1. 이 문제를 해결하기 위해 어떤 제어문(if, for, while)이나 자료구조(List, Dict)가 필요할까요?<br>
+            2. 입력값의 범위가 커질 때(예: N=100,000) 실행 시간을 단축할 수 있는 더 효율적인 방법이 있을까요?
+        </div>
+    </div>
+    
+    <div class="code-block-wrapper" style="margin-bottom: 20px;">
+        <div class="code-header" style="background: #1e293b; color: #38bdf8;">
+            <span style="font-weight: 800; font-size: 14px;">📝 문제 21. 기억력 테스트 2</span>
+        </div>
+        <div style="background: #f8fafc; padding: 16px; border: 1px solid #cbd5e1; border-top: none; border-radius: 0 0 10px 10px; font-size: 13.5px; color: #334155; line-height: 1.6;">
+            <b>목표:</b> 파이썬 기초 문법을 활용하여 알고리즘을 설계하고 입력값에 따른 정확한 출력값을 반환합니다.<br>
+            <b>확인 문제:</b><br>
+            1. 이 문제를 해결하기 위해 어떤 제어문(if, for, while)이나 자료구조(List, Dict)가 필요할까요?<br>
+            2. 입력값의 범위가 커질 때(예: N=100,000) 실행 시간을 단축할 수 있는 더 효율적인 방법이 있을까요?
+        </div>
+    </div>
+    
+    <div class="code-block-wrapper" style="margin-bottom: 20px;">
+        <div class="code-header" style="background: #1e293b; color: #38bdf8;">
+            <span style="font-weight: 800; font-size: 14px;">📝 문제 22. 비교</span>
+        </div>
+        <div style="background: #f8fafc; padding: 16px; border: 1px solid #cbd5e1; border-top: none; border-radius: 0 0 10px 10px; font-size: 13.5px; color: #334155; line-height: 1.6;">
+            <b>목표:</b> 파이썬 기초 문법을 활용하여 알고리즘을 설계하고 입력값에 따른 정확한 출력값을 반환합니다.<br>
+            <b>확인 문제:</b><br>
+            1. 이 문제를 해결하기 위해 어떤 제어문(if, for, while)이나 자료구조(List, Dict)가 필요할까요?<br>
+            2. 입력값의 범위가 커질 때(예: N=100,000) 실행 시간을 단축할 수 있는 더 효율적인 방법이 있을까요?
+        </div>
+    </div>
+    
+    <div class="code-block-wrapper" style="margin-bottom: 20px;">
+        <div class="code-header" style="background: #1e293b; color: #38bdf8;">
+            <span style="font-weight: 800; font-size: 14px;">📝 문제 23. 홀수·짝수 판별 함수</span>
+        </div>
+        <div style="background: #f8fafc; padding: 16px; border: 1px solid #cbd5e1; border-top: none; border-radius: 0 0 10px 10px; font-size: 13.5px; color: #334155; line-height: 1.6;">
+            <b>목표:</b> 파이썬 기초 문법을 활용하여 알고리즘을 설계하고 입력값에 따른 정확한 출력값을 반환합니다.<br>
+            <b>확인 문제:</b><br>
+            1. 이 문제를 해결하기 위해 어떤 제어문(if, for, while)이나 자료구조(List, Dict)가 필요할까요?<br>
+            2. 입력값의 범위가 커질 때(예: N=100,000) 실행 시간을 단축할 수 있는 더 효율적인 방법이 있을까요?
+        </div>
+    </div>
+    
+    <div class="code-block-wrapper" style="margin-bottom: 20px;">
+        <div class="code-header" style="background: #1e293b; color: #38bdf8;">
+            <span style="font-weight: 800; font-size: 14px;">📝 문제 24. 음수·0·양수 판별 함수</span>
+        </div>
+        <div style="background: #f8fafc; padding: 16px; border: 1px solid #cbd5e1; border-top: none; border-radius: 0 0 10px 10px; font-size: 13.5px; color: #334155; line-height: 1.6;">
+            <b>목표:</b> 파이썬 기초 문법을 활용하여 알고리즘을 설계하고 입력값에 따른 정확한 출력값을 반환합니다.<br>
+            <b>확인 문제:</b><br>
+            1. 이 문제를 해결하기 위해 어떤 제어문(if, for, while)이나 자료구조(List, Dict)가 필요할까요?<br>
+            2. 입력값의 범위가 커질 때(예: N=100,000) 실행 시간을 단축할 수 있는 더 효율적인 방법이 있을까요?
+        </div>
+    </div>
+    
+    <div class="code-block-wrapper" style="margin-bottom: 20px;">
+        <div class="code-header" style="background: #1e293b; color: #38bdf8;">
+            <span style="font-weight: 800; font-size: 14px;">📝 문제 25. 점수에 따른 학점 반환</span>
+        </div>
+        <div style="background: #f8fafc; padding: 16px; border: 1px solid #cbd5e1; border-top: none; border-radius: 0 0 10px 10px; font-size: 13.5px; color: #334155; line-height: 1.6;">
+            <b>목표:</b> 파이썬 기초 문법을 활용하여 알고리즘을 설계하고 입력값에 따른 정확한 출력값을 반환합니다.<br>
+            <b>확인 문제:</b><br>
+            1. 이 문제를 해결하기 위해 어떤 제어문(if, for, while)이나 자료구조(List, Dict)가 필요할까요?<br>
+            2. 입력값의 범위가 커질 때(예: N=100,000) 실행 시간을 단축할 수 있는 더 효율적인 방법이 있을까요?
+        </div>
+    </div>
+    
+    <div class="code-block-wrapper" style="margin-bottom: 20px;">
+        <div class="code-header" style="background: #1e293b; color: #38bdf8;">
+            <span style="font-weight: 800; font-size: 14px;">📝 문제 26. 1부터 n까지의 합 반환</span>
+        </div>
+        <div style="background: #f8fafc; padding: 16px; border: 1px solid #cbd5e1; border-top: none; border-radius: 0 0 10px 10px; font-size: 13.5px; color: #334155; line-height: 1.6;">
+            <b>목표:</b> 파이썬 기초 문법을 활용하여 알고리즘을 설계하고 입력값에 따른 정확한 출력값을 반환합니다.<br>
+            <b>확인 문제:</b><br>
+            1. 이 문제를 해결하기 위해 어떤 제어문(if, for, while)이나 자료구조(List, Dict)가 필요할까요?<br>
+            2. 입력값의 범위가 커질 때(예: N=100,000) 실행 시간을 단축할 수 있는 더 효율적인 방법이 있을까요?
+        </div>
+    </div>
+    
+    <div class="code-block-wrapper" style="margin-bottom: 20px;">
+        <div class="code-header" style="background: #1e293b; color: #38bdf8;">
+            <span style="font-weight: 800; font-size: 14px;">📝 문제 27. 팩토리얼 반환 함수</span>
+        </div>
+        <div style="background: #f8fafc; padding: 16px; border: 1px solid #cbd5e1; border-top: none; border-radius: 0 0 10px 10px; font-size: 13.5px; color: #334155; line-height: 1.6;">
+            <b>목표:</b> 파이썬 기초 문법을 활용하여 알고리즘을 설계하고 입력값에 따른 정확한 출력값을 반환합니다.<br>
+            <b>확인 문제:</b><br>
+            1. 이 문제를 해결하기 위해 어떤 제어문(if, for, while)이나 자료구조(List, Dict)가 필요할까요?<br>
+            2. 입력값의 범위가 커질 때(예: N=100,000) 실행 시간을 단축할 수 있는 더 효율적인 방법이 있을까요?
+        </div>
+    </div>
+    
+    <div class="code-block-wrapper" style="margin-bottom: 20px;">
+        <div class="code-header" style="background: #1e293b; color: #38bdf8;">
+            <span style="font-weight: 800; font-size: 14px;">📝 문제 28. 약수의 개수 반환</span>
+        </div>
+        <div style="background: #f8fafc; padding: 16px; border: 1px solid #cbd5e1; border-top: none; border-radius: 0 0 10px 10px; font-size: 13.5px; color: #334155; line-height: 1.6;">
+            <b>목표:</b> 파이썬 기초 문법을 활용하여 알고리즘을 설계하고 입력값에 따른 정확한 출력값을 반환합니다.<br>
+            <b>확인 문제:</b><br>
+            1. 이 문제를 해결하기 위해 어떤 제어문(if, for, while)이나 자료구조(List, Dict)가 필요할까요?<br>
+            2. 입력값의 범위가 커질 때(예: N=100,000) 실행 시간을 단축할 수 있는 더 효율적인 방법이 있을까요?
+        </div>
+    </div>
+    
+    <div class="code-block-wrapper" style="margin-bottom: 20px;">
+        <div class="code-header" style="background: #1e293b; color: #38bdf8;">
+            <span style="font-weight: 800; font-size: 14px;">📝 문제 29. 두 정수 중 큰 값 반환</span>
+        </div>
+        <div style="background: #f8fafc; padding: 16px; border: 1px solid #cbd5e1; border-top: none; border-radius: 0 0 10px 10px; font-size: 13.5px; color: #334155; line-height: 1.6;">
+            <b>목표:</b> 파이썬 기초 문법을 활용하여 알고리즘을 설계하고 입력값에 따른 정확한 출력값을 반환합니다.<br>
+            <b>확인 문제:</b><br>
+            1. 이 문제를 해결하기 위해 어떤 제어문(if, for, while)이나 자료구조(List, Dict)가 필요할까요?<br>
+            2. 입력값의 범위가 커질 때(예: N=100,000) 실행 시간을 단축할 수 있는 더 효율적인 방법이 있을까요?
+        </div>
+    </div>
+    
+    <div class="code-block-wrapper" style="margin-bottom: 20px;">
+        <div class="code-header" style="background: #1e293b; color: #38bdf8;">
+            <span style="font-weight: 800; font-size: 14px;">📝 문제 30. 두 정수 중 작은 값 반환</span>
+        </div>
+        <div style="background: #f8fafc; padding: 16px; border: 1px solid #cbd5e1; border-top: none; border-radius: 0 0 10px 10px; font-size: 13.5px; color: #334155; line-height: 1.6;">
+            <b>목표:</b> 파이썬 기초 문법을 활용하여 알고리즘을 설계하고 입력값에 따른 정확한 출력값을 반환합니다.<br>
+            <b>확인 문제:</b><br>
+            1. 이 문제를 해결하기 위해 어떤 제어문(if, for, while)이나 자료구조(List, Dict)가 필요할까요?<br>
+            2. 입력값의 범위가 커질 때(예: N=100,000) 실행 시간을 단축할 수 있는 더 효율적인 방법이 있을까요?
+        </div>
+    </div>
+    
+    <div class="code-block-wrapper" style="margin-bottom: 20px;">
+        <div class="code-header" style="background: #1e293b; color: #38bdf8;">
+            <span style="font-weight: 800; font-size: 14px;">📝 문제 31. 세 정수의 중간값 반환</span>
+        </div>
+        <div style="background: #f8fafc; padding: 16px; border: 1px solid #cbd5e1; border-top: none; border-radius: 0 0 10px 10px; font-size: 13.5px; color: #334155; line-height: 1.6;">
+            <b>목표:</b> 파이썬 기초 문법을 활용하여 알고리즘을 설계하고 입력값에 따른 정확한 출력값을 반환합니다.<br>
+            <b>확인 문제:</b><br>
+            1. 이 문제를 해결하기 위해 어떤 제어문(if, for, while)이나 자료구조(List, Dict)가 필요할까요?<br>
+            2. 입력값의 범위가 커질 때(예: N=100,000) 실행 시간을 단축할 수 있는 더 효율적인 방법이 있을까요?
+        </div>
+    </div>
+    
+    <div class="code-block-wrapper" style="margin-bottom: 20px;">
+        <div class="code-header" style="background: #1e293b; color: #38bdf8;">
+            <span style="font-weight: 800; font-size: 14px;">📝 문제 32. 최대공약수 반환</span>
+        </div>
+        <div style="background: #f8fafc; padding: 16px; border: 1px solid #cbd5e1; border-top: none; border-radius: 0 0 10px 10px; font-size: 13.5px; color: #334155; line-height: 1.6;">
+            <b>목표:</b> 파이썬 기초 문법을 활용하여 알고리즘을 설계하고 입력값에 따른 정확한 출력값을 반환합니다.<br>
+            <b>확인 문제:</b><br>
+            1. 이 문제를 해결하기 위해 어떤 제어문(if, for, while)이나 자료구조(List, Dict)가 필요할까요?<br>
+            2. 입력값의 범위가 커질 때(예: N=100,000) 실행 시간을 단축할 수 있는 더 효율적인 방법이 있을까요?
+        </div>
+    </div>
+    
+    <div class="code-block-wrapper" style="margin-bottom: 20px;">
+        <div class="code-header" style="background: #1e293b; color: #38bdf8;">
+            <span style="font-weight: 800; font-size: 14px;">📝 문제 33. 최소공배수 반환</span>
+        </div>
+        <div style="background: #f8fafc; padding: 16px; border: 1px solid #cbd5e1; border-top: none; border-radius: 0 0 10px 10px; font-size: 13.5px; color: #334155; line-height: 1.6;">
+            <b>목표:</b> 파이썬 기초 문법을 활용하여 알고리즘을 설계하고 입력값에 따른 정확한 출력값을 반환합니다.<br>
+            <b>확인 문제:</b><br>
+            1. 이 문제를 해결하기 위해 어떤 제어문(if, for, while)이나 자료구조(List, Dict)가 필요할까요?<br>
+            2. 입력값의 범위가 커질 때(예: N=100,000) 실행 시간을 단축할 수 있는 더 효율적인 방법이 있을까요?
+        </div>
+    </div>
+    
+    <div class="code-block-wrapper" style="margin-bottom: 20px;">
+        <div class="code-header" style="background: #1e293b; color: #38bdf8;">
+            <span style="font-weight: 800; font-size: 14px;">📝 문제 34. mymax 함수 작성</span>
+        </div>
+        <div style="background: #f8fafc; padding: 16px; border: 1px solid #cbd5e1; border-top: none; border-radius: 0 0 10px 10px; font-size: 13.5px; color: #334155; line-height: 1.6;">
+            <b>목표:</b> 파이썬 기초 문법을 활용하여 알고리즘을 설계하고 입력값에 따른 정확한 출력값을 반환합니다.<br>
+            <b>확인 문제:</b><br>
+            1. 이 문제를 해결하기 위해 어떤 제어문(if, for, while)이나 자료구조(List, Dict)가 필요할까요?<br>
+            2. 입력값의 범위가 커질 때(예: N=100,000) 실행 시간을 단축할 수 있는 더 효율적인 방법이 있을까요?
+        </div>
+    </div>
+    
+    <div class="code-block-wrapper" style="margin-bottom: 20px;">
+        <div class="code-header" style="background: #1e293b; color: #38bdf8;">
+            <span style="font-weight: 800; font-size: 14px;">📝 문제 35. mymin 함수 작성</span>
+        </div>
+        <div style="background: #f8fafc; padding: 16px; border: 1px solid #cbd5e1; border-top: none; border-radius: 0 0 10px 10px; font-size: 13.5px; color: #334155; line-height: 1.6;">
+            <b>목표:</b> 파이썬 기초 문법을 활용하여 알고리즘을 설계하고 입력값에 따른 정확한 출력값을 반환합니다.<br>
+            <b>확인 문제:</b><br>
+            1. 이 문제를 해결하기 위해 어떤 제어문(if, for, while)이나 자료구조(List, Dict)가 필요할까요?<br>
+            2. 입력값의 범위가 커질 때(예: N=100,000) 실행 시간을 단축할 수 있는 더 효율적인 방법이 있을까요?
+        </div>
+    </div>
+    
+    <div class="code-block-wrapper" style="margin-bottom: 20px;">
+        <div class="code-header" style="background: #1e293b; color: #38bdf8;">
+            <span style="font-weight: 800; font-size: 14px;">📝 문제 36. 원의 넓이 함수</span>
+        </div>
+        <div style="background: #f8fafc; padding: 16px; border: 1px solid #cbd5e1; border-top: none; border-radius: 0 0 10px 10px; font-size: 13.5px; color: #334155; line-height: 1.6;">
+            <b>목표:</b> 파이썬 기초 문법을 활용하여 알고리즘을 설계하고 입력값에 따른 정확한 출력값을 반환합니다.<br>
+            <b>확인 문제:</b><br>
+            1. 이 문제를 해결하기 위해 어떤 제어문(if, for, while)이나 자료구조(List, Dict)가 필요할까요?<br>
+            2. 입력값의 범위가 커질 때(예: N=100,000) 실행 시간을 단축할 수 있는 더 효율적인 방법이 있을까요?
+        </div>
+    </div>
+    
+    <div class="code-block-wrapper" style="margin-bottom: 20px;">
+        <div class="code-header" style="background: #1e293b; color: #38bdf8;">
+            <span style="font-weight: 800; font-size: 14px;">📝 문제 37. 절대값 함수</span>
+        </div>
+        <div style="background: #f8fafc; padding: 16px; border: 1px solid #cbd5e1; border-top: none; border-radius: 0 0 10px 10px; font-size: 13.5px; color: #334155; line-height: 1.6;">
+            <b>목표:</b> 파이썬 기초 문법을 활용하여 알고리즘을 설계하고 입력값에 따른 정확한 출력값을 반환합니다.<br>
+            <b>확인 문제:</b><br>
+            1. 이 문제를 해결하기 위해 어떤 제어문(if, for, while)이나 자료구조(List, Dict)가 필요할까요?<br>
+            2. 입력값의 범위가 커질 때(예: N=100,000) 실행 시간을 단축할 수 있는 더 효율적인 방법이 있을까요?
+        </div>
+    </div>
+    
                 `
             }
         };
