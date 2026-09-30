@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>두근두근 아이들 뽑기 프로그램</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Malgun Gothic', sans-serif;
+        }
+        body {
+            background-color: #f0f2f5;
+            color: #333;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        .container {
+            background: white;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            width: 100%;
+            max-width: 500px;
+            text-align: center;
+        }
+        h1 {
+            color: #4a90e2;
+            margin-bottom: 20px;
+            font-size: 24px;
+        }
+        .input-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: bold;
+            color: #555;
+        }
+        textarea {
+            width: 100%;
+            height: 120px;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            resize: vertical;
+            font-size: 14px;
+        }
+        button {
+            background-color: #4a90e2;
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            font-size: 16px;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+            font-weight: bold;
+            transition: background 0.2s;
+        }
+        button:hover {
+            background-color: #357abd;
+        }
+        button:disabled {
+            background-color: #ccc;
+            cursor: not-allowed;
+        }
+        .result-box {
+            margin-top: 25px;
+            padding: 20px;
+            background-color: #f9f9f9;
+            border: 2px dashed #4a90e2;
+            border-radius: 10px;
+        }
+        #display-name {
+            font-size: 32px;
+            font-weight: bold;
+            color: #e74c3c;
+            min-height: 45px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        .history-box {
+            margin-top: 20px;
+            text-align: left;
+            max-height: 150px;
+            overflow-y: auto;
+            border-top: 1px solid #eee;
+            padding-top: 10px;
+        }
+        .history-box h3 {
+            font-size: 14px;
+            color: #777;
+            margin-bottom: 5px;
+        }
+        #history-list {
+            list-style: none;
+            font-size: 14px;
+            color: #555;
+        }
+        #history-list li {
+            padding: 3px 0;
+            border-bottom: 1px solid #f0f0f0;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>추억의 뽑기 프로그램</h1>
+        
+        <div class="input-group">
+            <label for="names-input">아이들 명단 입력 (엔터로 구분)</label>
+            <textarea id="names-input" placeholder="김철수&#10;이영희&#10;박민수&#10;최예은">김철수
+이영희
+박민수
+최예은
+정민호
+강서연</textarea>
+        </div>
+
+        <button id="draw-btn" onclick="startDrawing()">뽑기 시작!</button>
+
+        <div class="result-box">
+            <label>당첨 결과</label>
+            <div id="display-name">준비 중...</div>
+        </div>
+
+        <div class="history-box">
+            <h3>당첨 기록</h3>
+            <ul id="history-list">
+                <!-- 기록이 여기에 쌓입니다 -->
+            </ul>
+        </div>
+    </div>
+
+    <script>
+        let isDrawing = false;
+
+        function startDrawing() {
+            if (isDrawing) return;
+
+            const inputVal = document.getElementById('names-input').value;
+            // 줄바꿈 기준으로 이름을 나누고 공백 제거
+            let names = inputVal.split('\n').map(name => name.trim()).filter(name => name !== '');
+
+            if (names.length === 0) {
+                alert('명단을 한 명 이상 입력해주세요!');
+                return;
+            }
+
+            isDrawing = true;
+            const drawBtn = document.getElementById('draw-btn');
+            const displayName = document.getElementById('display-name');
+            drawBtn.disabled = true;
+
+            let count = 0;
+            const totalSteps = 20; // 롤링 애니메이션 횟수
+            let speed = 50;
+
+            function roll() {
+                // 무작위 이름 표시
+                const randomIndex = Math.floor(Math.random() * names.length);
+                displayName.textContent = names[randomIndex];
+                count++;
+
+                if (count < totalSteps) {
+                    // 점점 느려지는 효과
+                    speed += 10;
+                    setTimeout(roll, speed);
+                } else {
+                    // 최종 당첨자 확정
+                    const winnerIndex = Math.floor(Math.random() * names.length);
+                    const winner = names[winnerIndex];
+                    displayName.textContent = `🎉 ${winner} 당첨! 🎉`;
+
+                    // 당첨 기록에 추가
+                    const historyList = document.getElementById('history-list');
+                    const li = document.createElement('li');
+                    li.textContent = winner;
+                    historyList.appendChild(li);
+
+                    // 당첨된 사람을 명단에서 제거 (중복 방지 원할 경우 유지 가능)
+                    names.splice(winnerIndex, 1);
+                    document.getElementById('names-input').value = names.join('\n');
+
+                    isDrawing = false;
+                    drawBtn.disabled = false;
+                }
+            }
+
+            roll();
+        }
+    </script>
+
+</body>
+</html>
