@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>파이썬 핵심 학습 허브</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Malgun Gothic', sans-serif;
+        }
+        body {
+            background-color: #f4f6f9;
+            color: #333;
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+        }
+        header {
+            background: #4a90e2;
+            color: white;
+            padding: 30px 20px;
+            text-align: center;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        header h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+        header p {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+        .nav-container {
+            display: flex;
+            justify-content: center;
+            background: white;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+            padding: 0 20px;
+        }
+        .nav-tabs {
+            display: flex;
+            list-style: none;
+            max-width: 900px;
+            width: 100%;
+        }
+        .nav-tabs li {
+            flex: 1;
+            text-align: center;
+            padding: 15px;
+            cursor: pointer;
+            font-weight: bold;
+            color: #666;
+            border-bottom: 3px solid transparent;
+            transition: all 0.3s;
+        }
+        .nav-tabs li.active {
+            color: #4a90e2;
+            border-bottom: 3px solid #4a90e2;
+            background-color: #fafbfc;
+        }
+        .nav-tabs li:hover {
+            color: #4a90e2;
+            background-color: #f8fafc;
+        }
+        .main-content {
+            flex: 1;
+            max-width: 900px;
+            width: 100%;
+            margin: 30px auto;
+            padding: 0 20px;
+        }
+        .tab-content {
+            display: none;
+            background: white;
+            padding: 30px;
+            border-radius: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.05);
+        }
+        .tab-content.active {
+            display: block;
+        }
+        h2 {
+            color: #2c3e50;
+            margin-bottom: 20px;
+            font-size: 22px;
+            border-bottom: 2px solid #eaeaea;
+            padding-bottom: 10px;
+        }
+        .item-card {
+            background: #fdfdfd;
+            border: 1px solid #e1e4e8;
+            border-radius: 8px;
+            padding: 15px 20px;
+            margin-bottom: 15px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+        .item-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+        }
+        .item-card h3 {
+            font-size: 16px;
+            color: #333;
+            margin-bottom: 5px;
+        }
+        .item-card p {
+            font-size: 14px;
+            color: #666;
+        }
+        .badge {
+            display: inline-block;
+            padding: 3px 8px;
+            font-size: 12px;
+            font-weight: bold;
+            border-radius: 4px;
+            margin-bottom: 8px;
+        }
+        .badge-list { background: #e3f2fd; color: #1565c0; }
+        .badge-dict { background: #e8f5e9; color: #2e7d32; }
+        .badge-codeup { background: #fff3e0; color: #ef6c00; }
+        
+        footer {
+            text-align: center;
+            padding: 20px;
+            background: #fff;
+            color: #888;
+            font-size: 13px;
+            border-top: 1px solid #eaeaea;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>파이썬 핵심 학습 자료실</h1>
+        <p>리스트, 딕셔너리 및 코드업 문제 풀이 가이드</p>
+    </header>
+
+    <div class="nav-container">
+        <ul class="nav-tabs">
+            <li class="active" onclick="switchTab(0)">01. 리스트</li>
+            <li onclick="switchTab(1)">02. 딕셔너리</li>
+            <li onclick="switchTab(2)">03. 코드업 문제</li>
+        </ul>
+    </div>
+
+    <div class="main-content">
+        <!-- 01. 리스트 -->
+        <div class="tab-content active" id="tab-0">
+            <h2>파이썬 리스트 (List) 학습 자료</h2>
+            <div class="item-card">
+                <span class="badge badge-list">1~3차시</span>
+                <h3>기초 생성, 인덱싱 및 슬라이싱</h3>
+                <p>대괄호를 이용한 리스트 생성, 양수/음수 인덱스를 통한 값 추출, 그리고 구간을 나누는 슬라이싱 기법을 학습합니다[cite: 1].</p>
+            </div>
+            <div class="item-card">
+                <span class="badge badge-list">4~6차시</span>
+                <h3>원소 수정, 추가, 삭제 및 정렬</h3>
+                <p>append, extend, insert를 통한 데이터 추가와 remove, pop, del을 활용한 안전한 삭제, 그리고 정렬 메서드를 익힙니다[cite: 1].</p>
+            </div>
+            <div class="item-card">
+                <span class="badge badge-list">7~10차시</span>
+                <h3>반복문 활용, 컴프리헨션 및 미니 프로젝트</h3>
+                <p>for 반복문과의 연동, 리스트 컴프리헨션을 통한 조건 추출, 중첩 리스트 활용 및 종합 설문 점수 리포트를 작성합니다[cite: 1].</p>
+            </div>
+        </div>
+
+        <!-- 02. 딕셔너리 -->
+        <div class="tab-content" id="tab-1">
+            <h2>파이썬 딕셔너리 (Dictionary) 학습 자료</h2>
+            <div class="item-card">
+                <span class="badge badge-dict">1~3차시</span>
+                <h3>키와 값, 안전한 조회, 추가와 수정</h3>
+                <p>키(Key)와 값(Value) 구조의 이해, get 메서드를 활용한 안전한 조회, 그리고 딕셔너리 항목 추가 및 update 활용법을 익힙니다[cite: 2].</p>
+            </div>
+            <div class="item-card">
+                <span class="badge badge-dict">4~6차시</span>
+                <h3>항목 삭제, 반복문 순회, 빈도 집계</h3>
+                <p>pop과 setdefault를 통한 기본값 등록, keys/values/items 반복문 순회, get을 활용한 브랜드 및 응답 빈도 집계를 학습합니다[cite: 2].</p>
+            </div>
+            <div class="item-card">
+                <span class="badge badge-dict">7차시</span>
+                <h3>중첩 딕셔너리로 지역 정보 관리</h3>
+                <p>딕셔너리 안에 딕셔너리를 배치하는 계층 구조를 이해하고 다중 키 조회를 통해 인구 밀도 등을 계산합니다[cite: 2].</p>
+            </div>
+        </div>
+
+        <!-- 03. 코드업 문제 -->
+        <div class="tab-content" id="tab-2">
+            <h2>코드업 문제 학습지 (총 37문항)</h2>
+            <div class="item-card">
+                <span class="badge badge-codeup">문항 01 ~ 10</span>
+                <h3>반복문과 조건 제어 (CodeUp #1252 ~ #1281)</h3>
+                <p>1부터 n까지 출력하기, 3의 배수 통과, 알파벳 출력, 누적 합계, 팩토리얼 및 부호 교차 연산 식 출력 문제를 다룹니다[cite: 3].</p>
+            </div>
+            <div class="item-card">
+                <span class="badge badge-codeup">문항 11 ~ 22</span>
+                <h3>리스트와 문자열 응용 (CodeUp #1402 ~ #1440)</h3>
+                <p>거꾸로 출력, 숫자 로테이션, 공백 제거, 빠진 카드 찾기, 알파벳 개수 빈도 집계 및 2진수 변환, 정렬과 좌석 배치 문제를 다룹니다[cite: 3].</p>
+            </div>
+            <div class="item-card">
+                <span class="badge badge-codeup">문항 23 ~ 37</span>
+                ### 함수 작성과 연산 (CodeUp #1538 ~ #1602)
+                <p>홀짝 판별, 학점 반환, 팩토리얼 함수, 최대공약수·최소공배수, 사용자 정의 최댓값/최솟값 함수 및 절대값 함수 구현을 학습합니다[cite: 3].</p>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Python Education Hub. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function switchTab(index) {
+            const tabs = document.querySelectorAll('.nav-tabs li');
+            const contents = document.querySelectorAll('.tab-content');
+
+            tabs.forEach((tab, i) => {
+                if (i === index) {
+                    tab.classList.add('active');
+                    contents[i].classList.add('active');
+                } else {
+                    tab.classList.remove('active');
+                    contents[i].classList.remove('active');
+                }
+            });
+        }
+    </script>
+
+</body>
+</html>
