@@ -315,7 +315,7 @@
     </header>
 
     <div class="main-container">
-        <!-- 사이드바: 4개 메인 주제 -->
+        <!-- 사이드바: 5개 메인 주제 -->
         <aside class="sidebar">
             <div class="sidebar-header">
                 <div class="sidebar-section-title">
@@ -325,23 +325,28 @@
             
             <ul class="menu-list">
                 <li class="menu-item active" onclick="selectLesson('lesson1', this)">
-                    <span class="menu-icon">📋</span>
-                    <span>01. 리스트</span>
+                    <span class="menu-icon">🐢</span>
+                    <span>01. turtle 모듈</span>
                 </li>
 
                 <li class="menu-item" onclick="selectLesson('lesson2', this)">
-                    <span class="menu-icon">📦</span>
-                    <span>02. 함수</span>
+                    <span class="menu-icon">📋</span>
+                    <span>02. 리스트</span>
                 </li>
 
                 <li class="menu-item" onclick="selectLesson('lesson3', this)">
-                    <span class="menu-icon">📖</span>
-                    <span>03. 딕셔너리</span>
+                    <span class="menu-icon">📦</span>
+                    <span>03. 함수</span>
                 </li>
 
                 <li class="menu-item" onclick="selectLesson('lesson4', this)">
+                    <span class="menu-icon">📖</span>
+                    <span>04. 딕셔너리</span>
+                </li>
+
+                <li class="menu-item" onclick="selectLesson('lesson5', this)">
                     <span class="menu-icon">💻</span>
-                    <span>04. 코드업 문제</span>
+                    <span>05. 코드업 문제</span>
                 </li>
             </ul>
         </aside>
@@ -350,8 +355,8 @@
         <main class="content-area">
             <div class="content-header">
                 <div class="current-topic">
-                    <span id="topic-icon">📋</span>
-                    <span id="topic-title">01. 리스트</span>
+                    <span id="topic-icon">🐢</span>
+                    <span id="topic-title">01. turtle 모듈</span>
                 </div>
             </div>
 
@@ -366,9 +371,220 @@
 
     <script>
         const lessons = {
-            // [01. 파이썬 리스트] - 선생님 빈칸 버전 반영
+            // [01. turtle 모듈] - 새롭게 추가된 내용
             lesson1: {
-                title: "01. 리스트",
+                title: "01. turtle 모듈",
+                icon: "🐢",
+                html: `
+                    <h1 class="article-title">파이썬 turtle 모듈</h1>
+                    <div class="article-intro">
+                        turtle은 화면 속 거북이를 움직이며 선과 도형을 그릴 수 있는 파이썬 모듈입니다.
+                    </div>
+
+                    <h1 class="chapter-h1">🐢 [1차시] turtle 시작하기 - 거북이와 도화지 만들기</h1>
+                    <p class="section-desc"><b>핵심 개념 설명:</b> 명령을 내린 순서대로 거북이가 이동하기 때문에 프로그램의 실행 흐름을 눈으로 확인하기 좋습니다. 먼저 화면의 크기와 제목을 정하고 거북이의 모양, 속도, 선 색상을 바꾸어 turtle 프로그램의 기본 구조를 익힙니다.</p>
+                    <div class="code-block-wrapper">
+                        <div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div>
+                        <pre><code><span class="code-keyword">from</span> turtle <span class="code-keyword">import</span> *
+setup(<span class="code-num">700</span>, <span class="code-num">500</span>)
+title(<span class="code-str">"나의 첫 turtle 프로그램"</span>)
+bgcolor(<span class="code-str">"white"</span>)
+shape(<span class="code-str">"turtle"</span>)
+color(<span class="code-str">"navy"</span>)
+speed(<span class="code-num">3</span>)
+forward(<span class="code-num">150</span>)</code></pre>
+                    </div>
+                    <div class="result-box">
+                        <b>🔍 코드 톺아보기</b><br>
+                        • <code>setup(700, 500)</code> : 그림을 그릴 도화지의 가로와 세로 크기를 정합니다.<br>
+                        • <code>shape("turtle")</code> : 화면에서 움직이는 커서의 모양을 거북이로 설정합니다.<br>
+                        • <code>forward(150)</code>: 거북이가 바라보는 방향으로 150만큼 앞으로 이동하며 선을 그립니다.<br>
+                        • <code>done()</code> : 그림이 완성된 뒤 창이 바로 닫히지 않도록 turtle 실행을 유지합니다.
+                    </div>
+
+                    <h1 class="chapter-h1" style="margin-top: 50px;">🔄 [2차시] 이동과 회전 - 사각형 그리기</h1>
+                    <p class="section-desc"><b>핵심 개념 설명:</b> turtle에서 가장 기본적인 명령은 앞으로 이동하는 forward()와 방향을 바꾸는 left(), right()입니다. 거북이의 이동 거리와 회전 각도를 조합하면 여러 가지 도형을 만들 수 있습니다. 정사각형은 같은 길이의 선을 그리고 90도씩 방향을 바꾸는 동작을 네 번 반복하면 완성됩니다.</p>
+                    <div class="code-block-wrapper">
+                        <div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div>
+                        <pre><code><span class="code-keyword">from</span> turtle <span class="code-keyword">import</span> *
+setup(<span class="code-num">600</span>, <span class="code-num">600</span>)
+shape(<span class="code-str">"turtle"</span>)
+speed(<span class="code-num">2</span>)
+forward(<span class="code-num">150</span>)
+left(<span class="code-num">90</span>)
+forward(<span class="code-num">150</span>)
+left(<span class="code-num">90</span>)
+forward(<span class="code-num">150</span>)
+left(<span class="code-num">90</span>)
+forward(<span class="code-num">150</span>)
+left(<span class="code-num">90</span>)</code></pre>
+                    </div>
+                    <div class="result-box">
+                        <b>🔍 코드 톺아보기</b><br>
+                        • <code>forward(150)</code>: 현재 바라보는 방향으로 150만큼 이동합니다.<br>
+                        • <code>left(90)</code> : 현재 방향을 기준으로 왼쪽으로 90도 회전합니다.<br>
+                        • 이동 + 회전 : 선분 하나를 그리고 방향을 바꾸는 과정을 반복하여 도형을 만듭니다.
+                    </div>
+
+                    <h1 class="chapter-h1" style="margin-top: 50px;">🔁 [3차시] 반복문으로 도형 간단하게 만들기</h1>
+                    <p class="section-desc"><b>핵심 개념 설명:</b> 같은 명령을 여러 번 작성하면 코드가 길어지고 수정하기도 어렵습니다. for 반복문을 사용하면 같은 동작을 원하는 횟수만큼 반복할 수 있습니다. 정삼각형은 120도, 정사각형은 90도처럼 한 바퀴 360도를 변의 수로 나누어 회전 각도를 정할 수 있습니다. 이를 이용해 정다각형을 그려 봅니다.</p>
+                    <div class="code-block-wrapper">
+                        <div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div>
+                        <pre><code><span class="code-keyword">from</span> turtle <span class="code-keyword">import</span> *
+setup(<span class="code-num">600</span>, <span class="code-num">600</span>)
+shape(<span class="code-str">"turtle"</span>)
+speed(<span class="code-num">3</span>)
+sides = <span class="code-num">6</span>
+length = <span class="code-num">100</span>
+angle = <span class="code-num">360</span> / sides
+<span class="code-keyword">for</span>   <span class="code-keyword">in</span> range(sides):
+    forward(length)
+    left(angle)</code></pre>
+                    </div>
+                    <div class="result-box">
+                        <b>🔍 코드 톺아보기</b><br>
+                        • <code>sides = 6</code>: 그릴 도형의 변의 수를 정합니다. 6이면 정육각형이 됩니다.<br>
+                        • <code>angle = 360 / sides</code>: 한 바퀴 360도를 변의 수로 나누어 매번 회전할 각도를 계산합니다.<br>
+                        • <code>for   in range(sides):</code> 변의 수만큼 이동과 회전을 반복합니다. 반복 변수의 값이 필요 없을 때를 사용할 수 있습니다.
+                    </div>
+
+                    <h1 class="chapter-h1" style="margin-top: 50px;">🎨 [4차시] 펜과 색상 다루기 - 색이 있는 도형 만들기</h1>
+                    <p class="section-desc"><b>핵심 개념 설명:</b> turtle은 선을 그리는 것뿐 아니라 펜의 굵기와 색상을 바꾸고 도형 내부를 색으로 채울 수도 있습니다. pensize()는 선의 굵기를, pencolor()는 선 색을 정합니다. begin_fill()과 end_fill() 사이에서 그린 닫힌 도형은 fillcolor()로 지정한 색으로 채워집니다.</p>
+                    <div class="code-block-wrapper">
+                        <div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div>
+                        <pre><code><span class="code-keyword">from</span> turtle <span class="code-keyword">import</span> *
+setup(<span class="code-num">600</span>, <span class="code-num">600</span>)
+shape(<span class="code-str">"turtle"</span>)
+speed(<span class="code-num">3</span>)
+pensize(<span class="code-num">4</span>)
+pencolor(<span class="code-str">"darkgreen"</span>)
+fillcolor(<span class="code-str">"lightgreen"</span>)
+begin_fill()
+<span class="code-keyword">for</span>   <span class="code-keyword">in</span> range(<span class="code-num">3</span>):
+    forward(<span class="code-num">180</span>)
+    left(<span class="code-num">120</span>)
+end_fill()</code></pre>
+                    </div>
+                    <div class="result-box">
+                        <b>🔍 코드 톺아보기</b><br>
+                        • <code>pensize(4)</code>: 거북이가 그리는 선의 굵기를 4로 설정합니다.<br>
+                        • <code>pencolor()</code> : 도형의 테두리에 사용할 선 색상을 지정합니다.<br>
+                        • <code>fillcolor()</code> : 도형 내부를 채울 색상을 지정합니다.<br>
+                        • <code>begin_fill()</code> / <code>end_fill()</code> : 두 명령 사이에서 그린 닫힌 영역을 지정한 색으로 채웁니다.
+                    </div>
+
+                    <h1 class="chapter-h1" style="margin-top: 50px;">📍 [5차시] 좌표와 펜 제어 - 원하는 위치로 이동하기</h1>
+                    <p class="section-desc"><b>핵심 개념 설명:</b> turtle 화면의 가운데는 (0, 0) 좌표입니다. goto(x, y)를 사용하면 거북이를 원하는 좌표로 이동시킬 수 있습니다. 이때 이동하는 동안 선을 그리고 싶지 않다면 penup()으로 펜을 들고, 다시 그리기 시작할 때 pendown()으로 펜을 내립니다. 좌표를 이해하면 여러 도형을 원하는 위치에 배치할 수 있습니다.</p>
+                    <div class="code-block-wrapper">
+                        <div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div>
+                        <pre><code><span class="code-keyword">from</span> turtle <span class="code-keyword">import</span> *
+setup(<span class="code-num">700</span>, <span class="code-num">500</span>)
+shape(<span class="code-str">"turtle"</span>)
+speed(<span class="code-num">3</span>)
+<span class="code-comment">#첫 번째 원</span>
+penup()
+goto(-<span class="code-num">150</span>, <span class="code-num">0</span>)
+pendown()
+circle(<span class="code-num">60</span>)
+<span class="code-comment">#두 번째 원</span>
+penup()
+goto(<span class="code-num">100</span>, <span class="code-num">0</span>)
+pendown()
+circle(<span class="code-num">60</span>)
+<span class="code-comment">#시작점으로 이동</span>
+penup()
+goto(<span class="code-num">0</span>, <span class="code-num">0</span>)
+pendown()
+dot(<span class="code-num">12</span>, <span class="code-str">"red"</span>)</code></pre>
+                    </div>
+                    <div class="result-box">
+                        <b>🔍 코드 톺아보기</b><br>
+                        • <code>penup()</code>: 펜을 들어 이동 경로에 선이 그려지지 않게 합니다.<br>
+                        • <code>goto(x, y)</code>: 현재 위치와 관계없이 지정한 좌표로 거북이를 이동시킵니다.<br>
+                        • <code>pendown()</code>: 펜을 다시 내려 이후 이동부터 선이 그려지도록 합니다.<br>
+                        • <code>circle(60)</code>: 반지름이 60인 원을 그립니다.
+                    </div>
+
+                    <h1 class="chapter-h1" style="margin-top: 50px;">🧩 [6차시] 함수와 turtle - 도형을 부품처럼 사용하기</h1>
+                    <p class="section-desc"><b>핵심 개념 설명:</b> 같은 도형을 여러 번 그려야 할 때는 함수로 만들어 두면 편리합니다. 함수의 매개변수로 위치와 크기를 전달하면 하나의 도형 함수를 여러 상황에서 재사용할 수 있습니다. 프로그래밍에서 복잡한 그림이나 시뮬레이션도 작은 기능을 함수로 나누어 만드는 것이 중요합니다.</p>
+                    <div class="code-block-wrapper">
+                        <div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div>
+                        <pre><code><span class="code-keyword">from</span> turtle <span class="code-keyword">import</span> *
+setup(<span class="code-num">700</span>, <span class="code-num">500</span>)
+speed(<span class="code-num">5</span>)
+<span class="code-comment">#정사각형을 그리는 함수</span>
+<span class="code-keyword">def</span> <span class="code-def">draw_square</span>(x, y, size):
+    penup()
+    goto(x, y)
+    pendown()
+    <span class="code-keyword">for</span>   <span class="code-keyword">in</span> range(<span class="code-num">4</span>):
+        forward(size)
+        left(<span class="code-num">90</span>)
+<span class="code-comment">#위치와 크기를 바꾸어 함수 호출</span>
+draw_square(-<span class="code-num">250</span>, -<span class="code-num">50</span>, <span class="code-num">80</span>)
+draw_square(-<span class="code-num">80</span>, <span class="code-num">50</span>, <span class="code-num">120</span>)
+draw_square(<span class="code-num">150</span>, -<span class="code-num">50</span>, <span class="code-num">160</span>)</code></pre>
+                    </div>
+                    <div class="result-box">
+                        <b>🔍 코드 톺아보기</b><br>
+                        • <code>def draw_square(x, y, size)</code>: 정사각형의 위치와 크기를 전달받는 함수를 정의합니다.<br>
+                        • <code>goto(x, y)</code>: 매개변수로 전달받은 위치로 이동한 뒤 그림을 시작합니다.<br>
+                        • <code>draw_square(...)</code>: 같은 함수를 위치와 크기만 다르게 하여 여러 번 재사용합니다.
+                    </div>
+
+                    <h1 class="chapter-h1" style="margin-top: 50px;">🌀 [7차시] 중첩 반복으로 패턴 만들기 - 회전하는 도형</h1>
+                    <p class="section-desc"><b>핵심 개념 설명:</b> 같은 도형을 조금씩 회전시키며 반복해서 그리면 규칙적인 패턴이 만들어집니다. 바깥쪽 반복문은 도형 전체의 반복 횟수를 정하고, 안쪽 반복문은 한 개의 도형을 그립니다. 이렇게 반복문 안에 또 다른 반복문이 들어 있는 구조를 중첩 반복이라고 합니다.</p>
+                    <div class="code-block-wrapper">
+                        <div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div>
+                        <pre><code><span class="code-keyword">from</span> turtle <span class="code-keyword">import</span> *
+setup(<span class="code-num">700</span>, <span class="code-num">700</span>)
+bgcolor(<span class="code-str">"white"</span>)
+speed(<span class="code-num">0</span>)
+<span class="code-keyword">for</span>   <span class="code-keyword">in</span> range(<span class="code-num">36</span>):
+    <span class="code-comment">#정사각형 1개 그리기</span>
+    <span class="code-keyword">for</span>   <span class="code-keyword">in</span> range(<span class="code-num">4</span>):
+        forward(<span class="code-num">140</span>)
+        left(<span class="code-num">90</span>)
+    <span class="code-comment">#다음 정사각형의 방향을 조금 회전</span>
+    left(<span class="code-num">10</span>)</code></pre>
+                    </div>
+                    <div class="result-box">
+                        <b>🔍 코드 톺아보기</b><br>
+                        • <code>for in range(36)</code> : 정사각형 전체를 36번 반복하여 원형 패턴을 만듭니다.<br>
+                        • 안쪽 for문 : 한 번 실행될 때 정사각형 한 개를 완성합니다.<br>
+                        • <code>left(10)</code>: 정사각형을 하나 그린 뒤 시작 방향을 10도씩 바꾸어 패턴을 만듭니다.<br>
+                        • <code>speed(0)</code>: 애니메이션 속도를 가장 빠르게 하여 반복 그림을 빠르게 확인합니다.
+                    </div>
+
+                    <h1 class="chapter-h1" style="margin-top: 50px;">🎲 [8차시] 무작위 움직임 시뮬레이션 - Random Walk</h1>
+                    <p class="section-desc"><b>핵심 개념 설명:</b> 시뮬레이션은 실제 현상이나 움직임을 컴퓨터에서 단순한 규칙으로 표현하여 관찰하는 방법입니다. 입자가 불규칙하게 움직이는 현상을 간단하게 표현하기 위해 random 모듈과 turtle을 함께 사용할 수 있습니다. 매 순간 여러 방향 중 하나를 무작위로 선택하여 이동시키면 예측하기 어려운 이동 경로가 만들어집니다.</p>
+                    <div class="code-block-wrapper">
+                        <div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div>
+                        <pre><code><span class="code-keyword">from</span> turtle <span class="code-keyword">import</span> *
+<span class="code-keyword">import</span> random
+setup(<span class="code-num">700</span>, <span class="code-num">700</span>)
+shape(<span class="code-str">"turtle"</span>)
+speed(<span class="code-num">0</span>)
+pensize(<span class="code-num">2</span>)
+angles = [<span class="code-num">0</span>, <span class="code-num">90</span>, <span class="code-num">180</span>, <span class="code-num">270</span>]
+<span class="code-keyword">for</span>   <span class="code-keyword">in</span> range(<span class="code-num">150</span>):
+    direction = random.choice(angles)
+    setheading(direction)
+    forward(<span class="code-num">12</span>)</code></pre>
+                    </div>
+                    <div class="result-box">
+                        <b>🔍 코드 톺아보기</b><br>
+                        • <code>import random</code> : 무작위 값을 선택하기 위한 random 모듈을 불러옵니다.<br>
+                        • <code>random.choice(angles)</code>: 0도, 90도, 180도, 270도 중 하나를 무작위로 선택합니다.<br>
+                        • <code>setheading(direction)</code> : 거북이가 바라보는 절대 방향을 선택된 각도로 바꿉니다.<br>
+                        • Random Walk: 단순한 무작위 이동 규칙을 반복하여 불규칙한 움직임을 시뮬레이션합니다.
+                    </div>
+                `
+            },
+
+            // [02. 리스트] - 기존 lesson1 위치 이동 (선생님 빈칸 유지)
+            lesson2: {
+                title: "02. 리스트",
                 icon: "📋",
                 html: `
                     <h1 class="article-title">파이썬 리스트(List)</h1>
@@ -624,9 +840,9 @@ valid_scores = [s <span class="code-keyword">for</span> s <span class="code-keyw
                 `
             },
 
-            // [02. 파이썬 함수] - 원본 함수 PDF에는 빈칸이 없었으므로 코드 그대로 반영
-            lesson2: {
-                title: "02. 함수",
+            // [03. 함수] - 기존 lesson2 위치 이동
+            lesson3: {
+                title: "03. 함수",
                 icon: "📦",
                 html: `
                     <h1 class="article-title">파이썬 함수(Function)</h1>
@@ -878,9 +1094,9 @@ generate_report(target_brand, collected_data)</code></pre>
                 `
             },
 
-            // [03. 딕셔너리] - 선생님 빈칸 버전 반영
-            lesson3: {
-                title: "03. 딕셔너리",
+            // [04. 딕셔너리] - 기존 lesson3 위치 이동
+            lesson4: {
+                title: "04. 딕셔너리",
                 icon: "📖",
                 html: `
                     <h1 class="article-title">파이썬 딕셔너리(Dictionary)</h1>
@@ -910,7 +1126,7 @@ generate_report(target_brand, collected_data)</code></pre>
                         • <code>len(district)</code> : 키와 값의 쌍을 세므로 결과는 3입니다. 같은 키를 중복 작성하면 뒤의 값이 앞의 값을 덮어씁니다.
                     </div>
 
-                    <h1 class="chapter-h1" style="margin-top: 50px;">🛡️️ [2차시] 안전한 조회와 키 존재 확인</h1>
+                    <h1 class="chapter-h1" style="margin-top: 50px;">🛡 [2차시] 안전한 조회와 키 존재 확인</h1>
                     <p class="section-desc"><b>핵심 개념 설명:</b> 자료마다 모든 항목이 들어 있는 것은 아닙니다. 존재하지 않는 키를 대괄호로 조회하면 KeyError가 발생합니다. get은 키가 없을 때 사용할 기본값을 지정할 수 있고 in은 키의 존재 여부를 확인합니다. 누락 항목을 안전하게 처리하는 조회 코드를 작성합니다.</p>
                     <div class="code-block-wrapper">
                         <div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div>
@@ -1052,9 +1268,9 @@ districts[<span class="code-str">"한솔동"</span>][<span class="code-str">"pop
                 `
             },
             
-            // [04. 코드업 문제] - 카드 레이아웃 적용
-            lesson4: {
-                title: "04. 코드업 문제",
+            // [05. 코드업 문제] - 기존 lesson4 위치 이동
+            lesson5: {
+                title: "05. 코드업 문제",
                 icon: "💻",
                 html: `
                     <h1 class="article-title">CodeUp 파이썬 기초 100제 - 핵심 37문항</h1>
@@ -1511,7 +1727,7 @@ districts[<span class="code-str">"한솔동"</span>][<span class="code-str">"pop
             }
         };
 
-        // 초기 화면에 lesson1 기본 렌더링
+        // 초기 화면에 lesson1(turtle) 기본 렌더링
         document.getElementById('lesson-content').innerHTML = lessons.lesson1.html;
 
         function selectLesson(lessonKey, element) {
