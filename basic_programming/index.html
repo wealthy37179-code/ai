@@ -372,7 +372,7 @@
     </header>
 
     <div class="main-container">
-        <!-- 사이드바: 6개 메인 주제 -->
+        <!-- 사이드바: 7개 메인 주제 -->
         <aside class="sidebar">
             <div class="sidebar-header">
                 <div class="sidebar-section-title">
@@ -409,6 +409,12 @@
                 <li class="menu-item" onclick="selectLesson('lesson6', this)">
                     <span class="menu-icon">💻</span>
                     <span>06. 코드업 문제</span>
+                </li>
+
+                <!-- 새롭게 추가된 07단원 인공지능 기초 메뉴 -->
+                <li class="menu-item" onclick="selectLesson('lesson7', this)">
+                    <span class="menu-icon">🤖</span>
+                    <span>07. 인공지능 기초</span>
                 </li>
             </ul>
         </aside>
@@ -951,7 +957,7 @@ analyze_ppl(<span class="code-str">"한솔제과"</span>)</code></pre>
                     </div>
 
                     <h1 class="chapter-h1" style="margin-top: 50px;">📤 [3차시] return을 이용한 계산 결과 반환</h1>
-                    <p class="section-desc"><b>핵심 개념 설명:</b> 단순히 화면에 글자를 보여주고 끝나는 print와 달리 함수가 연산한 최종 결과값을 프로그램의 다른 부분에서 활용해야 할 때가 많습니다. 이때 return 키워드를 사용하면 계산된 수치를 함수 밖으로 꺼내어 변수에 저장할 수 있습니다. PPL 광고의 인지도 점수와 구매 의도 점수를 합산하여 돌려주는 함수를 살펴봅니다.</p>
+                    <p class="section-desc"><b>핵심 개념 설명:</b> 단순히 화면에 글자를 보여주고 끝나는 print와 달리 함수가 연산한 최종 결과값을 프로그램의 다른 부분에서 활용해야 할 때가 많습니다. 이때 return 키워드를 사용하면 계산된 수치를 함수 밖으로 꺼내어 변수에 저장할 수 있습니다. PPL 광고의 인지도 점수와 구매 의도 점 가장 합산하여 돌려주는 함수를 살펴봅니다.</p>
                     <div class="code-block-wrapper">
                         <div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div>
                         <pre><code><span class="code-keyword">def</span> <span class="code-def">calculate_total_score</span>(recognition, intent):
@@ -1361,7 +1367,7 @@ districts[<span class="code-str">"한솔동"</span>][<span class="code-str">"pop
                         <b>5. 데이터 분석에서의 흐름</b><br>
                         CSV 파일 → DataFrame → 전처리·분석·시각화<br><br>
                         <b>파일 경로(path)란?</b><br>
-                        파이썬이 CSV 파일을 읽을 때 파일이 어디에 있는지 알려주는 주소입니다. 쉽게 말하면 파일을 찾아가는 길이라고 생각하면 됩니다.
+                        파이썬이 CSV 파일 읽을 때 파일이 어디에 있는지 알려주는 주소입니다. 쉽게 말하면 파일을 찾아가는 길이라고 생각하면 됩니다.
                     </div>
                     <div class="result-box">
                         <b>1. 절대 경로와 상대 경로는 무엇이 다를까요?</b><br>
@@ -2167,6 +2173,154 @@ filled = clean[<span class="code-str">"score"</span>].fillna(clean[<span class="
                                 <div class="io-content-text">2.56</div>
                             </div>
                         </div>
+                    </div>
+                `
+            },
+            
+            // 새롭게 추가된 07단원
+            lesson7: {
+                title: "07. 인공지능 기초",
+                icon: "🤖",
+                html: `
+                    <h1 class="article-title">KNN 알고리즘 기초</h1>
+                    <div class="article-intro">
+                        공부시간과 합격 여부 데이터를 통해 분류 알고리즘인 KNN의 원리를 학습합니다.
+                    </div>
+
+                    <h1 class="chapter-h1">🏃 [1차시] PASS vs FAIL - KNN 첫걸음</h1>
+                    <p class="section-desc"><b>핵심 개념 설명:</b> 오늘의 목표는 공부시간 데이터를 보며 가까운 데이터로 분류하는 KNN의 생각을 이해하는 것입니다. KNN은 새 데이터를 보고 가장 가까이에 있는 기존 데이터인 이웃을 참고해 결과를 정합니다. 먼저 AI가 아니라 우리가 직접 새 학생과 가까운 데이터를 찾아 판단해 봅니다.</p>
+                    <div class="code-block-wrapper">
+                        <div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div>
+                        <pre><code><span class="code-comment"># 공부시간과 결과 데이터</span>
+study_hours = [<span class="code-num">1</span>, <span class="code-num">2</span>, <span class="code-num">3</span>, <span class="code-num">5</span>, <span class="code-num">6</span>, <span class="code-num">7</span>]
+results = [<span class="code-str">"FAIL"</span>, <span class="code-str">"FAIL"</span>, <span class="code-str">"FAIL"</span>, <span class="code-str">"PASS"</span>, <span class="code-str">"PASS"</span>, <span class="code-str">"PASS"</span>]
+new_student = <span class="code-num">4.3</span>
+
+<span class="code-keyword">for</span> hour, result <span class="code-keyword">in</span> zip(study_hours, results):
+    distance = abs(new_student - hour)
+    <span class="code-keyword">print</span>(hour, <span class="code-str">"시간"</span>, result, <span class="code-str">"거리:"</span>, round(distance, <span class="code-num">1</span>))
+
+<span class="code-keyword">print</span>(<span class="code-str">"새 학생의 공부시간:"</span>, new_student, <span class="code-str">"시간"</span>)
+<span class="code-keyword">print</span>(<span class="code-str">"가장 가까운 친구들은 누구일까요?"</span>)</code></pre>
+                    </div>
+                    <div class="result-box">
+                        <b>🔍 확인 문제</b><br>
+                        • 1. 새 학생 4.3시간과 가장 가까운 공부시간은 몇 시간인가?<br>
+                        • 2. KNN에서 이웃은 친구라는 뜻일까, 데이터가 가깝다는 뜻일까?<br>
+                        • 3. 공부시간만으로 실제 학생의 합격 여부를 판단하면 안 되는 이유를 한 가지 적어 보자.
+                    </div>
+
+                    <h1 class="chapter-h1" style="margin-top: 50px;">👤 [2차시] 가장 가까운 한 명에게 물어봐! - K=1</h1>
+                    <p class="section-desc"><b>핵심 개념 설명:</b> 오늘의 목표는 거리 계산과 정렬 과정을 통해 가장 가까운 1개의 결과를 이용해 분류하는 과정을 코드로 구현하는 것입니다. K=1은 가장 가까운 이웃 1명만 보고 판단합니다. 새 학생과 각 데이터 사이의 거리를 계산하고 정렬하여 가장 짧은 거리를 찾으면 됩니다.</p>
+                    <div class="code-block-wrapper">
+                        <div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div>
+                        <pre><code>study_hours = [<span class="code-num">1</span>, <span class="code-num">2</span>, <span class="code-num">3</span>, <span class="code-num">5</span>, <span class="code-num">6</span>, <span class="code-num">7</span>]
+results = [<span class="code-str">"FAIL"</span>, <span class="code-str">"FAIL"</span>, <span class="code-str">"FAIL"</span>, <span class="code-str">"PASS"</span>, <span class="code-str">"PASS"</span>, <span class="code-str">"PASS"</span>]
+new_student = <span class="code-num">4.3</span>
+distances = []
+
+<span class="code-keyword">for</span> hour, result <span class="code-keyword">in</span> zip(study_hours, results):
+    distance = abs(new_student - hour)
+    distances.append([distance, hour, result])
+
+distances.sort()
+<span class="code-keyword">print</span>(<span class="code-str">"거리순 정렬 결과"</span>)
+<span class="code-keyword">for</span> item <span class="code-keyword">in</span> distances:
+    <span class="code-keyword">print</span>(item)
+
+prediction = distances[<span class="code-num">0</span>][<span class="code-num">2</span>]
+<span class="code-keyword">print</span>(<span class="code-str">"K=1 예측 결과:"</span>, prediction)</code></pre>
+                    </div>
+                    <div class="result-box">
+                        <b>🔍 확인 문제</b><br>
+                        • 1. abs(new_student - hour)는 무엇을 계산하는가?<br>
+                        • 2. distances.sort()를 실행하면 어떤 값이 가장 앞에 오게 되는가?<br>
+                        • 3. K=1은 데이터 하나가 잘못되어 있어도 그 값을 그대로 따라갈 수 있다. 이것이 어떤 문제가 될 수 있을까?
+                    </div>
+
+                    <h1 class="chapter-h1" style="margin-top: 50px;">👥 [3차시] 가까운 3명에게 투표시키기 - 진짜 KNN</h1>
+                    <p class="section-desc"><b>핵심 개념 설명:</b> 오늘의 목표는 scikit-learn 라이브러리의 KNeighborsClassifier를 이용해 K=3 다수결 분류를 경험하는 것입니다. K=3이면 가까운 이웃 3명의 결과를 확인한 뒤 다수결로 결정합니다. 이는 한 사람만 보는 것보다 주변의 여러 데이터를 함께 참고하여 더 신뢰할 수 있는 결과를 냅니다.</p>
+                    <div class="code-block-wrapper">
+                        <div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div>
+                        <pre><code><span class="code-keyword">from</span> sklearn.neighbors <span class="code-keyword">import</span> KNeighborsClassifier
+
+X = [[<span class="code-num">1</span>], [<span class="code-num">2</span>], [<span class="code-num">3</span>], [<span class="code-num">5</span>], [<span class="code-num">6</span>], [<span class="code-num">7</span>]]
+y = [<span class="code-str">"FAIL"</span>, <span class="code-str">"FAIL"</span>, <span class="code-str">"FAIL"</span>, <span class="code-str">"PASS"</span>, <span class="code-str">"PASS"</span>, <span class="code-str">"PASS"</span>]
+
+model = KNeighborsClassifier(n_neighbors=<span class="code-num">3</span>)
+model.fit(X, y)
+
+new_hour = float(input(<span class="code-str">"새 학생의 공부시간: "</span>))
+prediction = model.predict([[new_hour]])
+<span class="code-keyword">print</span>(<span class="code-str">"K=3 AI 예측:"</span>, prediction[<span class="code-num">0</span>])</code></pre>
+                    </div>
+                    <div class="result-box">
+                        <b>🔍 확인 문제</b><br>
+                        • 1. X와 y는 각각 어떤 정보를 저장하고 있는가?<br>
+                        • 2. model.fit(X, y)는 KNN 모델에게 무엇을 알려주는 과정인가?<br>
+                        • 3. n_neighbors=3의 숫자 3은 무엇을 의미하는가?
+                    </div>
+
+                    <h1 class="chapter-h1" style="margin-top: 50px;">📈 [4차시] 공부시간만 보면 부족해! - 특징 2개 KNN</h1>
+                    <p class="section-desc"><b>핵심 개념 설명:</b> 오늘의 목표는 공부시간과 복습횟수 두 가지 특징을 이용해 2차원 KNN 분류의 원리를 이해하는 것입니다. AI가 판단할 때 참고하는 정보를 특징(feature)이라고 합니다. 판단해야 할 특징이 2개로 늘어나면 데이터는 단순한 선 위가 아니라 평면 위의 점으로 표현할 수 있습니다.</p>
+                    <div class="code-block-wrapper">
+                        <div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div>
+                        <pre><code><span class="code-keyword">from</span> sklearn.neighbors <span class="code-keyword">import</span> KNeighborsClassifier
+<span class="code-keyword">import</span> matplotlib.pyplot <span class="code-keyword">as</span> plt
+
+<span class="code-comment"># [공부시간, 복습횟수]</span>
+X = [[<span class="code-num">1</span>,<span class="code-num">0</span>], [<span class="code-num">2</span>,<span class="code-num">1</span>], [<span class="code-num">3</span>,<span class="code-num">1</span>], [<span class="code-num">5</span>,<span class="code-num">2</span>], [<span class="code-num">6</span>,<span class="code-num">3</span>], [<span class="code-num">7</span>,<span class="code-num">4</span>]]
+y = [<span class="code-str">"FAIL"</span>, <span class="code-str">"FAIL"</span>, <span class="code-str">"FAIL"</span>, <span class="code-str">"PASS"</span>, <span class="code-str">"PASS"</span>, <span class="code-str">"PASS"</span>]
+
+model = KNeighborsClassifier(n_neighbors=<span class="code-num">3</span>)
+model.fit(X, y)
+
+new_student = [[<span class="code-num">4.5</span>, <span class="code-num">2</span>]]
+<span class="code-keyword">print</span>(<span class="code-str">"AI 예측:"</span>, model.predict(new_student)[<span class="code-num">0</span>])
+
+<span class="code-comment"># 분포 확인용 그래프</span>
+<span class="code-keyword">for</span> point, label <span class="code-keyword">in</span> zip(X, y):
+    marker = <span class="code-str">"x"</span> <span class="code-keyword">if</span> label == <span class="code-str">"FAIL"</span> <span class="code-keyword">else</span> <span class="code-str">"o"</span>
+    plt.scatter(point[<span class="code-num">0</span>], point[<span class="code-num">1</span>], marker=marker, s=<span class="code-num">100</span>)
+
+plt.scatter(<span class="code-num">4.5</span>, <span class="code-num">2</span>, marker=<span class="code-str">"*"</span>, s=<span class="code-num">180</span>)
+plt.xlabel(<span class="code-str">"Study hours"</span>)
+plt.ylabel(<span class="code-str">"Review count"</span>)
+plt.show()</code></pre>
+                    </div>
+                    <div class="result-box">
+                        <b>🔍 확인 문제</b><br>
+                        • 1. 이 프로젝트에서 사용한 두 가지 특징(feature)은 무엇인가?<br>
+                        • 2. 공부시간이 같아도 복습횟수가 다르면 AI의 판단이 달라질 수 있는 이유는 무엇인가?<br>
+                        • 3. 특징을 하나 더 추가한다면 어떤 정보를 사용해 보고 싶은가?
+                    </div>
+
+                    <h1 class="chapter-h1" style="margin-top: 50px;">🧪 [5차시] AI의 판단은 언제 달라질까? - KNN 실험실</h1>
+                    <p class="section-desc"><b>핵심 개념 설명:</b> 오늘의 목표는 K값과 학습 데이터가 바뀌면 예측이 달라질 수 있음을 실험하고 AI 판단의 한계를 분명하게 이해하는 것입니다. AI의 답은 절대적인 정답이 아닙니다. 어떤 데이터를 학습했는지, 주변 이웃을 참고하는 K를 얼마로 정했는지 등 설정과 데이터에 따라 AI의 판단 결과는 크게 달라질 수 있습니다.</p>
+                    <div class="code-block-wrapper">
+                        <div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div>
+                        <pre><code><span class="code-keyword">from</span> sklearn.neighbors <span class="code-keyword">import</span> KNeighborsClassifier
+
+<span class="code-comment"># 4시간의 PASS는 일부러 넣은 튀는 데이터입니다.</span>
+X = [[<span class="code-num">1</span>], [<span class="code-num">2</span>], [<span class="code-num">3</span>], [<span class="code-num">4</span>], [<span class="code-num">5</span>], [<span class="code-num">6</span>], [<span class="code-num">7</span>], [<span class="code-num">8</span>]]
+y = [<span class="code-str">"FAIL"</span>, <span class="code-str">"FAIL"</span>, <span class="code-str">"FAIL"</span>, <span class="code-str">"PASS"</span>, <span class="code-str">"FAIL"</span>, <span class="code-str">"PASS"</span>, <span class="code-str">"PASS"</span>, <span class="code-str">"PASS"</span>]
+
+new_student = [[<span class="code-num">4.1</span>]]
+
+<span class="code-keyword">for</span> k <span class="code-keyword">in</span> [<span class="code-num">1</span>, <span class="code-num">3</span>, <span class="code-num">5</span>]:
+    model = KNeighborsClassifier(n_neighbors=k)
+    model.fit(X, y)
+    result = model.predict(new_student)[<span class="code-num">0</span>]
+    <span class="code-keyword">print</span>(<span class="code-str">"K ="</span>, k, <span class="code-str">"-"</span>, result)
+
+<span class="code-keyword">print</span>(<span class="code-str">"AI의 판단은 데이터와 K값에 따라 달라질 수 있습니다."</span>)</code></pre>
+                    </div>
+                    <div class="result-box">
+                        <b>🔍 확인 문제</b><br>
+                        • 1. K=1과 K=3의 결과가 다르게 나올 수 있는 이유를 이웃과 다수결이라는 말을 사용해 설명해 보자.<br>
+                        • 2. 학습 데이터에 잘못된 값이 섞이면 AI의 예측에는 어떤 영향이 생길까?<br>
+                        • 3. 이 예제의 PASS/FAIL을 실제 학생 평가에 그대로 사용하면 안 되는 이유는 무엇인가?
+                 
                     </div>
                 `
             }
