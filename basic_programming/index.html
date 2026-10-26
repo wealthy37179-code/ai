@@ -904,6 +904,219 @@ valid_scores = [s <span class="code-keyword">for</span> s <span class="code-keyw
                         • <b>집계와 정렬 연결</b> : 유효 자료는 6개, 평균은 84.7점, 상위 점수는 [95, 90, 88], 80점 이상은 5개입니다.<br>
                         • <b>직접 바꿔보기</b> : 기준을 85점으로 바꾸어 다시 실행하고 결과를 예측합니다. raw_scores를 모두 범위 밖의 값으로 바꾸어 빈 자료 처리도 확인합니다.
                     </div>
+                    <h1 class="chapter-h1" style="margin-top: 50px;">🧲 [11차시] 점수 데이터에서 조건에 맞는 값 추출</h1>
+                    <p class="section-desc"><b>핵심 개념 설명:</b> 전체 점수에서 기준을 만족하는 값만 새 리스트에 모읍니다. 원본 데이터와 추출한 데이터를 분리하고, 결과가 없을 때도 안전하게 계산합니다.</p>
+                    <div class="code-block-wrapper">
+                        <div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div>
+                        <pre><code>scores = [<span class="code-num">72</span>, <span class="code-num">91</span>, <span class="code-num">85</span>, <span class="code-num">67</span>, <span class="code-num">94</span>, <span class="code-num">80</span>, <span class="code-num">78</span>]
+passed = []
+<span class="code-keyword">for</span> score <span class="code-keyword">in</span> scores:
+    <span class="code-keyword">if</span> score &gt;= <span class="code-num">80</span>:
+        passed.append(score)
+<span class="code-keyword">print</span>(<span class="code-str">"합격 점수:"</span>, passed)
+<span class="code-keyword">print</span>(<span class="code-str">"합격자 수:"</span>, len(passed))
+<span class="code-keyword">if</span> passed:
+    <span class="code-keyword">print</span>(<span class="code-str">"합격자 평균:"</span>, round(sum(passed) / len(passed), <span class="code-num">1</span>))
+<span class="code-keyword">else</span>:
+    <span class="code-keyword">print</span>(<span class="code-str">"합격자 없음"</span>)</code></pre>
+                    </div>
+                    <div class="result-box">
+                        <b>🔍 코드 톺아보기</b><br>
+                        • <code>append()</code>로 조건을 만족하는 값만 새 리스트에 저장합니다.<br>
+                        • 빈 리스트를 확인한 뒤 평균을 계산해야 0으로 나누는 오류가 없습니다.
+                    </div>
+
+                    <h1 class="chapter-h1" style="margin-top: 50px;">♻️ [12차시] 설문 응답의 중복 제거</h1>
+                    <p class="section-desc"><b>핵심 개념 설명:</b> 설문에서 한 사람이 여러 번 응답했을 수 있습니다. 입력 순서를 유지하려면 리스트와 in을 이용합니다.</p>
+                    <div class="code-block-wrapper">
+                        <div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div>
+                        <pre><code>responses = [<span class="code-str">"축구"</span>, <span class="code-str">"배구"</span>, <span class="code-str">"축구"</span>, <span class="code-str">"농구"</span>, <span class="code-str">"배구"</span>, <span class="code-str">"탁구"</span>]
+unique = []
+<span class="code-keyword">for</span> name <span class="code-keyword">in</span> responses:
+    <span class="code-keyword">if</span> name <span class="code-keyword">not</span> <span class="code-keyword">in</span> unique:
+        unique.append(name)
+<span class="code-keyword">print</span>(<span class="code-str">"중복 제거:"</span>, unique)
+<span class="code-keyword">print</span>(<span class="code-str">"종목 수:"</span>, len(unique))
+<span class="code-keyword">print</span>(<span class="code-str">"축구 응답 수:"</span>, responses.count(<span class="code-str">"축구"</span>))</code></pre>
+                    </div>
+                    <div class="result-box">
+                        <b>🔍 코드 톺아보기</b><br>
+                        • <code>not in</code>은 기존에 없는 응답만 선택합니다.<br>
+                        • <code>count()</code>는 특정 응답이 리스트에 나타난 횟수를 셉니다.
+                    </div>
+
+                    <h1 class="chapter-h1" style="margin-top: 50px;">🛒 [13차시] 상품별 매출을 함께 관리하기</h1>
+                    <p class="section-desc"><b>핵심 개념 설명:</b> 상품 이름·단가·판매 수량을 한 행으로 묶어 관리합니다. 행을 순서대로 처리하면 전체 매출과 특정 조건의 상품을 동시에 찾을 수 있습니다.</p>
+                    <div class="code-block-wrapper">
+                        <div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div>
+                        <pre><code>products = [[<span class="code-str">"연필"</span>, <span class="code-num">500</span>, <span class="code-num">8</span>], [<span class="code-str">"공책"</span>, <span class="code-num">2000</span>, <span class="code-num">5</span>],
+            [<span class="code-str">"지우개"</span>, <span class="code-num">800</span>, <span class="code-num">3</span>], [<span class="code-str">"파일"</span>, <span class="code-num">1500</span>, <span class="code-num">6</span>]]
+total = <span class="code-num">0</span>
+<span class="code-keyword">for</span> name, price, count <span class="code-keyword">in</span> products:
+    sales = price * count
+    total += sales
+    <span class="code-keyword">if</span> sales &gt;= <span class="code-num">6000</span>:
+        <span class="code-keyword">print</span>(name, <span class="code-str">"매출:"</span>, sales)
+<span class="code-keyword">print</span>(<span class="code-str">"총매출:"</span>, total)</code></pre>
+                    </div>
+                    <div class="result-box">
+                        <b>🔍 코드 톺아보기</b><br>
+                        • 한 행의 세 값을 <code>name, price, count</code>로 나누어 받습니다.<br>
+                        • 합계 변수 <code>total</code>은 반복할 때마다 상품 매출을 누적합니다.
+                    </div>
+
+                    <h1 class="chapter-h1" style="margin-top: 50px;">🎬 [14차시] 영화관 좌석 예약 프로그램</h1>
+                    <p class="section-desc"><b>핵심 개념 설명:</b> 좌석을 행과 열로 표현합니다. 빈 좌석은 0, 예약 좌석은 1로 표시하며 이미 예약된 좌석을 다시 예약하지 않도록 검사합니다.</p>
+                    <div class="code-block-wrapper">
+                        <div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div>
+                        <pre><code>seats = [[<span class="code-num">0</span>, <span class="code-num">1</span>, <span class="code-num">0</span>, <span class="code-num">0</span>], [<span class="code-num">0</span>, <span class="code-num">0</span>, <span class="code-num">1</span>, <span class="code-num">0</span>], [<span class="code-num">1</span>, <span class="code-num">0</span>, <span class="code-num">0</span>, <span class="code-num">0</span>]]
+row, col = <span class="code-num">1</span>, <span class="code-num">3</span>
+<span class="code-keyword">if</span> seats[row][col] == <span class="code-num">0</span>:
+    seats[row][col] = <span class="code-num">1</span>
+    <span class="code-keyword">print</span>(<span class="code-str">"예약 완료"</span>)
+<span class="code-keyword">else</span>:
+    <span class="code-keyword">print</span>(<span class="code-str">"이미 예약된 좌석"</span>)
+<span class="code-keyword">for</span> line <span class="code-keyword">in</span> seats:
+    <span class="code-keyword">print</span>(line)
+empty = <span class="code-num">0</span>
+<span class="code-keyword">for</span> line <span class="code-keyword">in</span> seats:
+    empty += line.count(<span class="code-num">0</span>)
+<span class="code-keyword">print</span>(<span class="code-str">"남은 좌석:"</span>, empty)</code></pre>
+                    </div>
+                    <div class="result-box">
+                        <b>🔍 코드 톺아보기</b><br>
+                        • <code>seats[row][col]</code>은 특정 좌석 하나를 가리킵니다.<br>
+                        • <code>count(0)</code>을 각 행에 적용해 빈 좌석 수를 누적합니다.
+                    </div>
+
+                    <h1 class="chapter-h1" style="margin-top: 50px;">🚏 [15차시] 체험 부스 대기줄 관리</h1>
+                    <p class="section-desc"><b>핵심 개념 설명:</b> 먼저 신청한 학생이 먼저 입장하는 대기줄을 리스트로 구현합니다. 맨 뒤에 추가하고 맨 앞에서 꺼내는 선입선출(FIFO) 구조를 익힙니다.</p>
+                    <div class="code-block-wrapper">
+                        <div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div>
+                        <pre><code>waiting = [<span class="code-str">"민서"</span>, <span class="code-str">"지우"</span>, <span class="code-str">"하린"</span>]
+waiting.append(<span class="code-str">"도윤"</span>)
+<span class="code-keyword">print</span>(<span class="code-str">"현재 대기:"</span>, waiting)
+<span class="code-keyword">if</span> waiting:
+    entered = waiting.pop(<span class="code-num">0</span>)
+    <span class="code-keyword">print</span>(<span class="code-str">"입장:"</span>, entered)
+<span class="code-keyword">if</span> <span class="code-str">"지우"</span> <span class="code-keyword">in</span> waiting:
+    waiting.remove(<span class="code-str">"지우"</span>)
+<span class="code-keyword">print</span>(<span class="code-str">"변경된 대기:"</span>, waiting)
+<span class="code-keyword">print</span>(<span class="code-str">"대기 인원:"</span>, len(waiting))</code></pre>
+                    </div>
+                    <div class="result-box">
+                        <b>🔍 코드 톺아보기</b><br>
+                        • <code>append()</code>는 목록의 끝에 추가하고 <code>pop(0)</code>은 첫 항목을 꺼냅니다.<br>
+                        • <code>remove()</code>는 해당 이름의 첫 번째 항목을 제거합니다.
+                    </div>
+
+                    <h1 class="chapter-h1" style="margin-top: 50px;">🚶 [16차시] 기간별 방문객 수 변화 분석</h1>
+                    <p class="section-desc"><b>핵심 개념 설명:</b> 연속된 날짜의 방문객 수를 이용해 증가·감소를 분석합니다. 연속된 값의 차이를 새로운 리스트에 저장하면 시계열 데이터의 변화량을 볼 수 있습니다.</p>
+                    <div class="code-block-wrapper">
+                        <div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div>
+                        <pre><code>visitors = [<span class="code-num">120</span>, <span class="code-num">135</span>, <span class="code-num">129</span>, <span class="code-num">160</span>, <span class="code-num">152</span>, <span class="code-num">180</span>]
+changes = []
+<span class="code-keyword">for</span> i <span class="code-keyword">in</span> range(<span class="code-num">1</span>, len(visitors)):
+    changes.append(visitors[i] - visitors[i - <span class="code-num">1</span>])
+<span class="code-keyword">print</span>(<span class="code-str">"일별 증감:"</span>, changes)
+<span class="code-keyword">print</span>(<span class="code-str">"최대 증가:"</span>, max(changes))
+last_three = visitors[-<span class="code-num">3</span>:]
+<span class="code-keyword">print</span>(<span class="code-str">"최근 3일 평균:"</span>, round(sum(last_three) / <span class="code-num">3</span>, <span class="code-num">1</span>))</code></pre>
+                    </div>
+                    <div class="result-box">
+                        <b>🔍 코드 톺아보기</b><br>
+                        • <code>i</code>와 <code>i-1</code>을 이용해 서로 이웃한 날짜를 비교합니다.<br>
+                        • <code>[-3:]</code>은 리스트 뒤에서 세 항목을 잘라냅니다.
+                    </div>
+
+                    <h1 class="chapter-h1" style="margin-top: 50px;">🥇 [17차시] 시험 점수 순위표 만들기</h1>
+                    <p class="section-desc"><b>핵심 개념 설명:</b> 학생 이름과 점수를 함께 관리하고 점수 내림차순으로 정렬합니다. 동점자는 같은 순위를 표시하며 다음 순위는 인원수만큼 건너뜁니다.</p>
+                    <div class="code-block-wrapper">
+                        <div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div>
+                        <pre><code>students = [[<span class="code-str">"민서"</span>, <span class="code-num">88</span>], [<span class="code-str">"지우"</span>, <span class="code-num">95</span>],
+            [<span class="code-str">"서준"</span>, <span class="code-num">88</span>], [<span class="code-str">"하린"</span>, <span class="code-num">95</span>], [<span class="code-str">"도윤"</span>, <span class="code-num">79</span>]]
+ordered = sorted(students, key=<span class="code-keyword">lambda</span> s: (-s[<span class="code-num">1</span>], s[<span class="code-num">0</span>]))
+previous = <span class="code-keyword">None</span>
+rank = <span class="code-num">0</span>
+<span class="code-keyword">for</span> position, (name, score) <span class="code-keyword">in</span> enumerate(ordered, start=<span class="code-num">1</span>):
+    <span class="code-keyword">if</span> score != previous:
+        rank = position
+    <span class="code-keyword">print</span>(rank, <span class="code-str">"위"</span>, name, score)
+    previous = score</code></pre>
+                    </div>
+                    <div class="result-box">
+                        <b>🔍 코드 톺아보기</b><br>
+                        • <code>lambda s: (-s[1], s[0])</code>는 점수는 큰 순서, 이름은 가나다 순서로 정렬합니다.<br>
+                        • 이전 점수와 같으면 순위를 새로 계산하지 않습니다.
+                    </div>
+
+                    <h1 class="chapter-h1" style="margin-top: 50px;">🌫️ [18차시] 주간 미세먼지 이동평균 계산</h1>
+                    <p class="section-desc"><b>핵심 개념 설명:</b> 특정 날짜의 값만 보면 전체 경향을 판단하기 어렵습니다. 연속된 3일씩 값을 묶어 평균을 계산하면 변화를 부드럽게 확인할 수 있습니다.</p>
+                    <div class="code-block-wrapper">
+                        <div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div>
+                        <pre><code>dust = [<span class="code-num">35</span>, <span class="code-num">52</span>, <span class="code-num">48</span>, <span class="code-num">60</span>, <span class="code-num">42</span>, <span class="code-num">38</span>, <span class="code-num">55</span>]
+moving = []
+window = <span class="code-num">3</span>
+<span class="code-keyword">for</span> start <span class="code-keyword">in</span> range(len(dust) - window + <span class="code-num">1</span>):
+    section = dust[start:start + window]
+    average = round(sum(section) / window, <span class="code-num">1</span>)
+    moving.append(average)
+<span class="code-keyword">print</span>(<span class="code-str">"측정값:"</span>, dust)
+<span class="code-keyword">print</span>(<span class="code-str">"3일 이동평균:"</span>, moving)</code></pre>
+                    </div>
+                    <div class="result-box">
+                        <b>🔍 코드 톺아보기</b><br>
+                        • 슬라이싱은 start부터 start+window 직전까지 선택합니다.<br>
+                        • 반복 횟수를 <code>len(dust)-window+1</code>로 설정해야 범위를 넘지 않습니다.
+                    </div>
+
+                    <h1 class="chapter-h1" style="margin-top: 50px;">↩️ [19차시] 실행 취소 기능 만들기</h1>
+                    <p class="section-desc"><b>핵심 개념 설명:</b> 글 편집기의 되돌리기처럼 마지막 작업부터 취소하는 구조를 스택(LIFO)이라 합니다. 현재 작업 상태를 리스트에 차곡차곡 저장합니다.</p>
+                    <div class="code-block-wrapper">
+                        <div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div>
+                        <pre><code>history = []
+text = <span class="code-str">""</span>
+<span class="code-keyword">for</span> word <span class="code-keyword">in</span> [<span class="code-str">"파이썬"</span>, <span class="code-str">" 수업"</span>, <span class="code-str">" 재미있다"</span>]:
+    history.append(text)
+    text += word
+<span class="code-keyword">print</span>(<span class="code-str">"작성한 문장:"</span>, text)
+<span class="code-keyword">if</span> history:
+    text = history.pop()
+<span class="code-keyword">print</span>(<span class="code-str">"한 번 취소:"</span>, text)
+<span class="code-keyword">if</span> history:
+    text = history.pop()
+<span class="code-keyword">print</span>(<span class="code-str">"두 번 취소:"</span>, text)</code></pre>
+                    </div>
+                    <div class="result-box">
+                        <b>🔍 코드 톺아보기</b><br>
+                        • 수정하기 직전의 상태를 <code>history</code>에 보관합니다.<br>
+                        • <code>pop()</code>은 맨 마지막 상태를 꺼내 최근 작업부터 복구합니다.
+                    </div>
+
+                    <h1 class="chapter-h1" style="margin-top: 50px;">📚 [20차시] 도서 대출 현황 종합 분석</h1>
+                    <p class="section-desc"><b>핵심 개념 설명:</b> 책의 제목, 대출 횟수, 대출 가능 여부를 함께 관리합니다. 조건 검색과 누적 계산을 연결해 작은 도서관의 관리 보고서를 완성합니다.</p>
+                    <div class="code-block-wrapper">
+                        <div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div>
+                        <pre><code>books = [[<span class="code-str">"파이썬"</span>, <span class="code-num">7</span>, <span class="code-keyword">True</span>], [<span class="code-str">"AI 입문"</span>, <span class="code-num">4</span>, <span class="code-keyword">False</span>],
+         [<span class="code-str">"자료구조"</span>, <span class="code-num">9</span>, <span class="code-keyword">True</span>], [<span class="code-str">"데이터"</span>, <span class="code-num">6</span>, <span class="code-keyword">True</span>]]
+total = <span class="code-num">0</span>
+available = []
+<span class="code-keyword">for</span> title, count, can_borrow <span class="code-keyword">in</span> books:
+    total += count
+    <span class="code-keyword">if</span> can_borrow:
+        available.append([title, count])
+available.sort(key=<span class="code-keyword">lambda</span> b: b[<span class="code-num">1</span>], reverse=<span class="code-keyword">True</span>)
+<span class="code-keyword">print</span>(<span class="code-str">"전체 대출 횟수:"</span>, total)
+<span class="code-keyword">print</span>(<span class="code-str">"대출 가능한 도서 순위:"</span>)
+<span class="code-keyword">for</span> title, count <span class="code-keyword">in</span> available:
+    <span class="code-keyword">print</span>(title, count, <span class="code-str">"회"</span>)</code></pre>
+                    </div>
+                    <div class="result-box">
+                        <b>🔍 코드 톺아보기</b><br>
+                        • 불리언 True/False로 도서 대출 가능 여부를 나타냅니다.<br>
+                        • <code>sort(..., reverse=True)</code>로 대출 횟수를 내림차순 정렬합니다.
+                    </div>
+
                 `
             },
 
@@ -1157,6 +1370,254 @@ generate_report(target_brand, collected_data)</code></pre>
                         • <code>generate_report</code> : 마치 오케스트라의 지휘자처럼 부품 함수들을 호출해 결과를 취합하고 최종 화면 출력을 관장합니다.<br>
                         • <b>메인 실행부의 간결함</b> : 데이터를 모아서 지휘자 함수 하나만 호출하면 모든 과정이 깔끔하게 처리되는 모듈화의 장점을 극대화했습니다.
                     </div>
+                    <h1 class="chapter-h1" style="margin-top: 50px;">🎁 [11차시] 한 함수에서 여러 결과 반환하기</h1>
+                    <p class="section-desc"><b>핵심 개념 설명:</b> 함수가 평균·최고·최저 점수를 한 번에 돌려주면 같은 데이터를 여러 차례 계산할 필요가 없습니다. 반환값을 여러 변수에 나누어 저장합니다.</p>
+                    <div class="code-block-wrapper">
+                        <div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div>
+                        <pre><code><span class="code-keyword">def</span> <span class="code-def">summarize</span>(scores):
+    <span class="code-keyword">if</span> <span class="code-keyword">not</span> scores:
+        <span class="code-keyword">return</span> <span class="code-keyword">None</span>
+    average = round(sum(scores) / len(scores), <span class="code-num">1</span>)
+    <span class="code-keyword">return</span> average, max(scores), min(scores)
+scores = [<span class="code-num">82</span>, <span class="code-num">95</span>, <span class="code-num">76</span>, <span class="code-num">91</span>]
+result = summarize(scores)
+<span class="code-keyword">if</span> result is <span class="code-keyword">not</span> <span class="code-keyword">None</span>:
+    avg, high, low = result
+    <span class="code-keyword">print</span>(<span class="code-str">f"평균:{avg}"</span>)
+    <span class="code-keyword">print</span>(<span class="code-str">f"최고:{high}, 최저:{low}"</span>)</code></pre>
+                    </div>
+                    <div class="result-box">
+                        <b>🔍 코드 톺아보기</b><br>
+                        • <code>return avg, high, low</code>는 세 값을 하나의 튜플로 돌려줍니다.<br>
+                        • 입력이 비어 있을 경우 <code>None</code>을 반환해 계산할 수 없는 상태를 구분합니다.
+                    </div>
+
+                    <h1 class="chapter-h1" style="margin-top: 50px;">💳 [12차시] 할인 정책을 선택하는 계산 함수</h1>
+                    <p class="section-desc"><b>핵심 개념 설명:</b> 상품 할인 규칙이 다를 때 함수를 여러 개 만들지 않고 매개변수로 할인율과 배송비를 받습니다. 기본값을 주면 간단한 호출도 가능합니다.</p>
+                    <div class="code-block-wrapper">
+                        <div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div>
+                        <pre><code><span class="code-keyword">def</span> <span class="code-def">payment</span>(price, rate=<span class="code-num">0.1</span>, shipping=<span class="code-num">2500</span>):
+    <span class="code-keyword">if</span> price &lt; <span class="code-num">0</span> <span class="code-keyword">or</span> <span class="code-keyword">not</span> <span class="code-num">0</span> &lt;= rate &lt;= <span class="code-num">1</span>:
+        <span class="code-keyword">return</span> <span class="code-keyword">None</span>
+    discounted = int(price * (<span class="code-num">1</span> - rate))
+    <span class="code-keyword">return</span> discounted + shipping
+<span class="code-keyword">print</span>(<span class="code-str">"일반 주문:"</span>, payment(<span class="code-num">20000</span>))
+<span class="code-keyword">print</span>(<span class="code-str">"회원 주문:"</span>, payment(<span class="code-num">20000</span>, rate=<span class="code-num">0.2</span>))
+<span class="code-keyword">print</span>(<span class="code-str">"무료 배송:"</span>, payment(<span class="code-num">20000</span>, shipping=<span class="code-num">0</span>))</code></pre>
+                    </div>
+                    <div class="result-box">
+                        <b>🔍 코드 톺아보기</b><br>
+                        • <code>rate=0.1</code>은 인수를 생략하면 10% 할인한다는 뜻입니다.<br>
+                        • 키워드 인수는 호출할 때 어떤 값을 바꾸는지 드러냅니다.
+                    </div>
+
+                    <h1 class="chapter-h1" style="margin-top: 50px;">🚪 [13차시] 조기 반환으로 오류 예방하기</h1>
+                    <p class="section-desc"><b>핵심 개념 설명:</b> 잘못된 입력을 함수 맨 앞에서 검사하고 즉시 반환하면 if문의 중첩을 줄일 수 있습니다. 대여 시간에 따라 요금을 계산하는 함수를 만들어 봅니다.</p>
+                    <div class="code-block-wrapper">
+                        <div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div>
+                        <pre><code><span class="code-keyword">def</span> <span class="code-def">rental_fee</span>(minutes):
+    <span class="code-keyword">if</span> minutes &lt;= <span class="code-num">0</span>:
+        <span class="code-keyword">return</span> <span class="code-str">"시간 오류"</span>
+    <span class="code-keyword">if</span> minutes &gt; <span class="code-num">300</span>:
+        <span class="code-keyword">return</span> <span class="code-str">"최대 대여 시간 초과"</span>
+    fee = <span class="code-num">1000</span>
+    <span class="code-keyword">if</span> minutes &gt; <span class="code-num">30</span>:
+        extra = minutes - <span class="code-num">30</span>
+        fee += ((extra + <span class="code-num">9</span>) // <span class="code-num">10</span>) * <span class="code-num">300</span>
+    <span class="code-keyword">return</span> fee
+<span class="code-keyword">for</span> value <span class="code-keyword">in</span> [<span class="code-num">20</span>, <span class="code-num">55</span>, <span class="code-num">0</span>, <span class="code-num">320</span>]:
+    <span class="code-keyword">print</span>(value, <span class="code-str">"분:"</span>, rental_fee(value))</code></pre>
+                    </div>
+                    <div class="result-box">
+                        <b>🔍 코드 톺아보기</b><br>
+                        • 문제가 있는 입력은 계산하지 않고 바로 반환합니다.<br>
+                        • <code>(extra+9)//10</code>은 10분 단위 올림 계산을 구현합니다.
+                    </div>
+
+                    <h1 class="chapter-h1" style="margin-top: 50px;">🚰 [14차시] 전처리 함수와 평균 함수를 연결하기</h1>
+                    <p class="section-desc"><b>핵심 개념 설명:</b> 데이터 정제와 평균 계산은 서로 다른 일입니다. 역할이 분명한 두 함수로 나누면 다른 자료에서도 반복해 활용할 수 있습니다.</p>
+                    <div class="code-block-wrapper">
+                        <div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div>
+                        <pre><code><span class="code-keyword">def</span> <span class="code-def">clean</span>(values, low=<span class="code-num">0</span>, high=<span class="code-num">100</span>):
+    result = []
+    <span class="code-keyword">for</span> value <span class="code-keyword">in</span> values:
+        <span class="code-keyword">if</span> value is <span class="code-keyword">not</span> <span class="code-keyword">None</span> <span class="code-keyword">and</span> low &lt;= value &lt;= high:
+            result.append(value)
+    <span class="code-keyword">return</span> result
+
+<span class="code-keyword">def</span> <span class="code-def">average</span>(values):
+    <span class="code-keyword">if</span> <span class="code-keyword">not</span> values:
+        <span class="code-keyword">return</span> <span class="code-keyword">None</span>
+    <span class="code-keyword">return</span> round(sum(values) / len(values), <span class="code-num">1</span>)
+
+raw = [<span class="code-num">80</span>, <span class="code-keyword">None</span>, <span class="code-num">92</span>, <span class="code-num">130</span>, <span class="code-num">75</span>, -<span class="code-num">3</span>, <span class="code-num">88</span>]
+valid = clean(raw)
+<span class="code-keyword">print</span>(<span class="code-str">"원본:"</span>, raw)
+<span class="code-keyword">print</span>(<span class="code-str">"정제:"</span>, valid)
+<span class="code-keyword">print</span>(<span class="code-str">"정제 평균:"</span>, average(valid))</code></pre>
+                    </div>
+                    <div class="result-box">
+                        <b>🔍 코드 톺아보기</b><br>
+                        • <code>clean()</code>은 원본을 수정하지 않고 새 리스트를 반환합니다.<br>
+                        • <code>average()</code>는 유효한 값이 하나도 없는 경우 <code>None</code>을 반환합니다.
+                    </div>
+
+                    <h1 class="chapter-h1" style="margin-top: 50px;">🎤 [15차시] 동아리 신청 인원을 분석하는 함수</h1>
+                    <p class="section-desc"><b>핵심 개념 설명:</b> 실생활 문제는 기능별 함수를 나누어 작성하면 테스트하기 쉽습니다. 신청자 검색과 대기 인원 집계를 각각의 함수로 구현합니다.</p>
+                    <div class="code-block-wrapper">
+                        <div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div>
+                        <pre><code><span class="code-keyword">def</span> <span class="code-def">has_member</span>(members, name):
+    <span class="code-keyword">return</span> name <span class="code-keyword">in</span> members
+
+<span class="code-keyword">def</span> <span class="code-def">can_join</span>(members, capacity):
+    <span class="code-keyword">return</span> len(members) &lt; capacity
+
+<span class="code-keyword">def</span> <span class="code-def">add_member</span>(members, name, capacity):
+    <span class="code-keyword">if</span> has_member(members, name):
+        <span class="code-keyword">return</span> <span class="code-keyword">False</span>
+    <span class="code-keyword">if</span> <span class="code-keyword">not</span> can_join(members, capacity):
+        <span class="code-keyword">return</span> <span class="code-keyword">False</span>
+    members.append(name)
+    <span class="code-keyword">return</span> <span class="code-keyword">True</span>
+
+members = [<span class="code-str">"민서"</span>, <span class="code-str">"지우"</span>]
+<span class="code-keyword">print</span>(<span class="code-str">"하린 신청:"</span>, add_member(members, <span class="code-str">"하린"</span>, <span class="code-num">3</span>))
+<span class="code-keyword">print</span>(<span class="code-str">"서준 신청:"</span>, add_member(members, <span class="code-str">"서준"</span>, <span class="code-num">3</span>))
+<span class="code-keyword">print</span>(<span class="code-str">"현재 명단:"</span>, members)</code></pre>
+                    </div>
+                    <div class="result-box">
+                        <b>🔍 코드 톺아보기</b><br>
+                        • 각 함수는 이름 검사, 정원 검사, 실제 등록을 분담합니다.<br>
+                        • <code>add_member()</code>는 성공 여부를 불리언으로 반환합니다.
+                    </div>
+
+                    <h1 class="chapter-h1" style="margin-top: 50px;">🧰 [16차시] 필요한 만큼 인수를 받는 합산 함수</h1>
+                    <p class="section-desc"><b>핵심 개념 설명:</b> 평가 항목 수가 고정되지 않았다면 *args로 전달된 모든 점수를 받을 수 있습니다. 함수 내부에서 args는 튜플처럼 다루며 합계와 평균을 계산합니다.</p>
+                    <div class="code-block-wrapper">
+                        <div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div>
+                        <pre><code><span class="code-keyword">def</span> <span class="code-def">project_score</span>(*scores, bonus=<span class="code-num">0</span>):
+    <span class="code-keyword">if</span> <span class="code-keyword">not</span> scores:
+        <span class="code-keyword">return</span> <span class="code-num">0</span>, <span class="code-num">0</span>
+    total = sum(scores) + bonus
+    average = round(total / len(scores), <span class="code-num">1</span>)
+    <span class="code-keyword">return</span> total, average
+
+<span class="code-keyword">print</span>(<span class="code-str">"세 항목:"</span>, project_score(<span class="code-num">20</span>, <span class="code-num">25</span>, <span class="code-num">30</span>))
+<span class="code-keyword">print</span>(<span class="code-str">"네 항목+가산:"</span>, project_score(<span class="code-num">15</span>, <span class="code-num">20</span>, <span class="code-num">25</span>, <span class="code-num">30</span>, bonus=<span class="code-num">5</span>))
+<span class="code-keyword">print</span>(<span class="code-str">"미입력:"</span>, project_score())</code></pre>
+                    </div>
+                    <div class="result-box">
+                        <b>🔍 코드 톺아보기</b><br>
+                        • <code>*scores</code>는 인수 개수를 정하지 않고 점수를 전달받습니다.<br>
+                        • <code>bonus</code>는 키워드 전용 인수로 가산점을 별도로 처리합니다.
+                    </div>
+
+                    <h1 class="chapter-h1" style="margin-top: 50px;">📑 [17차시] 설문조사 결과를 딕셔너리로 반환하기</h1>
+                    <p class="section-desc"><b>핵심 개념 설명:</b> 반환 결과가 많을 때는 딕셔너리로 묶어 각 값의 의미를 이름으로 나타낼 수 있습니다. 1~5점 설문 응답을 요약해 하나의 보고서를 만듭니다.</p>
+                    <div class="code-block-wrapper">
+                        <div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div>
+                        <pre><code><span class="code-keyword">def</span> <span class="code-def">survey_report</span>(values):
+    valid = [x <span class="code-keyword">for</span> x <span class="code-keyword">in</span> values <span class="code-keyword">if</span> <span class="code-num">1</span> &lt;= x &lt;= <span class="code-num">5</span>]
+    <span class="code-keyword">if</span> <span class="code-keyword">not</span> valid:
+        <span class="code-keyword">return</span> {<span class="code-str">"count"</span>: <span class="code-num">0</span>, <span class="code-str">"average"</span>: <span class="code-keyword">None</span>, <span class="code-str">"top"</span>: <span class="code-num">0</span>}
+    <span class="code-keyword">return</span> {<span class="code-str">"count"</span>: len(valid),
+            <span class="code-str">"average"</span>: round(sum(valid) / len(valid), <span class="code-num">1</span>),
+            <span class="code-str">"top"</span>: valid.count(<span class="code-num">5</span>)}
+scores = [<span class="code-num">5</span>, <span class="code-num">4</span>, <span class="code-num">5</span>, <span class="code-num">3</span>, <span class="code-num">7</span>, <span class="code-num">1</span>, <span class="code-num">0</span>, <span class="code-num">4</span>]
+report = survey_report(scores)
+<span class="code-keyword">print</span>(<span class="code-str">"응답 수:"</span>, report[<span class="code-str">"count"</span>])
+<span class="code-keyword">print</span>(<span class="code-str">"평균 만족도:"</span>, report[<span class="code-str">"average"</span>])
+<span class="code-keyword">print</span>(<span class="code-str">"5점 응답 수:"</span>, report[<span class="code-str">"top"</span>])</code></pre>
+                    </div>
+                    <div class="result-box">
+                        <b>🔍 코드 톺아보기</b><br>
+                        • 딕셔너리를 반환하면 <code>report["average"]</code>처럼 키로 결과를 얻습니다.<br>
+                        • 1~5점 범위 밖의 응답 7, 0은 분석에서 제외합니다.
+                    </div>
+
+                    <h1 class="chapter-h1" style="margin-top: 50px;">🔬 [18차시] 함수의 입력과 출력 시험하기</h1>
+                    <p class="section-desc"><b>핵심 개념 설명:</b> 함수는 정답이 분명한 작은 데이터로 먼저 검증합니다. assert를 사용하면 계산 결과가 예상과 다른 경우 즉시 오류를 발견할 수 있습니다.</p>
+                    <div class="code-block-wrapper">
+                        <div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div>
+                        <pre><code><span class="code-keyword">def</span> <span class="code-def">count_pass</span>(scores, limit=<span class="code-num">80</span>):
+    result = <span class="code-num">0</span>
+    <span class="code-keyword">for</span> score <span class="code-keyword">in</span> scores:
+        <span class="code-keyword">if</span> score &gt;= limit:
+            result += <span class="code-num">1</span>
+    <span class="code-keyword">return</span> result
+assert count_pass([<span class="code-num">50</span>, <span class="code-num">80</span>, <span class="code-num">90</span>]) == <span class="code-num">2</span>
+assert count_pass([<span class="code-num">30</span>, <span class="code-num">40</span>]) == <span class="code-num">0</span>
+assert count_pass([], <span class="code-num">70</span>) == <span class="code-num">0</span>
+<span class="code-keyword">print</span>(<span class="code-str">"기본 테스트 통과"</span>)
+scores = [<span class="code-num">65</span>, <span class="code-num">75</span>, <span class="code-num">85</span>, <span class="code-num">95</span>]
+<span class="code-keyword">print</span>(<span class="code-str">"합격 인원:"</span>, count_pass(scores, <span class="code-num">80</span>))</code></pre>
+                    </div>
+                    <div class="result-box">
+                        <b>🔍 코드 톺아보기</b><br>
+                        • <code>assert</code>는 조건이 거짓일 때 <code>AssertionError</code>를 발생시킵니다.<br>
+                        • 일반 데이터와 빈 리스트를 모두 검사하면 함수의 안정성을 높일 수 있습니다.
+                    </div>
+
+                    <h1 class="chapter-h1" style="margin-top: 50px;">🧱 [19차시] 두 함수를 연결한 자료 분석</h1>
+                    <p class="section-desc"><b>핵심 개념 설명:</b> 복잡한 코드를 한 함수에 몰아넣지 않고 점수 정제, 등급 판정, 보고서 생성 기능으로 나눕니다. 한 함수의 반환값을 다른 함수의 인수로 넘깁니다.</p>
+                    <div class="code-block-wrapper">
+                        <div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div>
+                        <pre><code><span class="code-keyword">def</span> <span class="code-def">valid_scores</span>(scores):
+    <span class="code-keyword">return</span> [x <span class="code-keyword">for</span> x <span class="code-keyword">in</span> scores <span class="code-keyword">if</span> <span class="code-num">0</span> &lt;= x &lt;= <span class="code-num">100</span>]
+
+<span class="code-keyword">def</span> <span class="code-def">get_grade</span>(score):
+    <span class="code-keyword">if</span> score &gt;= <span class="code-num">90</span>:
+        <span class="code-keyword">return</span> <span class="code-str">"A"</span>
+    <span class="code-keyword">if</span> score &gt;= <span class="code-num">80</span>:
+        <span class="code-keyword">return</span> <span class="code-str">"B"</span>
+    <span class="code-keyword">return</span> <span class="code-str">"C"</span>
+
+<span class="code-keyword">def</span> <span class="code-def">make_report</span>(scores):
+    cleaned = valid_scores(scores)
+    <span class="code-keyword">if</span> <span class="code-keyword">not</span> cleaned:
+        <span class="code-keyword">return</span> <span class="code-str">"분석할 점수 없음"</span>
+    avg = sum(cleaned) / len(cleaned)
+    <span class="code-keyword">return</span> <span class="code-str">f"평균 {avg:.1f}점 / 등급 {get_grade(avg)}"</span>
+
+<span class="code-keyword">print</span>(make_report([<span class="code-num">70</span>, <span class="code-num">90</span>, <span class="code-num">105</span>, <span class="code-num">85</span>]))</code></pre>
+                    </div>
+                    <div class="result-box">
+                        <b>🔍 코드 톺아보기</b><br>
+                        • 정제 규칙, 등급 규칙, 보고서 출력을 서로 분리합니다.<br>
+                        • <code>f"{avg:.1f}"</code>는 소수점 첫째 자리까지 표시합니다.
+                    </div>
+
+                    <h1 class="chapter-h1" style="margin-top: 50px;">🎪 [20차시] 학교 축제 예산 관리 프로그램</h1>
+                    <p class="section-desc"><b>핵심 개념 설명:</b> 예산에서 지출을 빼고 남은 금액을 계산하는 작은 프로그램을 만듭니다. 지출 검사·합계 계산·상태 판정을 함수로 나누어 처리합니다.</p>
+                    <div class="code-block-wrapper">
+                        <div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div>
+                        <pre><code><span class="code-keyword">def</span> <span class="code-def">valid_expenses</span>(expenses):
+    <span class="code-keyword">return</span> [x <span class="code-keyword">for</span> x <span class="code-keyword">in</span> expenses <span class="code-keyword">if</span> x &gt;= <span class="code-num">0</span>]
+
+<span class="code-keyword">def</span> <span class="code-def">remaining</span>(budget, expenses):
+    <span class="code-keyword">if</span> budget &lt; <span class="code-num">0</span>:
+        <span class="code-keyword">return</span> <span class="code-keyword">None</span>
+    <span class="code-keyword">return</span> budget - sum(valid_expenses(expenses))
+
+<span class="code-keyword">def</span> <span class="code-def">budget_status</span>(left):
+    <span class="code-keyword">if</span> left is <span class="code-keyword">None</span>:
+        <span class="code-keyword">return</span> <span class="code-str">"예산 오류"</span>
+    <span class="code-keyword">if</span> left &lt; <span class="code-num">0</span>:
+        <span class="code-keyword">return</span> <span class="code-str">"예산 초과"</span>
+    <span class="code-keyword">return</span> <span class="code-str">"예산 내 집행"</span>
+
+budget = <span class="code-num">50000</span>
+expenses = [<span class="code-num">12000</span>, <span class="code-num">18000</span>, -<span class="code-num">500</span>, <span class="code-num">15000</span>]
+left = remaining(budget, expenses)
+<span class="code-keyword">print</span>(<span class="code-str">"남은 예산:"</span>, left)
+<span class="code-keyword">print</span>(<span class="code-str">"판정:"</span>, budget_status(left))</code></pre>
+                    </div>
+                    <div class="result-box">
+                        <b>🔍 코드 톺아보기</b><br>
+                        • 잘못된 지출(음수)은 합계에서 제외합니다.<br>
+                        • 값을 계산하는 함수와 상태를 판정하는 함수를 분리합니다.
+                    </div>
+
                 `
             },
 
@@ -1331,6 +1792,221 @@ districts[<span class="code-str">"한솔동"</span>][<span class="code-str">"pop
                         • <b>안쪽 값 수정</b> : 한솔동의 인구만 18500으로 바꿉니다. 보람동의 자료에는 영향을 주지 않습니다.<br>
                         • <b>밀도 계산</b> : 면적이 양수라는 가정에서 인구를 면적으로 나눕니다. 이 자료는 수업용 가상 자료이며 실제 지역 통계가 아닙니다.
                     </div>
+                    <h1 class="chapter-h1" style="margin-top: 50px;">🎓 [8차시] 학생 성적표에서 조건 검색</h1>
+                    <p class="section-desc"><b>핵심 개념 설명:</b> 이름을 키, 점수를 값으로 저장하면 학생별 성적을 쉽게 조회할 수 있습니다. 모든 항목을 순회하며 조건에 맞는 학생을 추출합니다.</p>
+                    <div class="code-block-wrapper">
+                        <div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div>
+                        <pre><code>scores = {<span class="code-str">"민서"</span>: <span class="code-num">88</span>, <span class="code-str">"지우"</span>: <span class="code-num">95</span>, <span class="code-str">"하린"</span>: <span class="code-num">74</span>, <span class="code-str">"도윤"</span>: <span class="code-num">82</span>}
+passed = {}
+<span class="code-keyword">for</span> name, score <span class="code-keyword">in</span> scores.items():
+    <span class="code-keyword">if</span> score &gt;= <span class="code-num">80</span>:
+        passed[name] = score
+<span class="code-keyword">print</span>(<span class="code-str">"80점 이상:"</span>, passed)
+<span class="code-keyword">print</span>(<span class="code-str">"응시자:"</span>, len(scores))
+<span class="code-keyword">print</span>(<span class="code-str">"평균:"</span>, round(sum(scores.values()) / len(scores), <span class="code-num">1</span>))</code></pre>
+                    </div>
+                    <div class="result-box">
+                        <b>🔍 코드 톺아보기</b><br>
+                        • <code>items()</code>로 (키, 값)을 동시에 받을 수 있습니다.<br>
+                        • 새 딕셔너리에 조건을 만족하는 항목만 추가합니다.
+                    </div>
+
+                    <h1 class="chapter-h1" style="margin-top: 50px;">🍱 [9차시] 인기 급식 메뉴 투표 집계</h1>
+                    <p class="section-desc"><b>핵심 개념 설명:</b> 설문 응답이 반복될 때 메뉴별 횟수를 하나씩 세는 집계가 필요합니다. <code>get(키, 0)</code>을 사용하면 처음 등장하는 메뉴도 쉽게 셀 수 있습니다.</p>
+                    <div class="code-block-wrapper">
+                        <div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div>
+                        <pre><code>votes = [<span class="code-str">"돈가스"</span>, <span class="code-str">"비빔밥"</span>, <span class="code-str">"돈가스"</span>, <span class="code-str">"카레"</span>, <span class="code-str">"돈가스"</span>, <span class="code-str">"카레"</span>]
+counts = {}
+<span class="code-keyword">for</span> menu <span class="code-keyword">in</span> votes:
+    counts[menu] = counts.get(menu, <span class="code-num">0</span>) + <span class="code-num">1</span>
+<span class="code-keyword">print</span>(<span class="code-str">"득표 결과:"</span>, counts)
+winner = max(counts, key=counts.get)
+<span class="code-keyword">print</span>(<span class="code-str">"최다 득표:"</span>, winner, counts[winner], <span class="code-str">"표"</span>)</code></pre>
+                    </div>
+                    <div class="result-box">
+                        <b>🔍 코드 톺아보기</b><br>
+                        • <code>get(menu, 0)</code>은 메뉴가 처음 등장할 때 0에서 시작하도록 해 줍니다.<br>
+                        • <code>max(counts, key=counts.get)</code>는 득표 수를 기준으로 키를 선택합니다.
+                    </div>
+
+                    <h1 class="chapter-h1" style="margin-top: 50px;">🏪 [10차시] 매점 재고 수량 업데이트</h1>
+                    <p class="section-desc"><b>핵심 개념 설명:</b> 상품별 재고를 딕셔너리에 저장합니다. 판매를 요청하면 재고가 충분한지 확인한 뒤 차감하고 남은 수량을 출력합니다.</p>
+                    <div class="code-block-wrapper">
+                        <div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div>
+                        <pre><code>stock = {<span class="code-str">"연필"</span>: <span class="code-num">12</span>, <span class="code-str">"공책"</span>: <span class="code-num">5</span>, <span class="code-str">"지우개"</span>: <span class="code-num">8</span>}
+order = {<span class="code-str">"연필"</span>: <span class="code-num">4</span>, <span class="code-str">"공책"</span>: <span class="code-num">6</span>}
+<span class="code-keyword">for</span> name, amount <span class="code-keyword">in</span> order.items():
+    <span class="code-keyword">if</span> name <span class="code-keyword">not</span> <span class="code-keyword">in</span> stock:
+        <span class="code-keyword">print</span>(name, <span class="code-str">"없는 상품"</span>)
+    <span class="code-keyword">elif</span> stock[name] &lt; amount:
+        <span class="code-keyword">print</span>(name, <span class="code-str">"재고 부족"</span>)
+    <span class="code-keyword">else</span>:
+        stock[name] -= amount
+        <span class="code-keyword">print</span>(name, <span class="code-str">"판매 완료"</span>)
+<span class="code-keyword">print</span>(<span class="code-str">"남은 재고:"</span>, stock)</code></pre>
+                    </div>
+                    <div class="result-box">
+                        <b>🔍 코드 톺아보기</b><br>
+                        • 상품명(키)으로 재고 수량(값)을 조회하고 수정합니다.<br>
+                        • 재고 부족인 상품은 수량을 차감하지 않습니다.
+                    </div>
+
+                    <h1 class="chapter-h1" style="margin-top: 50px;">🪪 [11차시] 학생 정보 카드 만들기</h1>
+                    <p class="section-desc"><b>핵심 개념 설명:</b> 학생 한 명의 학년·반·점수를 다시 딕셔너리로 묶어 관리합니다. 바깥쪽 키로 학생을 고르고 안쪽 키로 세부 정보를 조회합니다.</p>
+                    <div class="code-block-wrapper">
+                        <div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div>
+                        <pre><code>students = {
+    <span class="code-str">"민서"</span>: {<span class="code-str">"class"</span>: <span class="code-num">1</span>, <span class="code-str">"math"</span>: <span class="code-num">88</span>, <span class="code-str">"python"</span>: <span class="code-num">95</span>},
+    <span class="code-str">"지우"</span>: {<span class="code-str">"class"</span>: <span class="code-num">2</span>, <span class="code-str">"math"</span>: <span class="code-num">75</span>, <span class="code-str">"python"</span>: <span class="code-num">90</span>},
+    <span class="code-str">"하린"</span>: {<span class="code-str">"class"</span>: <span class="code-num">1</span>, <span class="code-str">"math"</span>: <span class="code-num">94</span>, <span class="code-str">"python"</span>: <span class="code-num">82</span>}
+}
+<span class="code-keyword">for</span> name, info <span class="code-keyword">in</span> students.items():
+    avg = (info[<span class="code-str">"math"</span>] + info[<span class="code-str">"python"</span>]) / <span class="code-num">2</span>
+    <span class="code-keyword">if</span> avg &gt;= <span class="code-num">85</span>:
+        <span class="code-keyword">print</span>(name, <span class="code-str">"우수"</span>, round(avg, <span class="code-num">1</span>))
+students[<span class="code-str">"지우"</span>][<span class="code-str">"python"</span>] = <span class="code-num">96</span>
+<span class="code-keyword">print</span>(<span class="code-str">"수정된 지우 정보:"</span>, students[<span class="code-str">"지우"</span>])</code></pre>
+                    </div>
+                    <div class="result-box">
+                        <b>🔍 코드 톺아보기</b><br>
+                        • <code>students["지우"]["python"]</code>으로 중첩된 값을 수정합니다.<br>
+                        • <code>info</code>는 각 학생의 세부 정보를 담은 딕셔너리입니다.
+                    </div>
+
+                    <h1 class="chapter-h1" style="margin-top: 50px;">💰 [12차시] 교내 행사 참가비 매출 분석</h1>
+                    <p class="section-desc"><b>핵심 개념 설명:</b> 개별 참가 신청 내역을 순회하며 행사 종류별 수입을 합산합니다. 새로운 행사명이 나타날 때마다 합계 딕셔너리를 자동으로 만듭니다.</p>
+                    <div class="code-block-wrapper">
+                        <div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div>
+                        <pre><code>records = [(<span class="code-str">"코딩"</span>, <span class="code-num">5000</span>), (<span class="code-str">"로봇"</span>, <span class="code-num">7000</span>), (<span class="code-str">"코딩"</span>, <span class="code-num">5000</span>),
+           (<span class="code-str">"드론"</span>, <span class="code-num">6000</span>), (<span class="code-str">"로봇"</span>, <span class="code-num">7000</span>)]
+totals = {}
+<span class="code-keyword">for</span> event, fee <span class="code-keyword">in</span> records:
+    totals[event] = totals.get(event, <span class="code-num">0</span>) + fee
+<span class="code-keyword">print</span>(<span class="code-str">"행사별 수입:"</span>, totals)
+<span class="code-keyword">print</span>(<span class="code-str">"전체 수입:"</span>, sum(totals.values()))
+<span class="code-keyword">for</span> event, total <span class="code-keyword">in</span> totals.items():
+    <span class="code-keyword">if</span> total &gt;= <span class="code-num">10000</span>:
+        <span class="code-keyword">print</span>(<span class="code-str">"인기 행사:"</span>, event)</code></pre>
+                    </div>
+                    <div class="result-box">
+                        <b>🔍 코드 톺아보기</b><br>
+                        • 각 신청 기록은 (행사명, 참가비) 형태의 튜플입니다.<br>
+                        • <code>get()</code>을 활용하면 새로운 행사도 기존 행사도 한 줄로 누적됩니다.
+                    </div>
+
+                    <h1 class="chapter-h1" style="margin-top: 50px;">🤝 [13차시] 두 지역의 시설 정보 합치기</h1>
+                    <p class="section-desc"><b>핵심 개념 설명:</b> 지역별 수집한 시설 개수를 한 딕셔너리로 합칠 때 이름이 같은 시설은 수량을 더해야 합니다. <code>update()</code>만 사용하면 기존 값이 덮어써진다는 점을 비교합니다.</p>
+                    <div class="code-block-wrapper">
+                        <div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div>
+                        <pre><code>area_a = {<span class="code-str">"도서관"</span>: <span class="code-num">2</span>, <span class="code-str">"공원"</span>: <span class="code-num">3</span>, <span class="code-str">"체육관"</span>: <span class="code-num">1</span>}
+area_b = {<span class="code-str">"도서관"</span>: <span class="code-num">1</span>, <span class="code-str">"공원"</span>: <span class="code-num">2</span>, <span class="code-str">"수영장"</span>: <span class="code-num">1</span>}
+total = area_a.copy()
+<span class="code-keyword">for</span> name, count <span class="code-keyword">in</span> area_b.items():
+    total[name] = total.get(name, <span class="code-num">0</span>) + count
+<span class="code-keyword">print</span>(<span class="code-str">"합산 시설:"</span>, total)
+<span class="code-keyword">print</span>(<span class="code-str">"시설 종류:"</span>, len(total))
+<span class="code-keyword">print</span>(<span class="code-str">"시설 총수:"</span>, sum(total.values()))</code></pre>
+                    </div>
+                    <div class="result-box">
+                        <b>🔍 코드 톺아보기</b><br>
+                        • <code>copy()</code>를 사용하므로 <code>area_a</code> 원본은 수정되지 않습니다.<br>
+                        • 같은 키는 개수를 더하고 새로운 키는 자동으로 생성합니다.
+                    </div>
+
+                    <h1 class="chapter-h1" style="margin-top: 50px;">🎸 [14차시] 동아리 신청 중복과 정원 관리</h1>
+                    <p class="section-desc"><b>핵심 개념 설명:</b> 학번을 키로 관리하면 같은 학번의 중복 신청을 쉽게 검사할 수 있습니다. 정원이 초과되지 않도록 확인하고 신청 취소도 처리합니다.</p>
+                    <div class="code-block-wrapper">
+                        <div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div>
+                        <pre><code>members = {<span class="code-num">101</span>: <span class="code-str">"민서"</span>, <span class="code-num">102</span>: <span class="code-str">"지우"</span>}
+capacity = <span class="code-num">3</span>
+number, name = <span class="code-num">103</span>, <span class="code-str">"하린"</span>
+<span class="code-keyword">if</span> number <span class="code-keyword">in</span> members:
+    <span class="code-keyword">print</span>(<span class="code-str">"중복 신청"</span>)
+<span class="code-keyword">elif</span> len(members) &gt;= capacity:
+    <span class="code-keyword">print</span>(<span class="code-str">"정원 마감"</span>)
+<span class="code-keyword">else</span>:
+    members[number] = name
+    <span class="code-keyword">print</span>(<span class="code-str">"신청 완료"</span>)
+cancel = <span class="code-num">102</span>
+removed = members.pop(cancel, <span class="code-keyword">None</span>)
+<span class="code-keyword">print</span>(<span class="code-str">"취소 처리:"</span>, removed)
+<span class="code-keyword">print</span>(<span class="code-str">"최종 명단:"</span>, members)</code></pre>
+                    </div>
+                    <div class="result-box">
+                        <b>🔍 코드 톺아보기</b><br>
+                        • <code>number in members</code>는 학번(키)의 중복 여부를 확인합니다.<br>
+                        • <code>pop(cancel, None)</code>은 없는 학번을 취소해도 오류를 내지 않습니다.
+                    </div>
+
+                    <h1 class="chapter-h1" style="margin-top: 50px;">🛍️ [15차시] 상품 가격표에서 조건별 추천</h1>
+                    <p class="section-desc"><b>핵심 개념 설명:</b> 딕셔너리에 제품 가격을 저장하고 예산 안에서 살 수 있는 제품만 뽑아 가격순으로 정렬합니다. 출력 결과는 (제품명, 가격) 목록입니다.</p>
+                    <div class="code-block-wrapper">
+                        <div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div>
+                        <pre><code>prices = {<span class="code-str">"마우스"</span>: <span class="code-num">15000</span>, <span class="code-str">"키보드"</span>: <span class="code-num">32000</span>,
+          <span class="code-str">"USB"</span>: <span class="code-num">12000</span>, <span class="code-str">"헤드셋"</span>: <span class="code-num">27000</span>}
+budget = <span class="code-num">30000</span>
+choices = []
+<span class="code-keyword">for</span> name, price <span class="code-keyword">in</span> prices.items():
+    <span class="code-keyword">if</span> price &lt;= budget:
+        choices.append((name, price))
+choices.sort(key=<span class="code-keyword">lambda</span> x: x[<span class="code-num">1</span>])
+<span class="code-keyword">print</span>(<span class="code-str">"예산 내 상품:"</span>)
+<span class="code-keyword">for</span> name, price <span class="code-keyword">in</span> choices:
+    <span class="code-keyword">print</span>(name, <span class="code-str">f"{price:,}원"</span>)</code></pre>
+                    </div>
+                    <div class="result-box">
+                        <b>🔍 코드 톺아보기</b><br>
+                        • <code>items()</code>로 이름·가격을 한 번에 받아 조건에 따라 목록을 만듭니다.<br>
+                        • <code>key=lambda x: x[1]</code>은 가격 기준 오름차순 정렬을 뜻합니다.
+                    </div>
+
+                    <h1 class="chapter-h1" style="margin-top: 50px;">📕 [16차시] 반별 독서량 통계 보고서</h1>
+                    <p class="section-desc"><b>핵심 개념 설명:</b> 반별 학생 독서 기록을 딕셔너리로 저장합니다. 각 반의 합계와 평균을 계산해 비교하면 실제 데이터를 요약하는 능력을 기를 수 있습니다.</p>
+                    <div class="code-block-wrapper">
+                        <div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div>
+                        <pre><code>classes = {
+    <span class="code-str">"1반"</span>: {<span class="code-str">"민서"</span>: <span class="code-num">3</span>, <span class="code-str">"지우"</span>: <span class="code-num">5</span>, <span class="code-str">"도윤"</span>: <span class="code-num">2</span>},
+    <span class="code-str">"2반"</span>: {<span class="code-str">"하린"</span>: <span class="code-num">6</span>, <span class="code-str">"서준"</span>: <span class="code-num">4</span>}
+}
+summary = {}
+<span class="code-keyword">for</span> class_name, students <span class="code-keyword">in</span> classes.items():
+    total = sum(students.values())
+    average = round(total / len(students), <span class="code-num">1</span>)
+    summary[class_name] = {<span class="code-str">"total"</span>: total, <span class="code-str">"average"</span>: average}
+<span class="code-keyword">print</span>(<span class="code-str">"반별 분석:"</span>, summary)
+best = max(summary, key=<span class="code-keyword">lambda</span> name: summary[name][<span class="code-str">"average"</span>])
+<span class="code-keyword">print</span>(<span class="code-str">"평균 최우수 반:"</span>, best)</code></pre>
+                    </div>
+                    <div class="result-box">
+                        <b>🔍 코드 톺아보기</b><br>
+                        • <code>summary</code>에 합계와 평균을 또 하나의 딕셔너리로 저장합니다.<br>
+                        • <code>max()</code>의 정렬 기준으로 중첩 키 <code>average</code> 값을 사용합니다.
+                    </div>
+
+                    <h1 class="chapter-h1" style="margin-top: 50px;">🎒 [17차시] 학교 분실물 센터 관리 프로그램</h1>
+                    <p class="section-desc"><b>핵심 개념 설명:</b> 분실물 번호를 키로 하고 물품명·보관 장소·찾아간 여부를 값으로 관리합니다. 조건별 검색과 상태 변경을 합쳐 작은 관리 프로그램을 완성합니다.</p>
+                    <div class="code-block-wrapper">
+                        <div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div>
+                        <pre><code>items = {
+    <span class="code-num">1</span>: {<span class="code-str">"name"</span>: <span class="code-str">"우산"</span>, <span class="code-str">"place"</span>: <span class="code-str">"교무실"</span>, <span class="code-str">"returned"</span>: <span class="code-keyword">False</span>},
+    <span class="code-num">2</span>: {<span class="code-str">"name"</span>: <span class="code-str">"필통"</span>, <span class="code-str">"place"</span>: <span class="code-str">"도서관"</span>, <span class="code-str">"returned"</span>: <span class="code-keyword">True</span>},
+    <span class="code-num">3</span>: {<span class="code-str">"name"</span>: <span class="code-str">"물병"</span>, <span class="code-str">"place"</span>: <span class="code-str">"체육관"</span>, <span class="code-str">"returned"</span>: <span class="code-keyword">False</span>}
+}
+target = <span class="code-num">3</span>
+<span class="code-keyword">if</span> target <span class="code-keyword">in</span> items:
+    items[target][<span class="code-str">"returned"</span>] = <span class="code-keyword">True</span>
+<span class="code-keyword">print</span>(<span class="code-str">"아직 보관 중인 물품:"</span>)
+<span class="code-keyword">for</span> number, info <span class="code-keyword">in</span> items.items():
+    <span class="code-keyword">if</span> <span class="code-keyword">not</span> info[<span class="code-str">"returned"</span>]:
+        <span class="code-keyword">print</span>(number, info[<span class="code-str">"name"</span>], info[<span class="code-str">"place"</span>])
+<span class="code-keyword">print</span>(<span class="code-str">"전체 등록:"</span>, len(items), <span class="code-str">"건"</span>)</code></pre>
+                    </div>
+                    <div class="result-box">
+                        <b>🔍 코드 톺아보기</b><br>
+                        • 물품 번호를 사용하므로 이름이 같은 물품도 각각 구분됩니다.<br>
+                        • <code>returned</code>의 불리언 값을 수정하여 반환 처리합니다.
+                    </div>
+
                 `
             },
 
