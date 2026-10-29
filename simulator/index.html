@@ -5,407 +5,93 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>파이썬 알고리즘 시뮬레이션</title>
     <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-            font-family: -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Malgun Gothic', '맑은 고딕', sans-serif;
-        }
-        body {
-            background-color: #f8fafc;
-            color: #1e293b;
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            overflow: hidden;
-
-            /* 마우스 드래그 및 텍스트 선택 방지 */
-            -webkit-user-select: none; 
-            -moz-user-select: none;    
-            -ms-user-select: none;     
-            user-select: none;
-        }
+        * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, 'Apple SD Gothic Neo', 'Malgun Gothic', '맑은 고딕', sans-serif; }
+        body { background-color: #f8fafc; color: #1e293b; height: 100vh; display: flex; flex-direction: column; overflow: hidden; -webkit-user-select: none; -moz-user-select: none; -ms-user-select: none; user-select: none; }
 
         /* 상단 헤더 */
-        header {
-            height: 52px;
-            background: #ffffff;
-            border-bottom: 1px solid #e2e8f0;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            padding: 0 20px;
-            flex-shrink: 0;
-            z-index: 10;
-        }
-        .header-left {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .header-logo {
-            font-size: 20px;
-            background: #e0f2fe;
-            color: #0284c7;
-            width: 34px;
-            height: 34px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 8px;
-        }
-        .header-title {
-            font-size: 16px;
-            font-weight: 800;
-            color: #0f172a;
-            letter-spacing: -0.3px;
-        }
-        .header-subtitle {
-            font-size: 12px;
-            color: #64748b;
-            margin-left: 8px;
-            padding-left: 8px;
-            border-left: 1px solid #cbd5e1;
-        }
-        .badge-status {
-            background: #fef2f2;
-            color: #dc2626;
-            font-size: 11.5px;
-            font-weight: 800;
-            padding: 4px 10px;
-            border-radius: 12px;
-        }
+        header { height: 52px; background: #ffffff; border-bottom: 1px solid #e2e8f0; display: flex; align-items: center; justify-content: space-between; padding: 0 20px; flex-shrink: 0; z-index: 10; }
+        .header-left { display: flex; align-items: center; gap: 10px; }
+        .header-logo { font-size: 20px; background: #e0f2fe; color: #0284c7; width: 34px; height: 34px; display: flex; align-items: center; justify-content: center; border-radius: 8px; }
+        .header-title { font-size: 16px; font-weight: 800; color: #0f172a; letter-spacing: -0.3px; }
+        .header-subtitle { font-size: 12px; color: #64748b; margin-left: 8px; padding-left: 8px; border-left: 1px solid #cbd5e1; }
+        .badge-status { background: #fef2f2; color: #dc2626; font-size: 11.5px; font-weight: 800; padding: 4px 10px; border-radius: 12px; }
 
         /* 메인 레이아웃 */
-        .main-container {
-            display: flex;
-            flex: 1;
-            height: calc(100vh - 52px);
-            overflow: hidden;
-        }
-
-        /* 사이드바 넓이 */
-        .sidebar {
-            width: 260px;
-            background: #ffffff;
-            border-right: 1px solid #e2e8f0;
-            display: flex;
-            flex-direction: column;
-            flex-shrink: 0;
-        }
-        .sidebar-header {
-            padding: 16px 18px 10px 18px;
-            border-bottom: 1px solid #f1f5f9;
-        }
-        .sidebar-section-title {
-            font-size: 12px;
-            font-weight: 800;
-            color: #64748b;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-        }
-        .menu-list {
-            list-style: none;
-            padding: 12px 10px;
-            overflow-y: auto;
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            gap: 5px;
-        }
-        .menu-item {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-            padding: 12px 14px;
-            border-radius: 10px;
-            font-size: 14px;
-            font-weight: 600;
-            color: #475569;
-            cursor: pointer;
-            transition: all 0.15s ease;
-            user-select: none;
-        }
-        .menu-item:hover {
-            background-color: #f1f5f9;
-            color: #0f172a;
-        }
-        .menu-item.active {
-            background-color: #e0f2fe;
-            color: #0284c7;
-            font-weight: 800;
-        }
-        .menu-icon {
-            font-size: 18px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
+        .main-container { display: flex; flex: 1; height: calc(100vh - 52px); overflow: hidden; }
+        .sidebar { width: 260px; background: #ffffff; border-right: 1px solid #e2e8f0; display: flex; flex-direction: column; flex-shrink: 0; }
+        .sidebar-header { padding: 16px 18px 10px 18px; border-bottom: 1px solid #f1f5f9; }
+        .sidebar-section-title { font-size: 12px; font-weight: 800; color: #64748b; text-transform: uppercase; letter-spacing: 0.5px; display: flex; align-items: center; gap: 6px; }
+        .menu-list { list-style: none; padding: 12px 10px; overflow-y: auto; flex: 1; display: flex; flex-direction: column; gap: 5px; }
+        .menu-item { display: flex; align-items: center; gap: 12px; padding: 12px 14px; border-radius: 10px; font-size: 14px; font-weight: 600; color: #475569; cursor: pointer; transition: all 0.15s ease; user-select: none; }
+        .menu-item:hover { background-color: #f1f5f9; color: #0f172a; }
+        .menu-item.active { background-color: #e0f2fe; color: #0284c7; font-weight: 800; }
+        .menu-icon { font-size: 18px; display: flex; align-items: center; justify-content: center; }
 
         /* 본문 영역 */
-        .content-area {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            background: #ffffff;
-            overflow: hidden;
-        }
-        .content-header {
-            height: 54px;
-            background: #ffffff;
-            border-bottom: 1px solid #e2e8f0;
-            padding: 0 28px;
-            display: flex;
-            align-items: center;
-            flex-shrink: 0;
-        }
-        .current-topic {
-            font-size: 16px;
-            font-weight: 800;
-            color: #0f172a;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .content-body {
-            flex: 1;
-            overflow-y: auto;
-            padding: 24px 30px;
-            background: #ffffff;
-        }
-        .article-container {
-            max-width: 860px;
-            margin: 0 auto;
-            line-height: 1.75;
-        }
+        .content-area { flex: 1; display: flex; flex-direction: column; background: #ffffff; overflow: hidden; }
+        .content-header { height: 54px; background: #ffffff; border-bottom: 1px solid #e2e8f0; padding: 0 28px; display: flex; align-items: center; flex-shrink: 0; }
+        .current-topic { font-size: 16px; font-weight: 800; color: #0f172a; display: flex; align-items: center; gap: 8px; }
+        .content-body { flex: 1; overflow-y: auto; padding: 24px 30px; background: #ffffff; }
+        .article-container { max-width: 860px; margin: 0 auto; line-height: 1.75; }
 
         /* 일반 텍스트 콘텐츠용 스타일 */
-        .article-title {
-            font-size: 26px;
-            font-weight: 800;
-            color: #0f172a;
-            margin-bottom: 12px;
-            letter-spacing: -0.5px;
-        }
-        .article-intro {
-            font-size: 14.5px;
-            color: #475569;
-            background: #f8fafc;
-            border-left: 4px solid #0284c7;
-            padding: 14px 18px;
-            border-radius: 0 8px 8px 0;
-            margin-bottom: 24px;
-        }
-        .chapter-h1 {
-            font-size: 20px;
-            font-weight: 800;
-            color: #0f172a;
-            margin: 30px 0 12px 0;
-            padding-bottom: 6px;
-            border-bottom: 2px solid #0284c7;
-        }
-        .section-desc {
-            font-size: 14px;
-            color: #334155;
-            margin-bottom: 10px;
-        }
+        .article-title { font-size: 26px; font-weight: 800; color: #0f172a; margin-bottom: 12px; letter-spacing: -0.5px; }
+        .article-intro { font-size: 14.5px; color: #475569; background: #f8fafc; border-left: 4px solid #0284c7; padding: 14px 18px; border-radius: 0 8px 8px 0; margin-bottom: 24px; }
+        .chapter-h1 { font-size: 20px; font-weight: 800; color: #0f172a; margin: 30px 0 12px 0; padding-bottom: 6px; border-bottom: 2px solid #0284c7; }
+        .section-desc { font-size: 14px; color: #334155; margin-bottom: 10px; }
 
         /* 코드 블록 */
-        .code-block-wrapper {
-            background: #0f172a;
-            border-radius: 10px;
-            margin: 12px 0 16px 0;
-            overflow: hidden;
-            box-shadow: 0 3px 10px rgba(15, 23, 42, 0.08);
-        }
-        .code-header {
-            background: #1e293b;
-            padding: 7px 16px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            font-size: 11.5px;
-            color: #94a3b8;
-            font-family: monospace;
-        }
-        .code-lang {
-            color: #38bdf8;
-            font-weight: 700;
-        }
-        pre code {
-            display: block;
-            padding: 14px 18px;
-            font-family: 'Consolas', 'Courier New', monospace;
-            font-size: 13px;
-            line-height: 1.6;
-            color: #e2e8f0;
-            overflow-x: auto;
-        }
+        .code-block-wrapper { background: #0f172a; border-radius: 10px; margin: 12px 0 16px 0; overflow: hidden; box-shadow: 0 3px 10px rgba(15, 23, 42, 0.08); }
+        .code-header { background: #1e293b; padding: 7px 16px; display: flex; justify-content: space-between; align-items: center; font-size: 11.5px; color: #94a3b8; font-family: monospace; }
+        .code-lang { color: #38bdf8; font-weight: 700; }
+        pre code { display: block; padding: 14px 18px; font-family: 'Consolas', 'Courier New', monospace; font-size: 13px; line-height: 1.6; color: #e2e8f0; overflow-x: auto; }
         .code-comment { color: #64748b; font-style: italic; }
         .code-keyword { color: #f472b6; font-weight: bold; }
         .code-str { color: #a5f3fc; }
         .code-num { color: #fde047; }
-
-        .result-box {
-            background: #f8fafc;
-            border: 1px solid #cbd5e1;
-            border-radius: 8px;
-            padding: 14px 18px;
-            margin: 8px 0 24px 0;
-            font-size: 13.5px;
-            color: #334155;
-            line-height: 1.6;
-        }
-        .result-box b {
-            color: #0f172a;
-        }
+        .result-box { background: #f8fafc; border: 1px solid #cbd5e1; border-radius: 8px; padding: 14px 18px; margin: 8px 0 24px 0; font-size: 13.5px; color: #334155; line-height: 1.6; }
+        .result-box b { color: #0f172a; }
 
         /* 시뮬레이터 전용 UI 스타일 */
-        .simulator-card {
-            background: #ffffff;
-            border: 1px solid #e2e8f0;
-            border-radius: 12px;
-            padding: 18px 24px;
-            box-shadow: 0 4px 16px rgba(15, 23, 42, 0.04);
-            margin-top: 10px;
-        }
-        .sim-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 12px;
-        }
-        .sim-title {
-            font-size: 18px;
-            font-weight: 800;
-            color: #0f172a;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-        .live-badge {
-            background: #fee2e2;
-            color: #dc2626;
-            font-size: 11.5px;
-            padding: 4px 10px;
-            border-radius: 6px;
-            font-weight: 800;
-            letter-spacing: 0.5px;
-        }
-        .live-badge.blue {
-            background: #e0f2fe;
-            color: #0284c7;
-        }
-        
-        .canvas-box {
-            background: #f8fafc;
-            border: 1px solid #e2e8f0;
-            border-radius: 10px;
-            padding: 10px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-        
-        canvas {
-            display: block;
-            background: #ffffff;
-            border-radius: 8px;
-            box-shadow: 0 0 10px rgba(0,0,0,0.03);
-            width: 400px;
-            height: 400px;
-        }
-        
-        .info-row {
-            display: flex;
-            gap: 16px;
-            margin-top: 16px;
-        }
-        .info-card {
-            flex: 1;
-            background: #ffffff;
-            border: 1px solid #f1f5f9;
-            border-radius: 10px;
-            padding: 16px;
-            text-align: center;
-            box-shadow: 0 2px 6px rgba(0,0,0,0.02);
-            height: 80px; 
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-        }
-        .info-label {
-            font-size: 13px;
-            color: #64748b;
-            margin-bottom: 4px;
-            font-weight: 600;
-        }
-        .info-value {
-            font-size: 22px;
-            font-weight: 800;
-            color: #0284c7;
-        }
-        
-        .btn-row {
-            display: flex;
-            gap: 8px;
-            margin-top: 16px;
-            justify-content: center;
-        }
-        .sim-btn {
-            flex: 1;
-            padding: 12px 0;
-            background: #ffffff;
-            border: 1px solid #cbd5e1;
-            border-radius: 8px;
-            font-weight: 700;
-            font-size: 14px;
-            color: #475569;
-            cursor: pointer;
-            transition: all 0.2s ease;
-        }
-        .sim-btn:hover {
-            background: #f1f5f9;
-        }
-        .sim-btn.active {
-            background: #0284c7;
-            color: #ffffff;
-            border-color: #0284c7;
-            box-shadow: 0 4px 10px rgba(2, 132, 199, 0.2);
-        }
-        .sim-input {
-            flex: 2;
-            padding: 10px 14px;
-            border: 1px solid #cbd5e1;
-            border-radius: 8px;
-            font-size: 15px;
-            color: #1e293b;
-            outline: none;
-            text-align: center;
-        }
-        .sim-input:focus {
-            border-color: #0284c7;
-            box-shadow: 0 0 0 2px rgba(2,132,199,0.2);
-        }
+        .simulator-card { background: #ffffff; border: 1px solid #e2e8f0; border-radius: 12px; padding: 18px 24px; box-shadow: 0 4px 16px rgba(15, 23, 42, 0.04); margin-top: 10px; }
+        .sim-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 12px; }
+        .sim-title { font-size: 18px; font-weight: 800; color: #0f172a; display: flex; align-items: center; gap: 8px; }
+        .live-badge { background: #fee2e2; color: #dc2626; font-size: 11.5px; padding: 4px 10px; border-radius: 6px; font-weight: 800; letter-spacing: 0.5px; }
+        .live-badge.blue { background: #e0f2fe; color: #0284c7; }
+        .canvas-box { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; padding: 10px; display: flex; justify-content: center; align-items: center; }
+        canvas { display: block; background: #ffffff; border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.03); width: 400px; height: 400px; }
+        .info-row { display: flex; gap: 16px; margin-top: 16px; }
+        .info-card { flex: 1; background: #ffffff; border: 1px solid #f1f5f9; border-radius: 10px; padding: 16px; text-align: center; box-shadow: 0 2px 6px rgba(0,0,0,0.02); height: 80px; display: flex; flex-direction: column; justify-content: center; }
+        .info-label { font-size: 13px; color: #64748b; margin-bottom: 4px; font-weight: 600; }
+        .info-value { font-size: 22px; font-weight: 800; color: #0284c7; }
+        .btn-row { display: flex; gap: 8px; margin-top: 16px; justify-content: center; }
+        .sim-btn { flex: 1; padding: 12px 0; background: #ffffff; border: 1px solid #cbd5e1; border-radius: 8px; font-weight: 700; font-size: 14px; color: #475569; cursor: pointer; transition: all 0.2s ease; }
+        .sim-btn:hover { background: #f1f5f9; }
+        .sim-btn.active { background: #0284c7; color: #ffffff; border-color: #0284c7; box-shadow: 0 4px 10px rgba(2, 132, 199, 0.2); }
+        .sim-input { flex: 2; padding: 10px 14px; border: 1px solid #cbd5e1; border-radius: 8px; font-size: 15px; color: #1e293b; outline: none; text-align: center; }
+        .sim-input:focus { border-color: #0284c7; box-shadow: 0 0 0 2px rgba(2,132,199,0.2); }
+        .sim-footer { text-align: center; font-size: 12.5px; color: #64748b; margin-top: 20px; }
+        kbd { background: #e2e8f0; padding: 2px 8px; border-radius: 4px; font-family: monospace; font-weight: bold; color: #334155; }
 
-        .sim-footer {
-            text-align: center;
-            font-size: 12.5px;
-            color: #64748b;
-            margin-top: 20px;
-        }
-        kbd {
-            background: #e2e8f0;
-            padding: 2px 8px;
-            border-radius: 4px;
-            font-family: monospace;
-            font-weight: bold;
-            color: #334155;
-        }
+        /* ===== 추가: 수업 설명 영역 (번호가 붙은 활동 1~5) ===== */
+        .explain { --ink: #1e293b; --soft: #e0f2fe; --card: #ffffff; --line: #cbd5e1; }
+        .explain-banner { margin: 40px 0 8px 0; padding: 14px 20px; background: #0f172a; color: #ffffff; border-radius: 10px; font-size: 17px; font-weight: 800; display: flex; align-items: center; gap: 10px; }
+        .jump { display: flex; gap: 8px; flex-wrap: wrap; margin: 12px 0 6px 0; }
+        .jump-btn { padding: 8px 14px; background: #e0f2fe; color: #0284c7; border: none; border-radius: 8px; font-weight: 800; font-size: 13.5px; cursor: pointer; }
+        .jump-btn:hover { background: #bae6fd; }
+        .explain .fig { background: #f8fafc; border: 1px solid #e2e8f0; border-radius: 10px; padding: 10px; margin: 12px 0; overflow-x: auto; }
+        .explain .fig svg { width: 100%; height: auto; display: block; max-width: 640px; margin: 0 auto; }
+        .explain svg text { fill: #1e293b; }
+        .explain table { border-collapse: collapse; width: 100%; margin: 10px 0 16px 0; font-size: 14px; }
+        .explain th, .explain td { border: 1px solid #cbd5e1; padding: 9px 12px; text-align: center; }
+        .explain th { background: #f1f5f9; color: #0f172a; }
+        .explain td.fill { height: 38px; }
+        .explain details { border: 1px solid #bae6fd; background: #f0f9ff; border-radius: 10px; padding: 10px 16px; margin: 10px 0 18px 0; }
+        .explain summary { cursor: pointer; font-weight: 800; color: #0284c7; font-size: 14px; }
+        .explain details > *:not(summary) { margin-top: 10px; }
+        .explain code { background: #e2e8f0; padding: 1px 6px; border-radius: 4px; font-family: 'Consolas', 'Courier New', monospace; font-size: 13px; }
+        .explain pre code { background: none; padding: 14px 18px; }
+        .explain .rule { background: #fff7ed; border-left: 4px solid #ea580c; border-radius: 0 8px 8px 0; padding: 12px 18px; margin: 10px 0 18px 0; font-size: 14px; color: #334155; }
     </style>
 </head>
 <body oncontextmenu="return false" ondragstart="return false">
@@ -429,32 +115,13 @@
                     <span>📑</span> 시뮬레이터 목차
                 </div>
             </div>
-            
             <ul class="menu-list">
-                <li class="menu-item active" onclick="selectLesson('lesson1', this)">
-                    <span class="menu-icon">🐢</span>
-                    <span>01. turtle 모듈</span>
-                </li>
-                <li class="menu-item" onclick="selectLesson('lesson2', this)">
-                    <span class="menu-icon">❄️</span>
-                    <span>02. 눈송이 삼각형</span>
-                </li>
-                <li class="menu-item" onclick="selectLesson('lesson3', this)">
-                    <span class="menu-icon">🔺</span>
-                    <span>03. 시어핀스키</span>
-                </li>
-                <li class="menu-item" onclick="selectLesson('lesson4', this)">
-                    <span class="menu-icon">🎯</span>
-                    <span>04. 원주율</span>
-                </li>
-                <li class="menu-item" onclick="selectLesson('lesson5', this)">
-                    <span class="menu-icon">📚</span>
-                    <span>05. 스택</span>
-                </li>
-                <li class="menu-item" onclick="selectLesson('lesson6', this)">
-                    <span class="menu-icon">🚶</span>
-                    <span>06. 큐</span>
-                </li>
+                <li class="menu-item active" onclick="selectLesson('lesson1', this)"><span class="menu-icon">🐢</span><span>01. turtle 모듈</span></li>
+                <li class="menu-item" onclick="selectLesson('lesson2', this)"><span class="menu-icon">❄️</span><span>02. 눈송이 삼각형</span></li>
+                <li class="menu-item" onclick="selectLesson('lesson3', this)"><span class="menu-icon">🔺</span><span>03. 시어핀스키</span></li>
+                <li class="menu-item" onclick="selectLesson('lesson4', this)"><span class="menu-icon">🎯</span><span>04. 원주율</span></li>
+                <li class="menu-item" onclick="selectLesson('lesson5', this)"><span class="menu-icon">📚</span><span>05. 스택</span></li>
+                <li class="menu-item" onclick="selectLesson('lesson6', this)"><span class="menu-icon">🚶</span><span>06. 큐</span></li>
             </ul>
         </aside>
 
@@ -466,49 +133,30 @@
                     <span id="topic-title">01. turtle 모듈</span>
                 </div>
             </div>
-
             <div class="content-body" id="web-article-view">
-                <div class="article-container" id="lesson-content">
-                    <!-- 자바스크립트가 이곳에 HTML을 주입합니다. -->
-                </div>
+                <div class="article-container" id="lesson-content"></div>
             </div>
         </main>
     </div>
 
     <script>
-        // 전역 변수 설정
         let currentSimulation = 'lesson1';
         let currentDepth = 0;
         let animationId = null;
         let canvas, ctx;
-        
         let piPointsTotal = 0;
         let piPointsInside = 0;
         let piIsRunning = false;
-
         let stackData = [];
         let queueData = [];
         const MAX_SIZE = 5;
 
-        // ---------------------------------------------------------
-        // 1. 각 레슨(메뉴)별 HTML 콘텐츠 정의
-        // ---------------------------------------------------------
         const lessons = {
-            lesson1: {
-                title: "01. turtle 모듈",
-                icon: "🐢",
-                html: `
-                    <h1 class="article-title">파이썬 터틀(Turtle) 모듈</h1>
-                    <div class="article-intro">
-                        거북이를 이동시키고 제어하는 터틀 모듈의 기초부터, 반복문, 함수(def), 재귀 호출(Recursion)을 결합하여 프랙탈 도형을 그리는 전체 과정을 1~9차시에 걸쳐 학습합니다.
-                    </div>
-
-                    <h1 class="chapter-h1">🐢 [1차시] 터틀 모듈 첫걸음과 기본 이동</h1>
-                    <p class="section-desc">핵심 개념 설명: 파이썬에서 화면에 그림을 그리기 위해 거북이를 불러옵니다. 거북이는 우리가 지시하는 방향과 거리만큼 움직이며 선을 남깁니다. 그리기 위한 가장 기초적인 펜의 역할을 익힙니다.</p>
-                    
-                    <div class="code-block-wrapper">
-                        <div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div>
-                        <pre><code><span class="code-keyword">from</span> turtle <span class="code-keyword">import</span> *
+  lesson1: { title: "01. turtle 모듈", icon: "🐢", html: `<h1 class="article-title">파이썬 터틀(Turtle) 모듈</h1>
+<div class="article-intro">거북이를 이동시키고 제어하는 터틀 모듈의 기초부터, 반복문, 함수(def), 재귀 호출(Recursion)을 결합하여 프랙탈 도형을 그리는 전체 과정을 1~9차시에 걸쳐 학습합니다.</div>
+<h1 class="chapter-h1">🐢 [1차시] 터틀 모듈 첫걸음과 기본 이동</h1>
+<p class="section-desc">핵심 개념 설명: 파이썬에서 화면에 그림을 그리기 위해 거북이를 불러옵니다. 거북이는 우리가 지시하는 방향과 거리만큼 움직이며 선을 남깁니다. 그리기 위한 가장 기초적인 펜의 역할을 익힙니다.</p>
+<div class="code-block-wrapper"><div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div><pre><code><span class="code-keyword">from</span> turtle <span class="code-keyword">import</span> *
 <span class="code-comment"># 거북이 모양 커서로 설정</span>
 shape(<span class="code-str">"turtle"</span>)
 
@@ -518,44 +166,23 @@ right(<span class="code-num">90</span>)
 forward(<span class="code-num">100</span>)
 
 <span class="code-comment"># 실행 완료 후 창 유지</span>
-done()</code></pre>
-                    </div>
-                    <div class="result-box">
-                        <b>🔍 코드 톺아보기</b><br>
-                        • <code>from turtle import *</code> : 거북이 그래픽 모듈을 불러오고 앞으로 편하게 t라는 별명으로 부릅니다.<br>
-                        • <code>shape(turtle)</code>: 화면에 나타나는 마우스 커서의 모양을 실제 거북이 형태로 바꾸어 시각적인 재미를 줍니다.<br>
-                        • <code>forward(100)</code>: 거북이가 현재 바라보고 있는 방향으로 100픽셀만큼 직진하며 궤적에 선을 긋습니다.<br>
-                        • <code>right(90)</code> : 거북이의 머리 방향을 제자리에서 오른쪽으로 90도 회전합니다.
-                    </div>
-
-                    <h1 class="chapter-h1">🔄 [2차시] 반복문(for)으로 다각형 그리기</h1>
-                    <p class="section-desc">핵심 개념 설명: 사각형을 그리려면 전진과 회전을 4번 반복해야 합니다. 코드를 일일이 4번 적는 대신 반복문을 사용하면 코드를 짧고 효율적으로 작성할 수 있습니다.</p>
-                    
-                    <div class="code-block-wrapper">
-                        <div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div>
-                        <pre><code><span class="code-keyword">from</span> turtle <span class="code-keyword">import</span> *
+done()</code></pre></div>
+<div class="result-box"><b>🔍 코드 톺아보기</b><br>• <code>from turtle import *</code> : 거북이 그래픽 모듈을 불러오고 앞으로 편하게 t라는 별명으로 부릅니다.<br>• <code>shape(turtle)</code>: 화면에 나타나는 마우스 커서의 모양을 실제 거북이 형태로 바꾸어 시각적인 재미를 줍니다.<br>• <code>forward(100)</code>: 거북이가 현재 바라보고 있는 방향으로 100픽셀만큼 직진하며 궤적에 선을 긋습니다.<br>• <code>right(90)</code> : 거북이의 머리 방향을 제자리에서 오른쪽으로 90도 회전합니다.</div>
+<h1 class="chapter-h1">🔄 [2차시] 반복문(for)으로 다각형 그리기</h1>
+<p class="section-desc">핵심 개념 설명: 사각형을 그리려면 전진과 회전을 4번 반복해야 합니다. 코드를 일일이 4번 적는 대신 반복문을 사용하면 코드를 짧고 효율적으로 작성할 수 있습니다.</p>
+<div class="code-block-wrapper"><div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div><pre><code><span class="code-keyword">from</span> turtle <span class="code-keyword">import</span> *
 shape(<span class="code-str">"turtle"</span>)
 pensize(<span class="code-num">3</span>)
 
 <span class="code-comment"># 4번 반복하여 정사각형 그리기</span>
-<span class="code-keyword">for</span> i <span class="code-keyword">in</span> range(<span class="code-num">4</span>):
+<span class="code-keyword">for</span> i <span class="code-keyword">in</span> <span class="code-keyword">range</span>(<span class="code-num">4</span>):
     forward(<span class="code-num">100</span>)
     left(<span class="code-num">90</span>)
-done()</code></pre>
-                    </div>
-                    <div class="result-box">
-                        <b>🔍 코드 톺아보기</b><br>
-                        • <code>for _ in range(4):</code> : 들여쓰기된 아래의 코드 블록을 정확히 4번 반복 실행하라는 의미입니다.<br>
-                        • <code>left(90)</code>: 왼쪽으로 90도 꺾습니다. 만약 정삼각형을 그린다면 외각인 120도를 회전하도록 수정해야 합니다.<br>
-                        • <code>pensize(3)</code>: 거북이가 그리는 선의 굵기를 3픽셀로 설정하여 더 또렷한 선을 얻습니다.
-                    </div>
-
-                    <h1 class="chapter-h1">✏️ [3차시] 펜 들기(penup)와 내리기(pendown)</h1>
-                    <p class="section-desc">핵심 개념 설명: 화면 여러 위치에 흩어진 조각들을 그리려면 선을 그리지 않고 거북이를 이동시키는 기술이 필수적입니다. 종이에서 펜을 살짝 떼어 이동하고 다시 내려놓는 원리입니다.</p>
-                    
-                    <div class="code-block-wrapper">
-                        <div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div>
-                        <pre><code><span class="code-keyword">from</span> turtle <span class="code-keyword">import</span> *
+done()</code></pre></div>
+<div class="result-box"><b>🔍 코드 톺아보기</b><br>• <code>for _ in range(4):</code> : 들여쓰기된 아래의 코드 블록을 정확히 4번 반복 실행하라는 의미입니다.<br>• <code>left(90)</code>: 왼쪽으로 90도 꺾습니다. 만약 정삼각형을 그린다면 외각인 120도를 회전하도록 수정해야 합니다.<br>• <code>pensize(3)</code>: 거북이가 그리는 선의 굵기를 3픽셀로 설정하여 더 또렷한 선을 얻습니다.</div>
+<h1 class="chapter-h1">✏️ [3차시] 펜 들기(penup)와 내리기(pendown)</h1>
+<p class="section-desc">핵심 개념 설명: 화면 여러 위치에 흩어진 조각들을 그리려면 선을 그리지 않고 거북이를 이동시키는 기술이 필수적입니다. 종이에서 펜을 살짝 떼어 이동하고 다시 내려놓는 원리입니다.</p>
+<div class="code-block-wrapper"><div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div><pre><code><span class="code-keyword">from</span> turtle <span class="code-keyword">import</span> *
 shape(<span class="code-str">"turtle"</span>)
 forward(<span class="code-num">50</span>)
 
@@ -566,20 +193,11 @@ forward(<span class="code-num">50</span>)
 <span class="code-comment"># 다시 선을 그리기</span>
 pendown()
 forward(<span class="code-num">50</span>)
-done()</code></pre>
-                    </div>
-                    <div class="result-box">
-                        <b>🔍 코드 톺아보기</b><br>
-                        • <code>penup()</code>: 거북이가 이동할 때 바닥에 선이 그려지지 않도록 펜을 위로 들어 올립니다.<br>
-                        • <code>pendown()</code>: 다시 선을 그리며 이동할 수 있도록 펜을 바닥에 내려놓습니다.
-                    </div>
-
-                    <h1 class="chapter-h1">📍 [4차시] 절대 좌표 이동 (goto)</h1>
-                    <p class="section-desc">핵심 개념 설명: 화면의 정중앙은 x=0 y=0인 원점입니다. 거북이가 현재 바라보는 방향과 무관하게 특정 목적지로 곧바로 날아가게 만들려면 절대 좌표를 이용해야 합니다. 삼각형의 세 꼭짓점을 정확히 잡는 데 사용됩니다.</p>
-                    
-                    <div class="code-block-wrapper">
-                        <div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div>
-                        <pre><code><span class="code-keyword">from</span> turtle <span class="code-keyword">import</span> *
+done()</code></pre></div>
+<div class="result-box"><b>🔍 코드 톺아보기</b><br>• <code>penup()</code>: 거북이가 이동할 때 바닥에 선이 그려지지 않도록 펜을 위로 들어 올립니다.<br>• <code>pendown()</code>: 다시 선을 그리며 이동할 수 있도록 펜을 바닥에 내려놓습니다.</div>
+<h1 class="chapter-h1">📍 [4차시] 절대 좌표 이동 (goto)</h1>
+<p class="section-desc">핵심 개념 설명: 화면의 정중앙은 x=0 y=0인 원점입니다. 거북이가 현재 바라보는 방향과 무관하게 특정 목적지로 곧바로 날아가게 만들려면 절대 좌표를 이용해야 합니다. 삼각형의 세 꼭짓점을 정확히 잡는 데 사용됩니다.</p>
+<div class="code-block-wrapper"><div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div><pre><code><span class="code-keyword">from</span> turtle <span class="code-keyword">import</span> *
 shape(<span class="code-str">"turtle"</span>)
 
 <span class="code-comment"># 삼각형의 세 꼭짓점 좌표</span>
@@ -593,70 +211,42 @@ pendown()
 goto(B[<span class="code-num">0</span>], B[<span class="code-num">1</span>])  <span class="code-comment"># B로 선 긋기</span>
 goto(C[<span class="code-num">0</span>], C[<span class="code-num">1</span>])  <span class="code-comment"># C로 선 긋기</span>
 goto(A[<span class="code-num">0</span>], A[<span class="code-num">1</span>])  <span class="code-comment"># 다시 A로 돌아오기</span>
-done()</code></pre>
-                    </div>
-                    <div class="result-box">
-                        <b>🔍 코드 톺아보기</b><br>
-                        • <code>A = (0, 100)</code>: x좌표 0, y좌표 100이라는 두 개의 값을 하나의 튜플 형태로 변수 A에 저장합니다.<br>
-                        • <code>goto(x, y)</code> : 거북이가 방향을 돌릴 필요 없이 지정된 x, y 좌표로 곧바로 직진하여 이동합니다.
-                    </div>
-
-                    <h1 class="chapter-h1">🎨 [5차시] 도형 내부에 색상 채우기</h1>
-                    <p class="section-desc">핵심 개념 설명: 테두리만 있는 도형 내부를 색으로 칠하면 수많은 삼각형이 겹쳐지는 구조를 훨씬 뚜렷하게 관찰할 수 있습니다. 색칠을 시작할 곳과 끝날 곳을 거북이에게 알려주는 방식을 배웁니다.</p>
-                    
-                    <div class="code-block-wrapper">
-                        <div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div>
-                        <pre><code><span class="code-keyword">from</span> turtle <span class="code-keyword">import</span> *
+done()</code></pre></div>
+<div class="result-box"><b>🔍 코드 톺아보기</b><br>• <code>A = (0, 100)</code>: x좌표 0, y좌표 100이라는 두 개의 값을 하나의 튜플 형태로 변수 A에 저장합니다.<br>• <code>goto(x, y)</code> : 거북이가 방향을 돌릴 필요 없이 지정된 x, y 좌표로 곧바로 직진하여 이동합니다.</div>
+<h1 class="chapter-h1">🎨 [5차시] 도형 내부에 색상 채우기</h1>
+<p class="section-desc">핵심 개념 설명: 테두리만 있는 도형 내부를 색으로 칠하면 수많은 삼각형이 겹쳐지는 구조를 훨씬 뚜렷하게 관찰할 수 있습니다. 색칠을 시작할 곳과 끝날 곳을 거북이에게 알려주는 방식을 배웁니다.</p>
+<div class="code-block-wrapper"><div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div><pre><code><span class="code-keyword">from</span> turtle <span class="code-keyword">import</span> *
 color(<span class="code-str">"blue"</span>, <span class="code-str">"skyblue"</span>) <span class="code-comment"># 테두리 파랑, 내부 하늘색</span>
 
 <span class="code-comment"># 색칠 시작 준비</span>
 begin_fill()
-<span class="code-keyword">for</span> _ <span class="code-keyword">in</span> range(<span class="code-num">3</span>):
+<span class="code-keyword">for</span> _ <span class="code-keyword">in</span> <span class="code-keyword">range</span>(<span class="code-num">3</span>):
     forward(<span class="code-num">120</span>)
     left(<span class="code-num">120</span>)
 <span class="code-comment"># 색칠 끝내고 채우기</span>
 end_fill()
-done()</code></pre>
-                    </div>
-                    <div class="result-box">
-                        <b>🔍 코드 톺아보기</b><br>
-                        • <code>color(테두리색, 채우기색)</code> : 거북이가 그릴 선의 색상과 도형 내부를 채울 색상을 동시에 설정합니다.<br>
-                        • <code>begin_fill()</code>: 지금부터 이동하는 궤적의 내부를 색칠할 것이라고 거북이에게 신호를 줍니다.<br>
-                        • <code>end_fill()</code> : 도형의 테두리가 완전히 닫히면 지정해둔 색상으로 내부를 가득 채웁니다.
-                    </div>
-
-                    <h1 class="chapter-h1">🌀 [6차시] 중첩 반복문으로 기하학 패턴 만들기</h1>
-                    <p class="section-desc">핵심 개념 설명: 반복문 안에 또 다른 반복문을 넣으면 도형을 그리면서 동시에 회전하는 화려한 대칭 패턴을 쉽게 그릴 수 있습니다. 반복적이고 대칭적인 성질을 이해하는 좋은 기초가 됩니다.</p>
-                    
-                    <div class="code-block-wrapper">
-                        <div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div>
-                        <pre><code><span class="code-keyword">from</span> turtle <span class="code-keyword">import</span> *
+done()</code></pre></div>
+<div class="result-box"><b>🔍 코드 톺아보기</b><br>• <code>color(테두리색, 채우기색)</code> : 거북이가 그릴 선의 색상과 도형 내부를 채울 색상을 동시에 설정합니다.<br>• <code>begin_fill()</code>: 지금부터 이동하는 궤적의 내부를 색칠할 것이라고 거북이에게 신호를 줍니다.<br>• <code>end_fill()</code> : 도형의 테두리가 완전히 닫히면 지정해둔 색상으로 내부를 가득 채웁니다.</div>
+<h1 class="chapter-h1">🌀 [6차시] 중첩 반복문으로 기하학 패턴 만들기</h1>
+<p class="section-desc">핵심 개념 설명: 반복문 안에 또 다른 반복문을 넣으면 도형을 그리면서 동시에 회전하는 화려한 대칭 패턴을 쉽게 그릴 수 있습니다. 반복적이고 대칭적인 성질을 이해하는 좋은 기초가 됩니다.</p>
+<div class="code-block-wrapper"><div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div><pre><code><span class="code-keyword">from</span> turtle <span class="code-keyword">import</span> *
 speed(<span class="code-num">0</span>) <span class="code-comment"># 거북이 속도 최대</span>
 
 <span class="code-comment"># 바깥쪽 반복문: 전체 도형을 12번 회전</span>
-<span class="code-keyword">for</span> i <span class="code-keyword">in</span> range(<span class="code-num">12</span>):
+<span class="code-keyword">for</span> i <span class="code-keyword">in</span> <span class="code-keyword">range</span>(<span class="code-num">12</span>):
     <span class="code-comment"># 안쪽 반복문: 기본 정삼각형 그리기</span>
-    <span class="code-keyword">for</span> j <span class="code-keyword">in</span> range(<span class="code-num">3</span>):
+    <span class="code-keyword">for</span> j <span class="code-keyword">in</span> <span class="code-keyword">range</span>(<span class="code-num">3</span>):
         forward(<span class="code-num">100</span>)
         left(<span class="code-num">120</span>)
     right(<span class="code-num">30</span>) <span class="code-comment"># 삼각형 하나 그리고 30도 회전</span>
-done()</code></pre>
-                    </div>
-                    <div class="result-box">
-                        <b>🔍 코드 톺아보기</b><br>
-                        • <code>speed(0)</code>: 거북이 애니메이션 속도를 가장 빠르게(0) 설정하여 복잡한 그림도 순식간에 그리도록 합니다.<br>
-                        • <b>중첩 for문</b> : 안쪽 for문이 3번 돌아 삼각형 하나를 완성하면, 바깥쪽 for문이 거북이를 30도 돌린 후 다시 안쪽 for문을 작동시키는 원리입니다.
-                    </div>
-
-                    <h1 class="chapter-h1">🔲 [7차시] 함수(def)로 나만의 삼각형 도장 만들기</h1>
-                    <p class="section-desc">핵심 개념 설명: 삼각형을 그릴 때 삼각형을 그리는 코드를 수백 번 적을 수는 없습니다. 세 꼭짓점 좌표를 전달받아 삼각형을 자동으로 그려주는 코드를 하나의 도장처럼 함수로 묶어둡니다.</p>
-                    
-                    <div class="code-block-wrapper">
-                        <div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div>
-                        <pre><code><span class="code-keyword">from</span> turtle <span class="code-keyword">import</span> *
+done()</code></pre></div>
+<div class="result-box"><b>🔍 코드 톺아보기</b><br>• <code>speed(0)</code>: 거북이 애니메이션 속도를 가장 빠르게(0) 설정하여 복잡한 그림도 순식간에 그리도록 합니다.<br>• <b>중첩 for문</b> : 안쪽 for문이 3번 돌아 삼각형 하나를 완성하면, 바깥쪽 for문이 거북이를 30도 돌린 후 다시 안쪽 for문을 작동시키는 원리입니다.</div>
+<h1 class="chapter-h1">🔲 [7차시] 함수(def)로 나만의 삼각형 도장 만들기</h1>
+<p class="section-desc">핵심 개념 설명: 삼각형을 그릴 때 삼각형을 그리는 코드를 수백 번 적을 수는 없습니다. 세 꼭짓점 좌표를 전달받아 삼각형을 자동으로 그려주는 코드를 하나의 도장처럼 함수로 묶어둡니다.</p>
+<div class="code-block-wrapper"><div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div><pre><code><span class="code-keyword">from</span> turtle <span class="code-keyword">import</span> *
 
 <span class="code-comment"># 세 꼭짓점을 받아 삼각형을 그리는 공장 함수</span>
-<span class="code-keyword">def</span> <span class="code-def">draw_triangle</span>(p1, p2, p3):
+<span class="code-keyword">def</span> draw_triangle(p1, p2, p3):
     penup()
     goto(p1[<span class="code-num">0</span>], p1[<span class="code-num">1</span>])
     pendown()
@@ -666,20 +256,11 @@ done()</code></pre>
 
 <span class="code-comment"># 함수 호출하여 도장 찍듯 그리기</span>
 draw_triangle((<span class="code-num">0</span>, <span class="code-num">80</span>), (-<span class="code-num">80</span>, -<span class="code-num">50</span>), (<span class="code-num">80</span>, -<span class="code-num">50</span>))
-done()</code></pre>
-                    </div>
-                    <div class="result-box">
-                        <b>🔍 코드 톺아보기</b><br>
-                        • <code>def draw_triangle</code>: 세 점의 정보를 전달받아 반복적으로 삼각형을 그려주는 나만의 명령어를 창조합니다.<br>
-                        • <code>p1[0], p1[1]</code>: 전달받은 좌표 튜플 p1에서 첫 번째 요소인 x좌표와 두 번째 요소인 y좌표를 꺼내어 사용합니다.
-                    </div>
-
-                    <h1 class="chapter-h1">📐 [8차시] 두 점 사이의 중점(Midpoint) 구하기</h1>
-                    <p class="section-desc">핵심 개념 설명: 큰 삼각형을 작은 삼각형들로 정교하게 쪼개려면 각 선분의 정중앙 좌표를 정확히 계산해야 합니다. 수학 시간에 배운 중점 공식이 코딩의 핵심 로직으로 바로 적용됩니다.</p>
-                    
-                    <div class="code-block-wrapper">
-                        <div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div>
-                        <pre><code><span class="code-keyword">def</span> <span class="code-def">get_midpoint</span>(p1, p2):
+done()</code></pre></div>
+<div class="result-box"><b>🔍 코드 톺아보기</b><br>• <code>def draw_triangle</code>: 세 점의 정보를 전달받아 반복적으로 삼각형을 그려주는 나만의 명령어를 창조합니다.<br>• <code>p1[0], p1[1]</code>: 전달받은 좌표 튜플 p1에서 첫 번째 요소인 x좌표와 두 번째 요소인 y좌표를 꺼내어 사용합니다.</div>
+<h1 class="chapter-h1">📐 [8차시] 두 점 사이의 중점(Midpoint) 구하기</h1>
+<p class="section-desc">핵심 개념 설명: 큰 삼각형을 작은 삼각형들로 정교하게 쪼개려면 각 선분의 정중앙 좌표를 정확히 계산해야 합니다. 수학 시간에 배운 중점 공식이 코딩의 핵심 로직으로 바로 적용됩니다.</p>
+<div class="code-block-wrapper"><div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div><pre><code><span class="code-keyword">def</span> get_midpoint(p1, p2):
     mid_x = (p1[<span class="code-num">0</span>] + p2[<span class="code-num">0</span>]) / <span class="code-num">2</span>
     mid_y = (p1[<span class="code-num">1</span>] + p2[<span class="code-num">1</span>]) / <span class="code-num">2</span>
     <span class="code-keyword">return</span> (mid_x, mid_y)
@@ -689,258 +270,307 @@ B = (<span class="code-num">100</span>, <span class="code-num">0</span>)
 
 <span class="code-comment"># 함수를 사용하여 두 점 A, B의 중점 구하기</span>
 M = get_midpoint(A, B)
-<span class="code-keyword">print</span>(<span class="code-str">"A와 B의 정중앙 좌표는:"</span>, M)</code></pre>
-                    </div>
-                    <div class="result-box">
-                        <b>🔍 코드 톺아보기</b><br>
-                        • <code>mid_x = (p1[0] + p2[0]) / 2</code>: 두 점의 x좌표를 더한 뒤 2로 나누어 x축의 정중앙 위치를 계산합니다.<br>
-                        • <code>return (mid_x, mid_y)</code>: 계산이 완료된 중점의 x, y 좌표를 하나의 튜플로 묶어서 함수 밖으로 돌려줍니다.
-                    </div>
-
-                    <h1 class="chapter-h1">🔄 [9차시] 재귀 함수(Recursion)와 탈출 조건</h1>
-                    <p class="section-desc">핵심 개념 설명: 똑같은 모양이 끝없이 작아지며 반복되는 구조를 만들려면, 함수 안에서 자기 자신을 다시 부르는 기술이 필요합니다. 컴퓨터가 무한 루프에 빠지지 않도록 안전장치를 만드는 법을 익힙니다.</p>
-                    
-                    <div class="code-block-wrapper">
-                        <div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div>
-                        <pre><code><span class="code-keyword">def</span> <span class="code-def">countdown</span>(n):
+print(<span class="code-str">"A와 B의 정중앙 좌표는:"</span>, M)</code></pre></div>
+<div class="result-box"><b>🔍 코드 톺아보기</b><br>• <code>mid_x = (p1[0] + p2[0]) / 2</code>: 두 점의 x좌표를 더한 뒤 2로 나누어 x축의 정중앙 위치를 계산합니다.<br>• <code>return (mid_x, mid_y)</code>: 계산이 완료된 중점의 x, y 좌표를 하나의 튜플로 묶어서 함수 밖으로 돌려줍니다.</div>
+<h1 class="chapter-h1">🔄 [9차시] 재귀 함수(Recursion)와 탈출 조건</h1>
+<p class="section-desc">핵심 개념 설명: 똑같은 모양이 끝없이 작아지며 반복되는 구조를 만들려면, 함수 안에서 자기 자신을 다시 부르는 기술이 필요합니다. 컴퓨터가 무한 루프에 빠지지 않도록 안전장치를 만드는 법을 익힙니다.</p>
+<div class="code-block-wrapper"><div class="code-header"><span class="code-lang">PYTHON</span><span>전체 실습 코드</span></div><pre><code><span class="code-keyword">def</span> countdown(n):
     <span class="code-comment"># 탈출 조건 (Base Case)</span>
     <span class="code-keyword">if</span> n == <span class="code-num">0</span>:
-        <span class="code-keyword">print</span>(<span class="code-str">"발사!"</span>)
+        print(<span class="code-str">"발사!"</span>)
         <span class="code-keyword">return</span> <span class="code-comment"># 함수 즉시 종료</span>
-    
-    <span class="code-keyword">print</span>(n)
+
+    print(n)
     <span class="code-comment"># 자기 자신을 다시 호출 (재귀 호출)</span>
     countdown(n - <span class="code-num">1</span>)
 
-countdown(<span class="code-num">3</span>)</code></pre>
-                    </div>
-                    <div class="result-box">
-                        <b>🔍 코드 톺아보기</b><br>
-                        • <code>countdown(n-1)</code>: 함수 안에서 자신의 이름을 부르되, 전달하는 숫자를 1씩 줄여가며 호출하여 작업을 쪼갭니다.<br>
-                        • <code>if n == 0:</code> : 재귀 호출이 무한히 이어져 프로그램이 뻗는 것을 방지하기 위해 반드시 작성해야 하는 정지선(탈출 조건)입니다.
-                    </div>
-                `
-            },
-            
-            // [02. 눈송이 삼각형]
-            lesson2: {
-                title: "02. 눈송이 삼각형",
-                icon: "❄️",
-                html: `
-                    <div class="simulator-card">
-                        <div class="sim-header">
-                            <div class="sim-title">⚡ 코흐의 눈송이 (Koch Snowflake) 시뮬레이터</div>
-                            <div class="live-badge">LIVE CANVAS</div>
-                        </div>
-                        <div class="canvas-box">
-                            <canvas id="sim-canvas" width="400" height="400"></canvas>
-                        </div>
-                        <div class="info-row">
-                            <div class="info-card">
-                                <div class="info-label">현재 깊이 (depth)</div>
-                                <div class="info-value" id="val-depth">0단계</div>
-                            </div>
-                            <div class="info-card">
-                                <div class="info-label">전체 선분 개수</div>
-                                <div class="info-value" id="val-count">3개</div>
-                            </div>
-                        </div>
-                        <div class="btn-row" id="depth-buttons">
-                            <button class="sim-btn active" onclick="setDepth(0)">0단계</button>
-                            <button class="sim-btn" onclick="setDepth(1)">1단계</button>
-                            <button class="sim-btn" onclick="setDepth(2)">2단계</button>
-                            <button class="sim-btn" onclick="setDepth(3)">3단계</button>
-                            <button class="sim-btn" onclick="setDepth(4)">4단계</button>
-                        </div>
-                        <div class="sim-footer">
-                            키보드 <kbd>0</kbd> ~ <kbd>4</kbd> 키를 눌러도 실시간으로 변경됩니다.
-                        </div>
-                    </div>
-                `
-            },
-            
-            // [03. 시어핀스키]
-            lesson3: {
-                title: "03. 시어핀스키",
-                icon: "🔺",
-                html: `
-                    <div class="simulator-card">
-                        <div class="sim-header">
-                            <div class="sim-title">⚡ 시어핀스키 삼각형 (Sierpinski Triangle) 시뮬레이터</div>
-                            <div class="live-badge">LIVE CANVAS</div>
-                        </div>
-                        <div class="canvas-box">
-                            <canvas id="sim-canvas" width="400" height="400"></canvas>
-                        </div>
-                        <div class="info-row">
-                            <div class="info-card">
-                                <div class="info-label">현재 깊이 (depth)</div>
-                                <div class="info-value" id="val-depth">0단계</div>
-                            </div>
-                            <div class="info-card">
-                                <div class="info-label">그려진 작은 정삼각형 개수</div>
-                                <div class="info-value" id="val-count">1개</div>
-                            </div>
-                        </div>
-                        <div class="btn-row" id="depth-buttons">
-                            <button class="sim-btn active" onclick="setDepth(0)">0단계</button>
-                            <button class="sim-btn" onclick="setDepth(1)">1단계</button>
-                            <button class="sim-btn" onclick="setDepth(2)">2단계</button>
-                            <button class="sim-btn" onclick="setDepth(3)">3단계</button>
-                            <button class="sim-btn" onclick="setDepth(4)">4단계</button>
-                            <button class="sim-btn" onclick="setDepth(5)">5단계</button>
-                        </div>
-                        <div class="sim-footer">
-                            키보드 <kbd>0</kbd> ~ <kbd>5</kbd> 키를 눌러도 실시간으로 변경됩니다.
-                        </div>
-                    </div>
-                `
-            },
-            
-            // [04. 원주율]
-            lesson4: {
-                title: "04. 원주율",
-                icon: "🎯",
-                html: `
-                    <div class="simulator-card">
-                        <div class="sim-header">
-                            <div class="sim-title">⚡ 몬테카를로 실시간 캔버스</div>
-                            <div class="live-badge">LIVE CANVAS</div>
-                        </div>
-                        
-                        <div class="canvas-box" style="background:#ffffff;">
-                            <canvas id="sim-canvas" width="400" height="400" style="border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.05);"></canvas>
-                        </div>
-                        
-                        <div class="info-row">
-                            <div class="info-card">
-                                <div class="info-label">전체 점의 개수</div>
-                                <div class="info-value" id="pi-total" style="color:#0284c7;">0개</div>
-                            </div>
-                            <div class="info-card">
-                                <div class="info-label">추정된 원주율 (Pi)</div>
-                                <div class="info-value" id="pi-calc" style="color:#ea580c;">0.0000</div>
-                            </div>
-                        </div>
-                        
-                        <div class="btn-row" id="pi-amount-buttons">
-                            <button class="sim-btn" onclick="addPiPoints(100, this)">100개</button>
-                            <button class="sim-btn" onclick="addPiPoints(1000, this)">1,000개</button>
-                            <button class="sim-btn" onclick="addPiPoints(5000, this)">5,000개</button>
-                            <button class="sim-btn" onclick="addPiPoints(10000, this)">10,000개</button>
-                        </div>
-                        
-                        <div class="btn-row">
-                            <button class="sim-btn" id="pi-start-btn" style="background:#0f172a; color:#ffffff; border:none;" onclick="togglePi()">연속 실행 (Play)</button>
-                            <button class="sim-btn" style="background:#e2e8f0; color:#334155; border:none;" onclick="resetPi()">초기화</button>
-                        </div>
-                    </div>
-                `
-            },
+countdown(<span class="code-num">3</span>)</code></pre></div>
+<div class="result-box"><b>🔍 코드 톺아보기</b><br>• <code>countdown(n-1)</code>: 함수 안에서 자신의 이름을 부르되, 전달하는 숫자를 1씩 줄여가며 호출하여 작업을 쪼갭니다.<br>• <code>if n == 0:</code> : 재귀 호출이 무한히 이어져 프로그램이 뻗는 것을 방지하기 위해 반드시 작성해야 하는 정지선(탈출 조건)입니다.</div>
+` },
+  lesson2: { title: "02. 눈송이 삼각형", icon: "❄️", html: `<div class="simulator-card"><div class="sim-header"><div class="sim-title">⚡ 코흐의 눈송이 (Koch Snowflake) 시뮬레이터</div><div class="live-badge">LIVE CANVAS</div></div><div class="canvas-box"><canvas id="sim-canvas" width="400" height="400"></canvas></div><div class="info-row"><div class="info-card"><div class="info-label">현재 깊이 (depth)</div><div class="info-value" id="val-depth">0단계</div></div><div class="info-card"><div class="info-label">전체 선분 개수</div><div class="info-value" id="val-count">3개</div></div></div><div class="btn-row" id="depth-buttons"><button class="sim-btn active" onclick="setDepth(0)">0단계</button><button class="sim-btn" onclick="setDepth(1)">1단계</button><button class="sim-btn" onclick="setDepth(2)">2단계</button><button class="sim-btn" onclick="setDepth(3)">3단계</button><button class="sim-btn" onclick="setDepth(4)">4단계</button></div><div class="sim-footer">키보드 <kbd>0</kbd> ~ <kbd>4</kbd> 키를 눌러도 실시간으로 변경됩니다.</div></div><div class="explain"><div class="explain-banner">📖 수업 설명 · 코흐 눈송이 규칙 찾기</div><div class="jump"><button class="jump-btn" onclick="jumpTo('k1')">활동 1</button><button class="jump-btn" onclick="jumpTo('k2')">활동 2</button><button class="jump-btn" onclick="jumpTo('k3')">활동 3</button><button class="jump-btn" onclick="jumpTo('k4')">활동 4</button><button class="jump-btn" onclick="jumpTo('k5')">활동 5</button></div>
+<h1 class="chapter-h1" id="k1">📌 [활동 1] 거북이가 그리는 1단계 산 모양</h1>
+<p class="section-desc">길이 81인 선분 하나를 3등분하면 한 칸의 길이는 27입니다. 거북이가 그 선분을 <b>산 모양</b>으로 바꿔 그립니다.</p>
+<div class="code-block-wrapper"><div class="code-header"><span class="code-lang">PYTHON</span><span>1단계 산 모양</span></div><pre><code><span class="code-keyword">from</span> turtle <span class="code-keyword">import</span> *
 
-            // [05. 스택]
-            lesson5: {
-                title: "05. 스택",
-                icon: "📚",
-                html: `
-                    <div class="simulator-card">
-                        <div class="sim-header">
-                            <div class="sim-title">⚡ 스택 (Stack) 자료구조 시뮬레이터</div>
-                            <div class="live-badge blue">LIVE CANVAS</div>
-                        </div>
-                        
-                        <div class="canvas-box">
-                            <canvas id="sim-canvas" width="400" height="400"></canvas>
-                        </div>
-                        
-                        <div class="info-row">
-                            <div class="info-card">
-                                <div class="info-label">현재 스택 크기</div>
-                                <div class="info-value" id="stack-size" style="color:#0284c7;">0 / 5</div>
-                            </div>
-                            <div class="info-card">
-                                <div class="info-label">상태 메시지</div>
-                                <div class="info-value" id="stack-msg" style="color:#ea580c; font-size:15px;">대기중</div>
-                            </div>
-                        </div>
-                        
-                        <div class="btn-row">
-                            <input type="text" id="stack-input" class="sim-input" placeholder="데이터 입력" autocomplete="off">
-                            <button class="sim-btn" style="background:#dc2626; color:#ffffff; border:none;" onclick="pushStack()">PUSH</button>
-                            <button class="sim-btn" style="background:#2563eb; color:#ffffff; border:none;" onclick="popStack()">POP</button>
-                        </div>
-                    </div>
-                `
-            },
+forward(<span class="code-num">27</span>)
+left(<span class="code-num">60</span>)
+forward(<span class="code-num">27</span>)
+right(<span class="code-num">120</span>)
+forward(<span class="code-num">27</span>)
+left(<span class="code-num">60</span>)
+forward(<span class="code-num">27</span>)
 
-            // [06. 큐]
-            lesson6: {
-                title: "06. 큐",
-                icon: "🚶",
-                html: `
-                    <div class="simulator-card">
-                        <div class="sim-header">
-                            <div class="sim-title">⚡ 큐 (Queue) 자료구조 시뮬레이터</div>
-                            <div class="live-badge blue">LIVE CANVAS</div>
-                        </div>
-                        
-                        <div class="canvas-box">
-                            <canvas id="sim-canvas" width="400" height="400"></canvas>
-                        </div>
-                        
-                        <div class="info-row">
-                            <div class="info-card">
-                                <div class="info-label">현재 큐 크기</div>
-                                <div class="info-value" id="queue-size" style="color:#0284c7;">0 / 5</div>
-                            </div>
-                            <div class="info-card">
-                                <div class="info-label">상태 메시지</div>
-                                <div class="info-value" id="queue-msg" style="color:#ea580c; font-size:15px;">대기중</div>
-                            </div>
-                        </div>
-                        
-                        <div class="btn-row">
-                            <input type="text" id="queue-input" class="sim-input" placeholder="데이터 입력" autocomplete="off">
-                            <button class="sim-btn" style="background:#dc2626; color:#ffffff; border:none;" onclick="enqueueData()">Enqueue</button>
-                            <button class="sim-btn" style="background:#2563eb; color:#ffffff; border:none;" onclick="dequeueData()">Dequeue</button>
-                        </div>
-                    </div>
-                `
-            }
-        };
+done()</code></pre></div><div class="fig"><svg viewBox="0 0 540 210" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="코흐 곡선 1단계 산 모양과 거북이가 꺾는 각도">
+      <line x1="20" y1="170" x2="506" y2="170" stroke="#999" stroke-width="1.5" stroke-dasharray="5 5"/>
+      <polyline points="20,170 182,170 263,29.7 344,170 506,170" fill="none" stroke="#2f7fc1" stroke-width="4" stroke-linejoin="round" stroke-linecap="round"/>
+      <circle cx="20" cy="170" r="5" fill="#d9622b"/>
+      <circle cx="182" cy="170" r="4" fill="#2f7fc1"/>
+      <circle cx="263" cy="29.7" r="4" fill="#2f7fc1"/>
+      <circle cx="344" cy="170" r="4" fill="#2f7fc1"/>
+      <circle cx="506" cy="170" r="4" fill="#2f7fc1"/>
+      <text x="101" y="192" text-anchor="middle" font-size="14">① 앞으로 27</text>
+      <text x="204" y="94" text-anchor="middle" font-size="14">② 앞으로 27</text>
+      <text x="322" y="94" text-anchor="middle" font-size="14">③ 앞으로 27</text>
+      <text x="425" y="192" text-anchor="middle" font-size="14">④ 앞으로 27</text>
+      <text x="182" y="150" text-anchor="middle" font-size="12">왼쪽 60°</text>
+      <text x="263" y="18" text-anchor="middle" font-size="12">오른쪽 120°</text>
+      <text x="344" y="150" text-anchor="middle" font-size="12">왼쪽 60°</text>
+      <text x="20" y="150" text-anchor="middle" font-size="12">출발</text>
+    </svg></div><div class="result-box"><b>🔍 확인해 봅시다</b><br>• 선분 1개가 선분 <b>4개</b>로 바뀌었습니다.<br>• 새로 만든 선분 1개의 길이는 <b>27</b>입니다.<br>• 거북이가 돈 각도: <b>왼쪽 60° → 오른쪽 120° → 왼쪽 60°</b><br>• 선분 길이의 합: 27 × 4 = <b>108</b> (처음 81보다 길어짐)</div>
+<h1 class="chapter-h1" id="k2">📌 [활동 2] 2단계는 어떻게 생길까?</h1>
+<p class="section-desc">1단계의 선분 4개를 각각 다시 산 모양으로 바꾸면 2단계가 됩니다.</p>
+<div class="fig"><svg viewBox="0 0 540 210" xmlns="http://www.w3.org/2000/svg"><polyline points="20.0,170.0 74.0,170.0 101.0,123.2 128.0,170.0 182.0,170.0 209.0,123.2 182.0,76.5 236.0,76.5 263.0,29.7 290.0,76.5 344.0,76.5 317.0,123.2 344.0,170.0 398.0,170.0 425.0,123.2 452.0,170.0 506.0,170.0" fill="none" stroke="#2f7fc1" stroke-width="3" stroke-linejoin="round"/><text x="270" y="200" text-anchor="middle" font-size="14">2단계: 한 변 9인 선분 16개</text></svg></div><div class="result-box"><b>🔍 확인해 봅시다</b><br>• 선분은 모두 4 × 4 = <b>16개</b><br>• 선분 1개의 길이는 27 ÷ 3 = <b>9</b><br>• 선분 전체 길이의 합은 16 × 9 = <b>144</b></div>
+<h1 class="chapter-h1" id="k3">📌 [활동 3] 코흐 곡선의 규칙 찾기 (처음 선분 길이 81)</h1>
+<p class="section-desc">0단계는 처음의 직선 1개입니다. 표의 빈칸을 먼저 예상해 본 뒤 정답을 확인하세요.</p>
+<table><tr><th>단계</th><th>선분의 개수</th><th>선분 1개의 길이</th><th>선분 전체 길이의 합</th></tr><tr><td>0단계</td><td>1</td><td>81</td><td>81</td></tr><tr><td>1단계</td><td></td><td></td><td></td></tr><tr><td>2단계</td><td></td><td></td><td></td></tr><tr><td>3단계</td><td></td><td></td><td></td></tr><tr><td>4단계</td><td></td><td></td><td></td></tr></table><details><summary>✅ 정답 보기</summary><table><tr><th>단계</th><th>선분의 개수</th><th>선분 1개의 길이</th><th>선분 전체 길이의 합</th></tr><tr><td>0단계</td><td>1</td><td>81</td><td>81</td></tr><tr><td>1단계</td><td>4</td><td>27</td><td>108</td></tr><tr><td>2단계</td><td>16</td><td>9</td><td>144</td></tr><tr><td>3단계</td><td>64</td><td>3</td><td>192</td></tr><tr><td>4단계</td><td>256</td><td>1</td><td>256</td></tr></table><div class="rule"><b>✨ 규칙 정리</b><br>개수는 <b>4배</b>, 선분 1개의 길이는 <b>1/3</b>, 전체 길이의 합은 <b>4/3배</b>가 됩니다.</div></details>
+<h1 class="chapter-h1" id="k4">📌 [활동 4] 눈송이 전체로 넓혀 보기</h1>
+<p class="section-desc">코흐 눈송이는 코흐 곡선을 정삼각형의 <b>세 변</b>에 하나씩 그린 모양입니다. 한 변이 81일 때의 값을 구해 봅시다.</p>
+<table><tr><th>단계</th><th>눈송이 전체 선분의 개수</th><th>선분 1개의 길이</th><th>눈송이 둘레의 길이</th></tr><tr><td>0단계</td><td>3</td><td>81</td><td>243</td></tr><tr><td>1단계</td><td></td><td></td><td></td></tr><tr><td>2단계</td><td></td><td></td><td></td></tr><tr><td>3단계</td><td></td><td></td><td></td></tr><tr><td>4단계</td><td></td><td></td><td></td></tr></table><details><summary>✅ 정답 보기</summary><table><tr><th>단계</th><th>선분의 개수</th><th>선분 1개의 길이</th><th>둘레의 길이</th></tr><tr><td>0단계</td><td>3</td><td>81</td><td>243</td></tr><tr><td>1단계</td><td>12</td><td>27</td><td>324</td></tr><tr><td>2단계</td><td>48</td><td>9</td><td>432</td></tr><tr><td>3단계</td><td>192</td><td>3</td><td>576</td></tr><tr><td>4단계</td><td>768</td><td>1</td><td>768</td></tr></table></details>
+<h1 class="chapter-h1" id="k5">📌 [활동 5] 코드로 내 답 확인하기</h1>
+<p class="section-desc">아래 코드는 활동 3의 표를 계산해 줍니다. 실행해서 내가 적은 값과 같은지 비교해 보세요.</p>
+<div class="code-block-wrapper"><div class="code-header"><span class="code-lang">PYTHON</span><span>표 계산 코드</span></div><pre><code><span class="code-keyword">def</span> koch_info(length, depth):
+    count = <span class="code-num">4</span> ** depth
+    small = length / <span class="code-num">3</span> ** depth
+    total = count * small
+    <span class="code-keyword">return</span> count, small, total
 
-        // ---------------------------------------------------------
-        // 2. 메뉴 선택 및 화면 렌더링 로직
-        // ---------------------------------------------------------
+<span class="code-keyword">for</span> depth <span class="code-keyword">in</span> <span class="code-keyword">range</span>(<span class="code-num">5</span>):
+    count, small, total = koch_info(<span class="code-num">81</span>, depth)
+    print(depth, <span class="code-str">"단계 | 선분 개수:"</span>, count, <span class="code-str">"| 선분 1개 길이:"</span>, small, <span class="code-str">"| 전체 길이:"</span>, total)</code></pre></div><p class="section-desc">이번에는 거북이가 눈송이를 그리는 코드입니다. <code>snowflake(243, 3)</code>의 마지막 숫자를 0, 1, 2, 3으로 바꿔 가며 위 시뮬레이터와 비교해 보세요.</p><div class="code-block-wrapper"><div class="code-header"><span class="code-lang">PYTHON</span><span>거북이 눈송이 코드</span></div><pre><code><span class="code-keyword">from</span> turtle <span class="code-keyword">import</span> *
+
+<span class="code-keyword">def</span> koch(length, depth):
+    <span class="code-keyword">if</span> depth == <span class="code-num">0</span>:
+        forward(length)
+    <span class="code-keyword">else</span>:
+        koch(length / <span class="code-num">3</span>, depth - <span class="code-num">1</span>)
+        left(<span class="code-num">60</span>)
+        koch(length / <span class="code-num">3</span>, depth - <span class="code-num">1</span>)
+        right(<span class="code-num">120</span>)
+        koch(length / <span class="code-num">3</span>, depth - <span class="code-num">1</span>)
+        left(<span class="code-num">60</span>)
+        koch(length / <span class="code-num">3</span>, depth - <span class="code-num">1</span>)
+
+<span class="code-keyword">def</span> snowflake(length, depth):
+    <span class="code-keyword">for</span> _ <span class="code-keyword">in</span> <span class="code-keyword">range</span>(<span class="code-num">3</span>):
+        koch(length, depth)
+        right(<span class="code-num">120</span>)
+
+speed(<span class="code-num">0</span>)
+hideturtle()
+penup()
+goto(-<span class="code-num">120</span>, <span class="code-num">70</span>)
+pendown()
+
+snowflake(<span class="code-num">243</span>, <span class="code-num">3</span>)
+done()</code></pre></div><div class="result-box"><b>🔍 코드 톺아보기</b><br>• <code>koch()</code>가 <b>자기 자신을 4번</b> 부르므로 단계가 1 늘 때마다 선분이 4배가 됩니다.<br>• <code>if depth == 0:</code> 는 재귀를 멈추는 정지선입니다.<br>• 코드는 한 변을 243으로 그리므로 선분 1개의 길이는 표(81 기준)의 3배입니다.</div>
+</div>` },
+  lesson3: { title: "03. 시어핀스키", icon: "🔺", html: `<div class="simulator-card"><div class="sim-header"><div class="sim-title">⚡ 시어핀스키 삼각형 (Sierpinski Triangle) 시뮬레이터</div><div class="live-badge">LIVE CANVAS</div></div><div class="canvas-box"><canvas id="sim-canvas" width="400" height="400"></canvas></div><div class="info-row"><div class="info-card"><div class="info-label">현재 깊이 (depth)</div><div class="info-value" id="val-depth">0단계</div></div><div class="info-card"><div class="info-label">그려진 작은 정삼각형 개수</div><div class="info-value" id="val-count">1개</div></div></div><div class="btn-row" id="depth-buttons"><button class="sim-btn active" onclick="setDepth(0)">0단계</button><button class="sim-btn" onclick="setDepth(1)">1단계</button><button class="sim-btn" onclick="setDepth(2)">2단계</button><button class="sim-btn" onclick="setDepth(3)">3단계</button><button class="sim-btn" onclick="setDepth(4)">4단계</button><button class="sim-btn" onclick="setDepth(5)">5단계</button></div><div class="sim-footer">키보드 <kbd>0</kbd> ~ <kbd>5</kbd> 키를 눌러도 실시간으로 변경됩니다.</div></div><div class="explain"><div class="explain-banner">📖 수업 설명 · 시어핀스키 삼각형 규칙 찾기</div><div class="jump"><button class="jump-btn" onclick="jumpTo('s1')">활동 1</button><button class="jump-btn" onclick="jumpTo('s2')">활동 2</button><button class="jump-btn" onclick="jumpTo('s3')">활동 3</button><button class="jump-btn" onclick="jumpTo('s4')">활동 4</button><button class="jump-btn" onclick="jumpTo('s5')">활동 5</button></div>
+<h1 class="chapter-h1" id="s1">📌 [활동 1] 정삼각형 하나 그리기와 1단계 규칙</h1>
+<p class="section-desc">한 변의 길이가 256인 정삼각형은 <b>앞으로 가기</b>와 <b>왼쪽으로 120° 돌기</b>를 세 번 반복하면 그려집니다.</p>
+<div class="code-block-wrapper"><div class="code-header"><span class="code-lang">PYTHON</span><span>정삼각형 그리기</span></div><pre><code><span class="code-keyword">from</span> turtle <span class="code-keyword">import</span> *
+
+forward(<span class="code-num">256</span>)
+left(<span class="code-num">120</span>)
+forward(<span class="code-num">256</span>)
+left(<span class="code-num">120</span>)
+forward(<span class="code-num">256</span>)
+left(<span class="code-num">120</span>)
+
+done()</code></pre></div><p class="section-desc">1단계는 세 변의 가운데 점(●)을 이어 가운데 삼각형을 <b>빼고</b>, 남은 작은 삼각형 3개를 남깁니다.</p><div class="fig"><svg viewBox="0 0 560 235" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="시어핀스키 삼각형 0단계와 1단계">
+<polygon points="30.0,190.0 200.0,190.0 115.0,42.8" style="stroke:var(--ink);stroke-width:2.2;stroke-linejoin:round;fill:var(--soft);"/>
+<circle cx="115.0" cy="190.0" r="4" style="fill:var(--ink)"/>
+<circle cx="157.5" cy="116.4" r="4" style="fill:var(--ink)"/>
+<circle cx="72.5" cy="116.4" r="4" style="fill:var(--ink)"/>
+<polygon points="115.0,190.0 157.5,116.4 72.5,116.4" style="stroke:var(--ink);stroke-width:1.5;stroke-dasharray:5 4;fill:none"/>
+<text x="115.0" y="216" text-anchor="middle" font-size="13">0단계: 한 변 256</text>
+<text x="278" y="118" text-anchor="middle" font-size="30">→</text>
+<polygon points="350.0,190.0 520.0,190.0 435.0,42.8" style="fill:none;stroke:none"/>
+<polygon points="350.0,190.0 435.0,190.0 392.5,116.4" style="stroke:var(--ink);stroke-width:2.2;stroke-linejoin:round;fill:var(--soft);"/>
+<polygon points="435.0,190.0 520.0,190.0 477.5,116.4" style="stroke:var(--ink);stroke-width:2.2;stroke-linejoin:round;fill:var(--soft);"/>
+<polygon points="392.5,116.4 477.5,116.4 435.0,42.8" style="stroke:var(--ink);stroke-width:2.2;stroke-linejoin:round;fill:var(--soft);"/>
+<polygon points="435.0,190.0 477.5,116.4 392.5,116.4" style="stroke:var(--ink);stroke-width:1.5;stroke-dasharray:5 4;fill:var(--card)"/>
+<text x="435.0" y="150" text-anchor="middle" font-size="12">빠짐</text>
+<text x="435.0" y="216" text-anchor="middle" font-size="13">1단계: 한 변 128인 삼각형 3개</text>
+</svg></div><div class="result-box"><b>🔍 확인해 봅시다</b><br>• 앞으로 간 횟수 <b>3번</b>, 왼쪽으로 돈 횟수 <b>3번</b><br>• 1단계에서 남은 작은 삼각형은 <b>3개</b><br>• 작은 삼각형 한 개의 한 변의 길이는 256 ÷ 2 = <b>128</b></div>
+<h1 class="chapter-h1" id="s2">📌 [활동 2] 2단계는 어떻게 생길까?</h1>
+<p class="section-desc">남은 작은 삼각형 3개에 각각 같은 규칙을 한 번 더 적용합니다.</p>
+<div class="fig"><svg viewBox="0 0 420 330" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="2단계 정답 모양">
+<polygon points="60.0,300.0 135.0,300.0 97.5,235.0" style="stroke:var(--ink);stroke-width:2.2;stroke-linejoin:round;fill:var(--soft);"/>
+<polygon points="135.0,300.0 210.0,300.0 172.5,235.0" style="stroke:var(--ink);stroke-width:2.2;stroke-linejoin:round;fill:var(--soft);"/>
+<polygon points="97.5,235.0 172.5,235.0 135.0,170.1" style="stroke:var(--ink);stroke-width:2.2;stroke-linejoin:round;fill:var(--soft);"/>
+<polygon points="210.0,300.0 285.0,300.0 247.5,235.0" style="stroke:var(--ink);stroke-width:2.2;stroke-linejoin:round;fill:var(--soft);"/>
+<polygon points="285.0,300.0 360.0,300.0 322.5,235.0" style="stroke:var(--ink);stroke-width:2.2;stroke-linejoin:round;fill:var(--soft);"/>
+<polygon points="247.5,235.0 322.5,235.0 285.0,170.1" style="stroke:var(--ink);stroke-width:2.2;stroke-linejoin:round;fill:var(--soft);"/>
+<polygon points="135.0,170.1 210.0,170.1 172.5,105.1" style="stroke:var(--ink);stroke-width:2.2;stroke-linejoin:round;fill:var(--soft);"/>
+<polygon points="210.0,170.1 285.0,170.1 247.5,105.1" style="stroke:var(--ink);stroke-width:2.2;stroke-linejoin:round;fill:var(--soft);"/>
+<polygon points="172.5,105.1 247.5,105.1 210.0,40.2" style="stroke:var(--ink);stroke-width:2.2;stroke-linejoin:round;fill:var(--soft);"/>
+<text x="210" y="324" text-anchor="middle" font-size="13">2단계: 한 변 64인 삼각형 9개</text>
+</svg></div><div class="result-box"><b>🔍 확인해 봅시다</b><br>• 남은 작은 삼각형은 3 × 3 = <b>9개</b><br>• 한 변의 길이는 128 ÷ 2 = <b>64</b><br>• 처음 넓이를 1이라 할 때 남은 넓이는 3/4 × 3/4 = <b>9/16</b></div>
+<h1 class="chapter-h1" id="s3">📌 [활동 3] 시어핀스키 삼각형의 규칙 찾기 (처음 한 변 256)</h1>
+<p class="section-desc">먼저 빈칸을 예상해 본 뒤 정답을 확인하세요.</p>
+<table><tr><th>단계</th><th>남은 삼각형의 개수</th><th>삼각형 한 개의 한 변의 길이</th><th>남은 넓이 (처음 넓이 = 1)</th></tr><tr><td>0단계</td><td>1</td><td>256</td><td>1</td></tr><tr><td>1단계</td><td></td><td></td><td></td></tr><tr><td>2단계</td><td></td><td></td><td></td></tr><tr><td>3단계</td><td></td><td></td><td></td></tr><tr><td>4단계</td><td></td><td></td><td></td></tr></table><details><summary>✅ 정답 보기</summary><table><tr><th>단계</th><th>남은 삼각형의 개수</th><th>삼각형 한 개의 한 변의 길이</th><th>남은 넓이 (처음 넓이 = 1)</th></tr><tr><td>0단계</td><td>1</td><td>256</td><td>1</td></tr><tr><td>1단계</td><td>3</td><td>128</td><td>3/4</td></tr><tr><td>2단계</td><td>9</td><td>64</td><td>9/16</td></tr><tr><td>3단계</td><td>27</td><td>32</td><td>27/64</td></tr><tr><td>4단계</td><td>81</td><td>16</td><td>81/256</td></tr></table><div class="rule"><b>✨ 규칙 정리</b><br>개수는 <b>3배</b>, 삼각형 한 개의 한 변의 길이는 <b>1/2</b>, 남은 넓이는 <b>3/4배</b>가 됩니다.</div></details>
+<h1 class="chapter-h1" id="s4">📌 [활동 4] 빠진 삼각형 세어 보기</h1>
+<p class="section-desc">각 단계에서 가운데 삼각형을 빼면 빈 삼각형이 생깁니다.</p>
+<table><tr><th>단계</th><th>이번 단계에서 새로 빠지는 삼각형</th><th>지금까지 빠진 삼각형(모두)</th></tr><tr><td>0단계</td><td>0</td><td>0</td></tr><tr><td>1단계</td><td>1</td><td>1</td></tr><tr><td>2단계</td><td></td><td></td></tr><tr><td>3단계</td><td></td><td></td></tr><tr><td>4단계</td><td></td><td></td></tr></table><details><summary>✅ 정답 보기</summary><table><tr><th>단계</th><th>새로 빠지는 삼각형</th><th>지금까지 빠진 삼각형(모두)</th></tr><tr><td>0단계</td><td>0</td><td>0</td></tr><tr><td>1단계</td><td>1</td><td>1</td></tr><tr><td>2단계</td><td>3</td><td>4</td></tr><tr><td>3단계</td><td>9</td><td>13</td></tr><tr><td>4단계</td><td>27</td><td>40</td></tr></table><div class="rule"><b>✨ 규칙 정리</b><br>새로 빠지는 개수는 <b>이전 단계에서 남은 삼각형 개수</b>와 같습니다. (1, 3, 9, 27 … 3배씩 증가)</div></details>
+<h1 class="chapter-h1" id="s5">📌 [활동 5] 코드로 내 답 확인하기</h1>
+<p class="section-desc">아래 코드는 활동 3의 표를 계산해 줍니다. 실행해서 내가 적은 값과 같은지 비교해 보세요.</p>
+<div class="code-block-wrapper"><div class="code-header"><span class="code-lang">PYTHON</span><span>표 계산 코드</span></div><pre><code><span class="code-keyword">def</span> sierpinski_info(length, depth):
+    count = <span class="code-num">3</span> ** depth
+    side = length / <span class="code-num">2</span> ** depth
+    area = (<span class="code-num">3</span> / <span class="code-num">4</span>) ** depth
+    <span class="code-keyword">return</span> count, side, area
+
+<span class="code-keyword">for</span> depth <span class="code-keyword">in</span> <span class="code-keyword">range</span>(<span class="code-num">5</span>):
+    count, side, area = sierpinski_info(<span class="code-num">256</span>, depth)
+    print(depth, <span class="code-str">"단계 | 삼각형 개수:"</span>, count, <span class="code-str">"| 한 변의 길이:"</span>, side, <span class="code-str">"| 남은 넓이:"</span>, area)</code></pre></div><p class="section-desc">거북이가 시어핀스키 삼각형을 그리는 코드입니다. <code>sierpinski(256, 3)</code>의 마지막 숫자를 0, 1, 2, 4로 바꿔 가며 위 시뮬레이터와 비교해 보세요. 단계가 4가 넘으면 오래 걸립니다.</p><div class="code-block-wrapper"><div class="code-header"><span class="code-lang">PYTHON</span><span>거북이 시어핀스키 코드</span></div><pre><code><span class="code-keyword">from</span> turtle <span class="code-keyword">import</span> *
+
+<span class="code-keyword">def</span> sierpinski(length, depth):
+    <span class="code-keyword">if</span> depth == <span class="code-num">0</span>:
+        <span class="code-keyword">for</span> _ <span class="code-keyword">in</span> <span class="code-keyword">range</span>(<span class="code-num">3</span>):
+            forward(length)
+            left(<span class="code-num">120</span>)
+    <span class="code-keyword">else</span>:
+        <span class="code-keyword">for</span> _ <span class="code-keyword">in</span> <span class="code-keyword">range</span>(<span class="code-num">3</span>):
+            sierpinski(length / <span class="code-num">2</span>, depth - <span class="code-num">1</span>)
+            forward(length)
+            left(<span class="code-num">120</span>)
+
+speed(<span class="code-num">0</span>)
+hideturtle()
+penup()
+goto(-<span class="code-num">128</span>, -<span class="code-num">110</span>)
+pendown()
+
+sierpinski(<span class="code-num">256</span>, <span class="code-num">3</span>)
+done()</code></pre></div><div class="result-box"><b>🔍 코드 톺아보기</b><br>• <code>else:</code> 안의 <code>for _ in range(3):</code> 때문에 <code>sierpinski()</code>가 <b>3번</b> 불립니다. → 단계마다 삼각형이 3배<br>• 한 번 부를 때마다 <code>length / 2</code>로 변의 길이가 반이 됩니다.<br>• <code>if depth == 0:</code> 은 재귀를 멈추는 정지선입니다.</div>
+</div>` },
+  lesson4: { title: "04. 원주율", icon: "🎯", html: `<div class="simulator-card"><div class="sim-header"><div class="sim-title">⚡ 몬테카를로 실시간 캔버스</div><div class="live-badge">LIVE CANVAS</div></div><div class="canvas-box" style="background:#ffffff;"><canvas id="sim-canvas" width="400" height="400" style="border-radius: 8px; box-shadow: 0 0 10px rgba(0,0,0,0.05);"></canvas></div><div class="info-row"><div class="info-card"><div class="info-label">전체 점의 개수</div><div class="info-value" id="pi-total" style="color:#0284c7;">0개</div></div><div class="info-card"><div class="info-label">추정된 원주율 (Pi)</div><div class="info-value" id="pi-calc" style="color:#ea580c;">0.0000</div></div></div><div class="btn-row" id="pi-amount-buttons"><button class="sim-btn" onclick="addPiPoints(100, this)">100개</button><button class="sim-btn" onclick="addPiPoints(1000, this)">1,000개</button><button class="sim-btn" onclick="addPiPoints(5000, this)">5,000개</button><button class="sim-btn" onclick="addPiPoints(10000, this)">10,000개</button></div><div class="btn-row"><button class="sim-btn" id="pi-start-btn" style="background:#0f172a; color:#ffffff; border:none;" onclick="togglePi()">연속 실행 (Play)</button><button class="sim-btn" style="background:#e2e8f0; color:#334155; border:none;" onclick="resetPi()">초기화</button></div></div><div class="explain"><div class="explain-banner">📖 수업 설명 · 몬테카를로 방법으로 원주율 구하기</div><div class="jump"><button class="jump-btn" onclick="jumpTo('m1')">활동 1</button><button class="jump-btn" onclick="jumpTo('m2')">활동 2</button><button class="jump-btn" onclick="jumpTo('m3')">활동 3</button><button class="jump-btn" onclick="jumpTo('m4')">활동 4</button><button class="jump-btn" onclick="jumpTo('m5')">활동 5</button></div>
+<h1 class="chapter-h1" id="m1">📌 [활동 1] 점으로 원주율을 구하는 아이디어</h1>
+<p class="section-desc">한 변이 1인 정사각형 안에 반지름이 1인 사분원을 그렸습니다. 점을 무작위로 찍으면 점이 사분원 안에 떨어질 비율은 두 도형의 넓이 비와 같아집니다.</p>
+<div class="fig"><svg viewBox="0 0 420 380" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="한 변이 1인 정사각형과 반지름 1인 사분원">
+<rect x="60" y="50" width="280" height="280" style="stroke:var(--ink);stroke-width:2.2;fill:var(--card)"/>
+<path d="M 60 330 L 340 330 A 280 280 0 0 0 60 50 Z" style="stroke:var(--ink);stroke-width:2.2;fill:var(--soft)"/>
+<text x="60.0" y="350.0" text-anchor="middle" font-size="13">0</text>
+<text x="340.0" y="350.0" text-anchor="middle" font-size="13">1</text>
+<text x="46.0" y="55.0" text-anchor="middle" font-size="13">1</text>
+<text x="46.0" y="335.0" text-anchor="middle" font-size="13">0</text>
+<text x="200.0" y="370.0" text-anchor="middle" font-size="14">x</text>
+<text x="20.0" y="195.0" text-anchor="middle" font-size="14">y</text>
+<text x="155.0" y="270.0" text-anchor="middle" font-size="13">사분원 (넓이 π/4)</text>
+<text x="292.0" y="72.0" text-anchor="middle" font-size="12">정사각형</text>
+<text x="292.0" y="88.0" text-anchor="middle" font-size="12">(넓이 1)</text>
+<text x="210.0" y="392.0" text-anchor="middle" font-size="12">반지름 1</text>
+</svg></div><div class="result-box"><b>🔍 확인해 봅시다</b><br>• 정사각형의 넓이는 <b>1</b><br>• 사분원의 넓이는 π × 1 × 1 ÷ 4 = <b>π/4</b><br>• 점이 사분원 안에 떨어질 가능성은 (π/4) ÷ 1 = <b>π/4</b><br>• (원 안의 점) ÷ (전체 점) ≈ π/4 → <b>π ≈ 4 × (원 안의 점) ÷ (전체 점)</b></div>
+<h1 class="chapter-h1" id="m2">📌 [활동 2] 점 10개로 손으로 해 보기</h1>
+<p class="section-desc">점의 좌표로 x² + y²를 계산해 1 이하이면 원 안(○), 1보다 크면 원 밖(×)으로 표시합니다.</p>
+<div class="fig"><svg viewBox="0 0 420 380" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="정사각형 안에 찍힌 점 10개">
+<rect x="60" y="50" width="280" height="280" style="stroke:var(--ink);stroke-width:2.2;fill:var(--card)"/>
+<path d="M 60 330 L 340 330 A 280 280 0 0 0 60 50 Z" style="stroke:var(--ink);stroke-width:2.2;fill:none"/>
+<text x="60.0" y="350.0" text-anchor="middle" font-size="13">0</text>
+<text x="340.0" y="350.0" text-anchor="middle" font-size="13">1</text>
+<text x="46.0" y="55.0" text-anchor="middle" font-size="13">1</text>
+<text x="46.0" y="335.0" text-anchor="middle" font-size="13">0</text>
+<text x="200.0" y="370.0" text-anchor="middle" font-size="14">x</text>
+<text x="20.0" y="195.0" text-anchor="middle" font-size="14">y</text>
+<circle cx="116.0" cy="78.0" r="5" style="fill:var(--ink);stroke:var(--ink);stroke-width:1.8"/>
+<text x="125.0" y="72.0" text-anchor="start" font-size="12">1</text>
+<circle cx="284.0" cy="134.0" r="5" style="fill:var(--card);stroke:var(--ink);stroke-width:1.8"/>
+<text x="293.0" y="128.0" text-anchor="start" font-size="12">2</text>
+<circle cx="200.0" cy="190.0" r="5" style="fill:var(--ink);stroke:var(--ink);stroke-width:1.8"/>
+<text x="209.0" y="184.0" text-anchor="start" font-size="12">3</text>
+<circle cx="312.0" cy="246.0" r="5" style="fill:var(--ink);stroke:var(--ink);stroke-width:1.8"/>
+<text x="303.0" y="240.0" text-anchor="end" font-size="12">4</text>
+<circle cx="228.0" cy="78.0" r="5" style="fill:var(--card);stroke:var(--ink);stroke-width:1.8"/>
+<text x="237.0" y="72.0" text-anchor="start" font-size="12">5</text>
+<circle cx="88.0" cy="302.0" r="5" style="fill:var(--ink);stroke:var(--ink);stroke-width:1.8"/>
+<text x="97.0" y="296.0" text-anchor="start" font-size="12">6</text>
+<circle cx="326.0" cy="64.0" r="5" style="fill:var(--card);stroke:var(--ink);stroke-width:1.8"/>
+<text x="317.0" y="58.0" text-anchor="end" font-size="12">7</text>
+<circle cx="256.0" cy="274.0" r="5" style="fill:var(--ink);stroke:var(--ink);stroke-width:1.8"/>
+<text x="265.0" y="268.0" text-anchor="start" font-size="12">8</text>
+<circle cx="144.0" cy="106.0" r="5" style="fill:var(--ink);stroke:var(--ink);stroke-width:1.8"/>
+<text x="153.0" y="100.0" text-anchor="start" font-size="12">9</text>
+<circle cx="298.0" cy="176.0" r="5" style="fill:var(--card);stroke:var(--ink);stroke-width:1.8"/>
+<text x="289.0" y="170.0" text-anchor="end" font-size="12">10</text>
+</svg></div><table><tr><th>번호</th><th>x</th><th>y</th><th>x² + y²</th><th>원 안(○) / 밖(×)</th></tr><tr><td>1</td><td>0.2</td><td>0.9</td><td>0.85</td><td>○</td></tr><tr><td>2</td><td>0.8</td><td>0.7</td><td></td><td></td></tr><tr><td>3</td><td>0.5</td><td>0.5</td><td></td><td></td></tr><tr><td>4</td><td>0.9</td><td>0.3</td><td></td><td></td></tr><tr><td>5</td><td>0.6</td><td>0.9</td><td></td><td></td></tr><tr><td>6</td><td>0.1</td><td>0.1</td><td></td><td></td></tr><tr><td>7</td><td>0.95</td><td>0.95</td><td></td><td></td></tr><tr><td>8</td><td>0.7</td><td>0.2</td><td></td><td></td></tr><tr><td>9</td><td>0.3</td><td>0.8</td><td></td><td></td></tr><tr><td>10</td><td>0.85</td><td>0.55</td><td></td><td></td></tr></table><details><summary>✅ 정답 보기</summary><table><tr><th>번호</th><th>x</th><th>y</th><th>x² + y²</th><th>원 안(○) / 밖(×)</th></tr><tr><td>1</td><td>0.2</td><td>0.9</td><td>0.85</td><td>○</td></tr><tr><td>2</td><td>0.8</td><td>0.7</td><td>1.13</td><td>×</td></tr><tr><td>3</td><td>0.5</td><td>0.5</td><td>0.5</td><td>○</td></tr><tr><td>4</td><td>0.9</td><td>0.3</td><td>0.9</td><td>○</td></tr><tr><td>5</td><td>0.6</td><td>0.9</td><td>1.17</td><td>×</td></tr><tr><td>6</td><td>0.1</td><td>0.1</td><td>0.02</td><td>○</td></tr><tr><td>7</td><td>0.95</td><td>0.95</td><td>1.805</td><td>×</td></tr><tr><td>8</td><td>0.7</td><td>0.2</td><td>0.53</td><td>○</td></tr><tr><td>9</td><td>0.3</td><td>0.8</td><td>0.73</td><td>○</td></tr><tr><td>10</td><td>0.85</td><td>0.55</td><td>1.025</td><td>×</td></tr></table><div class="result-box"><b>🔍 확인해 봅시다</b><br>• 원 안에 들어간 점은 <b>6개</b>, 전체 점은 10개<br>• π ≈ 4 × 6 ÷ 10 = <b>2.4</b><br>• 점이 10개뿐이라 우연의 영향이 커서 실제 값과 많이 다릅니다.</div></details>
+<h1 class="chapter-h1" id="m3">📌 [활동 3] 컴퓨터가 대신 점을 찍게 하기</h1>
+<p class="section-desc">점을 무작위로 1000개 찍고, 원 안은 빨간색, 밖은 파란색으로 표시한 뒤 π의 추정값을 계산합니다.</p>
+<div class="code-block-wrapper"><div class="code-header"><span class="code-lang">PYTHON</span><span>몬테카를로 거북이 코드</span></div><pre><code><span class="code-keyword">from</span> turtle <span class="code-keyword">import</span> *
+<span class="code-keyword">import</span> random
+
+<span class="code-keyword">def</span> draw_box():
+    penup()
+    goto(-<span class="code-num">150</span>, -<span class="code-num">150</span>)
+    setheading(<span class="code-num">0</span>)
+    pendown()
+    <span class="code-keyword">for</span> _ <span class="code-keyword">in</span> <span class="code-keyword">range</span>(<span class="code-num">4</span>):
+        forward(<span class="code-num">300</span>)
+        left(<span class="code-num">90</span>)
+    penup()
+    goto(<span class="code-num">150</span>, -<span class="code-num">150</span>)
+    setheading(<span class="code-num">90</span>)
+    pendown()
+    circle(<span class="code-num">300</span>, <span class="code-num">90</span>)
+    penup()
+
+<span class="code-keyword">def</span> monte_carlo(n):
+    inside = <span class="code-num">0</span>
+    <span class="code-keyword">for</span> _ <span class="code-keyword">in</span> <span class="code-keyword">range</span>(n):
+        x = random.random()
+        y = random.random()
+        <span class="code-keyword">if</span> x**<span class="code-num">2</span> + y**<span class="code-num">2</span> &lt;= <span class="code-num">1</span>:
+            inside = inside + <span class="code-num">1</span>
+            color(<span class="code-str">"red"</span>)
+        <span class="code-keyword">else</span>:
+            color(<span class="code-str">"blue"</span>)
+        goto(-<span class="code-num">150</span> + <span class="code-num">300</span> * x, -<span class="code-num">150</span> + <span class="code-num">300</span> * y)
+        dot(<span class="code-num">4</span>)
+    <span class="code-keyword">return</span> <span class="code-num">4</span> * inside / n
+
+hideturtle()
+tracer(<span class="code-num">0</span>)
+
+draw_box()
+pi_estimate = monte_carlo(<span class="code-num">1000</span>)
+
+update()
+print(<span class="code-str">"원주율 추정값:"</span>, pi_estimate)
+done()</code></pre></div><div class="result-box"><b>🔍 코드 톺아보기</b><br>• <code>random.random()</code> : 0 이상 1 미만의 수를 뽑으므로 점은 <b>한 변이 1인 정사각형 안</b>에 찍힙니다.<br>• <code>x**2 + y**2 &lt;= 1</code> 이 참이면 원점에서의 거리가 1 이하, 즉 <b>사분원 안</b>입니다.<br>• <code>-150 + 300 * x</code> : 0~1 좌표를 화면의 한 변 300짜리 정사각형(왼쪽 아래 (-150, -150))에 맞추려고 300을 곱하고 150을 뺍니다.<br>• <code>return 4 * inside / n</code> 은 활동 1의 π ≈ 4 × (원 안의 점) ÷ (전체 점)과 같습니다.<br>• 원점과의 거리 √(x² + y²) ≤ 1 에서 양쪽을 제곱해도 부등호 방향이 같으므로 <b>제곱근 없이</b> x² + y² ≤ 1 로 비교합니다.</div>
+<h1 class="chapter-h1" id="m4">📌 [활동 4] 점의 개수를 바꿔 가며 실험하기</h1>
+<p class="section-desc"><code>monte_carlo(1000)</code>의 숫자를 바꿔 같은 개수로 3번씩 실행하고 기록합니다. 위 시뮬레이터의 100개 / 1,000개 / 10,000개 버튼으로 시연해도 좋습니다.</p>
+<table><tr><th>점의 개수</th><th>1회</th><th>2회</th><th>3회</th><th>평균</th></tr><tr><td>10</td><td></td><td></td><td></td><td></td></tr><tr><td>100</td><td></td><td></td><td></td><td></td></tr><tr><td>1000</td><td></td><td></td><td></td><td></td></tr><tr><td>10000</td><td></td><td></td><td></td><td></td></tr></table><details><summary>✅ 정답 보기</summary><table><tr><th>점의 개수</th><th>같은 개수로 여러 번 했을 때 흩어지는 정도(표준오차)</th></tr><tr><td>10</td><td>약 ±0.5</td></tr><tr><td>100</td><td>약 ±0.16</td></tr><tr><td>1000</td><td>약 ±0.05</td></tr><tr><td>10000</td><td>약 ±0.016</td></tr></table><div class="rule"><b>✨ 규칙 정리</b><br>실행할 때마다 값이 달라서 정해진 정답은 없습니다. 점이 많아질수록 <b>3.14 근처로 모이고</b> 결과들 사이의 흩어짐이 줄어듭니다.</div></details>
+<h1 class="chapter-h1" id="m5">📌 [활동 5] 식으로 계산해 보기</h1>
+<p class="section-desc">π ≈ 4 × (원 안의 점) ÷ (전체 점) 을 이용해 계산해 봅시다.</p>
+<div class="result-box"><b>✏️ 문제</b><br>• 점 400개 중 312개가 원 안: π ≈ 4 × 312 ÷ 400 = ?<br>• 점 2000개 중 1580개가 원 안: π ≈ ?<br>• π ≈ 3.14일 때 점 1000개를 찍으면 원 안에는 대략 몇 개? (힌트: 전체 개수 × π/4)</div><details><summary>✅ 정답 보기</summary><div class="result-box"><b>정답</b><br>• <b>3.12</b><br>• 4 × 1580 ÷ 2000 = <b>3.16</b><br>• 1000 × π/4 ≈ <b>785개</b></div></details>
+</div>` },
+  lesson5: { title: "05. 스택", icon: "📚", html: `<div class="simulator-card"><div class="sim-header"><div class="sim-title">⚡ 스택 (Stack) 자료구조 시뮬레이터</div><div class="live-badge blue">LIVE CANVAS</div></div><div class="canvas-box"><canvas id="sim-canvas" width="400" height="400"></canvas></div><div class="info-row"><div class="info-card"><div class="info-label">현재 스택 크기</div><div class="info-value" id="stack-size" style="color:#0284c7;">0 / 5</div></div><div class="info-card"><div class="info-label">상태 메시지</div><div class="info-value" id="stack-msg" style="color:#ea580c; font-size:15px;">대기중</div></div></div><div class="btn-row"><input type="text" id="stack-input" class="sim-input" placeholder="데이터 입력" autocomplete="off"><button class="sim-btn" style="background:#dc2626; color:#ffffff; border:none;" onclick="pushStack()">PUSH</button><button class="sim-btn" style="background:#2563eb; color:#ffffff; border:none;" onclick="popStack()">POP</button></div></div>` },
+  lesson6: { title: "06. 큐", icon: "🚶", html: `<div class="simulator-card"><div class="sim-header"><div class="sim-title">⚡ 큐 (Queue) 자료구조 시뮬레이터</div><div class="live-badge blue">LIVE CANVAS</div></div><div class="canvas-box"><canvas id="sim-canvas" width="400" height="400"></canvas></div><div class="info-row"><div class="info-card"><div class="info-label">현재 큐 크기</div><div class="info-value" id="queue-size" style="color:#0284c7;">0 / 5</div></div><div class="info-card"><div class="info-label">상태 메시지</div><div class="info-value" id="queue-msg" style="color:#ea580c; font-size:15px;">대기중</div></div></div><div class="btn-row"><input type="text" id="queue-input" class="sim-input" placeholder="데이터 입력" autocomplete="off"><button class="sim-btn" style="background:#dc2626; color:#ffffff; border:none;" onclick="enqueueData()">Enqueue</button><button class="sim-btn" style="background:#2563eb; color:#ffffff; border:none;" onclick="dequeueData()">Dequeue</button></div></div>` }
+};
+
         function selectLesson(lessonKey, element) {
             cancelAnimationFrame(animationId);
             piIsRunning = false;
-
             currentSimulation = lessonKey;
             const lesson = lessons[lessonKey];
-            
             document.getElementById('topic-icon').innerText = lesson.icon;
             document.getElementById('topic-title').innerText = lesson.title;
             document.getElementById('lesson-content').innerHTML = lesson.html;
-
             const menuItems = document.querySelectorAll('.menu-item');
             menuItems.forEach(item => item.classList.remove('active'));
             if(element) element.classList.add('active');
-            
             document.getElementById('web-article-view').scrollTop = 0;
-
             setTimeout(() => {
-                if (lessonKey === 'lesson2' || lessonKey === 'lesson3') {
-                    initCanvas();
-                    setDepth(0);
-                } else if (lessonKey === 'lesson4') {
-                    initPiCanvas();
-                } else if (lessonKey === 'lesson5') {
-                    initStackCanvas();
-                } else if (lessonKey === 'lesson6') {
-                    initQueueCanvas();
-                }
+                if (lessonKey === 'lesson2' || lessonKey === 'lesson3') { initCanvas(); setDepth(0); }
+                else if (lessonKey === 'lesson4') { initPiCanvas(); }
+                else if (lessonKey === 'lesson5') { initStackCanvas(); }
+                else if (lessonKey === 'lesson6') { initQueueCanvas(); }
             }, 10);
+        }
+
+        // 추가: 설명 영역의 [활동 n] 바로가기
+        function jumpTo(id) {
+            const el = document.getElementById(id);
+            if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
         }
 
         function initCanvas() {
@@ -952,9 +582,7 @@ countdown(<span class="code-num">3</span>)</code></pre>
             if(d < 0) return;
             if(currentSimulation === 'lesson2' && d > 4) return;
             if(currentSimulation === 'lesson3' && d > 5) return;
-            
             currentDepth = d;
-
             const buttons = document.querySelectorAll('#depth-buttons .sim-btn');
             if(buttons.length > 0) {
                 buttons.forEach((btn, index) => {
@@ -962,7 +590,6 @@ countdown(<span class="code-num">3</span>)</code></pre>
                     else btn.classList.remove('active');
                 });
             }
-
             if (currentSimulation === 'lesson2') drawKochSnowflake(d);
             if (currentSimulation === 'lesson3') drawSierpinski(d);
         }
@@ -970,39 +597,26 @@ countdown(<span class="code-num">3</span>)</code></pre>
         window.addEventListener('keydown', (e) => {
             if(currentSimulation === 'lesson2' || currentSimulation === 'lesson3') {
                 const key = parseInt(e.key);
-                if(key >= 0 && key <= 5) {
-                    setDepth(key);
-                }
+                if(key >= 0 && key <= 5) { setDepth(key); }
             }
         });
 
-        // ---------------------------------------------------------
-        // 4. 눈송이 삼각형 (역삼각형 기본 + 바운딩 박스 완벽 정가운데 보정)
-        // ---------------------------------------------------------
+        // 4. 눈송이 삼각형 (역삼각형 기본 + 바운딩 박스 정가운데 보정)
         function drawKochSnowflake(depth) {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-            ctx.strokeStyle = "#0ea5e9"; 
+            ctx.strokeStyle = "#0ea5e9";
             ctx.lineWidth = 1.5;
-
-            // 400x400 기준, 크기 설정
-            const size = 260; 
+            const size = 260;
             const R = size / Math.sqrt(3);
             const r = R / 2;
-
-            // 역정삼각형 형태의 꼭짓점 3개를 (0,0) 원점 기준으로 생성
-            // 밑변이 위쪽에 오고 뾰족한 끝이 아래쪽을 향하게 됩니다.
-            const p1 = { x: -size/2, y: -r }; // 상단 왼쪽
-            const p2 = { x: size/2, y: -r };  // 상단 오른쪽
-            const p3 = { x: 0, y: R };        // 하단 끝
-
-            // 모든 선분의 점을 배열에 수집
+            const p1 = { x: -size/2, y: -r };
+            const p2 = { x: size/2, y: -r };
+            const p3 = { x: 0, y: R };
             let points = [];
             points.push(p1);
             getKochPoints(p1, p2, depth, points);
             getKochPoints(p2, p3, depth, points);
             getKochPoints(p3, p1, depth, points);
-
-            // 생성된 모든 점을 순회하며 바운딩 박스(Bounding Box)의 최소/최대 좌표 도출
             let minX = Infinity, maxX = -Infinity;
             let minY = Infinity, maxY = -Infinity;
             for(let p of points) {
@@ -1011,14 +625,10 @@ countdown(<span class="code-num">3</span>)</code></pre>
                 if(p.y < minY) minY = p.y;
                 if(p.y > maxY) maxY = p.y;
             }
-
-            // 바운딩 박스의 중심점을 캔버스의 정중앙(200, 200)에 맞추기 위한 이동값(Offset) 계산
             const bboxCenterX = (minX + maxX) / 2;
             const bboxCenterY = (minY + maxY) / 2;
             const offsetX = canvas.width / 2 - bboxCenterX;
             const offsetY = canvas.height / 2 - bboxCenterY;
-
-            // 계산된 오프셋을 더하여 캔버스에 최종 렌더링
             ctx.beginPath();
             ctx.moveTo(points[0].x + offsetX, points[0].y + offsetY);
             for(let i=1; i<points.length; i++) {
@@ -1026,61 +636,43 @@ countdown(<span class="code-num">3</span>)</code></pre>
             }
             ctx.closePath();
             ctx.stroke();
-
             document.getElementById('val-depth').innerText = depth + "단계";
             document.getElementById('val-count').innerText = (points.length - 1) + "개";
         }
 
-        // 재귀 호출을 통해 점(Point) 데이터를 분할하여 수집하는 함수
         function getKochPoints(p1, p2, depth, points) {
-            if (depth === 0) {
-                points.push(p2);
-                return;
-            }
-            
+            if (depth === 0) { points.push(p2); return; }
             const dx = p2.x - p1.x;
             const dy = p2.y - p1.y;
             const pA = { x: p1.x + dx/3, y: p1.y + dy/3 };
             const pC = { x: p1.x + dx*2/3, y: p1.y + dy*2/3 };
-            
-            const angle = Math.PI / 3; 
+            const angle = Math.PI / 3;
             const pB = {
                 x: pA.x + (pC.x - pA.x) * Math.cos(angle) + (pC.y - pA.y) * Math.sin(angle),
                 y: pA.y - (pC.x - pA.x) * Math.sin(angle) + (pC.y - pA.y) * Math.cos(angle)
             };
-
             getKochPoints(p1, pA, depth - 1, points);
             getKochPoints(pA, pB, depth - 1, points);
             getKochPoints(pB, pC, depth - 1, points);
             getKochPoints(pC, p2, depth - 1, points);
         }
 
-        // ---------------------------------------------------------
-        // 5. 시어핀스키 삼각형 (바운딩 박스 정중앙 배치)
-        // ---------------------------------------------------------
+        // 5. 시어핀스키 삼각형
         function drawSierpinski(depth) {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-            
-            // 크기 확대
             const size = 360;
             const h = size * Math.sqrt(3) / 2;
-
-            // 가상 좌표계 (바운딩 박스 높이의 절반을 원점으로)
-            const p1 = { x: 0, y: -h/2 }; 
-            const p2 = { x: -size/2, y: h/2 }; 
-            const p3 = { x: size/2, y: h/2 }; 
-
-            // 캔버스의 완벽한 정가운데 오프셋
+            const p1 = { x: 0, y: -h/2 };
+            const p2 = { x: -size/2, y: h/2 };
+            const p3 = { x: size/2, y: h/2 };
             const offsetX = canvas.width / 2;
             const offsetY = canvas.height / 2;
-
             let count = drawSierpTriangle(
-                {x: p1.x + offsetX, y: p1.y + offsetY}, 
-                {x: p2.x + offsetX, y: p2.y + offsetY}, 
-                {x: p3.x + offsetX, y: p3.y + offsetY}, 
+                {x: p1.x + offsetX, y: p1.y + offsetY},
+                {x: p2.x + offsetX, y: p2.y + offsetY},
+                {x: p3.x + offsetX, y: p3.y + offsetY},
                 depth
             );
-
             document.getElementById('val-depth').innerText = depth + "단계";
             document.getElementById('val-count').innerText = count + "개";
         }
@@ -1092,17 +684,15 @@ countdown(<span class="code-num">3</span>)</code></pre>
                 ctx.lineTo(p2.x, p2.y);
                 ctx.lineTo(p3.x, p3.y);
                 ctx.closePath();
-                ctx.fillStyle = "rgba(2, 132, 199, 0.7)"; 
+                ctx.fillStyle = "rgba(2, 132, 199, 0.7)";
                 ctx.fill();
                 ctx.strokeStyle = "#0284c7";
                 ctx.stroke();
                 return 1;
             }
-
             const m1 = { x: (p1.x + p2.x)/2, y: (p1.y + p2.y)/2 };
             const m2 = { x: (p2.x + p3.x)/2, y: (p2.y + p3.y)/2 };
             const m3 = { x: (p3.x + p1.x)/2, y: (p3.y + p1.y)/2 };
-
             let triangles = 0;
             triangles += drawSierpTriangle(p1, m1, m3, depth - 1);
             triangles += drawSierpTriangle(m1, p2, m2, depth - 1);
@@ -1110,9 +700,7 @@ countdown(<span class="code-num">3</span>)</code></pre>
             return triangles;
         }
 
-        // ---------------------------------------------------------
         // 6. 몬테카를로 원주율 (Pi)
-        // ---------------------------------------------------------
         function initPiCanvas() {
             canvas = document.getElementById('sim-canvas');
             ctx = canvas.getContext('2d');
@@ -1121,11 +709,9 @@ countdown(<span class="code-num">3</span>)</code></pre>
 
         function drawPiBackground() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-            
             ctx.strokeStyle = "#cbd5e1";
             ctx.lineWidth = 1;
             ctx.strokeRect(10, 10, 380, 380);
-
             ctx.beginPath();
             ctx.arc(200, 200, 190, 0, 2 * Math.PI);
             ctx.fillStyle = "#f8fafc";
@@ -1133,7 +719,6 @@ countdown(<span class="code-num">3</span>)</code></pre>
             ctx.strokeStyle = "#0ea5e9";
             ctx.lineWidth = 2;
             ctx.stroke();
-
             ctx.beginPath();
             ctx.setLineDash([4, 4]);
             ctx.moveTo(10, 200);
@@ -1142,7 +727,7 @@ countdown(<span class="code-num">3</span>)</code></pre>
             ctx.lineTo(200, 390);
             ctx.strokeStyle = "#e2e8f0";
             ctx.stroke();
-            ctx.setLineDash([]); 
+            ctx.setLineDash([]);
         }
 
         function resetPi(clearActiveButtons = true) {
@@ -1150,17 +735,12 @@ countdown(<span class="code-num">3</span>)</code></pre>
             cancelAnimationFrame(animationId);
             piPointsTotal = 0;
             piPointsInside = 0;
-            
             const btn = document.getElementById('pi-start-btn');
-            if(btn) {
-                btn.innerText = "연속 실행 (Play)";
-            }
-
+            if(btn) { btn.innerText = "연속 실행 (Play)"; }
             if(clearActiveButtons) {
                 const buttons = document.querySelectorAll('#pi-amount-buttons .sim-btn');
                 buttons.forEach(b => b.classList.remove('active'));
             }
-
             drawPiBackground();
             updatePiUI();
         }
@@ -1168,7 +748,6 @@ countdown(<span class="code-num">3</span>)</code></pre>
         function togglePi() {
             piIsRunning = !piIsRunning;
             const btn = document.getElementById('pi-start-btn');
-            
             if(piIsRunning) {
                 btn.innerText = "일시 정지 (Pause)";
                 const buttons = document.querySelectorAll('#pi-amount-buttons .sim-btn');
@@ -1181,56 +760,38 @@ countdown(<span class="code-num">3</span>)</code></pre>
         }
 
         function addPiPoints(amount, btnElement) {
-            resetPi(false); 
-            
+            resetPi(false);
             const buttons = document.querySelectorAll('#pi-amount-buttons .sim-btn');
             buttons.forEach(b => b.classList.remove('active'));
-            if(btnElement) {
-                btnElement.classList.add('active');
-            }
-
-            for(let i=0; i<amount; i++) {
-                drawSinglePiPoint();
-            }
+            if(btnElement) { btnElement.classList.add('active'); }
+            for(let i=0; i<amount; i++) { drawSinglePiPoint(); }
             updatePiUI();
         }
 
         function loopPi() {
             if(!piIsRunning) return;
-
             let pointsToDraw = 100;
-            // 10,000개 도달 시 자동 정지 제한
             if (piPointsTotal + pointsToDraw >= 10000) {
                 pointsToDraw = 10000 - piPointsTotal;
-                piIsRunning = false; 
+                piIsRunning = false;
                 document.getElementById('pi-start-btn').innerText = "연속 실행 (Play)";
             }
-
-            for(let i=0; i<pointsToDraw; i++) {
-                drawSinglePiPoint();
-            }
-
+            for(let i=0; i<pointsToDraw; i++) { drawSinglePiPoint(); }
             updatePiUI();
-
-            if(piIsRunning) {
-                animationId = requestAnimationFrame(loopPi);
-            }
+            if(piIsRunning) { animationId = requestAnimationFrame(loopPi); }
         }
 
         function drawSinglePiPoint() {
             const x = 10 + Math.random() * 380;
             const y = 10 + Math.random() * 380;
-            
             const dist = Math.sqrt((x - 200)**2 + (y - 200)**2);
-            
             ctx.beginPath();
             ctx.arc(x, y, 1.2, 0, 2*Math.PI);
-
             if(dist <= 190) {
                 piPointsInside++;
-                ctx.fillStyle = "rgba(14, 165, 233, 0.6)"; 
+                ctx.fillStyle = "rgba(14, 165, 233, 0.6)";
             } else {
-                ctx.fillStyle = "rgba(148, 163, 184, 0.4)"; 
+                ctx.fillStyle = "rgba(148, 163, 184, 0.4)";
             }
             ctx.fill();
             piPointsTotal++;
@@ -1238,17 +799,12 @@ countdown(<span class="code-num">3</span>)</code></pre>
 
         function updatePiUI() {
             document.getElementById('pi-total').innerText = piPointsTotal.toLocaleString() + "개";
-            
             let piValue = 0;
-            if(piPointsTotal > 0) {
-                piValue = 4 * (piPointsInside / piPointsTotal);
-            }
+            if(piPointsTotal > 0) { piValue = 4 * (piPointsInside / piPointsTotal); }
             document.getElementById('pi-calc').innerText = piValue.toFixed(4);
         }
 
-        // ---------------------------------------------------------
         // 7. 스택(Stack) 시뮬레이션
-        // ---------------------------------------------------------
         function initStackCanvas() {
             canvas = document.getElementById('sim-canvas');
             ctx = canvas.getContext('2d');
@@ -1258,7 +814,6 @@ countdown(<span class="code-num">3</span>)</code></pre>
 
         function drawStack() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-            
             ctx.beginPath();
             ctx.moveTo(140, 100);
             ctx.lineTo(140, 350);
@@ -1267,46 +822,36 @@ countdown(<span class="code-num">3</span>)</code></pre>
             ctx.strokeStyle = "#0f172a";
             ctx.lineWidth = 4;
             ctx.stroke();
-
             ctx.font = "bold 15px sans-serif";
             ctx.textAlign = "center";
             ctx.textBaseline = "middle";
-
             for(let i=0; i<stackData.length; i++) {
                 let x = 150;
-                let y = 300 - (i * 45); 
-
-                ctx.fillStyle = "#bae6fd"; 
+                let y = 300 - (i * 45);
+                ctx.fillStyle = "#bae6fd";
                 ctx.fillRect(x, y, 100, 40);
-                
                 ctx.strokeStyle = "#0284c7";
                 ctx.lineWidth = 2;
                 ctx.strokeRect(x, y, 100, 40);
-
                 ctx.fillStyle = "#0f172a";
                 ctx.fillText(stackData[i], x + 50, y + 20);
             }
-
             document.getElementById('stack-size').innerText = `${stackData.length} / ${MAX_SIZE}`;
         }
 
         function pushStack() {
             const inputEl = document.getElementById('stack-input');
             const val = inputEl.value.trim();
-            
             if (stackData.length >= MAX_SIZE) {
                 document.getElementById('stack-msg').innerText = "오버플로우 (Overflow)!";
                 document.getElementById('stack-msg').style.color = "#dc2626";
                 return;
             }
-            
             const dataToPush = val === "" ? "Data" : val;
             stackData.push(dataToPush);
             inputEl.value = "";
-            
             document.getElementById('stack-msg').innerText = `'${dataToPush}' PUSH 성공`;
             document.getElementById('stack-msg').style.color = "#059669";
-            
             drawStack();
         }
 
@@ -1316,17 +861,13 @@ countdown(<span class="code-num">3</span>)</code></pre>
                 document.getElementById('stack-msg').style.color = "#dc2626";
                 return;
             }
-            
             const removed = stackData.pop();
             document.getElementById('stack-msg').innerText = `'${removed}' POP 성공`;
             document.getElementById('stack-msg').style.color = "#2563eb";
-            
             drawStack();
         }
 
-        // ---------------------------------------------------------
         // 8. 큐(Queue) 시뮬레이션
-        // ---------------------------------------------------------
         function initQueueCanvas() {
             canvas = document.getElementById('sim-canvas');
             ctx = canvas.getContext('2d');
@@ -1337,7 +878,6 @@ countdown(<span class="code-num">3</span>)</code></pre>
 
         function drawQueue() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-            
             ctx.beginPath();
             ctx.moveTo(40, 180);
             ctx.lineTo(360, 180);
@@ -1346,56 +886,43 @@ countdown(<span class="code-num">3</span>)</code></pre>
             ctx.strokeStyle = "#0f172a";
             ctx.lineWidth = 4;
             ctx.stroke();
-
             ctx.font = "bold 14px sans-serif";
             ctx.textBaseline = "bottom";
             ctx.fillStyle = "#2563eb";
-            
             ctx.textAlign = "left";
             ctx.fillText("OUT (front)", 40, 170);
-            
             ctx.textAlign = "right";
             ctx.fillText("IN (rear)", 360, 170);
-
             ctx.font = "bold 14px sans-serif";
             ctx.textBaseline = "middle";
             ctx.textAlign = "center";
-
             for(let i=0; i<queueData.length; i++) {
                 let x = 50 + (i * 60);
                 let y = 190;
-
                 ctx.fillStyle = "#bae6fd";
                 ctx.fillRect(x, y, 50, 40);
-                
                 ctx.strokeStyle = "#0284c7";
                 ctx.lineWidth = 2;
                 ctx.strokeRect(x, y, 50, 40);
-
                 ctx.fillStyle = "#0f172a";
                 ctx.fillText(queueData[i], x + 25, y + 20);
             }
-
             document.getElementById('queue-size').innerText = `${queueData.length} / ${MAX_SIZE}`;
         }
 
         function enqueueData() {
             const inputEl = document.getElementById('queue-input');
             const val = inputEl.value.trim();
-            
             if (queueData.length >= MAX_SIZE) {
                 document.getElementById('queue-msg').innerText = "오버플로우 (Overflow)!";
                 document.getElementById('queue-msg').style.color = "#dc2626";
                 return;
             }
-            
             const dataToEnq = val === "" ? "Data" : val;
             queueData.push(dataToEnq);
             inputEl.value = "";
-            
             document.getElementById('queue-msg').innerText = `'${dataToEnq}' Enqueue 성공`;
             document.getElementById('queue-msg').style.color = "#059669";
-            
             drawQueue();
         }
 
@@ -1405,11 +932,9 @@ countdown(<span class="code-num">3</span>)</code></pre>
                 document.getElementById('queue-msg').style.color = "#dc2626";
                 return;
             }
-            
-            const removed = queueData.shift(); 
+            const removed = queueData.shift();
             document.getElementById('queue-msg').innerText = `'${removed}' Dequeue 성공`;
             document.getElementById('queue-msg').style.color = "#2563eb";
-            
             drawQueue();
         }
 
